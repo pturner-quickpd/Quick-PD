@@ -1,6 +1,6 @@
 // ============================================================
-// Quick PD — static API shim
-// Replaces the FastAPI/SQLite backend for the Cloudflare Pages build.
+// The Turner Instructional Toolkit — static API shim
+// Replaces the FastAPI/SQLite backend for the Cloudflare Workers deploy.
 // Reference content is read from ./data/*.json; teacher-saved work is
 // stored in this browser (localStorage). Must load BEFORE app.js.
 // ============================================================

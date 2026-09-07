@@ -5,22 +5,12 @@
 // ============================================================
 
 // API base resolution:
-//   - Published production (<name>.pplx.app): backend on port 5000, reached via '/port/5000'.
-//   - Preview (sites.pplx.app/sites/proxy/...): the '__PORT_5001__' sentinel is rewritten
-//     to a bare relative 'port/5001'. Fetches resolve relative to the current document URL,
-//     so 'port/5001/api/x' becomes '/sites/proxy/<token>/.../static/port/5001/api/x' which
-//     the proxy routes to sandbox port 5001. Use the sentinel raw.
-//   - Local dev: sentinel is untouched; use http://localhost:5001 directly.
-const API = (function () {
-  if (typeof location !== 'undefined') {
-    const h = location.hostname;
-    if (h.endsWith('.pplx.app') && h !== 'sites.pplx.app') {
-      return '/port/5000';
-    }
-  }
-  const sentinel = "__PORT_5001__";
-  return sentinel.startsWith("__") ? "http://localhost:5001" : sentinel;
-})();
+// This is a static site — every `/api/*` request is intercepted client-side by
+// api-shim.js (see public/api-shim.js), which serves reference content from
+// ./data/*.json and stores teacher work in localStorage. All API URLs are
+// therefore same-origin; API stays empty so `${API}/api/...` renders as
+// `/api/...` and the shim handles it.
+const API = "";
 
 function api(p) { return API + p; }
 
@@ -65,13 +55,6 @@ async function fetchJSON(url, opts) {
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
   return res.json();
 }
-
-// Rewrite absolute /api paths in fetch to use the proxied backend URL.
-const _fetch = window.fetch.bind(window);
-window.fetch = (url, opts) => {
-  if (typeof url === 'string' && url.startsWith('/api/')) return _fetch(API + url, opts);
-  return _fetch(url, opts);
-};
 
 function ytEmbed(url) {
   if (!url) return null;
