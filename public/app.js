@@ -354,15 +354,27 @@ async function init() {
   const toggle = $("#sidebar-toggle");
   const sidebar = $("#sidebar");
   const scrim = $("#sidebar-scrim");
+  // Keep the body's sidebar-open class in sync so CSS can react site-wide
+  // (used to retract the fixed Menu button so it doesn't clip the drawer wordmark).
+  function setSidebarOpen(open) {
+    sidebar.classList.toggle("open", open);
+    if (scrim) scrim.hidden = !open;
+    if (toggle) toggle.setAttribute("aria-expanded", String(open));
+    document.body.classList.toggle("sidebar-open", open);
+  }
   toggle?.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-    const open = sidebar.classList.contains("open");
-    scrim.hidden = !open;
-    toggle.setAttribute("aria-expanded", open);
+    setSidebarOpen(!sidebar.classList.contains("open"));
   });
-  scrim?.addEventListener("click", () => {
-    sidebar.classList.remove("open");
-    scrim.hidden = true;
+  scrim?.addEventListener("click", () => setSidebarOpen(false));
+  // Tapping a nav link inside the drawer should also close it on mobile
+  // (otherwise the drawer stays open on top of the destination page).
+  sidebar?.addEventListener("click", (e) => {
+    const link = e.target.closest("a[href^='#/']");
+    if (link && sidebar.classList.contains("open")) setSidebarOpen(false);
+  });
+  // Esc closes the drawer
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar.classList.contains("open")) setSidebarOpen(false);
   });
   // Feedback links — open mailto with context (current page + teacher name).
   // Static href on the anchors is a fine fallback for right-click / copy.
