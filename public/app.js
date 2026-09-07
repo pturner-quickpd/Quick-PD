@@ -136,6 +136,7 @@ const ROUTE_LABELS = {
   "standards/unpack": "Break Down a Standard",
   "standards/plan": "Build an Instructional Plan",
   "seating": "Seating & Environment",
+  "interventions": "Tier 2 Interventions",
   "toolkit": "My Toolkit",
   "my-work": "My Work",
   "toolkit-examples": "Toolkit Examples",
@@ -227,6 +228,7 @@ const Routes = {
   // We-Town Toolkit parity routes — thin adapters into existing views.
   "today": (view) => renderStrategies(view, { mode: "today" }),
   "pick-for-me": (view) => renderStrategies(view, { mode: "pick" }),
+  "interventions": renderInterventionsPage,
   "toolkit": (view) => renderStrategies(view, { mode: "favorites" }),
   "my-work": async (view) => { await Data.ensure(); window.Data = Data; view.innerHTML = ""; window.MyWork.render(view); window.scrollTo(0, 0); },
   "add": (view) => renderStrategies(view, { mode: "add" }),
@@ -1139,8 +1141,45 @@ function simpleList(items, kind) {
   }).join("");
 }
 
-function renderInterventions() {
+
+// ------------------ Tier 2: Academic Interventions (own page) ------------------
+let IntvState = { category: "all", q: "" };
+async function renderInterventionsPage(view) {
+  await Data.ensure();
   const iv = Data.qpd?.interventions || { categories: [], items: [] };
+  const cats = iv.categories || [];
+  view.innerHTML = `
+    <div class="page-kicker">Tier 2</div>
+    <h1 class="page-title">Academic Interventions</h1>
+    <p class="page-lede">Evidence-based Tier 2 supports for reading, math, writing, and study skills — for the students who need more than strong Tier 1. Each one includes a short demonstration video and a research-backed resource so you can go deeper before Monday.</p>
+    <div class="filter-row" id="intv-filters">
+      <button type="button" class="filter-btn${IntvState.category === "all" ? " active" : ""}" data-cat="all">All (${(iv.items || []).length})</button>
+      ${cats.map((c) => `<button type="button" class="filter-btn${IntvState.category === c.id ? " active" : ""}" data-cat="${escapeHtml(c.id)}">${escapeHtml(c.label)} (${(iv.items || []).filter((i) => i.category === c.id).length})</button>`).join("")}
+      <input class="search-input" id="intv-search" placeholder="Search interventions…" value="${escapeHtml(IntvState.q)}" />
+    </div>
+    <div id="intv-body"></div>
+  `;
+  const body = $("#intv-body");
+  const paint = () => {
+    const q = IntvState.q.trim().toLowerCase();
+    const filtered = {
+      categories: cats.filter((c) => IntvState.category === "all" || c.id === IntvState.category),
+      items: (iv.items || []).filter((it) => (IntvState.category === "all" || it.category === IntvState.category) &&
+        (!q || [it.name, it.subject, it.description, it.format].join(" ").toLowerCase().includes(q))),
+    };
+    body.innerHTML = filtered.items.length ? renderInterventions(filtered) : '<div class="empty">No interventions match.</div>';
+  };
+  paint();
+  view.querySelectorAll("#intv-filters .filter-btn").forEach((b) => b.addEventListener("click", () => {
+    IntvState.category = b.dataset.cat;
+    view.querySelectorAll("#intv-filters .filter-btn").forEach((x) => x.classList.toggle("active", x === b));
+    paint();
+  }));
+  $("#intv-search").addEventListener("input", (e) => { IntvState.q = e.target.value; paint(); });
+}
+
+function renderInterventions(ivOverride) {
+  const iv = ivOverride || Data.qpd?.interventions || { categories: [], items: [] };
   const cats = iv.categories || [];
   const items = iv.items || [];
   if (!items.length) return '<div class="empty">No interventions loaded.</div>';

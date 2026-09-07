@@ -1623,3 +1623,5 @@ mark {
 .teacher-box.is-signed .teacher-btn { background: rgba(255,255,255,0.12); color: #fff; font-weight: 600; }
 .teacher-box.is-signed .teacher-hint { color: var(--gold); }
 @keyframes teacher-pulse { 0%,100% { box-shadow: 0 0 0 2px rgba(212,165,55,0.25);} 50% { box-shadow: 0 0 0 5px rgba(212,165,55,0.45);} }
+
+.page-kicker { display:inline-block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--gold); background:rgba(212,165,55,.14); padding:3px 8px; border-radius:4px; margin-bottom:6px; }
