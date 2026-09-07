@@ -1801,6 +1801,22 @@ mark {
   color: #fbeef2;
   line-height: 1.55;
 }
+/* iOS Safari occasionally fails to inherit color across inline boundaries
+   (text after <strong>, wrapped inline text). Set every inline descendant
+   explicitly so nothing renders as the default dark gray. Strong stays white,
+   links stay gold. */
+.callout-maroon .check-list li,
+.callout-maroon .check-list li span,
+.callout-maroon .check-list li em,
+.callout-maroon .check-list li i,
+.callout-maroon .check-list li cite,
+.callout-maroon .check-list li small { color: #fbeef2 !important; }
+.callout-maroon .check-list li strong { color: #ffffff !important; }
+.callout-maroon .check-list li a,
+.callout-maroon .check-list li a em,
+.callout-maroon .check-list li a i,
+.callout-maroon .check-list li a cite,
+.callout-maroon .check-list li a span { color: #ffe6a8 !important; }
 .callout-maroon .check-list li + li { border-top: 1px solid rgba(255,255,255,0.14); margin-top: 2px; }
 .callout-maroon .check-list li::before {
   content: "✓";
