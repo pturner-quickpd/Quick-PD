@@ -1760,6 +1760,51 @@ mark {
 }
 .callout-navy h3 { color: #ffffff; margin: 0 0 8px 0; }
 .callout-navy p { color: #e2e8f0; margin: 0; }
+.callout-navy p + p { margin-top: 10px; }
+.callout-navy strong { color: #ffffff; font-weight: 700; }
+.callout-navy a { color: #ffe6a8; text-decoration: underline; }
+.callout-navy a:hover { color: #fff2cc; }
+
+/* Maroon variant of the navy callout — used for the intertwined-domains panel.
+   All text sits at #ffffff / #f8e8ee for AA contrast on the maroon gradient. */
+.callout-maroon {
+  background: linear-gradient(135deg, #6b1f3a 0%, #8b2a4a 100%);
+  color: #ffffff;
+  border: none;
+  padding: 24px;
+  border-radius: 14px;
+  margin: 20px 0;
+}
+.callout-maroon h3 {
+  color: #ffffff;
+  margin: 0 0 10px 0;
+  font-family: "Merriweather", serif;
+  font-size: 20px;
+  line-height: 1.35;
+}
+.callout-maroon p { color: #fbeef2; margin: 0; line-height: 1.55; }
+.callout-maroon p + p { margin-top: 12px; }
+.callout-maroon strong { color: #ffffff; font-weight: 700; }
+.callout-maroon a { color: #ffe6a8; text-decoration: underline; }
+.callout-maroon a:hover { color: #fff2cc; }
+.callout-maroon em { color: #fbeef2; }
+.callout-maroon .check-list { list-style: none; padding: 0; margin: 12px 0 4px 0; }
+.callout-maroon .check-list li {
+  padding: 8px 0 8px 30px;
+  position: relative;
+  color: #fbeef2;
+  line-height: 1.55;
+}
+.callout-maroon .check-list li + li { border-top: 1px solid rgba(255,255,255,0.14); margin-top: 2px; }
+.callout-maroon .check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  color: #ffe6a8;
+  font-weight: 700;
+  font-size: 16px;
+}
 
 .mtss-loop {
   display: flex; flex-direction: column; gap: 14px; margin: 20px 0;
