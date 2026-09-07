@@ -895,13 +895,26 @@ async function renderStrategies(view, params) {
   else if (mode === "add") { setTimeout(() => $("#btn-add")?.click(), 50); }
 }
 
+// Slug -> friendly name for the K-5 / Feedback domain pages so cards can
+// show "From: Early Science" and link back to the source hub.
+const ELEMENTARY_PAGE_TITLES = {
+  "early-reading":        "Early Reading",
+  "early-math":           "Early Math",
+  "early-writing":        "Early Writing",
+  "early-science":        "Early Science",
+  "early-social-studies": "Early Social Studies",
+  "early-pe":             "Early PE",
+  "feedback":             "Teacher–Student Feedback",
+};
+
 function strategyCard(s) {
   const fav = Data.favorites?.has(s.id);
   const isToday = TodayFocusId === s.id;
+  const fromPage = s.elementaryPageSlug && ELEMENTARY_PAGE_TITLES[s.elementaryPageSlug];
   return `
     <div class="card" data-id="${escapeHtml(s.id)}">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
-        <div class="card-meta">${escapeHtml(s.category || "")}${isToday ? ' <span class="tag-pill">Today\'s focus</span>' : ""}${s.isCustom ? ' <span class="tag-pill">Custom</span>' : ""}</div>
+        <div class="card-meta">${escapeHtml(s.category || "")}${isToday ? ' <span class="tag-pill">Today\'s focus</span>' : ""}${s.isCustom ? ' <span class="tag-pill">Custom</span>' : ""}${fromPage ? ` <span class="tag-pill tag-pill-elem">From: ${escapeHtml(fromPage)}</span>` : ""}</div>
         <button class="fav-btn ${fav ? "on" : ""}" data-id="${escapeHtml(s.id)}" title="Favorite" aria-label="Favorite">${fav ? "♥" : "♡"}</button>
       </div>
       <div class="strategy-mini-title">${escapeHtml(s.title)}</div>
@@ -941,6 +954,13 @@ async function renderStrategyDetail(view, params) {
         ${(s.grades || []).map((x) => `<span class="tag grade">${escapeHtml(x)}</span>`).join("")}
         ${(s.needs || []).map((x) => `<span class="tag need">${escapeHtml(x)}</span>`).join("")}
       </div>
+
+      ${s.elementaryPageSlug && ELEMENTARY_PAGE_TITLES[s.elementaryPageSlug] ? `
+        <div class="section">
+          <a class="strategy-open-link" href="#/${escapeHtml(s.elementaryPageSlug)}">
+            See the full card on the ${escapeHtml(ELEMENTARY_PAGE_TITLES[s.elementaryPageSlug])} page →
+          </a>
+        </div>` : ""}
 
       ${s.howTo ? `<div class="section"><h3 class="subsection-title">How to use it</h3><p>${nl2br(s.howTo)}</p></div>` : ""}
       ${s.example ? `<div class="section"><h3 class="subsection-title">Classroom example</h3><p>${nl2br(s.example)}</p></div>` : ""}
@@ -1643,120 +1663,6 @@ function wirePLDocxButtons(view, saved) {
       btn.disabled = false; btn.textContent = orig;
     });
   });
-}
-
-// ------------------ Elementary Foundations ------------------
-let ElemTab = "hub";
-async function renderElementary(view) {
-  const k5Strategies = Data.strategies.filter((s) => {
-    const gs = (s.grades || []).join(" ").toLowerCase();
-    return gs.includes("k") || /\b[1-5]\b/.test(gs) || gs.includes("elementary") || gs.includes("all grades");
-  });
-
-  view.innerHTML = `
-    <h1 class="page-title">Elementary Foundations (K–5)</h1>
-    <p class="page-lede">A K–5 hub for the earliest years — reading, math, writing, and a filtered strategy view. Wewoka High teachers who work with feeder-school data land here to see what's coming next.</p>
-    <div class="tabs" id="elem-tabs">
-      <button class="tab ${ElemTab === "hub" ? "active" : ""}" data-tab="hub">Overview</button>
-      <button class="tab ${ElemTab === "reading" ? "active" : ""}" data-tab="reading">Early reading</button>
-      <button class="tab ${ElemTab === "math" ? "active" : ""}" data-tab="math">Early math</button>
-      <button class="tab ${ElemTab === "writing" ? "active" : ""}" data-tab="writing">Early writing</button>
-      <button class="tab ${ElemTab === "library" ? "active" : ""}" data-tab="library">K–5 Library <span style="color:var(--muted-2);font-weight:500;">(${k5Strategies.length})</span></button>
-    </div>
-    <div id="elem-body"></div>
-  `;
-
-  const draw = () => {
-    const body = $("#elem-body");
-    if (ElemTab === "hub") body.innerHTML = elemHub();
-    else if (ElemTab === "reading") body.innerHTML = elemReading();
-    else if (ElemTab === "math") body.innerHTML = elemMath();
-    else if (ElemTab === "writing") body.innerHTML = elemWriting();
-    else if (ElemTab === "library") {
-      body.innerHTML = `<div class="card-grid">${k5Strategies.map((s) => strategyCard(s)).join("")}</div>`;
-      $$("#elem-body .card").forEach((el) => el.addEventListener("click", (ev) => {
-        if (ev.target.closest(".fav-btn")) return;
-        location.hash = `#/strategy/${el.dataset.id}`;
-      }));
-    }
-  };
-  $$("#elem-tabs .tab").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      ElemTab = btn.dataset.tab;
-      $$("#elem-tabs .tab").forEach((b) => b.classList.toggle("active", b === btn));
-      draw();
-    });
-  });
-  draw();
-}
-
-function elemHub() {
-  return `
-    <div class="callout"><h3>Why this section exists</h3><p>The K–5 years set the ceiling for everything a Wewoka High student can do later. This section keeps the elementary-facing moves in one place — for our own K–5 teachers and for high-school teachers who want to see what came before.</p></div>
-    <div class="card"><h3 class="subsection-title">Reading</h3><p>Structured phonics, fluency practice, and comprehension routines that transfer to grade-level text.</p></div>
-    <div class="card"><h3 class="subsection-title">Math</h3><p>Concrete–representational–abstract sequencing, math-fact fluency, and word-problem schema.</p></div>
-    <div class="card"><h3 class="subsection-title">Writing</h3><p>Sentence-level writing, then paragraph, then structured genres — with heavy modeling.</p></div>
-  `;
-}
-
-function elemReading() {
-  return `
-    <div class="card">
-      <div class="card-title">Structured literacy — the K–5 non-negotiables</div>
-      <p>Explicit, systematic instruction in phonemic awareness, phonics, fluency, vocabulary, and comprehension. The order matters: decoding before comprehension, and comprehension is not skippable.</p>
-      <ul class="check-list">
-        <li>Daily phonemic-awareness and phonics practice (K–2)</li>
-        <li>Repeated reading of decodable then grade-level text (K–5)</li>
-        <li>Vocabulary taught in tiered word groups</li>
-        <li>Comprehension modeled through think-alouds</li>
-      </ul>
-      <div class="source-block"><span class="source-label">Source</span><a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/21" target="_blank" rel="noopener">IES Practice Guide — Foundational Skills to Support Reading (K–3)</a></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Repeated reading (fluency)</div>
-      <p>Short, high-dosage fluency routine: adult models, student re-reads three times, error correction, brief retell. Works when the passage matches the student's instructional level.</p>
-      <div class="source-block"><span class="source-label">Source</span><a href="https://www.interventioncentral.org/academic-interventions/reading-fluency/repeated-reading" target="_blank" rel="noopener">Intervention Central — Repeated Reading</a></div>
-    </div>
-  `;
-}
-
-function elemMath() {
-  return `
-    <div class="card">
-      <div class="card-title">Concrete → Representational → Abstract (CRA)</div>
-      <p>Teach every new concept first with a physical object, then a drawing or picture, then symbols. This is the K–5 bridge that most struggling learners never got.</p>
-      <div class="source-block"><span class="source-label">Source</span><a href="https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p05/" target="_blank" rel="noopener">IRIS Center — CRA</a></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Math-fact fluency</div>
-      <p>Short daily timings on a small set of facts with a visible progress chart. Alongside — never instead of — conceptual instruction.</p>
-      <div class="source-block"><span class="source-label">Source</span><a href="https://intensiveintervention.org/intervention-resources/academic-interventions" target="_blank" rel="noopener">National Center on Intensive Intervention — Academic Interventions</a></div>
-    </div>
-    <div class="card">
-      <div class="card-title">Word-problem schema</div>
-      <p>Teach students to recognize the underlying schema (combine, compare, change) — not hunt for keywords.</p>
-      <div class="source-block"><span class="source-label">Source</span><a href="https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p07/" target="_blank" rel="noopener">IRIS Center — Schema Instruction</a></div>
-    </div>
-  `;
-}
-
-function elemWriting() {
-  return `
-    <div class="card">
-      <div class="card-title">Sentence, then paragraph, then genre</div>
-      <p>K–5 writers need heavy sentence-level work before paragraphs, and heavy paragraph work before genre. Every stage is modeled aloud by the teacher.</p>
-      <ul class="check-list">
-        <li>Sentence expansion and combining drills</li>
-        <li>Modeled paragraphs with clear structure</li>
-        <li>Genre studies with mentor texts</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title">Self-Regulated Strategy Development (SRSD)</div>
-      <p>Teaches a writing strategy (e.g., POW + TREE) alongside self-regulation habits like goal setting and self-monitoring. One of the most studied approaches for K–8 writing.</p>
-      <div class="source-block"><span class="source-label">Source</span><a href="https://thinksrsd.com/free-resources-to-share/" target="_blank" rel="noopener">ThinkSRSD — free resources</a></div>
-    </div>
-  `;
 }
 
 // ==================== Lesson Plan Templates ====================
