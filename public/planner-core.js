@@ -34,6 +34,10 @@
     { key: "Science",       label: "Science (2026)",               url: "https://oklahoma.gov/education/services/standards-learning/science-engineering.html" },
     { key: "SocialStudies", label: "Social Studies (2025)",        url: "https://oklahoma.gov/education/services/standards-learning/social-studies.html" },
     { key: "PFL",           label: "Personal Financial Literacy (2024)", url: "https://oklahoma.gov/education/services/standards-learning/personal-financial-literacy.html" },
+    { key: "FineArts_VisualArt", label: "Fine Arts: Visual Art (2023)", url: "https://oklahoma.gov/education/services/standards-learning/fine-arts.html" },
+    { key: "FineArts_Music",     label: "Fine Arts: Music — Band & Music Appreciation (2023)", url: "https://oklahoma.gov/education/services/standards-learning/fine-arts.html" },
+    { key: "FineArts_MediaArts", label: "Fine Arts: Media Arts (2023)", url: "https://oklahoma.gov/education/services/standards-learning/fine-arts.html" },
+    { key: "ComputerScience",    label: "Computer Science (2023)", url: "https://oklahoma.gov/education/services/standards-learning/computer-science.html" },
   ];
 
   // Sort grades in canonical PK → HS course order
@@ -45,6 +49,9 @@
     "Middle School Science","High School","Biology","Chemistry","Physics","Astronomy","Earth Science","Environmental Science",
     "Oklahoma History","United States History","US Government","World Geography",
     "Modern World History","AP World History","Economics","Personal Financial Literacy","Tribal Governments",
+    "Proficient (Level I)","Advanced (Level II)","Accomplished (Level III)",
+    "Band / Secondary Music — Novice","Band / Secondary Music — Intermediate","Band / Secondary Music — Proficient","Band / Secondary Music — Advanced","Band / Secondary Music — Accomplished",
+    "Media — High School (9–12)","Grades 9–10 · Level 1","Grades 11–12 · Level 2",
     "Unspecified",
   ];
   function gradeSort(a, b) {
