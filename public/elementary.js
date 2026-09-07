@@ -1658,4 +1658,14 @@
     renderPE:            function () { return renderDomainPage("early-pe"); },
     renderFeedback:      function () { return renderDomainPage("feedback"); },
   };
+
+  // Expose the raw page data objects so global search (in app.js) can index
+  // every K–5 strategy title + evidence text + teacher moves.
+  window.EarlyPages_READING        = READING;
+  window.EarlyPages_MATH           = MATH;
+  window.EarlyPages_WRITING        = WRITING;
+  window.EarlyPages_SCIENCE        = SCIENCE;
+  window.EarlyPages_SOCIAL_STUDIES = SOCIAL_STUDIES;
+  window.EarlyPages_PE             = PE;
+  window.EarlyPages_FEEDBACK       = FEEDBACK;
 })();

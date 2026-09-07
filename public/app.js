@@ -2739,7 +2739,7 @@ async function renderAbout(view) {
       <p>Tried something that worked? <a href="#/add">Add a strategy</a> to the library. Have feedback or a strategy you want to see included? Reach out through Wewoka Public Schools.</p>
 
       <h2>What's in it right now</h2>
-      <p>250+ strategies · 15 formative assessment routines · 30+ classroom techniques · rigor practices · seating guides · standards guides · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print. All searchable from the sidebar. All yours.</p>
+      <p>250+ strategies · 15 formative assessment routines · 30+ classroom techniques · rigor practices · seating guides · standards guides · 13 Tier 2 academic interventions · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print · six K–5 domain pages (Reading, Math, Writing, Science, Social Studies, PE) · a dedicated Teacher–Student Feedback page. All searchable from the sidebar. All yours.</p>
     </div>
   `;
 }
@@ -2784,7 +2784,37 @@ function _searchIndex() {
     { label: "Lesson Plan Templates", sub: "Templates", href: "#/lesson-plans" },
     { label: "Toolkit Examples", sub: "Examples", href: "#/toolkit-examples" },
     { label: "About Quick PD", sub: "About", href: "#/about" },
+    { label: "Elementary Foundations", sub: "K–5 hub", href: "#/elementary" },
+    { label: "Early Reading (K–5)", sub: "K–5 domain", href: "#/early-reading" },
+    { label: "Early Math (K–5)", sub: "K–5 domain", href: "#/early-math" },
+    { label: "Early Writing (K–5)", sub: "K–5 domain", href: "#/early-writing" },
+    { label: "Early Science (K–5)", sub: "K–5 domain", href: "#/early-science" },
+    { label: "Early Social Studies (K–5)", sub: "K–5 domain", href: "#/early-social-studies" },
+    { label: "Early PE (K–5)", sub: "K–5 domain", href: "#/early-pe" },
+    { label: "Teacher–Student Feedback", sub: "Feedback", href: "#/feedback" },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
+
+  // Strategies inside the K–5 domain pages + Feedback page (data lives in elementary.js)
+  var elemPages = [
+    { slug: "early-reading",        obj: window.Elementary && window.EarlyPages_READING },
+    { slug: "early-math",           obj: window.Elementary && window.EarlyPages_MATH },
+    { slug: "early-writing",        obj: window.Elementary && window.EarlyPages_WRITING },
+    { slug: "early-science",        obj: window.Elementary && window.EarlyPages_SCIENCE },
+    { slug: "early-social-studies", obj: window.Elementary && window.EarlyPages_SOCIAL_STUDIES },
+    { slug: "early-pe",             obj: window.Elementary && window.EarlyPages_PE },
+    { slug: "feedback",             obj: window.Elementary && window.EarlyPages_FEEDBACK },
+  ];
+  elemPages.forEach((p) => {
+    var page = p.obj;
+    if (!page || !page.strategies) return;
+    page.strategies.forEach((s) => idx.push({
+      label: s.title,
+      sub: page.title + " · strategy",
+      group: "K–5 & Feedback strategies",
+      href: "#/" + p.slug,
+      hay: (s.title + " " + (s.why || "") + " " + (s.moves || []).join(" ") + " " + (s.evidence || "") + " " + (s.band || "")).toLowerCase(),
+    }));
+  });
   return idx;
 }
 
