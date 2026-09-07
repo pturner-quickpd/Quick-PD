@@ -2144,18 +2144,19 @@ async function renderStats(view) {
   `;
 
   try {
-    // Ensure Data.strategies is loaded — this is the same 301-row list the Library shows
-    // (base strategies.json + formative_assessment.json + K–5 elementary domain rows added
-    // by Data._withElementaryRows). Fetching /api/strategies directly only returns 258.
-    await Data.ensure();
-    const [techniques, rigor, seating, standards, qpd] = await Promise.all([
+    // Always fetch strategies fresh here — Data.strategies is memoised on the first
+    // navigation and won't reflect strategies the teacher added later in the session.
+    // We compose the same shape Data does (shim rows + K–5 elementary rows) so the
+    // count matches the Library page's "N ENTRIES" kicker.
+    const [apiStrategies, techniques, rigor, seating, standards, qpd] = await Promise.all([
+      fetchJSON("/api/strategies"),
       fetchJSON("/api/classroom-techniques"),
       fetchJSON("/api/rigor-practices"),
       fetchJSON("/api/seating-guides"),
       fetchJSON("/api/standards-guides"),
       fetchJSON("/api/qpd-content"),
     ]);
-    const strategies = Data.strategies || [];
+    const strategies = Data._withElementaryRows(apiStrategies);
 
     const teacher = TeacherStore.get();
     let favCount = 0, planCount = 0, weekCount = 0, goalCount = 0;
