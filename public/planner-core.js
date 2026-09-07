@@ -33,6 +33,7 @@
     { key: "Math",          label: "Mathematics (2022)",           url: "https://oklahoma.gov/education/services/standards-learning/mathematics.html" },
     { key: "Science",       label: "Science (2026)",               url: "https://oklahoma.gov/education/services/standards-learning/science-engineering.html" },
     { key: "SocialStudies", label: "Social Studies (2025)",        url: "https://oklahoma.gov/education/services/standards-learning/social-studies.html" },
+    { key: "PFL",           label: "Personal Financial Literacy (2024)", url: "https://oklahoma.gov/education/services/standards-learning/personal-financial-literacy.html" },
   ];
 
   // Sort grades in canonical PK → HS course order
