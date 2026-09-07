@@ -172,7 +172,7 @@ const Data = {
   triedLog: null,
 
   async ensure() {
-    if (!this.strategies) this.strategies = await fetchJSON("/api/strategies");
+    if (!this.strategies) this.strategies = this._withElementaryRows(await fetchJSON("/api/strategies"));
     if (!this.classroom) this.classroom = await fetchJSON("/api/classroom-techniques");
     if (!this.rigor) this.rigor = await fetchJSON("/api/rigor-practices");
     if (!this.seating) this.seating = await fetchJSON("/api/seating-guides");
@@ -180,7 +180,20 @@ const Data = {
     if (!this.qpd) this.qpd = await fetchJSON("/api/qpd-content");
   },
   async reloadStrategies() {
-    this.strategies = await fetchJSON("/api/strategies");
+    this.strategies = this._withElementaryRows(await fetchJSON("/api/strategies"));
+  },
+  // Merge the K–5 / Feedback strategy cards (defined in elementary.js as
+  // window.ElementaryLibraryRows) into the main library so subject/grade
+  // filters and global search find them. De-dupes by id and skips if the
+  // backend already returned a row with the same id (e.g. because someone
+  // later imports them server-side).
+  _withElementaryRows(list) {
+    const rows = Array.isArray(window.ElementaryLibraryRows) ? window.ElementaryLibraryRows : [];
+    if (!rows.length) return list || [];
+    const base = Array.isArray(list) ? list.slice() : [];
+    const seen = new Set(base.map((s) => s && s.id));
+    rows.forEach((r) => { if (r && r.id && !seen.has(r.id)) { base.push(r); seen.add(r.id); } });
+    return base;
   },
   async loadFavorites() {
     const t = TeacherStore.get();

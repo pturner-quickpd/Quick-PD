@@ -1668,4 +1668,128 @@
   window.EarlyPages_SOCIAL_STUDIES = SOCIAL_STUDIES;
   window.EarlyPages_PE             = PE;
   window.EarlyPages_FEEDBACK       = FEEDBACK;
+
+  // -----------------------------------------------------------------
+  //  MAIN-LIBRARY BRIDGE
+  //  Convert each K–5 / Feedback strategy card into the shape used by
+  //  the main strategy library (/api/strategies) so the Library filters
+  //  can find them by subject / grade / category, and global search hits
+  //  every field the library indexes. Data.ensure() in app.js merges
+  //  these rows on top of the API result once at boot.
+  // -----------------------------------------------------------------
+  function pageToLibraryRows(page, cfg) {
+    if (!page || !page.strategies) return [];
+    return page.strategies.map(function (s, i) {
+      var slug = (s.title || "strategy")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 60);
+      var howToParts = [];
+      if (Array.isArray(s.moves) && s.moves.length) {
+        howToParts.push("Teacher moves:");
+        s.moves.forEach(function (m, idx) { howToParts.push((idx + 1) + ". " + m); });
+      }
+      howToParts.push("");
+      howToParts.push("Open the full card on the " + page.title + " page for the companion video and evidence base: #/" + page.slug);
+      return {
+        id: cfg.idPrefix + "-" + slug + "-" + i,
+        title: s.title,
+        description: s.why || "",
+        howTo: howToParts.join("\n"),
+        category: cfg.category,
+        subjects: cfg.subjects.slice(),
+        grades: cfg.grades.slice(),
+        needs: cfg.needs.slice(),
+        sourceName: cfg.sourceName,
+        sourceUrl: cfg.sourceUrl,
+        videoUrl: (s.video && s.video.url) || "",
+        videoTitle: (s.video && s.video.title) || "",
+        videoChannel: (s.video && s.video.channel) || "",
+        buildingFocus: [],
+        telStage: cfg.telStage || "Teaching",
+        indicators: [],
+        evidenceType: "research",
+        effectSize: null,
+        effectSizeLabel: null,
+        evidenceSourceUrl: cfg.sourceUrl,
+        example: s.evidence || "",
+        exampleIsFromBook: false,
+        weeklyProduct: "",
+        prepTime: s.band || "",
+        isCustom: false,
+        createdBy: "Quick PD · " + page.title,
+        createdAt: "",
+        // Custom marker: the library card can add a link back to the domain page.
+        elementaryPageSlug: page.slug,
+      };
+    });
+  }
+
+  window.ElementaryLibraryRows = [].concat(
+    pageToLibraryRows(SCIENCE, {
+      idPrefix: "early-science",
+      category: "K–5 Science (Elementary Foundations)",
+      subjects: ["Science"],
+      grades: ["K-5"],
+      needs: ["Discussion", "Explicit Instruction", "Foundational Skills"],
+      sourceName: "NRC Framework / NGSS / Ambitious Science Teaching",
+      sourceUrl: "https://www.nextgenscience.org/",
+    }),
+    pageToLibraryRows(SOCIAL_STUDIES, {
+      idPrefix: "early-ss",
+      category: "K–5 Social Studies (Elementary Foundations)",
+      subjects: ["Social Studies"],
+      grades: ["K-5"],
+      needs: ["Discussion", "Foundational Skills"],
+      sourceName: "C3 Framework / NCSS / Stanford History Education Group",
+      sourceUrl: "https://www.socialstudies.org/standards/c3",
+    }),
+    pageToLibraryRows(PE, {
+      idPrefix: "early-pe",
+      category: "K–5 Physical Education (Elementary Foundations)",
+      subjects: ["Physical Education"],
+      grades: ["K-5"],
+      needs: ["Classroom Management", "Foundational Skills"],
+      sourceName: "OAS Physical Education 2026 / SHAPE America",
+      sourceUrl: "https://sde.ok.gov/oklahoma-academic-standards",
+    }),
+    pageToLibraryRows(READING, {
+      idPrefix: "early-reading",
+      category: "K–5 Reading (Elementary Foundations)",
+      subjects: ["ELA", "Reading"],
+      grades: ["K-5"],
+      needs: ["Foundational Skills", "Explicit Instruction"],
+      sourceName: "IES K–3 Foundational Skills Practice Guide",
+      sourceUrl: "https://ies.ed.gov/ncee/wwc/PracticeGuide/21",
+    }),
+    pageToLibraryRows(MATH, {
+      idPrefix: "early-math",
+      category: "K–5 Math (Elementary Foundations)",
+      subjects: ["Math"],
+      grades: ["K-5"],
+      needs: ["Foundational Skills", "Discussion"],
+      sourceName: "IES Teaching Math to Young Children",
+      sourceUrl: "https://ies.ed.gov/ncee/wwc/PracticeGuide/18",
+    }),
+    pageToLibraryRows(WRITING, {
+      idPrefix: "early-writing",
+      category: "K–5 Writing (Elementary Foundations)",
+      subjects: ["ELA", "Writing"],
+      grades: ["K-5"],
+      needs: ["Foundational Skills", "Explicit Instruction"],
+      sourceName: "IES Teaching Elementary School Students to Be Effective Writers",
+      sourceUrl: "https://ies.ed.gov/ncee/wwc/PracticeGuide/17",
+    }),
+    pageToLibraryRows(FEEDBACK, {
+      idPrefix: "feedback",
+      category: "Teacher–Student Feedback",
+      subjects: ["All Subjects"],
+      grades: ["All Grades"],
+      needs: ["Feedback", "Formative Assessment"],
+      sourceName: "Hattie & Timperley 2007 / Wiliam / Shute / Kluger & DeNisi",
+      sourceUrl: "https://journals.sagepub.com/doi/10.3102/003465430298487",
+      telStage: "Learning",
+    })
+  );
 })();

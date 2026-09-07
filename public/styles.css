@@ -1470,7 +1470,9 @@ mark {
   margin: 24px 0 32px;
 }
 .hub-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 22px 22px 18px;
   background: #FFFFFF;
   border: 1px solid #E5E7EB;
@@ -1496,6 +1498,7 @@ mark {
   font-size: 14px;
   line-height: 1.55;
   margin-bottom: 14px;
+  flex: 1 1 auto;
 }
 .hub-card-cta {
   font-size: 12px;
@@ -1513,7 +1516,9 @@ mark {
   margin: 12px 0 28px;
 }
 .guide-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: 16px 18px 14px;
   background: #FFFDF7;
   border: 1px solid #E9DDB9;
@@ -1540,6 +1545,7 @@ mark {
   font-size: 14px;
   line-height: 1.4;
   margin-bottom: 8px;
+  flex: 1 1 auto;
 }
 .guide-cta {
   font-size: 12px;
