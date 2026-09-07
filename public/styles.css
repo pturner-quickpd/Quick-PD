@@ -1828,19 +1828,51 @@ mark {
 .loop-h { font-weight: 700; margin-bottom: 4px; font-size: 15px; color: var(--text, #111); }
 .loop-body p { margin: 4px 0 0 0; color: var(--text-secondary, #444); line-height: 1.5; }
 
+/* Tables use a horizontal-scroll wrapper on narrow screens so the first
+   column doesn't collapse to one letter per line. Wrap every .clean-table
+   in <div class="clean-table-wrap"> in the markup. */
+.clean-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--card-border, #e5e7eb);
+  border-radius: 8px;
+  background: #fff;
+  margin: 12px 0;
+}
 .clean-table {
-  width: 100%; border-collapse: collapse; font-size: 14px;
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: auto;
 }
 .clean-table th, .clean-table td {
-  text-align: left; padding: 10px 12px;
+  text-align: left;
+  padding: 10px 12px;
   border-bottom: 1px solid var(--card-border, #e5e7eb);
   vertical-align: top;
+  line-height: 1.5;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.clean-table th:first-child, .clean-table td:first-child {
+  min-width: 140px;
+  white-space: normal;
 }
 .clean-table thead th {
-  background: #f8fafc; font-weight: 700; color: #0b2545;
+  background: #f8fafc;
+  font-weight: 700;
+  color: #0b2545;
   border-bottom: 2px solid #0b2545;
+  white-space: nowrap;
 }
 .clean-table tbody tr:last-child td { border-bottom: none; }
+@media (max-width: 640px) {
+  .clean-table { font-size: 13px; }
+  .clean-table th, .clean-table td { padding: 8px 10px; }
+}
 
 .check-list { margin: 8px 0 0 20px; padding: 0; }
 .check-list li { margin-bottom: 6px; line-height: 1.5; }

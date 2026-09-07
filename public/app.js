@@ -3236,6 +3236,7 @@ function renderMtssPlc(view) {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
 
     <h2 class="section-title">What data moves between them</h2>
