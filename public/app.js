@@ -3033,11 +3033,24 @@ async function renderStandardsUnpack(view, params) {
         view.querySelector("#bd-list").innerHTML = `<div class="empty" style="padding:16px;">No saved breakdowns yet. Fill in the form above and click Save.</div>`;
         return;
       }
+      const LEVEL_NAMES = StandardAnalyzer.LEVEL_LABEL || { 1: "Gathering", 2: "Processing", 3: "Applying" };
+      const LEVEL_COLORS = {
+        1: { bg: "rgba(120, 170, 255, 0.15)", fg: "#7fb6ff", border: "rgba(120, 170, 255, 0.35)" },
+        2: { bg: "rgba(190, 155, 255, 0.15)", fg: "#c4a7ff", border: "rgba(190, 155, 255, 0.35)" },
+        3: { bg: "rgba(255, 175, 90, 0.18)",  fg: "#ffbd77", border: "rgba(255, 175, 90, 0.4)"  }
+      };
+      const costaChip = (lvl) => {
+        const n = parseInt(lvl, 10);
+        if (!n || !LEVEL_NAMES[n]) return "";
+        const c = LEVEL_COLORS[n] || LEVEL_COLORS[2];
+        return `<span title="Costa's Level ${n} — ${escapeHtml(LEVEL_NAMES[n])}" style="display:inline-block; padding:2px 8px; margin-left:8px; font-size:.78em; font-weight:600; letter-spacing:.02em; border-radius:999px; background:${c.bg}; color:${c.fg}; border:1px solid ${c.border}; vertical-align:middle;">Costa L${n} · ${escapeHtml(LEVEL_NAMES[n])}</span>`;
+      };
       view.querySelector("#bd-list").innerHTML = items.map(b => `
         <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:14px 16px; margin-bottom:10px;">
           <div style="display:flex; justify-content:space-between; align-items:baseline;">
             <div>
               <span style="font-weight:600; color:var(--orange);">${escapeHtml(b.standard_code || "—")}</span>
+              ${costaChip(b.dok_level)}
               <span style="opacity:.65; margin-left:8px; font-size:.9em;">${escapeHtml(b.course || b.subject || "")}</span>
             </div>
             <div style="opacity:.6; font-size:.85em;">${new Date(b.updated_at || b.created_at).toLocaleDateString()}</div>
