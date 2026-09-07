@@ -128,7 +128,7 @@
     var h = '<h1 class="page-title">My Work</h1>' +
       '<p class="page-lede">Everything you have saved in Quick PD' + (t ? " as <strong>" + esc(t) + "</strong>" : "") + '. Download any item as a Word file, take the whole portfolio at once, or save a backup you can restore on another computer.</p>';
 
-    if (!t) h += '<div class="card" style="border-left:4px solid var(--gold);"><div class="card-title">Enter your name in the sidebar first</div><p class="card-desc">Your saved work is filed under your name. Type it in the sidebar and this page will show your items.</p></div>';
+    if (!t) h += '<div class="card" style="border-left:4px solid var(--gold);"><div class="card-title">Sign in with your name first</div><p class="card-desc">Type your name in the box at the top of the sidebar and press <strong>Sign in</strong>. There is no password — the name is just how your work is filed.</p><div class="button-row"><button type="button" class="btn btn-primary btn-sm" onclick="window.requireTeacher()">Go to sign in</button></div></div>';
 
     h += '<div class="card card-featured"><div class="card-title">Take it with you</div>' +
       '<p class="card-desc">Quick PD keeps your work in this browser on this computer. Use these to move it or keep a copy.</p>' +

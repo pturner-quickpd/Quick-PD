@@ -186,7 +186,7 @@ const Data = {
   },
   async toggleFavorite(strategyId) {
     const t = TeacherStore.get();
-    if (!t) { toast("Enter your name in the sidebar to save favorites"); return false; }
+    if (!t) { window.requireTeacher(); return false; }
     if (!this.favorites) await this.loadFavorites();
     if (this.favorites.has(strategyId)) {
       await fetch(`/api/favorites?teacher=${encodeURIComponent(t)}&strategyId=${encodeURIComponent(strategyId)}`, { method: "DELETE" });
@@ -289,14 +289,37 @@ window.addEventListener("DOMContentLoaded", init);
 async function init() {
   // Teacher input
   const input = $("#teacher-name");
-  input.value = TeacherStore.get();
-  input.addEventListener("input", (e) => {
-    TeacherStore.set(e.target.value.trim());
-  });
-  input.addEventListener("change", async () => {
+  const box = $("#teacher-box"), goBtn = $("#teacher-go"), hint = $("#teacher-hint"), label = $("#teacher-label");
+  function paintSignIn() {
+    const name = TeacherStore.get();
+    box.classList.toggle("is-signed", !!name);
+    box.classList.toggle("is-empty", !name);
+    label.textContent = name ? "Signed in as" : "Sign in — just your name, no password";
+    goBtn.textContent = name ? "Change" : "Sign in";
+    hint.textContent = name ? `Welcome, ${name}. Your work saves under this name.` : "Your saved goals, plans and toolkit are filed under your name.";
+  }
+  window.requireTeacher = function () {
+    if (TeacherStore.get()) return true;
+    box.classList.add("is-empty"); input.focus(); input.select();
+    toast("Type your name in the sidebar to save your work");
+    return false;
+  };
+  async function commitName() {
+    TeacherStore.set(input.value.trim());
+    paintSignIn();
     await Data.loadFavorites();
     await Data.loadTriedLog();
+    if (TeacherStore.get()) toast(`Signed in as ${TeacherStore.get()}`);
     router();
+  }
+  input.value = TeacherStore.get();
+  paintSignIn();
+  input.addEventListener("input", (e) => { TeacherStore.set(e.target.value.trim()); });
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); input.blur(); commitName(); } });
+  input.addEventListener("change", commitName);
+  goBtn.addEventListener("click", () => {
+    if (TeacherStore.get() && goBtn.textContent === "Change") { input.focus(); input.select(); return; }
+    commitName();
   });
   // Mobile sidebar toggle
   const toggle = $("#sidebar-toggle");
@@ -600,7 +623,7 @@ async function renderStartHere(view) {
     rf.addEventListener("submit", async (e) => {
       e.preventDefault();
       const t = TeacherStore.get();
-      if (!t) { toast("Enter your name in the sidebar first"); return; }
+      if (!t) { window.requireTeacher(); return; }
       const fd = new FormData(rf);
       try {
         await fetchJSON("/api/reflections", { method: "POST", body: JSON.stringify({
@@ -798,7 +821,7 @@ async function renderStrategies(view, params) {
     applyFilters();
   });
   $("#btn-favs").addEventListener("click", async () => {
-    if (!TeacherStore.get()) { toast("Enter your name in the sidebar to see favorites"); return; }
+    if (!TeacherStore.get()) { window.requireTeacher(); return; }
     await Data.loadFavorites();
     StrategyFilters.favoritesOnly = !StrategyFilters.favoritesOnly;
     if (StrategyFilters.favoritesOnly) StrategyFilters.todayFocus = false;
@@ -929,7 +952,7 @@ async function renderStrategyDetail(view, params) {
 // -------- Tried-log modal --------
 function openTriedModal(strategy) {
   const t = TeacherStore.get();
-  if (!t) { toast("Enter your name in the sidebar to log what you tried"); return; }
+  if (!t) { window.requireTeacher(); return; }
   // Remove any existing modal
   document.querySelector(".tried-modal")?.remove();
 
@@ -1267,7 +1290,7 @@ async function renderUnitPlan(view) {
   $("#unit-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const t = TeacherStore.get();
-    if (!t) { toast("Enter your name in the sidebar first"); return; }
+    if (!t) { window.requireTeacher(); return; }
     const fd = new FormData(e.target);
     const payload = {
       teacher: t,
@@ -1342,7 +1365,7 @@ async function renderWeeklyPlan(view) {
   $("#week-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const t = TeacherStore.get();
-    if (!t) { toast("Enter your name in the sidebar first"); return; }
+    if (!t) { window.requireTeacher(); return; }
     const fd = new FormData(e.target);
     const daysData = days.map((_, i) => ({
       standardCode: e.target.querySelector(`[data-day="${i}"][data-field="standardCode"]`)?.value || "",
@@ -1490,7 +1513,7 @@ async function renderPLTool(view) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const t = TeacherStore.get();
-    if (!t) { toast("Enter your name in the sidebar first"); return; }
+    if (!t) { window.requireTeacher(); return; }
     const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
     data.assembled = previewText.textContent;

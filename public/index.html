@@ -60,9 +60,13 @@
           </div>
         </header>
 
-        <div class="teacher-box">
-          <label for="teacher-name" class="teacher-label">Signed in as</label>
-          <input id="teacher-name" class="teacher-input" placeholder="Your name" />
+        <div class="teacher-box" id="teacher-box">
+          <label for="teacher-name" class="teacher-label" id="teacher-label">Sign in — just your name, no password</label>
+          <div class="teacher-row">
+            <input id="teacher-name" class="teacher-input" placeholder="Type your name…" autocomplete="name" />
+            <button type="button" id="teacher-go" class="teacher-btn">Sign in</button>
+          </div>
+          <div class="teacher-hint" id="teacher-hint">Your saved goals, plans and toolkit are filed under your name.</div>
         </div>
 
         <div class="search-box">

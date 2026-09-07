@@ -1611,3 +1611,15 @@ mark {
   animation: stratHighlightPulse 2.1s ease-out both;
   border-radius: 12px;
 }
+
+
+/* ===== Sign-in box (name only) ===== */
+.teacher-row { display: flex; gap: 6px; }
+.teacher-row .teacher-input { flex: 1; min-width: 0; }
+.teacher-btn { flex: none; background: var(--gold); color: #1a1a1a; border: 0; border-radius: 6px; padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+.teacher-btn:hover { filter: brightness(1.08); }
+.teacher-hint { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 6px; line-height: 1.35; }
+.teacher-box.is-empty .teacher-input { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(212,165,55,0.25); animation: teacher-pulse 1.6s ease-in-out 3; }
+.teacher-box.is-signed .teacher-btn { background: rgba(255,255,255,0.12); color: #fff; font-weight: 600; }
+.teacher-box.is-signed .teacher-hint { color: var(--gold); }
+@keyframes teacher-pulse { 0%,100% { box-shadow: 0 0 0 2px rgba(212,165,55,0.25);} 50% { box-shadow: 0 0 0 5px rgba(212,165,55,0.45);} }
