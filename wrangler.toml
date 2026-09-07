@@ -1,6 +1,6 @@
 # Quick PD · Wewoka High — static site served by a Cloudflare Worker.
-# Deploys to the existing "turnerpd" worker → https://turnerpd.pt2479.workers.dev
-name = "turnerpd"
+# Deploys to the "quick-pd1" worker → https://quick-pd1.pt2479.workers.dev
+name = "quick-pd1"
 compatibility_date = "2025-09-01"
 
 [assets]
