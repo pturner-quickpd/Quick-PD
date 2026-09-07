@@ -2275,7 +2275,7 @@ async function renderStandards(view) {
       <a class="dash-jump-card" href="#/standards-unpack" style="border-left:4px solid var(--orange); padding:20px 22px;">
         <div class="jump-meta">Workspace</div>
         <div style="font-size:1.05em; font-weight:600; margin:6px 0 4px;">Break Down a Standard →</div>
-        <div style="opacity:.75; font-size:.9em;">Pick an OAS standard (or paste any), pull out the skill verb, content, DOK level, and turn it into a student-friendly "I can" statement.</div>
+        <div style="opacity:.75; font-size:.9em;">Pick an OAS standard (or paste any), pull out the skill verb, content, Costa's Level of Thinking, and turn it into a student-friendly "I can" statement.</div>
       </a>
       <a class="dash-jump-card" href="#/standards-plan" style="border-left:4px solid var(--gold); padding:20px 22px;">
         <div class="jump-meta">Workspace</div>
@@ -2314,13 +2314,367 @@ async function renderStandards(view) {
 // ============================================================
 // BREAK DOWN A STANDARD (workspace)
 // ============================================================
+// ---------- Standard analyzer (pure functions, rules-based) ----------
+const StandardAnalyzer = (() => {
+  // Costa's Levels of Thinking (Art Costa / AVID) — three levels, not four.
+  // Sources: AVID Open Access "Costa's Levels of Thinking" (avidopenaccess.org),
+  // OCDE AVID Region 9 "Examples of Costa's Levels of Questions" (ocde.us),
+  // Cobb County Rigor Training deck (media.cobbk12.org).
+  // Level 1 — GATHERING ("on the page"): text-explicit, recall, one right answer.
+  // Level 2 — PROCESSING ("between the lines"): compare, infer, sort, analyze.
+  // Level 3 — APPLYING ("beyond the text"): evaluate, judge, predict, hypothesize, design.
+  const COSTAS_MAP = {
+    1: ["complete","count","cite","define","describe","draw","find","identify","label","list","locate","match","memorize","name","note","observe","quote","recall","recite","recognize","record","repeat","report","reproduce","select","show","spell","state","tell","underline","scan","measure"],
+    2: ["analyze","apply","categorize","classify","collect","compare","compute","construct","contrast","determine","diagram","differentiate","discriminate","display","distinguish","examine","experiment","explain","extend","graph","group","infer","interpret","model","modify","organize","outline","paraphrase","relate","represent","revise","separate","sequence","solve","sort","summarize","synthesize","translate","use"],
+    3: ["appraise","argue","assemble","assess","conclude","critique","debate","decide","defend","design","develop","evaluate","forecast","formulate","generalize","hypothesize","imagine","integrate","invent","investigate","judge","justify","predict","prove","rate","speculate","support","test","value","orchestrate"],
+  };
+  // Multi-word phrases in the standard text bump the level up regardless of the verb.
+  const COSTAS_PHRASE_MAP = {
+    2: ["cite evidence","use evidence","support their answer","support your answer","between the lines","more than one"],
+    3: ["support with evidence","draw conclusions","defend a position","judge whether","predict what","design a","beyond the text","in a new situation","apply a principle","hypothesize","if/then"],
+  };
+  // Vague verbs that don't work in "I can" statements
+  const VAGUE_VERBS = new Set(["understand","know","learn","study","review","see","think","appreciate","grasp","get","remember","become familiar with","be aware of","develop understanding of"]);
+  // Verbs that pair well with "I can" (measurable substitutes for vague ones)
+  const MEASURABLE_SUBS = {
+    "understand": "explain",
+    "know": "identify",
+    "learn": "use",
+    "study": "describe",
+    "grasp": "explain",
+    "get": "identify",
+    "remember": "recall",
+    "appreciate": "describe",
+    "become familiar with": "identify",
+    "be aware of": "identify",
+    "develop understanding of": "explain",
+  };
+  // Level labels (used in UI + reason chips)
+  const LEVEL_LABEL = { 1: "Gathering", 2: "Processing", 3: "Applying" };
+  const LEVEL_SUBTITLE = { 1: "on the page — text-explicit", 2: "between the lines — text-implicit", 3: "beyond the text — apply, judge, create" };
+  // Preferred verbs by level, used to AUTO-RAISE an "I can" verb up to the standard's Costa level.
+  // Pulled straight from AVID Costa's handouts. Ordered by "which verb fits best for planning."
+  const PREFERRED_VERBS_BY_LEVEL = {
+    1: ["identify","describe","define","list","name","observe","recite","recall","label"],
+    2: ["explain","compare","infer","analyze","classify","distinguish","summarize","sequence","organize","paraphrase"],
+    3: ["evaluate","judge","predict","hypothesize","defend","justify","speculate","design","generalize","apply"],
+  };
+  function levelOfVerb(verb) {
+    const v = (verb || "").toLowerCase().trim();
+    if (!v) return null;
+    for (const lvl of [3, 2, 1]) if ((COSTAS_MAP[lvl] || []).includes(v)) return lvl;
+    return null;
+  }
+  // Words that shouldn't count as content nouns
+  const STOPWORDS = new Set([
+    "the","a","an","and","or","but","of","in","on","at","for","to","from","with","by","as","is","are","was","were","be","been","being",
+    "will","students","student","student's","students'","student\u2019s","students\u2019","learners","learner","they","their","this","that","these","those",
+    "each","some","any","many","few","several","various","different","specific","given","real","real-world","related","other","own","between","within","upon","across","through","over","under","into","during","about","above","below","among","using","use","used","when","how","why","what","which","who","whom","whose","if","then","also","such","including","include","includes","including",
+    "e.g","i.e","ex","etc","level","grade","cite","cited","must","should","can","may"
+  ]);
+  // Skill verbs listed at the front of most standards (skip these when finding the noun)
+  const VERB_LIST = new Set([].concat(
+    ...Object.values(COSTAS_MAP)
+  ).map(v => v.split(" ")[0]));
+
+  function stripLead(text) {
+    if (!text) return "";
+    // Strip prefixes like "Students will", "Students can", "The student will"
+    return text.replace(/^\s*(students?\s+(will|should|can)|the\s+student\s+(will|should|can)|learners?\s+(will|should|can)|by\s+the\s+end\s+of.*?,)\s+/i, "").replace(/^\s*[a-z]\.\s+/i, "").trim();
+  }
+
+  function firstVerb(cleanText) {
+    const words = cleanText.toLowerCase().split(/[^a-z\-]+/).filter(Boolean);
+    for (const w of words.slice(0, 8)) {
+      if (VERB_LIST.has(w) || VAGUE_VERBS.has(w)) return w;
+    }
+    // fallback: first word if it ends in common verb endings
+    const first = (words[0] || "").replace(/(ing|ed|s)$/, "");
+    if (first.length > 2) return first;
+    return words[0] || "";
+  }
+
+  function costasFor(verb, contextText) {
+    const v = (verb || "").toLowerCase();
+    const ctx = (contextText || "").toLowerCase();
+    // Phrase overrides — level 3 first, then 2
+    for (const level of [3, 2]) {
+      const phrases = COSTAS_PHRASE_MAP[level] || [];
+      for (const p of phrases) {
+        if (ctx.includes(p)) return { level, reason: `Standard says “${p}” — that pushes students to Costa Level ${level} (${LEVEL_LABEL[level]}, ${LEVEL_SUBTITLE[level]}).` };
+      }
+    }
+    // Single-verb lookup
+    for (const level of [1, 2, 3]) {
+      if ((COSTAS_MAP[level] || []).includes(v)) {
+        return { level, reason: `“${v}” is a Costa Level ${level} verb (${LEVEL_LABEL[level]} — ${LEVEL_SUBTITLE[level]}). Context can bump it up — check what the standard asks students to DO with it.` };
+      }
+    }
+    if (VAGUE_VERBS.has(v)) return { level: 2, reason: `“${v}” is vague — students can't demonstrate it. Swap in a measurable verb like “${MEASURABLE_SUBS[v] || "explain"}” and confirm the Costa level.` };
+    return { level: 2, reason: "Best guess: Costa Level 2 (Processing). Adjust if the standard's context asks for more or less thinking." };
+  }
+
+  function extractContent(cleanText, verb) {
+    // Drop the leading verb, keep the object/noun phrase — cut at first clause boundary.
+    let t = cleanText.trim();
+    if (verb) {
+      const re = new RegExp("^" + verb.replace(/[-]/g, "\\-") + "s?\\b[,\\s]*", "i");
+      t = t.replace(re, "");
+    }
+    // Strip parenthetical examples ("(e.g., ...)") and "i.e." clarifications
+    t = t.replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim();
+    // Split at instrumental / methodological phrases — but only if they're NOT the whole content.
+    // "Construct an explanation based on evidence for how X" should keep the "for how X".
+    // So we split on ONLY: "in order to", "so that", and "using"/"with"/"by" when they end the sentence.
+    t = t.split(/\b(?:in order to|so that)\b/i)[0].trim();
+    // Trim trailing punctuation
+    t = t.replace(/[\.;:,]+$/, "").trim();
+    // If very long (>160 chars), keep only through the first period
+    if (t.length > 160) t = t.split(/\./)[0].trim();
+    return t || "the ideas in this standard";
+  }
+
+  function extractVocab(cleanText, contentText) {
+    const source = (contentText + " " + cleanText).toLowerCase();
+    // Prefer parenthetical lists — standards often use "(e.g., X, Y, Z)"
+    const parens = Array.from(cleanText.matchAll(/\(([^)]+)\)/g)).map(m => m[1]).join(" , ");
+    const parenTerms = parens
+      .split(/[,;]/)
+      .map(s => s.replace(/\b(e\.g\.?|i\.e\.?|ex\.?|including|such as)\b/gi, "").trim())
+      .map(s => s.replace(/^and\s+/i, "").trim())
+      .filter(s => s && s.length > 2 && !/^\d+$/.test(s))
+      .filter(s => !/^(e\.g|i\.e|ex)$/i.test(s));
+    if (parenTerms.length >= 2) return parenTerms.slice(0, 6);
+    // Otherwise pull multi-syllable or hyphenated words as candidates
+    const words = (source.match(/[a-z][a-z\-]{4,}/g) || [])
+      .filter(w => !STOPWORDS.has(w) && !VERB_LIST.has(w) && !VAGUE_VERBS.has(w) && w.length > 4)
+      .filter(w => !/^(based|includes?|through|throughout|various|specific|essential|systems?|various|different|multiple|understand|understanding|knowledge|skills?|content|concepts?|ideas?)$/.test(w))
+      .filter((w, i, a) => a.indexOf(w) === i);
+    return words.slice(0, 6);
+  }
+
+  // Grade-band vocabulary simplification for "I can" rewrites
+  const GRADE_SIMPLIFY = {
+    "K-2": {
+      "analyze": "look closely at", "evaluate": "decide how well", "identify": "find",
+      "describe": "tell about", "explain": "tell why", "compare": "tell how ___ are the same and different",
+      "construct": "build", "interpret": "figure out what it means", "determine": "figure out",
+      "demonstrate": "show", "synthesize": "put together", "distinguish": "tell apart",
+      "utilize": "use", "characteristics": "parts", "textual evidence": "words from the story",
+      "informational": "true", "argumentative": "convincing", "characteristics": "parts",
+      "phenomena": "things that happen", "protagonist": "main character",
+    },
+    "3-5": {
+      "analyze": "look carefully at", "evaluate": "judge", "synthesize": "put together",
+      "interpret": "explain what it means", "demonstrate": "show", "utilize": "use",
+      "phenomena": "events", "protagonist": "main character", "characterization": "how a character is shown",
+      "textual evidence": "proof from the text",
+    },
+    "6-8": {
+      "utilize": "use", "elucidate": "explain", "delineate": "outline",
+    },
+    "9-12": {
+      "utilize": "use",
+    }
+  };
+
+  // Given the standard's Costa level and (optionally) the standard's own verb, pick
+  // the verb that will drive the "I can" statement. If the natural verb sits BELOW
+  // the standard's Costa level, AUTO-RAISE it to a preferred verb at the target level.
+  function verbForLevel(naturalVerb, targetLevel, gradeBand) {
+    let v = (naturalVerb || "").toLowerCase().trim();
+    if (VAGUE_VERBS.has(v)) v = MEASURABLE_SUBS[v] || "explain";
+    const currentLevel = levelOfVerb(v);
+    // If the verb already matches (or exceeds) the target Costa level, keep it.
+    if (currentLevel && currentLevel >= targetLevel) return v;
+    // Otherwise raise it. Prefer a verb the teacher and kids will actually recognize.
+    // K-2 gets a simpler Level-3 stem ("decide") over a formal one ("evaluate").
+    const bank = PREFERRED_VERBS_BY_LEVEL[targetLevel] || ["explain"];
+    if (gradeBand === "K-2") {
+      const kidFriendly = { 2: "tell why", 3: "decide" };
+      if (kidFriendly[targetLevel]) return kidFriendly[targetLevel];
+    }
+    return bank[0];
+  }
+
+  // Level-aware "I can" templates. Uses the AUTO-RAISED verb so the statement
+  // actually matches the Costa level of the standard.
+  function proposeICan(verbRaw, contentText, gradeBand, targetLevel) {
+    const level = targetLevel || levelOfVerb(verbRaw) || 2;
+    let verb = verbForLevel(verbRaw, level, gradeBand);
+    // Simplify by grade band (verb + content noun phrases)
+    const simplify = GRADE_SIMPLIFY[gradeBand] || {};
+    if (simplify[verb]) verb = simplify[verb];
+    let content = (contentText || "").trim();
+    for (const [complex, simple] of Object.entries(simplify)) {
+      content = content.replace(new RegExp("\\b" + complex.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&") + "\\b", "gi"), simple);
+    }
+    // Level-specific stems that add the "how you'll know it" language.
+    // Level 1: state the fact. Level 2: show the relationship. Level 3: apply/defend.
+    let out;
+    if (level === 3) {
+      // "beyond the text" — add the defense clause
+      const defenseVerbs = new Set(["predict","hypothesize","decide","judge","evaluate","speculate","forecast","generalize"]);
+      if (defenseVerbs.has(verb)) {
+        out = `I can ${verb} ${content} and defend my thinking with evidence`;
+      } else if (verb === "design" || verb === "invent" || verb === "apply") {
+        out = `I can ${verb} ${content} in a new situation and explain why my choices work`;
+      } else if (verb === "defend" || verb === "justify") {
+        out = `I can ${verb} a claim about ${content} with specific evidence`;
+      } else {
+        out = `I can ${verb} ${content} and back it up with evidence`;
+      }
+    } else if (level === 2) {
+      // "between the lines" — add the "why" or "how"
+      if (verb === "compare" || verb === "contrast") {
+        out = `I can ${verb} ${content} and explain what the similarities and differences mean`;
+      } else if (verb === "explain" || verb === "tell why") {
+        out = `I can ${verb} how ${content} works`;
+      } else if (verb === "infer") {
+        out = `I can infer what ${content} means and point to the clues that led me there`;
+      } else if (verb === "analyze") {
+        out = `I can break ${content} into parts and show how the parts work together`;
+      } else if (verb === "summarize" || verb === "paraphrase") {
+        out = `I can restate the main idea of ${content} in my own words`;
+      } else {
+        out = `I can ${verb} ${content} and explain my thinking`;
+      }
+    } else {
+      // Level 1 — direct recall
+      out = `I can ${verb} ${content}`;
+    }
+    out = out.replace(/\s+/g, " ").trim();
+    // Cap length for early elementary — trim at a WORD boundary so we don't chop mid-word.
+    if (gradeBand === "K-2" && out.length > 100) {
+      const clipped = out.slice(0, 100);
+      const lastSpace = clipped.lastIndexOf(" ");
+      out = clipped.slice(0, lastSpace > 60 ? lastSpace : 100).replace(/[,;].*$/, "").trim();
+    }
+    if (!/[.!?]$/.test(out)) out += ".";
+    return out;
+  }
+
+  // Success criteria phrased at the Costa level. Level 3 explicitly names evidence
+  // and reasoning; Level 2 names the relationship; Level 1 names the recall accuracy.
+  function proposeCriteria(verbRaw, contentText, gradeBand, targetLevel) {
+    const level = targetLevel || levelOfVerb(verbRaw) || 2;
+    const verb = (verbRaw || "").toLowerCase().trim();
+    const content = (contentText || "").trim();
+    // Verb-family templates (finer detail wins over level template)
+    const showMap = {
+      "identify": `point out the correct ${content} and skip the ones that don't fit`,
+      "describe": `tell the main features of ${content} in their own words`,
+      "explain": `explain, in their own words, HOW or WHY ${content} works — not just retell the facts`,
+      "compare": `list at least two ways ${content} are alike and two ways they're different, AND say what those similarities and differences mean`,
+      "distinguish": `sort examples correctly and say what makes each one different from the others`,
+      "analyze": `break ${content} into parts, show how the parts relate, and back the analysis with specifics from the source`,
+      "evaluate": `judge ${content} against clear criteria they can name, and back the judgment with specific evidence`,
+      "construct": `build ${content} step by step and explain each choice they made`,
+      "solve": `solve a ${content} problem and show every step of their work`,
+      "cite": `pull direct evidence from the text and tie it back to their claim in their own words`,
+      "interpret": `explain what ${content} means and give a reason for their interpretation`,
+      "predict": `make a prediction about ${content} and give the evidence and reasoning behind it`,
+      "apply": `use ${content} correctly in a NEW situation — not one they've already practiced`,
+      "model": `build a working model of ${content} and explain what each part represents`,
+      "summarize": `restate the main ideas of ${content} in one or two sentences without losing meaning`,
+      "determine": `pick the right answer for ${content} and justify how they got there`,
+      "hypothesize": `state a testable hypothesis about ${content} and explain the reasoning behind it`,
+      "judge": `judge ${content} against clear criteria and defend the call with evidence`,
+      "defend": `state a claim about ${content}, give at least two pieces of evidence, and address a likely counter-view`,
+      "design": `design ${content} that meets stated criteria and explain why each part of the design works`,
+    };
+    if (showMap[verb]) return `Students can show they've got it when they can ${showMap[verb]}.`;
+    // Fallback: level-generic template.
+    if (level === 3) return `Students can show they've got it when they can apply, judge, or extend ${content} beyond what was directly taught — and back the thinking with evidence.`;
+    if (level === 2) return `Students can show they've got it when they can process ${content} — explain relationships, compare, infer, or organize — not just recite it.`;
+    return `Students can show they've got it when they can accurately recall or identify ${content} on demand.`;
+  }
+
+  // Costa's-style question stems the teacher can ask (or hand kids) at each level.
+  // Sources: AVID Open Access Costa's Level of Inquiry PDF; TeachThought Costa's guide.
+  function proposeQuestionStems(contentText, targetLevel) {
+    const c = (contentText || "the topic").trim();
+    if (targetLevel === 3) {
+      return [
+        `What would happen if ${c} changed — and what evidence backs your prediction?`,
+        `Judge whether ${c} is effective. Defend your call with at least two pieces of evidence.`,
+        `How would you apply ${c} to a situation you've never seen before?`,
+      ];
+    }
+    if (targetLevel === 2) {
+      return [
+        `How are the parts of ${c} related to each other?`,
+        `Compare ${c} to something similar you already know. What's the same, what's different, and what does that difference tell us?`,
+        `What can you infer about ${c} that the text/source doesn't say outright?`,
+      ];
+    }
+    return [
+      `What is ${c}?`,
+      `List / name the parts of ${c}.`,
+      `Describe ${c} in your own words.`,
+    ];
+  }
+
+  function proposeMisconceptions(verbRaw, contentText, standardText) {
+    const verb = (verbRaw || "").toLowerCase().trim();
+    const t = (standardText || "").toLowerCase();
+    const hits = [];
+    // Verb-based common traps
+    if (verb === "compare" || verb === "contrast") hits.push("Students list features side by side without actually saying HOW they're related — you get a chart, not a comparison.");
+    if (verb === "evaluate") hits.push("Students state an opinion (“I liked it”) instead of judging against specific criteria with evidence.");
+    if (verb === "analyze") hits.push("Students describe or summarize instead of breaking the thing into parts and showing how those parts work together.");
+    if (verb === "cite" || t.includes("evidence")) hits.push("Students paste a quote without connecting it to the claim it's supposed to support.");
+    if (verb === "explain") hits.push("Students give WHAT instead of WHY — retelling the facts without the reasoning.");
+    if (verb === "solve") hits.push("Students jump to the answer without showing steps, so a wrong first step can't be caught or corrected.");
+    if (t.includes("theme") || t.includes("mood") || t.includes("tone")) hits.push("Students confuse theme (the message) with topic (the subject) — “friendship” is a topic; “true friendship survives betrayal” is a theme.");
+    if (t.includes("dna") || t.includes("protein")) hits.push("Students think DNA IS a protein instead of the instructions the cell uses to build proteins.");
+    if (t.includes("function") && (t.includes("relation") || t.includes("graph"))) hits.push("Students assume every equation with x and y is a function — but a relation is only a function if each input has exactly one output.");
+    if (t.includes("point of view") || t.includes("narrator")) hits.push("Students confuse first-person narration with the author's own opinion — an unreliable narrator is a choice, not a mistake.");
+    if (!hits.length) hits.push(`Watch for students who repeat the vocabulary of ${contentText} without being able to use it in a new context — that's memorization, not understanding.`);
+    return hits.join(" ");
+  }
+
+  function analyze(rawText) {
+    const clean = stripLead(rawText);
+    if (!clean) return null;
+    const verb = firstVerb(clean);
+    const content = extractContent(clean, verb);
+    const costa = costasFor(verb, clean);
+    const vocab = extractVocab(clean, content);
+    return { verb, content, costaLevel: costa.level, costaReason: costa.reason, vocab };
+  }
+
+  return {
+    analyze,
+    proposeICan,
+    proposeCriteria,
+    proposeMisconceptions,
+    proposeQuestionStems,
+    verbForLevel,
+    levelOfVerb,
+    VAGUE_VERBS,
+    MEASURABLE_SUBS,
+    LEVEL_LABEL,
+    LEVEL_SUBTITLE,
+  };
+})();
+
+// ============================================================
+// BREAK DOWN A STANDARD (workspace)
+// ============================================================
 async function renderStandardsUnpack(view, params) {
   // Load facets and any pre-selected course from query string
   const search = new URLSearchParams(location.hash.split("?")[1] || "");
   const preCourse = search.get("course") || "";
   let facets = { subjects: [], courses: [] };
   try { facets = await fetchJSON("/api/state-standards/facets"); } catch {}
-  const teacher = TeacherStore.get();
+
+  // Remember whether the worked example is dismissed (per teacher, browser-local).
+  const wxKey = "turner.unpack.wx.dismissed.v1";
+  const wxDismissed = localStorage.getItem(wxKey) === "1";
+  // Remember grade band selection
+  const gbKey = "turner.unpack.gradeband.v1";
+  const gradeBand = localStorage.getItem(gbKey) || "9-12";
 
   view.innerHTML = `
     <section class="hero hero-compact">
@@ -2328,9 +2682,30 @@ async function renderStandardsUnpack(view, params) {
       <div class="hero-inner" style="padding:34px 24px;">
         <div class="eyebrow on-dark">Standards &amp; Planning</div>
         <h1 class="hero-title">Break Down a Standard</h1>
-        <p class="hero-lede">Pick or paste a standard. Identify what students must DO (skill), what they must KNOW (content), the DOK level it demands, and rewrite it as an "I can" statement students understand.</p>
+        <p class="hero-lede">Pick or paste a standard. The toolkit auto-drafts the skill verb, content, Costa's Level of Thinking, and a student-friendly "I can" statement pitched at the right level — you edit the draft instead of starting from scratch.</p>
       </div>
     </section>
+
+    ${wxDismissed ? "" : `
+    <div id="wx-panel" style="background:#fdf6e3; border:1px solid #e6d29a; border-left:4px solid var(--gold); border-radius:10px; padding:16px 18px; margin-top:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
+        <div style="font-weight:700; color:#5a4a12;">Here's what a finished breakdown looks like</div>
+        <button id="wx-hide" class="btn ghost small" style="color:#5a4a12;">Hide example</button>
+      </div>
+      <div style="margin-top:8px; font-size:.92em; line-height:1.55; color:#4a3d0e;">
+        <div><strong>Standard (OAS 11.3.R.3):</strong> Students will evaluate how literary elements impact theme, mood, and/or tone, using textual evidence.</div>
+        <div style="margin-top:6px; display:grid; grid-template-columns:130px 1fr; gap:4px 12px;">
+          <div><strong>Skill verb:</strong></div><div>evaluate</div>
+          <div><strong>Content:</strong></div><div>how literary elements (setting, conflict, point of view, characterization) shape a story's theme, mood, and tone</div>
+          <div><strong>Costa's level:</strong></div><div>Level 3 — Applying (“beyond the text”: judge + defend with evidence, not just name an element)</div>
+          <div><strong>I can:</strong></div><div>“I can evaluate how one literary element shapes a story's mood or theme, and defend my thinking with specific evidence from the text.” <span style="opacity:.7; font-size:.9em;">(Level-3 verb + evidence defense — matches the standard's Costa level.)</span></div>
+          <div><strong>Success criteria:</strong></div><div>Students judge one literary element against clear criteria they can name, and back the judgment with specific textual evidence.</div>
+          <div><strong>Ask them:</strong></div><div><em>Would the story's mood change if the author flipped the point of view? Defend your prediction with evidence.</em></div>
+        </div>
+        <div style="margin-top:8px; font-size:.85em; opacity:.75;">Note: the "I can" verb auto-raises to match Costa's level. If your standard is Level 3, the draft won't drop to "list" or "describe."</div>
+      </div>
+    </div>
+    `}
 
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin-top:18px;">
       <!-- LEFT: Picker + text -->
@@ -2349,7 +2724,7 @@ async function renderStandardsUnpack(view, params) {
               ${facets.courses.map(c => `<option value="${escapeHtml(c.course)}" ${c.course === preCourse ? "selected" : ""}>${escapeHtml(c.course)} (${c.count})</option>`).join("")}
             </select>
           </div>
-          <input id="std-search" class="input" placeholder="Search by keyword or code (e.g. \"DNA\" or \"11.3.R.3\")" style="width:100%; margin-bottom:8px;" />
+          <input id="std-search" class="input" placeholder="Search by keyword or code (e.g. &quot;DNA&quot; or &quot;11.3.R.3&quot;)" style="width:100%; margin-bottom:8px;" />
           <div id="std-results" style="max-height:280px; overflow:auto; border:1px solid var(--border); border-radius:6px; background:var(--bg);"></div>
         </div>
 
@@ -2359,7 +2734,9 @@ async function renderStandardsUnpack(view, params) {
             <input id="std-code-input" class="input" placeholder="Code (optional)" />
             <input id="std-course-input" class="input" placeholder="Course or subject (optional)" />
           </div>
-          <textarea id="std-text" class="input" rows="5" placeholder="Paste the standard text here..." style="width:100%; resize:vertical;"></textarea>
+          <textarea id="std-text" class="input" rows="5" placeholder="Paste the standard text here — the fields on the right will auto-fill." style="width:100%; resize:vertical;"></textarea>
+          <button id="bd-autofill" class="btn primary small" style="margin-top:10px; width:100%;">Auto-fill from this standard →</button>
+          <div style="font-size:.8em; opacity:.65; margin-top:6px;">Auto-fill runs automatically when you pick a standard from the catalog or when you click out of the paste box. Everything the toolkit drafts is a starting point — edit any field.</div>
         </div>
       </div>
 
@@ -2370,38 +2747,56 @@ async function renderStandardsUnpack(view, params) {
           <div style="margin-bottom:12px;">
             <label style="font-weight:600; display:block; margin-bottom:4px;">Skill verb <span style="opacity:.6; font-weight:400;">(what students DO)</span></label>
             <input id="bd-verb" class="input" placeholder="e.g., analyze, evaluate, model, construct" style="width:100%;" />
+            <div id="bd-verb-warn" style="font-size:.8em; color:var(--orange); margin-top:4px; display:none;"></div>
           </div>
+
+          <div style="margin-bottom:12px;">
+            <label style="font-weight:600; display:block; margin-bottom:4px;">Costa's Level of Thinking <span style="opacity:.6; font-weight:400;">(AVID)</span></label>
+            <select id="bd-costa" class="input">
+              <option value="">Choose one...</option>
+              <option value="1">Level 1 — Gathering (on the page)</option>
+              <option value="2">Level 2 — Processing (between the lines)</option>
+              <option value="3">Level 3 — Applying (beyond the text)</option>
+            </select>
+            <div id="bd-costa-reason" style="font-size:.82em; margin-top:6px; padding:6px 10px; background:rgba(200,150,50,0.1); border-left:3px solid var(--gold); border-radius:0 4px 4px 0; display:none;"></div>
+          </div>
+
           <div style="margin-bottom:12px;">
             <label style="font-weight:600; display:block; margin-bottom:4px;">Content <span style="opacity:.6; font-weight:400;">(what students KNOW / work with)</span></label>
             <textarea id="bd-content" class="input" rows="2" placeholder="The nouns in the standard — the concepts, processes, texts, or data students work with." style="width:100%; resize:vertical;"></textarea>
           </div>
+
           <div style="margin-bottom:12px;">
-            <label style="font-weight:600; display:block; margin-bottom:4px;">DOK level</label>
-            <select id="bd-dok" class="input">
-              <option value="">Choose one...</option>
-              <option value="1">1 — Recall &amp; Reproduction</option>
-              <option value="2">2 — Skills &amp; Concepts</option>
-              <option value="3">3 — Strategic Thinking</option>
-              <option value="4">4 — Extended Thinking</option>
-            </select>
-            <div style="font-size:.8em; opacity:.65; margin-top:4px;">Match to the verb: identify = 1, explain = 2, analyze = 3, design/critique = 4.</div>
+            <label style="font-weight:600; display:block; margin-bottom:4px;">"I can" statement <span style="opacity:.6; font-weight:400;">(student-friendly rewrite)</span></label>
+            <textarea id="bd-ican" class="input" rows="3" placeholder="I can __________ so that __________." style="width:100%; resize:vertical;"></textarea>
+            <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; align-items:center;">
+              <span style="font-size:.8em; opacity:.7;">Rewrite for:</span>
+              ${["K-2","3-5","6-8","9-12"].map(g => `<button class="btn small ghost gb-chip" data-band="${g}" style="padding:3px 10px; font-size:.85em; ${g===gradeBand ? "background:var(--gold); color:var(--card-bg); border-color:var(--gold);" : ""}">${g}</button>`).join("")}
+            </div>
           </div>
-          <div style="margin-bottom:12px;">
-            <label style="font-weight:600; display:block; margin-bottom:4px;">"I can" statement</label>
-            <textarea id="bd-ican" class="input" rows="2" placeholder="I can __________ so that __________ (student-friendly rewrite)." style="width:100%; resize:vertical;"></textarea>
-          </div>
+
           <div style="margin-bottom:12px;">
             <label style="font-weight:600; display:block; margin-bottom:4px;">Success criteria</label>
             <textarea id="bd-criteria" class="input" rows="2" placeholder="Students can show they got it when they can... (specific, observable)." style="width:100%; resize:vertical;"></textarea>
           </div>
+
           <div style="margin-bottom:12px;">
-            <label style="font-weight:600; display:block; margin-bottom:4px;">Key vocabulary</label>
-            <input id="bd-vocab" class="input" placeholder="Comma-separated: hierarchical, homeostasis, transcription..." style="width:100%;" />
+            <label style="font-weight:600; display:block; margin-bottom:4px;">Costa's question stems <span style="opacity:.6; font-weight:400;">(ask students these at the target level)</span></label>
+            <textarea id="bd-stems" class="input" rows="3" placeholder="3 questions at the standard's Costa level — to use as bell-ringers, exit tickets, or discussion prompts." style="width:100%; resize:vertical;"></textarea>
           </div>
-          <div style="margin-bottom:16px;">
-            <label style="font-weight:600; display:block; margin-bottom:4px;">Likely misconceptions</label>
-            <textarea id="bd-misc" class="input" rows="2" placeholder="Where kids will get confused, or the wrong pattern they'll fall into." style="width:100%; resize:vertical;"></textarea>
-          </div>
+
+          <details id="bd-adv" style="margin-bottom:12px; border-top:1px dashed var(--border); padding-top:10px;">
+            <summary style="cursor:pointer; font-weight:600; font-size:.9em; opacity:.85;">Advanced (optional): vocabulary &amp; misconceptions</summary>
+            <div style="margin-top:10px;">
+              <label style="font-weight:600; display:block; margin-bottom:4px; font-size:.9em;">Key vocabulary</label>
+              <input id="bd-vocab" class="input" placeholder="Comma-separated: hierarchical, homeostasis, transcription..." style="width:100%;" />
+            </div>
+            <div style="margin-top:10px;">
+              <label style="font-weight:600; display:block; margin-bottom:4px; font-size:.9em;">Likely misconceptions</label>
+              <textarea id="bd-misc" class="input" rows="2" placeholder="Where kids will get confused, or the wrong pattern they'll fall into." style="width:100%; resize:vertical;"></textarea>
+            </div>
+          </details>
+
           <button id="bd-save" class="btn primary" style="width:100%;">Save breakdown</button>
           <div id="bd-save-status" style="margin-top:8px; font-size:.9em;"></div>
         </div>
@@ -2414,7 +2809,7 @@ async function renderStandardsUnpack(view, params) {
   `;
 
   // ---------- Wire up ----------
-  const state = { selectedCode: "", selectedText: "", selectedCourse: preCourse, selectedSubject: "" };
+  const state = { selectedCode: "", selectedText: "", selectedCourse: preCourse, selectedSubject: "", gradeBand: gradeBand };
   const $subject = view.querySelector("#std-subject");
   const $course = view.querySelector("#std-course");
   const $search = view.querySelector("#std-search");
@@ -2422,6 +2817,109 @@ async function renderStandardsUnpack(view, params) {
   const $codeInput = view.querySelector("#std-code-input");
   const $courseInput = view.querySelector("#std-course-input");
   const $textInput = view.querySelector("#std-text");
+  const $verb = view.querySelector("#bd-verb");
+  const $verbWarn = view.querySelector("#bd-verb-warn");
+  const $content = view.querySelector("#bd-content");
+  const $costa = view.querySelector("#bd-costa");
+  const $costaReason = view.querySelector("#bd-costa-reason");
+  const $ican = view.querySelector("#bd-ican");
+  const $criteria = view.querySelector("#bd-criteria");
+  const $stems = view.querySelector("#bd-stems");
+  const $vocab = view.querySelector("#bd-vocab");
+  const $misc = view.querySelector("#bd-misc");
+
+  // Hide worked example
+  const $wxHide = view.querySelector("#wx-hide");
+  if ($wxHide) $wxHide.addEventListener("click", () => {
+    localStorage.setItem(wxKey, "1");
+    const p = view.querySelector("#wx-panel");
+    if (p) p.remove();
+  });
+
+  // Auto-fill helpers
+  function autofillFromStandard(overrideText) {
+    const stdText = (overrideText != null ? overrideText : $textInput.value || "").trim();
+    if (!stdText) return;
+    const parsed = StandardAnalyzer.analyze(stdText);
+    if (!parsed) return;
+    // Only fill fields the user hasn't already edited
+    if (!$verb.value.trim()) $verb.value = parsed.verb;
+    if (!$content.value.trim()) $content.value = parsed.content;
+    if (!$costa.value) $costa.value = String(parsed.costaLevel);
+    updateVerbSignals();
+    const targetLevel = parseInt($costa.value, 10) || parsed.costaLevel;
+    // "I can" AUTO-RAISES the verb to match the standard's Costa level.
+    if (!$ican.value.trim()) $ican.value = StandardAnalyzer.proposeICan(parsed.verb, parsed.content, state.gradeBand, targetLevel);
+    if (!$criteria.value.trim()) $criteria.value = StandardAnalyzer.proposeCriteria(parsed.verb, parsed.content, state.gradeBand, targetLevel);
+    if (!$stems.value.trim()) $stems.value = StandardAnalyzer.proposeQuestionStems(parsed.content, targetLevel).map((q, i) => `${i+1}. ${q}`).join("\n");
+    if (!$vocab.value.trim()) $vocab.value = (parsed.vocab || []).join(", ");
+    if (!$misc.value.trim()) $misc.value = StandardAnalyzer.proposeMisconceptions(parsed.verb, parsed.content, stdText);
+  }
+
+  function updateVerbSignals() {
+    const v = ($verb.value || "").toLowerCase().trim();
+    if (!v) { $verbWarn.style.display = "none"; $costaReason.style.display = "none"; return; }
+    // Warn on vague verbs
+    if (StandardAnalyzer.VAGUE_VERBS.has(v)) {
+      const sub = StandardAnalyzer.MEASURABLE_SUBS[v] || "explain";
+      $verbWarn.textContent = `“${v}” is a vague verb — students can't demonstrate it. Try a measurable verb like “${sub}”.`;
+      $verbWarn.style.display = "block";
+    } else {
+      $verbWarn.style.display = "none";
+    }
+    // Update Costa reason chip
+    const parsedForLevel = StandardAnalyzer.analyze(($textInput.value || "").trim() || `${v} things`);
+    if (parsedForLevel) {
+      $costaReason.textContent = parsedForLevel.costaReason;
+      $costaReason.style.display = "block";
+    }
+  }
+
+  // If the teacher manually changes the Costa level, re-raise the "I can" and criteria
+  // to that new target so the phrasing stays aligned. Only rewrites fields that were
+  // still auto-drafted (i.e. still match what proposeICan would produce for the OLD level).
+  $costa.addEventListener("change", () => {
+    const verb = ($verb.value || "").trim();
+    const content = ($content.value || "").trim();
+    const target = parseInt($costa.value, 10);
+    if (!verb || !content || !target) return;
+    $ican.value = StandardAnalyzer.proposeICan(verb, content, state.gradeBand, target);
+    $criteria.value = StandardAnalyzer.proposeCriteria(verb, content, state.gradeBand, target);
+    $stems.value = StandardAnalyzer.proposeQuestionStems(content, target).map((q, i) => `${i+1}. ${q}`).join("\n");
+  });
+
+  // Grade-band chips: re-rewrite the "I can"
+  view.querySelectorAll(".gb-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const band = chip.dataset.band;
+      state.gradeBand = band;
+      localStorage.setItem(gbKey, band);
+      view.querySelectorAll(".gb-chip").forEach(c => {
+        c.style.background = "";
+        c.style.color = "";
+        c.style.borderColor = "";
+      });
+      chip.style.background = "var(--gold)";
+      chip.style.color = "var(--card-bg)";
+      chip.style.borderColor = "var(--gold)";
+      // Rewrite from the parsed pieces so grade-band swaps take effect
+      const verb = ($verb.value || "").trim();
+      const content = ($content.value || "").trim();
+      const target = parseInt($costa.value, 10) || null;
+      if (verb && content) {
+        $ican.value = StandardAnalyzer.proposeICan(verb, content, band, target);
+        $criteria.value = StandardAnalyzer.proposeCriteria(verb, content, band, target);
+        $stems.value = StandardAnalyzer.proposeQuestionStems(content, target).map((q, i) => `${i+1}. ${q}`).join("\n");
+      }
+    });
+  });
+
+  // Manual autofill button
+  view.querySelector("#bd-autofill").addEventListener("click", () => autofillFromStandard());
+  // Autofill when the paste box loses focus
+  $textInput.addEventListener("blur", () => autofillFromStandard());
+  // Live verb feedback
+  $verb.addEventListener("input", updateVerbSignals);
 
   async function loadResults() {
     const qs = new URLSearchParams();
@@ -2463,6 +2961,9 @@ async function renderStandardsUnpack(view, params) {
           // Highlight
           $results.querySelectorAll(".std-result-row").forEach(r => r.style.background = "");
           row.style.background = "var(--card-bg)";
+          // Reset the breakdown fields so autofill has room to write, then autofill.
+          [$verb, $content, $costa, $ican, $criteria, $stems, $vocab, $misc].forEach(el => { el.value = ""; });
+          autofillFromStandard(s.text);
         } catch (e) { /* noop */ }
       });
     });
@@ -2492,13 +2993,17 @@ async function renderStandardsUnpack(view, params) {
       standard_text: stdText,
       subject: state.selectedSubject || "",
       course: $courseInput.value || "",
-      skill_verb: view.querySelector("#bd-verb").value.trim(),
-      content: view.querySelector("#bd-content").value.trim(),
-      dok_level: parseInt(view.querySelector("#bd-dok").value, 10) || null,
-      i_can_statement: view.querySelector("#bd-ican").value.trim(),
-      success_criteria: view.querySelector("#bd-criteria").value.trim(),
-      vocabulary: view.querySelector("#bd-vocab").value.trim(),
-      misconceptions: view.querySelector("#bd-misc").value.trim(),
+      skill_verb: $verb.value.trim(),
+      content: $content.value.trim(),
+      // Keep dok_level as the storage field name for backward compatibility with
+      // existing saved rows and the backend schema; the value is now Costa's Level (1-3).
+      dok_level: parseInt($costa.value, 10) || null,
+      costa_level: parseInt($costa.value, 10) || null,
+      i_can_statement: $ican.value.trim(),
+      success_criteria: $criteria.value.trim(),
+      question_stems: $stems.value.trim(),
+      vocabulary: $vocab.value.trim(),
+      misconceptions: $misc.value.trim(),
     };
     try {
       const res = await fetch(`${API}/api/standard-breakdowns`, {
@@ -2558,7 +3063,6 @@ async function renderStandardsUnpack(view, params) {
   }
   loadBreakdowns();
 }
-
 // ============================================================
 // BUILD AN INSTRUCTIONAL PLAN (workspace)
 // ============================================================
@@ -2587,7 +3091,7 @@ async function renderStandardsPlan(view, params) {
       <div style="font-weight:600; color:var(--orange); margin-top:4px;">${escapeHtml(breakdown.standard_code || "—")}${breakdown.course ? ` • ${escapeHtml(breakdown.course)}` : ""}</div>
       <div style="margin-top:6px;">${escapeHtml(breakdown.standard_text)}</div>
       ${breakdown.i_can_statement ? `<div style="margin-top:8px; padding-top:8px; border-top:1px solid var(--border);"><strong>I can:</strong> ${escapeHtml(breakdown.i_can_statement)}</div>` : ""}
-      ${breakdown.skill_verb || breakdown.content || breakdown.dok_level ? `<div style="margin-top:6px; font-size:.9em; opacity:.75;">${breakdown.skill_verb ? `<strong>Skill:</strong> ${escapeHtml(breakdown.skill_verb)}` : ""}${breakdown.content ? ` • <strong>Content:</strong> ${escapeHtml(breakdown.content)}` : ""}${breakdown.dok_level ? ` • <strong>DOK:</strong> ${breakdown.dok_level}` : ""}</div>` : ""}
+      ${breakdown.skill_verb || breakdown.content || breakdown.dok_level ? `<div style="margin-top:6px; font-size:.9em; opacity:.75;">${breakdown.skill_verb ? `<strong>Skill:</strong> ${escapeHtml(breakdown.skill_verb)}` : ""}${breakdown.content ? ` • <strong>Content:</strong> ${escapeHtml(breakdown.content)}` : ""}${breakdown.dok_level ? ` • <strong>Costa L${breakdown.dok_level}</strong>` : ""}</div>` : ""}
     </div>
     ` : `
     <div style="background:var(--card-bg); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin-top:18px; margin-bottom:8px; opacity:.75;">
