@@ -1804,3 +1804,91 @@ mark {
 .related-list { margin: 0; padding-left: 20px; }
 .related-list li { margin-bottom: 8px; line-height: 1.5; }
 .related-list a { color: #0b2545; text-decoration: underline; }
+
+/* --- Embedded video block (elementary K-5 pages) --- */
+.video-block-embed {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 18px;
+  align-items: start;
+  padding: 16px 18px;
+}
+@media (max-width: 700px) {
+  .video-block-embed { grid-template-columns: 1fr; }
+}
+.video-block-embed .video-text {
+  display: flex; flex-direction: column; gap: 4px;
+  min-width: 0;
+}
+.video-block-embed .video-title {
+  font-weight: 700; color: var(--navy);
+  font-size: 15px; line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0b2545;
+  box-shadow: 0 2px 8px rgba(11, 37, 69, 0.15);
+}
+.video-thumb {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  padding: 0; margin: 0;
+  border: none; background: transparent;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+}
+.video-poster {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+.video-thumb:hover .video-poster {
+  transform: scale(1.03);
+  filter: brightness(1.08);
+}
+.video-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(11, 37, 69, 0.85);
+  color: #ffd166;
+  display: grid; place-items: center;
+  pointer-events: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+.video-play svg { margin-left: 3px; } /* optical alignment for play triangle */
+.video-thumb:hover .video-play {
+  background: #0b2545;
+  transform: translate(-50%, -50%) scale(1.08);
+}
+.video-thumb:focus-visible {
+  outline: 3px solid #ffd166;
+  outline-offset: 2px;
+}
+.video-iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+  display: block;
+}
+.video-links {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.video-links .btn-small {
+  font-size: 13px;
+  padding: 6px 12px;
+}
