@@ -13,7 +13,7 @@
     var d = document.createElement("div");
     d.className = "hub-banner";
     d.innerHTML =
-      '<strong>Quick PD · Wewoka High.</strong> Short, teacher-facing PD you can watch between bells. For the full strategy library, standards work, and planning tools, visit the <a href="https://we-town-tier1-toolkit.pplx.app/" target="_blank" rel="noopener">Tier 1 Toolkit ↗</a>.';
+      '<strong>The Turner Instructional Toolkit.</strong> Short, teacher-facing PD you can watch between bells. Every planner here is teacher-owned and portable — your work stays with you.';
     return d;
   }
 

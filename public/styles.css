@@ -1632,3 +1632,116 @@ mark {
 @keyframes teacher-pulse { 0%,100% { box-shadow: 0 0 0 2px rgba(212,165,55,0.25);} 50% { box-shadow: 0 0 0 5px rgba(212,165,55,0.45);} }
 
 .page-kicker { display:inline-block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; color:var(--gold); background:rgba(212,165,55,.14); padding:3px 8px; border-radius:4px; margin-bottom:6px; }
+
+/* ==========================================================
+   Toolkit v2 additions — tried-modal upgrade, growth dashboard,
+   connective actions, coaching, next-action toast.
+   ========================================================== */
+
+/* ----- Tried modal (4-way + evidence) ----- */
+.tried-modal-inner { max-width: 560px; }
+.tried-modal-inner h3 { margin: 0 0 12px; font-size: 20px; }
+.tm-label { display:block; font-size:12px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin: 14px 0 8px; }
+.tm-optional { font-weight:400; text-transform:none; letter-spacing:0; color: var(--muted); font-size: 11px; }
+
+.outcome-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.outcome-btn { text-align:left; padding:10px 12px; border-radius:8px; border:1.5px solid var(--border); background:#fff; cursor:pointer; transition: all .15s ease; }
+.outcome-btn:hover { border-color: var(--navy); }
+.outcome-btn.selected { border-color: var(--navy); background: #f0f6ff; box-shadow: 0 0 0 2px rgba(10,37,64,0.08); }
+.outcome-title { font-weight:700; color: var(--ink); font-size:14px; }
+.outcome-hint { font-size:12px; color: var(--muted); margin-top:2px; line-height:1.35; }
+
+.evidence-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.evidence-chips .chip { padding:5px 10px; border-radius:999px; border:1px solid var(--border); background:#fff; font-size:12px; cursor:pointer; color:var(--ink); transition: all .12s ease; }
+.evidence-chips .chip:hover { border-color: var(--navy); }
+.evidence-chips .chip.on { background: var(--navy); color:#fff; border-color: var(--navy); }
+
+#evidence-notes, #tried-notes { width:100%; min-height:56px; border:1.5px solid var(--border); border-radius:8px; padding:8px 10px; font: inherit; font-size:14px; resize: vertical; }
+
+/* ----- Connective-tissue row on strategy detail ----- */
+.connect-row { display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px; padding:12px 14px; margin:12px 0 20px; border-radius:10px; background:linear-gradient(180deg,#f7faff 0%,#f0f4fb 100%); border:1px solid var(--border); }
+.connect-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+.connect-actions { display:flex; flex-wrap:wrap; gap:6px; }
+.connect-actions .btn { font-size:13px; padding:6px 12px; }
+.btn.ghost { background:#fff; border:1px solid var(--border); color: var(--ink); }
+.btn.ghost:hover { border-color: var(--navy); color: var(--navy); }
+
+/* ----- Next-action toast after logging a try ----- */
+.next-action-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9500; max-width: 96vw; background:#fff; border:1.5px solid var(--navy); border-radius: 12px; box-shadow: 0 12px 32px rgba(10,37,64,.22); padding: 12px 14px; animation: nat-in .28s ease-out; }
+@keyframes nat-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.nat-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:8px; }
+.nat-actions { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.nat-actions .btn.ghost { padding:5px 8px; font-size:13px; }
+
+/* ----- Growth Dashboard ----- */
+.growth-loop { background:linear-gradient(180deg,#0A2540 0%,#0e2f56 100%); color:#fff; border-radius:14px; padding:20px 20px 22px; margin-bottom:20px; }
+.gl-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color: var(--gold); margin-bottom:14px; }
+.gl-steps { display:grid; grid-template-columns: repeat(6, 1fr); gap:10px; }
+@media (max-width: 900px) { .gl-steps { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .gl-steps { grid-template-columns: repeat(2, 1fr); } }
+.gl-step { display:block; text-decoration:none; color: inherit; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.10); border-radius: 10px; padding:12px 12px 14px; transition: all .18s ease; }
+.gl-step:hover { background: rgba(255,255,255,0.12); border-color: rgba(212,165,55,0.55); }
+.gl-step.zero { background: rgba(255,255,255,0.03); }
+.gl-n { font-size: 30px; font-weight: 800; color:#fff; line-height:1; }
+.gl-step.zero .gl-n { color: rgba(255,255,255,0.4); }
+.gl-label { margin-top:6px; font-weight:700; font-size:14px; color:#fff; }
+.gl-unit { font-size:11px; color: rgba(255,255,255,0.65); margin-top:1px; }
+.gl-hint { margin-top:8px; font-size:11px; color: var(--gold); line-height:1.35; }
+
+.growth-grid { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+@media (max-width: 820px) { .growth-grid { grid-template-columns: 1fr; } }
+.growth-card { padding:16px 18px; }
+.growth-h { font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color: var(--muted); margin:0 0 12px; }
+.growth-goal { grid-column: 1 / -1; }
+
+/* Outcome bars */
+.outcome-bars { display:flex; flex-direction:column; gap:8px; }
+.outcome-row { display:grid; grid-template-columns: 130px 1fr 72px; align-items:center; gap:10px; font-size:13px; }
+.outcome-lab { color: var(--ink); }
+.outcome-track { height:10px; background:#f0f2f6; border-radius:6px; overflow:hidden; }
+.outcome-fill { height:100%; border-radius:6px; transition: width .5s ease; }
+.outcome-fill.good  { background:#2b7a3d; }
+.outcome-fill.warn  { background:#c98a10; }
+.outcome-fill.soft  { background:#9aa4b2; }
+.outcome-fill.info  { background:#1d4ed8; }
+.outcome-num { text-align:right; font-variant-numeric: tabular-nums; color: var(--ink); font-weight:600; }
+.outcome-num .pct { color: var(--muted); font-weight:400; font-size:12px; }
+
+/* Sparkline bars */
+.spark-legend { font-size:11px; color: var(--muted); margin-bottom: 8px; display:flex; align-items:center; }
+.sw { display:inline-block; width:10px; height:10px; border-radius:2px; margin: 0 4px 0 8px; vertical-align: middle; }
+.sw-tried { background: #1d4ed8; }
+.sw-reflect { background: var(--gold); }
+.sparkbars { display:flex; align-items:flex-end; gap:6px; height: 96px; }
+.sparkcol { flex:1; display:flex; flex-direction:column; align-items:center; justify-content: flex-end; gap:4px; min-width: 0; }
+.sparkstack { display:flex; align-items:flex-end; gap:2px; height: 74px; width: 100%; }
+.sparkbar { flex:1; min-height: 2px; border-radius: 2px 2px 0 0; }
+.sb-tried   { background: #1d4ed8; }
+.sb-reflect { background: var(--gold); }
+.sparklab { font-size: 10px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Lists */
+.evidence-list, .most-tried, .coach-list { list-style: none; padding: 0; margin: 0; }
+.evidence-list li, .most-tried li { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px dashed #eef0f4; font-size:14px; }
+.evidence-list li:last-child, .most-tried li:last-child { border-bottom: none; }
+.ev-name { color: var(--ink); }
+.ev-count { color: var(--muted); font-variant-numeric: tabular-nums; font-weight:600; }
+.most-tried a { color: var(--navy); text-decoration: none; font-weight:600; }
+.most-tried a:hover { text-decoration: underline; }
+
+/* Goal progress */
+.goal-progress { padding: 10px 0; border-bottom: 1px dashed #eef0f4; }
+.goal-progress:last-child { border-bottom: none; }
+.gp-title { font-weight:700; color: var(--ink); margin-bottom:4px; }
+.gp-metrics { display:flex; gap:16px; font-size:13px; color: var(--muted); }
+.gp-metrics strong { color: var(--navy); }
+
+/* Coaching list */
+.coach-list li { padding: 10px 0; border-bottom: 1px dashed #eef0f4; }
+.coach-list li:last-child { border-bottom: none; }
+.coach-list a { color: var(--navy); font-weight: 600; text-decoration: none; }
+.coach-note { font-size:13px; color: var(--muted); margin: 4px 0 6px; }
+.coach-actions { display:flex; gap:6px; }
+.btn.small { font-size:12px; padding: 3px 8px; }
+
+.small-note { font-size: 12px; color: var(--muted); line-height: 1.45; margin-top: 8px; }

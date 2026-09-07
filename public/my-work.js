@@ -42,12 +42,23 @@
     if (r.wins) b.push({ h3: "Wins" }, { p: r.wins });
     if (r.struggles) b.push({ h3: "Struggles" }, { p: r.struggles });
     if (r.nextWeekFocus) b.push({ h3: "Next week's focus" }, { p: r.nextWeekFocus });
-    if (r.evidence) b.push({ h3: "Evidence of student learning" }, { p: r.evidence });
+    // v2: studentEvidence + evidenceTypes; keep legacy r.evidence fallback.
+    var evTxt = r.studentEvidence || r.evidence;
+    if (evTxt) b.push({ h3: "Evidence of student learning" }, { p: evTxt });
+    if (Array.isArray(r.evidenceTypes) && r.evidenceTypes.length) {
+      b.push({ label: "Evidence types", value: r.evidenceTypes.join(", ") });
+    }
     return b;
   }
+  var OUTCOME_LABEL = { worked: "Worked well", partial: "Partially worked", not_yet: "Did not work yet", coaching: "Need coaching" };
   function triedBlocks(rows) {
-    return [{ headers: ["Date", "Strategy", "Worked?", "Notes"],
-      table: rows.map(function (t) { return [fmt(t.triedDate), stratTitle(t.strategyId), t.worked ? "Yes" : "Not yet", t.notes || ""]; }) }];
+    return [{ headers: ["Date", "Strategy", "How it went", "Evidence", "Notes"],
+      table: rows.map(function (t) {
+        var outcome = OUTCOME_LABEL[t.outcome] || (t.worked ? "Yes" : "Not yet");
+        var ev = (Array.isArray(t.evidenceTypes) ? t.evidenceTypes.join(", ") : "");
+        if (t.evidenceNotes) ev = ev ? (ev + " — " + t.evidenceNotes) : t.evidenceNotes;
+        return [fmt(t.triedDate), stratTitle(t.strategyId), outcome, ev, t.notes || ""];
+      }) }];
   }
   var PLAN_LABELS = { weekly: "Weekly Plan", unit: "Unit Plan", daily: "Daily Plan" };
   function draftBlocks(key, state) {

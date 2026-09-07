@@ -184,12 +184,33 @@
     if (r === "tried-log") {
       if (method === "GET") return json(byTeacher("tried_log", teacher));
       const date = body.triedDate || now().slice(0, 10);
-      return json(insert("tried_log", { teacher: body.teacher, strategyId: body.strategyId, triedDate: date, worked: !!body.worked, notes: body.notes || "", createdAt: now() }));
+      // v2 schema: keep legacy `worked` bool alongside `outcome` + evidence.
+      return json(insert("tried_log", {
+        teacher: body.teacher,
+        strategyId: body.strategyId,
+        triedDate: date,
+        worked: !!body.worked,
+        outcome: body.outcome || (body.worked ? "worked" : "not_yet"),
+        evidenceTypes: Array.isArray(body.evidenceTypes) ? body.evidenceTypes : [],
+        evidenceNotes: body.evidenceNotes || "",
+        notes: body.notes || "",
+        createdAt: now(),
+      }));
     }
     if (r === "reflections") {
       if (method === "GET") return json(byTeacher("reflections", teacher));
       const week = body.weekStart || now().slice(0, 10);
-      return json(insert("reflections", { teacher: body.teacher, weekStart: week, wins: body.wins || "", struggles: body.struggles || "", nextWeekFocus: body.nextWeekFocus || "", createdAt: now() }));
+      return json(insert("reflections", {
+        teacher: body.teacher,
+        weekStart: week,
+        wins: body.wins || "",
+        struggles: body.struggles || "",
+        nextWeekFocus: body.nextWeekFocus || "",
+        // v2: student-learning evidence + evidence types
+        studentEvidence: body.studentEvidence || "",
+        evidenceTypes: Array.isArray(body.evidenceTypes) ? body.evidenceTypes : [],
+        createdAt: now(),
+      }));
     }
     if (r === "standard-breakdowns" || r === "instructional-plans") {
       const t = r === "standard-breakdowns" ? "standard_breakdowns" : "instructional_plans";

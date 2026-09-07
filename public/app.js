@@ -1,5 +1,7 @@
 // ============================================================
-// Quick PD Fullstack — SPA (vanilla JS, hash router)
+// The Turner Instructional Toolkit — SPA (vanilla JS, hash router)
+// Formerly "Quick PD." Renamed to reflect that this is a portable,
+// teacher-owned toolkit rather than a school-owned resource.
 // ============================================================
 
 // API base resolution:
@@ -156,7 +158,7 @@ const ROUTE_LABELS = {
   "early-pe": "Early PE (K–5)",
   "feedback": "Teacher–Student Feedback",
   "first-30-days": "First 30 Days",
-  "about": "About Quick PD",
+  "about": "About the Toolkit",
   "strategy": "Strategy detail",
 };
 
@@ -490,14 +492,14 @@ async function renderStartHere(view) {
   const heroName = teacher ? `Welcome back, ${escapeHtml(teacher)}` : `Every teacher deserves a <em>bigger toolbox</em>`;
   const heroLede = teacher
     ? `Pick up where you left off, log what you tried this week, or browse today’s focus below.`
-    : `Quick PD is a working library of classroom strategies you can try tomorrow — whether you’re a first-year teacher learning the craft, a veteran adding new tools, or someone who came to teaching through a non-traditional path. Every entry is short, specific, and battle-tested.`;
+    : `The Turner Instructional Toolkit is a working library of classroom strategies you can try tomorrow — whether you’re a first-year teacher learning the craft, a veteran adding new tools, or someone who came to teaching through a non-traditional path. Every entry is short, specific, and battle-tested.`;
 
   view.innerHTML = `
     <section class="hero">
       <div class="hero-media" style="background-image:url('./img/heroes/start-here.jpg');"></div>
       <div class="hero-overlay"></div>
       <div class="hero-inner">
-        <div class="eyebrow on-dark">Quick PD · Start Here</div>
+        <div class="eyebrow on-dark">Turner Toolkit · Start Here</div>
         <div class="hero-gold-line"></div>
         <h1 class="hero-title">${heroName}</h1>
         <p class="hero-lede">${heroLede}</p>
@@ -551,7 +553,7 @@ async function renderStartHere(view) {
     ` : `
       <div class="card" style="border-left:4px solid var(--gold);">
         <div class="card-title">Add your name to save your progress.</div>
-        <p>Quick PD keeps track of favorites, PL goals, and what you’ve tried — but only if you sign in with your name in the sidebar. Nothing leaves this site; there’s no account, no password.</p>
+        <p>The Toolkit keeps track of favorites, PL goals, plans, and what you’ve tried — but only if you sign in with your name in the sidebar. Everything stays in your browser; there’s no account and no password.</p>
       </div>
     `}
 
@@ -593,10 +595,20 @@ async function renderStartHere(view) {
     ${showReflection ? `
       <div class="reflection-card">
         <h3>Weekly reflection</h3>
-        <p>Take three minutes before the weekend. It compounds.</p>
+        <p>Take five minutes before the weekend. Capture what students learned — that’s the loop.</p>
         <form id="reflection-form">
           <div class="rc-row"><label>One win this week</label><textarea name="wins" required></textarea></div>
           <div class="rc-row"><label>One struggle</label><textarea name="struggles"></textarea></div>
+          <div class="rc-row">
+            <label>What evidence shows whether students learned this week?</label>
+            <textarea name="studentEvidence" placeholder="Exit tickets, work samples, formative results, engagement observations… what did you see?"></textarea>
+          </div>
+          <div class="rc-row">
+            <label>Evidence types <span style="font-weight:400;color:var(--muted);">(pick any)</span></label>
+            <div class="evidence-chips" id="refl-evidence-chips">
+              ${EVIDENCE_TYPES.map((e) => `<button type="button" class="chip" data-evidence="${escapeHtml(e)}">${escapeHtml(e)}</button>`).join("")}
+            </div>
+          </div>
           <div class="rc-row"><label>One focus for next week</label><textarea name="nextWeekFocus"></textarea></div>
           <button type="submit" class="btn primary">Save reflection</button>
         </form>
@@ -640,9 +652,17 @@ async function renderStartHere(view) {
     });
   });
 
-  // Wire reflection form
+  // Wire reflection form (with student-evidence capture + evidence-type chips)
   const rf = $("#reflection-form");
   if (rf) {
+    const evSet = new Set();
+    rf.querySelectorAll("#refl-evidence-chips .chip").forEach((b) => {
+      b.addEventListener("click", () => {
+        const v = b.dataset.evidence;
+        if (evSet.has(v)) { evSet.delete(v); b.classList.remove("on"); }
+        else { evSet.add(v); b.classList.add("on"); }
+      });
+    });
     rf.addEventListener("submit", async (e) => {
       e.preventDefault();
       const t = TeacherStore.get();
@@ -654,9 +674,14 @@ async function renderStartHere(view) {
           wins: fd.get("wins") || "",
           struggles: fd.get("struggles") || "",
           nextWeekFocus: fd.get("nextWeekFocus") || "",
+          // NEW: student-learning evidence — closes the reflection loop.
+          studentEvidence: fd.get("studentEvidence") || "",
+          evidenceTypes: Array.from(evSet),
         }) });
-        toast("Reflection saved — have a great weekend");
+        toast("Reflection saved — great work capturing evidence.");
         rf.reset();
+        rf.querySelectorAll("#refl-evidence-chips .chip.on").forEach((b) => b.classList.remove("on"));
+        evSet.clear();
       } catch (err) { toast("Save failed: " + err.message); }
     });
   }
@@ -947,6 +972,17 @@ async function renderStrategyDetail(view, params) {
       ${Data.triedStrategyIds().has(s.id) ? '<span class="tried-badge">Tried</span>' : ""}
     </div>
 
+    <div class="connect-row" aria-label="Put this strategy to work">
+      <div class="connect-label">Put it to work</div>
+      <div class="connect-actions">
+        <button class="btn ghost" data-use-in="daily">Use in a Daily plan</button>
+        <button class="btn ghost" data-use-in="weekly">Use in this Week</button>
+        <button class="btn ghost" data-use-in="unit">Use in a Unit plan</button>
+        <button class="btn ghost" id="connect-pl">Connect to my PL goal</button>
+        <button class="btn ghost" id="request-coaching">I want help using this</button>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-meta">${escapeHtml(s.category || "")}${s.telStage ? " · " + escapeHtml(s.telStage) : ""}</div>
       <div class="card-tags" style="margin-bottom:12px;">
@@ -990,9 +1026,68 @@ async function renderStrategyDetail(view, params) {
   });
 
   $("#detail-tried").addEventListener("click", () => openTriedModal(s));
+
+  // Connective-tissue: link strategy → plans, PL goal, coaching
+  view.querySelectorAll("[data-use-in]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const kind = btn.dataset.useIn;
+      // Stash the strategy id + kind for the destination page to consume.
+      try {
+        sessionStorage.setItem("pendingStrategyInsert", JSON.stringify({
+          strategyId: s.id,
+          strategyTitle: s.title,
+          kind,
+          ts: Date.now(),
+        }));
+      } catch {}
+      const routes = { daily: "#/lesson-plans", weekly: "#/weekly-plan", unit: "#/unit-plan" };
+      location.hash = routes[kind] || "#/weekly-plan";
+    });
+  });
+
+  $("#connect-pl")?.addEventListener("click", () => {
+    try {
+      sessionStorage.setItem("pendingStrategyInsert", JSON.stringify({
+        strategyId: s.id, strategyTitle: s.title, kind: "pl", ts: Date.now(),
+      }));
+    } catch {}
+    location.hash = "#/pl-tool";
+  });
+
+  $("#request-coaching")?.addEventListener("click", () => {
+    const t = TeacherStore.get();
+    if (!t) { window.requireTeacher(); return; }
+    const note = prompt("What kind of help do you want? (e.g., 'model this in my class', 'watch me try it', 'help me plan the rollout')") || "";
+    CoachingRequests.add({ strategyId: s.id, strategyTitle: s.title, note });
+    toast("Coaching request saved to My Growth.");
+  });
 }
 
-// -------- Tried-log modal --------
+// -------- Tried-log modal (4-way outcome + evidence of student learning) --------
+// Design intent (per user feedback): teaching is rarely binary. Replace the
+// worked / didn't-work toggle with four honest outcomes, and always ask what
+// evidence tells the teacher whether students actually learned. The old
+// { worked: true|false } shape stays populated (worked = 'worked' outcome)
+// so backend + existing views keep functioning while we roll out.
+
+const TRIED_OUTCOMES = [
+  { id: "worked",   label: "Worked well",         hint: "Students got it; use this again." },
+  { id: "partial",  label: "Partially worked",     hint: "Some students got it; tweak and re-try." },
+  { id: "not_yet",  label: "Did not work yet",     hint: "Missed the mark today; not writing it off." },
+  { id: "coaching", label: "Need coaching / modeling", hint: "Want a peer or coach to help me try this." },
+];
+
+const EVIDENCE_TYPES = [
+  "Exit ticket",
+  "Common formative assessment",
+  "Student-work sample",
+  "Student discussion",
+  "Assignment completion",
+  "Pre/post result",
+  "Engagement observation",
+  "Other",
+];
+
 function openTriedModal(strategy) {
   const t = TeacherStore.get();
   if (!t) { window.requireTeacher(); return; }
@@ -1004,13 +1099,30 @@ function openTriedModal(strategy) {
   modal.innerHTML = `
     <div class="tried-modal-inner" role="dialog" aria-labelledby="tried-modal-title">
       <h3 id="tried-modal-title">Log: ${escapeHtml(strategy.title)}</h3>
-      <p style="font-size:13px;color:var(--muted);margin:0 0 6px;">Did it work in your classroom?</p>
-      <div class="worked-toggle">
-        <button type="button" data-worked="yes" class="selected">Yes, it worked</button>
-        <button type="button" data-worked="no">Didn’t land</button>
+
+      <label class="tm-label">How did it go?</label>
+      <div class="outcome-grid">
+        ${TRIED_OUTCOMES.map((o, i) => `
+          <button type="button" class="outcome-btn ${i === 0 ? "selected" : ""}" data-outcome="${o.id}">
+            <div class="outcome-title">${escapeHtml(o.label)}</div>
+            <div class="outcome-hint">${escapeHtml(o.hint)}</div>
+          </button>
+        `).join("")}
       </div>
-      <label style="font-size:12px;letter-spacing:0.04em;text-transform:uppercase;font-weight:700;color:var(--muted);display:block;margin-bottom:4px;">Quick note (optional)</label>
-      <textarea id="tried-notes" placeholder="One line about how it went, what you’d change next time…"></textarea>
+
+      <label class="tm-label">What evidence shows whether students learned? <span class="tm-optional">(pick any)</span></label>
+      <div class="evidence-chips">
+        ${EVIDENCE_TYPES.map((e) => `
+          <button type="button" class="chip" data-evidence="${escapeHtml(e)}">${escapeHtml(e)}</button>
+        `).join("")}
+      </div>
+
+      <label class="tm-label">Evidence detail <span class="tm-optional">(what did you see?)</span></label>
+      <textarea id="evidence-notes" placeholder="e.g. 18 of 22 exit tickets showed the target; 3 needed reteach on step 2."></textarea>
+
+      <label class="tm-label">Quick note <span class="tm-optional">(what you'd change next time)</span></label>
+      <textarea id="tried-notes" placeholder="One line about how it went, what you'd tweak."></textarea>
+
       <div class="modal-actions">
         <button type="button" class="btn" id="tried-cancel">Cancel</button>
         <button type="button" class="btn primary" id="tried-save">Save entry</button>
@@ -1019,15 +1131,21 @@ function openTriedModal(strategy) {
   `;
   document.body.appendChild(modal);
 
-  let worked = true;
-  modal.querySelectorAll(".worked-toggle button").forEach((b) => {
+  let outcome = "worked";
+  modal.querySelectorAll(".outcome-btn").forEach((b) => {
     b.addEventListener("click", () => {
-      modal.querySelectorAll(".worked-toggle button").forEach((x) => {
-        x.classList.remove("selected", "no");
-      });
+      modal.querySelectorAll(".outcome-btn").forEach((x) => x.classList.remove("selected"));
       b.classList.add("selected");
-      worked = b.dataset.worked === "yes";
-      if (!worked) b.classList.add("no");
+      outcome = b.dataset.outcome;
+    });
+  });
+
+  const evidence = new Set();
+  modal.querySelectorAll(".evidence-chips .chip").forEach((b) => {
+    b.addEventListener("click", () => {
+      const v = b.dataset.evidence;
+      if (evidence.has(v)) { evidence.delete(v); b.classList.remove("on"); }
+      else { evidence.add(v); b.classList.add("on"); }
     });
   });
 
@@ -1036,6 +1154,7 @@ function openTriedModal(strategy) {
 
   modal.querySelector("#tried-save").addEventListener("click", async () => {
     const notes = modal.querySelector("#tried-notes").value;
+    const evidenceNotes = modal.querySelector("#evidence-notes").value;
     const today = new Date().toISOString().slice(0, 10);
     try {
       await fetchJSON("/api/tried-log", {
@@ -1043,20 +1162,110 @@ function openTriedModal(strategy) {
         body: JSON.stringify({
           teacher: TeacherStore.get(),
           strategyId: strategy.id,
-          worked,
+          // Legacy field kept so old dashboards/backends keep working.
+          worked: (outcome === "worked"),
+          // New rich fields.
+          outcome,                                 // worked | partial | not_yet | coaching
+          evidenceTypes: Array.from(evidence),     // string[]
+          evidenceNotes,                           // long-form evidence detail
           notes,
           triedDate: today,
         }),
       });
-      toast("Logged — nice work.");
+      const messages = {
+        worked:   "Logged — nice work. Try it again next week to build the habit.",
+        partial:  "Logged. Adjust one thing and give it another rep.",
+        not_yet:  "Logged. Not working yet ≠ not working — keep at it.",
+        coaching: "Logged. A coaching request will show in your Growth Dashboard.",
+      };
+      toast(messages[outcome] || "Logged.");
       await Data.loadTriedLog();
       modal.remove();
+      // Offer the natural next action — don't force it.
+      offerNextAction(strategy, outcome);
       router();
     } catch (err) {
       toast("Save failed: " + err.message);
     }
   });
 }
+
+// After a tried-log entry, surface the most useful next step for that outcome.
+// Non-modal, dismissible — keeps the loop closed without forcing.
+function offerNextAction(strategy, outcome) {
+  const el = document.createElement("div");
+  el.className = "next-action-toast";
+  const actions = {
+    worked: [
+      { label: "Add to my Weekly Plan", href: "#/weekly-plan" },
+      { label: "Log another try",       href: `#/strategy/${strategy.id}`, action: "tried" },
+    ],
+    partial: [
+      { label: "Find related strategies", href: "#/strategies" },
+      { label: "Add to Weekly Plan",      href: "#/weekly-plan" },
+    ],
+    not_yet: [
+      { label: "See the strategy again", href: `#/strategy/${strategy.id}` },
+      { label: "Try a different move",   href: "#/strategies" },
+    ],
+    coaching: [
+      { label: "Save a coaching request", action: "coaching" },
+      { label: "Browse related",           href: "#/strategies" },
+    ],
+  }[outcome] || [];
+  el.innerHTML = `
+    <div class="nat-inner">
+      <div class="nat-title">What's next?</div>
+      <div class="nat-actions">
+        ${actions.map((a, i) => `<a class="btn ${i === 0 ? "primary" : ""}" data-nat="${i}" href="${a.href || "#"}">${escapeHtml(a.label)}</a>`).join("")}
+        <button type="button" class="btn ghost" id="nat-dismiss" aria-label="Dismiss">✕</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(el);
+  el.querySelector("#nat-dismiss").addEventListener("click", () => el.remove());
+  el.querySelectorAll("a[data-nat]").forEach((a, i) => {
+    a.addEventListener("click", (ev) => {
+      const spec = actions[i];
+      if (spec.action === "coaching") {
+        ev.preventDefault();
+        CoachingRequests.add({ strategyId: strategy.id, strategyTitle: strategy.title, note: "Requested from tried-log." });
+        toast("Coaching request saved to My Growth.");
+        el.remove();
+      } else {
+        // Just let the anchor navigate; auto-dismiss.
+        setTimeout(() => el.remove(), 200);
+      }
+    });
+  });
+  // Auto-dismiss after 12s so it never becomes clutter.
+  setTimeout(() => el.remove(), 12000);
+}
+
+// -------- Coaching requests (private, browser-local) --------
+const CoachingRequests = {
+  key() {
+    const t = TeacherStore.get() || "anon";
+    return `coaching_requests:${t}`;
+  },
+  all() {
+    try { return JSON.parse(localStorage.getItem(this.key()) || "[]"); } catch { return []; }
+  },
+  add(req) {
+    const list = this.all();
+    list.unshift({ id: Date.now().toString(36), createdAt: new Date().toISOString(), status: "open", ...req });
+    localStorage.setItem(this.key(), JSON.stringify(list));
+  },
+  update(id, patch) {
+    const list = this.all().map((r) => r.id === id ? { ...r, ...patch } : r);
+    localStorage.setItem(this.key(), JSON.stringify(list));
+  },
+  remove(id) {
+    const list = this.all().filter((r) => r.id !== id);
+    localStorage.setItem(this.key(), JSON.stringify(list));
+  },
+  openCount() { return this.all().filter((r) => r.status === "open").length; },
+};
 
 // ------------------ Classroom Systems ------------------
 let ClassroomTab = "techniques";
@@ -1280,7 +1489,7 @@ function renderPIES() {
 
 // ------------------ Unit Plan ------------------
 
-// Planner pages (weekly / unit / daily) come from the Quick PD planner module
+// Planner pages (weekly / unit / daily) come from the Toolkit planner module
 // (planner-core.js + planner-pages.js): OAS standards picker, step-by-step
 // walkthrough, and one-click Word (.docx) download.
 function renderModulePage(mod, fn) {
@@ -1767,7 +1976,7 @@ async function renderToolkitExamples(view) {
 
   view.innerHTML = `
     <h1 class="page-title">Toolkit Examples</h1>
-    <p class="page-lede">Model toolkits from teachers who use Quick PD. Use them as a starting point — copy what fits, swap what doesn't, add your own.</p>
+    <p class="page-lede">Model toolkits from teachers who use the Turner Toolkit. Use them as a starting point — copy what fits, swap what doesn't, add your own.</p>
 
     <div class="card">
       <div class="card-title">New Teacher Starter Kit</div>
@@ -2604,7 +2813,7 @@ async function renderFirst30Days(view) {
 
     <div class="callout" style="margin-top:24px;">
       <h3>Done with the first 30 days?</h3>
-      <p>Head to <a href="#/strategies">the full library</a>, write your first PL goal in <a href="#/pl-tool">Write My PL Goal</a>, or read <a href="#/about">About Quick PD</a>.</p>
+      <p>Head to <a href="#/strategies">the full library</a>, write your first PL goal in <a href="#/pl-tool">Write My PL Goal</a>, or read <a href="#/about">About the Toolkit</a>.</p>
     </div>
   `;
 
@@ -2635,14 +2844,15 @@ async function renderAbout(view) {
       <div class="hero-overlay"></div>
       <div class="hero-inner">
         <div class="eyebrow on-dark">About</div>
-        <h1 class="hero-title">About Quick PD</h1>
+        <h1 class="hero-title">About the Turner Instructional Toolkit</h1>
         <p class="hero-lede">A working library of classroom strategies you can try tomorrow — free, no login, no course.</p>
       </div>
     </section>
 
     <div class="about-block">
       <h2>Who this is for</h2>
-      <p>Quick PD is for any teacher who wants to add to their toolbox — first-year teachers finding their footing, veterans hunting for a fresh move, career changers and alternatively certified teachers learning the craft on the job, and paraprofessionals stepping into a lead role. If you have a class next period and need something concrete, you're in the right place.</p>
+      <p>The Turner Instructional Toolkit is for any teacher who wants to add to their toolbox — first-year teachers finding their footing, veterans hunting for a fresh move, career changers and alternatively certified teachers learning the craft on the job, and paraprofessionals stepping into a lead role. If you have a class next period and need something concrete, you're in the right place.</p>
+      <p style="color:var(--muted);font-size:14px;margin-top:8px;"><em>Built and maintained by Paul Turner (principal, Wewoka High School). This is a personal, portable toolkit — it works the same wherever the teacher goes.</em></p>
 
       <h2>What it is</h2>
       <p>A curated library of over 250 evidence-based classroom strategies, plus tools for weekly planning, unit planning, and writing a defensible professional learning goal. Every strategy card is short and specific: how to run it, a real classroom example, and where the evidence comes from. Nothing is longer than it needs to be.</p>
@@ -2652,10 +2862,10 @@ async function renderAbout(view) {
       <p>Paul Turner, principal at Wewoka High School in Oklahoma. Built for the teachers at Wewoka first, opened up because good practical PD shouldn't be locked behind a vendor. The strategies come from IES practice guides, the What Works Clearinghouse, the IRIS Center, Doug Lemov's work, and years of watching what actually moves the needle in real classrooms.</p>
 
       <h2>Why it's free</h2>
-      <p>Because it should be. Teachers already pay for their own supplies. If Quick PD saves you an hour of planning a week, that's the entire point.</p>
+      <p>Because it should be. Teachers already pay for their own supplies. If the Toolkit saves you an hour of planning a week, that's the entire point.</p>
 
       <h2>How to contribute</h2>
-      <p>Tried something that worked? <a href="#/add">Add a strategy</a> to the library. Have feedback or a strategy you want to see included? Reach out through Wewoka Public Schools.</p>
+      <p>Tried something that worked? <a href="#/add">Add a strategy</a> to the library. Have feedback — a broken link, an outdated video, a strategy you want included, a classroom example to share? Use the <strong>Send feedback</strong> link at the bottom of every page.</p>
 
       <h2>What's in it right now</h2>
       <p>250+ strategies · 15 formative assessment routines · 30+ classroom techniques · rigor practices · seating guides · standards guides · 13 Tier 2 academic interventions · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print · six K–5 domain pages (Reading, Math, Writing, Science, Social Studies, PE) · a dedicated Teacher–Student Feedback page. All searchable from the sidebar. All yours.</p>
@@ -2702,7 +2912,7 @@ function _searchIndex() {
     { label: "Weekly Plan", sub: "Tool", href: "#/weekly-plan" },
     { label: "Lesson Plan Templates", sub: "Templates", href: "#/lesson-plans" },
     { label: "Toolkit Examples", sub: "Examples", href: "#/toolkit-examples" },
-    { label: "About Quick PD", sub: "About", href: "#/about" },
+    { label: "About the Toolkit", sub: "About", href: "#/about" },
     { label: "Elementary Foundations", sub: "K–5 hub", href: "#/elementary" },
     { label: "Early Reading (K–5)", sub: "K–5 domain", href: "#/early-reading" },
     { label: "Early Math (K–5)", sub: "K–5 domain", href: "#/early-math" },

@@ -57,6 +57,43 @@
     ],
     strategies: [
       {
+        // NEW: Phonological awareness comes BEFORE phoneme-level work in the
+        // developmental sequence (word → syllable → onset/rime → phoneme).
+        // Rhyme + syllable play is the on-ramp; without it, phonemic-awareness
+        // instruction lands on shaky ground.
+        libraryId: "pa-rhyme-syllable-01",
+        title: "Phonological awareness — rhyming & syllable play",
+        band: "PreK–1 · 5–10 min/day",
+        why:
+          "Phonological awareness (the larger umbrella that phonemic awareness sits under) develops in a predictable sequence: hearing words in a sentence, then syllables, then onset-rime and rhyme, then individual phonemes. Rhyming and syllable play give young children the ear-training they need before phoneme-level manipulation makes sense. Skip this rung and later phonemic-awareness lessons feel like guessing.",
+        moves: [
+          "Rhyme recognition first: read a rhyming book (Dr. Seuss, Sheep in a Jeep, Llama Llama). Pause and ask, 'Did those two words rhyme? \u201ccat\u201d and \u201chat\u201d?' Thumbs up / thumbs down.",
+          "Rhyme production next (harder): 'Give me a word that rhymes with pan.' Accept nonsense words — the ear skill is what matters, not the dictionary.",
+          "Syllable clap: name a student, clap the syllables in their name (Ma-ri-a = 3 claps). Then do lunchroom words, animals, favorite foods.",
+          "Onset-rime blending as the bridge: 'I say /m/ \u2026 /at/. What word? \u2192 mat.' Then reverse: 'The word is sun. What\u2019s the first sound?'",
+          "Keep it playful, oral, and short — 5–10 minutes daily beats one long weekly session. Songs, chants, and read-alouds carry most of the load.",
+        ],
+        evidence:
+          "National Reading Panel (2000): phonological & phonemic awareness training produced large effects on later reading (d ≈ 0.86 for phonemic awareness). IES Foundational Skills Practice Guide (2016) Recommendation 2 rates the evidence Strong for developing awareness of the sounds of spoken language, explicitly including syllable and onset-rime work as precursors to phoneme instruction.",
+        video: {
+          title: "Blending Onset and Rime with Autumn and Linda Farrell",
+          channel: "Reading Universe",
+          url: "https://www.youtube.com/watch?v=WGY665kTKdM",
+        },
+        moreVideos: [
+          {
+            title: "Rhyming Activities for Kindergarten & 1st Grade — how to teach students to rhyme",
+            channel: "Susan Jones Teaching",
+            url: "https://www.youtube.com/watch?v=uRO3arH1I1k",
+          },
+          {
+            title: "Clap the Syllables — Phonological Awareness for Pre-K & Kindergarten",
+            channel: "Bulldogs Funtastic Learning",
+            url: "https://www.youtube.com/watch?v=mApQjiCkaqE",
+          },
+        ],
+      },
+      {
         libraryId: "29e604eb-96da-424c-9253-140737fe2ae6",
         title: "Phonemic awareness — daily oral routine",
         band: "K–2 · 8–12 min/day",
