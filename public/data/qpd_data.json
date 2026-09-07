@@ -1,1 +1,980 @@
-{"startHere":{"intro":{"title":"Start Here","lede":"A short orientation for teachers new to Wewoka High — what a walk-through looks for, what belongs on your board, how to unpack a standard, and how the curriculum and your resources relate. Watch each short video and skim the notes."},"principalLookFors":{"title":"What your principal is looking for","description":"A quick, honest picture of what walk-throughs are checking — bell-to-bell instruction, a posted objective, cognitive work by students, and feedback tied to a criterion.","video":{"title":"Classroom Walk-Throughs — Show Your Strengths","channel":"Kathleen Jasper","url":"https://www.youtube.com/watch?v=VrDYJWEmlIs"},"lookFors":["Posted standard and student-friendly objective","Bell-to-bell instruction (start on time, end on task)","Students doing the cognitive work — talking, writing, solving","Feedback tied to a criterion, not just praise"]},"board":{"title":"What to put on the board","description":"A simple board setup that supports a walk-through in five seconds: standard, objective in student-friendly language, agenda, and success criteria.","video":{"title":"I CAN Statements as Classroom Objectives","channel":"Willmar Public Schools","url":"https://www.youtube.com/watch?v=Tr3uqF7YObo"},"items":["Standard code — e.g., OAS.ELA.9.R.4","Objective in an “I can…” statement","Agenda for the period","Success criteria — how a student knows they’ve got it"]},"unpack":{"title":"Breaking down a state standard","description":"Turn a dense standard into the specific skills and knowledge students will need. This is the planning move that saves you every other planning step.","video":{"title":"An Overview of Unpacking the Standards","channel":"ALEX — Alabama Learning Exchange","url":"https://www.youtube.com/watch?v=Lo7v-dTN-3Y"},"steps":["Identify the nouns (what students must know)","Identify the verbs (what students must do)","Decide the level of thinking (recall, apply, analyze, create)","Write the “I can…” statement students will see"]},"curriculumVsResources":{"title":"Curriculum vs. resources","description":"Your curriculum is the plan; your textbook and worksheets are tools. Don’t confuse the two — the standard drives the plan, and your resources serve the standard.","video":{"title":"Practice Teaching — Books are Resources, not Curriculum","channel":"The Bearded Math Man","url":"https://www.youtube.com/watch?v=pUMDy0EI7uw"},"compare":[{"label":"Curriculum","detail":"The state standards + your plan to teach them, in order."},{"label":"Resources","detail":"Textbook, worksheets, videos, sites — chosen to serve the standard."}]},"onYourFeet":{"title":"On your feet and moving","description":"The single highest-leverage classroom management move at the secondary level. Circulate, scan, and interact — proximity does most of the work.","video":{"title":"Proximity Control — High School Example & Non-Example","channel":"The IRIS Center","url":"https://www.youtube.com/watch?v=6AZsS5b311c"},"techniques":["Proximity control — stand near where behavior is drifting","Active supervision — move, scan, interact every few minutes","Strategic circulation — plan your route around the room"]}},"interventions":{"categories":[{"id":"reading","label":"Reading"},{"id":"math","label":"Math"},{"id":"writing","label":"Writing"},{"id":"study","label":"Study skills & organization"}],"items":[{"id":"helps","category":"reading","name":"HELPS — Helping Early Literacy with Practice Strategies","subject":"Reading fluency","format":"15-minute session; 1:1 or small group","description":"A structured fluency routine: adult models a passage, student does repeated readings, errors get phrase-drill correction, then a retell check and reward. Well-studied for struggling readers.","video":{"title":"HELPS One-on-One Program — Demonstration (Part 1 of 2)","channel":"helpsprogram","url":"https://www.youtube.com/watch?v=0avTIwZTvdU"},"resources":[{"title":"Intervention Central — Reading Fluency toolbox","url":"https://www.interventioncentral.org/academic-interventions/reading-fluency"},{"title":"IES Practice Guide — Improving Adolescent Literacy","url":"https://ies.ed.gov/ncee/wwc/practiceguide/8"}],"citation":"Begeny, J. C., Ross, S. G., Greene, D. J., Mitchell, R. C., & Whitehouse, M. H. (2012)."},{"id":"repeated-reading","category":"reading","name":"Group-Based Repeated Reading","subject":"Reading fluency","format":"~15 min; groups of up to 3; 2–3 times per week","description":"A short, high-dosage fluency routine for a small group: passage preview, three repeated readings, phrase-drill error correction, and a contingent reward. Works when passages are at each student’s instructional level (~90% accuracy).","video":{"title":"Repeated Reading — Yang, Slater, & McCree (demonstration)","channel":"Matthew Burns","url":"https://www.youtube.com/watch?v=0Lq9FSokqqQ"},"resources":[{"title":"Intervention Central — Repeated Reading directions","url":"https://www.interventioncentral.org/academic-interventions/reading-fluency/repeated-reading"},{"title":"WWC Intervention Report — Repeated Reading","url":"https://ies.ed.gov/ncee/wwc/Docs/InterventionReports/wwc_repeatedreading_051314.pdf"}],"citation":"Klubnik, C., & Ardoin, S. P. (2010)."},{"id":"corrective-reading","category":"reading","name":"Corrective Reading (SRA / McGraw-Hill)","subject":"Decoding & comprehension","format":"Small group; teacher-directed; 2–3 times per week","description":"A published program with placement tests and scripted lessons across decoding and comprehension strands. Pace and grouping are set from a placement test so students work at their true instructional level.","video":{"title":"Corrective Reading Program — Decoding Training Overview","channel":"McGraw Hill","url":"https://www.youtube.com/watch?v=FbOyGLMAU10"},"resources":[{"title":"IES Practice Guide — Improving Adolescent Literacy","url":"https://ies.ed.gov/ncee/wwc/practiceguide/8"}],"citation":"Engelmann et al. (1999)."},{"id":"reciprocal-teaching","category":"reading","name":"Reciprocal Teaching","subject":"Reading comprehension","format":"Small group; each student rotates through four roles","description":"Students take turns leading a discussion using the four moves — predict, question, clarify, summarize — while working through a shared text. Builds active comprehension habits that transfer to independent reading.","video":{"title":"Reciprocal Teaching — Why, How, & Examples","channel":"Teachings in Education","url":"https://www.youtube.com/watch?v=6wKA3dWc7J4"},"resources":[{"title":"IES Practice Guide — Improving Adolescent Literacy","url":"https://ies.ed.gov/ncee/wwc/practiceguide/8"}],"citation":"Palincsar & Brown (1984)."},{"id":"qar","category":"reading","name":"Question-Answer Relationships (QAR)","subject":"Reading comprehension","format":"Small group or whole class; can be paired with any text","description":"Teaches students to recognize four question types (Right There, Think & Search, Author & Me, On My Own) and where the answer lives. Immediately improves how students attack test questions and reading tasks.","video":{"title":"QAR — Question Answer Relationship","channel":"Ashley Teague","url":"https://www.youtube.com/watch?v=EFmza6k4l0g"},"resources":[{"title":"IES Practice Guide — Improving Adolescent Literacy","url":"https://ies.ed.gov/ncee/wwc/practiceguide/8"}],"citation":"Raphael (1986)."},{"id":"cra","category":"math","name":"Concrete–Representational–Abstract (CRA)","subject":"Math conceptual understanding","format":"Small group or 1:1; multiple sessions per concept","description":"Teach a new concept first with a physical object (concrete), then with a drawing or picture (representational), then with numbers and symbols (abstract). The bridge from physical to symbolic is where struggling learners break down — CRA rebuilds it.","video":{"title":"CRA — Concrete Representational Abstract","channel":"Nicki Newton","url":"https://www.youtube.com/watch?v=ynkWYMLBe50"},"resources":[{"title":"IRIS Center — High-Quality Math Instruction (CRA page)","url":"https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p05/"},{"title":"IES Practice Guide — Assisting Students Struggling with Mathematics","url":"https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/WWC2021006-Math-PG.pdf"}],"citation":"Bundock et al. (2021)."},{"id":"csi-math","category":"math","name":"Cognitive Strategy Instruction for Math","subject":"Math problem solving","format":"Small group or 1:1; explicit modeling → guided → independent","description":"Give students a named, step-by-step strategy for attacking word problems — teacher models it aloud (think-aloud), students practice with feedback, then release. WWC-reviewed.","video":{"title":"HLP #14 — Use Cognitive and Metacognitive Strategies","channel":"Council for Exceptional Children","url":"https://www.youtube.com/watch?v=GCAfB50_n18"},"resources":[{"title":"IES Practice Guide — Improving Mathematical Problem Solving (Grades 4–8)","url":"https://ies.ed.gov/ncee/wwc/Docs/practiceguide/wwc_mps_tips_summary_072517.pdf"},{"title":"IRIS Center — Metacognitive Strategies (math module)","url":"https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p08/"}],"citation":"What Works Clearinghouse (2021)."},{"id":"pals-math","category":"math","name":"PALS for Math (Peer-Assisted Learning Strategies)","subject":"Math computation & problem solving","format":"Pairs (higher–lower); ~30 min sessions; multiple times per week","description":"Structured peer tutoring. Students alternate the Coach and Player roles working through a set problem sequence. Everyone gets more practice repetitions than a teacher-led lesson can provide alone.","video":{"title":"What Is PALS (Peer-Assisted Learning Strategies)?","channel":"Aspiring Teacher Guide","url":"https://www.youtube.com/watch?v=85iNY5KYKkg"},"resources":[{"title":"IRIS Center — PALS: High School","url":"https://iris.peabody.vanderbilt.edu/module/palshs/cresource/q1/p01/"}],"citation":"Calhoon & Fuchs (2003)."},{"id":"schema-based","category":"math","name":"Schema-Based Instruction (word problems)","subject":"Math word-problem solving","format":"Small group; concept-based sequence (Total, Difference, Change, Ratio)","description":"Teaches students to identify the underlying schema of a word problem (combining amounts, comparing, changing over time) and match it to a solution structure — not just hunt for keywords.","video":{"title":"Additive Schemas — Total Schema, Word Problems (Project STAIR)","channel":"Project STAIR","url":"https://www.youtube.com/watch?v=nMn56Su9C0E"},"resources":[{"title":"IRIS Center — Schema Instruction (math module)","url":"https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p07/"},{"title":"IES Practice Guide — Improving Mathematical Problem Solving (Grades 4–8)","url":"https://ies.ed.gov/ncee/wwc/Docs/practiceguide/wwc_mps_tips_summary_072517.pdf"}],"citation":"Jitendra et al. (multiple)."},{"id":"math-fluency","category":"math","name":"Explicit Timed Fact / Math Fluency Intervention","subject":"Math fact fluency","format":"Small group or 1:1; short daily timings + progress chart","description":"Direct, explicit practice of a small set of facts with 1-minute timings, immediate feedback, and a visible progress chart. Best used in short blocks alongside conceptual instruction, not as a substitute for it.","video":{"title":"HLP #14 — Use Cognitive and Metacognitive Strategies (background)","channel":"Council for Exceptional Children","url":"https://www.youtube.com/watch?v=GCAfB50_n18"},"resources":[{"title":"National Center on Intensive Intervention — Academic Interventions","url":"https://intensiveintervention.org/intervention-resources/academic-interventions"}],"citation":"National Center on Intensive Intervention (2021)."},{"id":"srsd","category":"writing","name":"Self-Regulated Strategy Development (SRSD)","subject":"Writing (with reading transfer)","format":"Small group; six-stage sequence with mnemonics like POW + TREE","description":"A structured approach that teaches students both a writing strategy (e.g., POW for planning; TREE for persuasive essays) and self-regulation habits (goal setting, self-monitoring). One of the most-studied writing interventions.","video":{"title":"SRSD in Action — A Reading/Writing Case Study (Dr. Karen Harris)","channel":"SRSD Online: The Science of Writing","url":"https://www.youtube.com/watch?v=Hv5QSp0FQIg"},"resources":[{"title":"ThinkSRSD — Free resources for teachers","url":"https://thinksrsd.com/free-resources-to-share/"}],"citation":"Harris, Graham, and colleagues (multiple)."},{"id":"pals-writing","category":"writing","name":"PALS for Writing (Argumentative)","subject":"Argumentative writing","format":"Pairs; Coach and Writer roles; multi-session unit","description":"Peer-tutoring version of PALS applied to argumentative writing. Students plan, draft, revise, and edit in pairs using a shared strategy. Effective for adolescents.","video":{"title":"What Is PALS (Peer-Assisted Learning Strategies)?","channel":"Aspiring Teacher Guide","url":"https://www.youtube.com/watch?v=85iNY5KYKkg"},"resources":[{"title":"IRIS Center — PALS: High School","url":"https://iris.peabody.vanderbilt.edu/module/palshs/cresource/q1/p01/"}],"citation":"Fuchs et al. (2001)."},{"id":"cico-academic","category":"study","name":"Check-In / Check-Out — Academic version","subject":"Work completion, organization, engagement","format":"Brief daily; mentor check-in AM + check-out PM; teacher point sheet","description":"Student picks up a daily point sheet from a mentor before school. Teachers rate agreed-upon behaviors each period (in class, on task, work turned in). Student checks out at the end of the day. Fast to set up, high dosage, works well for the “on the bubble” students.","video":{"title":"High School CICO — Best Practices","channel":"MPS PBIS","url":"https://www.youtube.com/watch?v=fXhODEenkyc"},"resources":[{"title":"PBIS.org — Check-in Check-out: A Targeted Intervention","url":"https://www.pbis.org/resource/check-in-check-out-a-targeted-intervention"}],"citation":"Crone, Hawken, & Horner (multiple)."}]}}
+{
+  "startHere": {
+    "intro": {
+      "title": "Start Here",
+      "lede": "A short orientation for teachers new to Wewoka High — what a walk-through looks for, what belongs on your board, how to unpack a standard, and how the curriculum and your resources relate. Watch each short video and skim the notes."
+    },
+    "principalLookFors": {
+      "title": "What your principal is looking for",
+      "description": "A quick, honest picture of what walk-throughs are checking — bell-to-bell instruction, a posted objective, cognitive work by students, and feedback tied to a criterion.",
+      "video": {
+        "title": "Classroom Walk-Throughs — Show Your Strengths",
+        "channel": "Kathleen Jasper",
+        "url": "https://www.youtube.com/watch?v=VrDYJWEmlIs"
+      },
+      "lookFors": [
+        "Posted standard and student-friendly objective",
+        "Bell-to-bell instruction (start on time, end on task)",
+        "Students doing the cognitive work — talking, writing, solving",
+        "Feedback tied to a criterion, not just praise"
+      ]
+    },
+    "board": {
+      "title": "What to put on the board",
+      "description": "A simple board setup that supports a walk-through in five seconds: standard, objective in student-friendly language, agenda, and success criteria.",
+      "video": {
+        "title": "I CAN Statements as Classroom Objectives",
+        "channel": "Willmar Public Schools",
+        "url": "https://www.youtube.com/watch?v=Tr3uqF7YObo"
+      },
+      "items": [
+        "Standard code — e.g., OAS.ELA.9.R.4",
+        "Objective in an “I can…” statement",
+        "Agenda for the period",
+        "Success criteria — how a student knows they’ve got it"
+      ]
+    },
+    "unpack": {
+      "title": "Breaking down a state standard",
+      "description": "Turn a dense standard into the specific skills and knowledge students will need. This is the planning move that saves you every other planning step.",
+      "video": {
+        "title": "An Overview of Unpacking the Standards",
+        "channel": "ALEX — Alabama Learning Exchange",
+        "url": "https://www.youtube.com/watch?v=Lo7v-dTN-3Y"
+      },
+      "steps": [
+        "Identify the nouns (what students must know)",
+        "Identify the verbs (what students must do)",
+        "Decide the level of thinking (recall, apply, analyze, create)",
+        "Write the “I can…” statement students will see"
+      ]
+    },
+    "curriculumVsResources": {
+      "title": "Curriculum vs. resources",
+      "description": "Your curriculum is the plan; your textbook and worksheets are tools. Don’t confuse the two — the standard drives the plan, and your resources serve the standard.",
+      "video": {
+        "title": "Practice Teaching — Books are Resources, not Curriculum",
+        "channel": "The Bearded Math Man",
+        "url": "https://www.youtube.com/watch?v=pUMDy0EI7uw"
+      },
+      "compare": [
+        {
+          "label": "Curriculum",
+          "detail": "The state standards + your plan to teach them, in order."
+        },
+        {
+          "label": "Resources",
+          "detail": "Textbook, worksheets, videos, sites — chosen to serve the standard."
+        }
+      ]
+    },
+    "onYourFeet": {
+      "title": "On your feet and moving",
+      "description": "The single highest-leverage classroom management move at the secondary level. Circulate, scan, and interact — proximity does most of the work.",
+      "video": {
+        "title": "Proximity Control — High School Example & Non-Example",
+        "channel": "The IRIS Center",
+        "url": "https://www.youtube.com/watch?v=6AZsS5b311c"
+      },
+      "techniques": [
+        "Proximity control — stand near where behavior is drifting",
+        "Active supervision — move, scan, interact every few minutes",
+        "Strategic circulation — plan your route around the room"
+      ]
+    }
+  },
+  "interventions": {
+    "categories": [
+      {
+        "id": "reading",
+        "label": "Reading"
+      },
+      {
+        "id": "math",
+        "label": "Math"
+      },
+      {
+        "id": "writing",
+        "label": "Writing"
+      },
+      {
+        "id": "study",
+        "label": "Study skills & organization"
+      },
+      {
+        "id": "behavior",
+        "label": "Behavior & SEL"
+      },
+      {
+        "id": "attendance",
+        "label": "Attendance"
+      },
+      {
+        "id": "executive-function",
+        "label": "Executive function"
+      },
+      {
+        "id": "el-newcomer",
+        "label": "EL & Newcomer support"
+      }
+    ],
+    "items": [
+      {
+        "id": "helps",
+        "category": "reading",
+        "name": "HELPS — Helping Early Literacy with Practice Strategies",
+        "subject": "Reading fluency",
+        "format": "15-minute session; 1:1 or small group",
+        "description": "A structured fluency routine: adult models a passage, student does repeated readings, errors get phrase-drill correction, then a retell check and reward. Well-studied for struggling readers.",
+        "video": {
+          "title": "HELPS One-on-One Program — Demonstration (Part 1 of 2)",
+          "channel": "helpsprogram",
+          "url": "https://www.youtube.com/watch?v=0avTIwZTvdU"
+        },
+        "resources": [
+          {
+            "title": "Intervention Central — Reading Fluency toolbox",
+            "url": "https://www.interventioncentral.org/academic-interventions/reading-fluency"
+          },
+          {
+            "title": "IES Practice Guide — Improving Adolescent Literacy",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/8"
+          }
+        ],
+        "citation": "Begeny, J. C., Ross, S. G., Greene, D. J., Mitchell, R. C., & Whitehouse, M. H. (2012)."
+      },
+      {
+        "id": "repeated-reading",
+        "category": "reading",
+        "name": "Group-Based Repeated Reading",
+        "subject": "Reading fluency",
+        "format": "~15 min; groups of up to 3; 2–3 times per week",
+        "description": "A short, high-dosage fluency routine for a small group: passage preview, three repeated readings, phrase-drill error correction, and a contingent reward. Works when passages are at each student’s instructional level (~90% accuracy).",
+        "video": {
+          "title": "Repeated Reading — Yang, Slater, & McCree (demonstration)",
+          "channel": "Matthew Burns",
+          "url": "https://www.youtube.com/watch?v=0Lq9FSokqqQ"
+        },
+        "resources": [
+          {
+            "title": "Intervention Central — Repeated Reading directions",
+            "url": "https://www.interventioncentral.org/academic-interventions/reading-fluency/repeated-reading"
+          },
+          {
+            "title": "WWC Intervention Report — Repeated Reading",
+            "url": "https://ies.ed.gov/ncee/wwc/Docs/InterventionReports/wwc_repeatedreading_051314.pdf"
+          }
+        ],
+        "citation": "Klubnik, C., & Ardoin, S. P. (2010)."
+      },
+      {
+        "id": "corrective-reading",
+        "category": "reading",
+        "name": "Corrective Reading (SRA / McGraw-Hill)",
+        "subject": "Decoding & comprehension",
+        "format": "Small group; teacher-directed; 2–3 times per week",
+        "description": "A published program with placement tests and scripted lessons across decoding and comprehension strands. Pace and grouping are set from a placement test so students work at their true instructional level.",
+        "video": {
+          "title": "Corrective Reading Program — Decoding Training Overview",
+          "channel": "McGraw Hill",
+          "url": "https://www.youtube.com/watch?v=FbOyGLMAU10"
+        },
+        "resources": [
+          {
+            "title": "IES Practice Guide — Improving Adolescent Literacy",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/8"
+          }
+        ],
+        "citation": "Engelmann et al. (1999)."
+      },
+      {
+        "id": "reciprocal-teaching",
+        "category": "reading",
+        "name": "Reciprocal Teaching",
+        "subject": "Reading comprehension",
+        "format": "Small group; each student rotates through four roles",
+        "description": "Students take turns leading a discussion using the four moves — predict, question, clarify, summarize — while working through a shared text. Builds active comprehension habits that transfer to independent reading.",
+        "video": {
+          "title": "Reciprocal Teaching — Why, How, & Examples",
+          "channel": "Teachings in Education",
+          "url": "https://www.youtube.com/watch?v=6wKA3dWc7J4"
+        },
+        "resources": [
+          {
+            "title": "IES Practice Guide — Improving Adolescent Literacy",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/8"
+          }
+        ],
+        "citation": "Palincsar & Brown (1984)."
+      },
+      {
+        "id": "qar",
+        "category": "reading",
+        "name": "Question-Answer Relationships (QAR)",
+        "subject": "Reading comprehension",
+        "format": "Small group or whole class; can be paired with any text",
+        "description": "Teaches students to recognize four question types (Right There, Think & Search, Author & Me, On My Own) and where the answer lives. Immediately improves how students attack test questions and reading tasks.",
+        "video": {
+          "title": "QAR — Question Answer Relationship",
+          "channel": "Ashley Teague",
+          "url": "https://www.youtube.com/watch?v=EFmza6k4l0g"
+        },
+        "resources": [
+          {
+            "title": "IES Practice Guide — Improving Adolescent Literacy",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/8"
+          }
+        ],
+        "citation": "Raphael (1986)."
+      },
+      {
+        "id": "cra",
+        "category": "math",
+        "name": "Concrete–Representational–Abstract (CRA)",
+        "subject": "Math conceptual understanding",
+        "format": "Small group or 1:1; multiple sessions per concept",
+        "description": "Teach a new concept first with a physical object (concrete), then with a drawing or picture (representational), then with numbers and symbols (abstract). The bridge from physical to symbolic is where struggling learners break down — CRA rebuilds it.",
+        "video": {
+          "title": "CRA — Concrete Representational Abstract",
+          "channel": "Nicki Newton",
+          "url": "https://www.youtube.com/watch?v=ynkWYMLBe50"
+        },
+        "resources": [
+          {
+            "title": "IRIS Center — High-Quality Math Instruction (CRA page)",
+            "url": "https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p05/"
+          },
+          {
+            "title": "IES Practice Guide — Assisting Students Struggling with Mathematics",
+            "url": "https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/WWC2021006-Math-PG.pdf"
+          }
+        ],
+        "citation": "Bundock et al. (2021)."
+      },
+      {
+        "id": "csi-math",
+        "category": "math",
+        "name": "Cognitive Strategy Instruction for Math",
+        "subject": "Math problem solving",
+        "format": "Small group or 1:1; explicit modeling → guided → independent",
+        "description": "Give students a named, step-by-step strategy for attacking word problems — teacher models it aloud (think-aloud), students practice with feedback, then release. WWC-reviewed.",
+        "video": {
+          "title": "HLP #14 — Use Cognitive and Metacognitive Strategies",
+          "channel": "Council for Exceptional Children",
+          "url": "https://www.youtube.com/watch?v=GCAfB50_n18"
+        },
+        "resources": [
+          {
+            "title": "IES Practice Guide — Improving Mathematical Problem Solving (Grades 4–8)",
+            "url": "https://ies.ed.gov/ncee/wwc/Docs/practiceguide/wwc_mps_tips_summary_072517.pdf"
+          },
+          {
+            "title": "IRIS Center — Metacognitive Strategies (math module)",
+            "url": "https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p08/"
+          }
+        ],
+        "citation": "What Works Clearinghouse (2021)."
+      },
+      {
+        "id": "pals-math",
+        "category": "math",
+        "name": "PALS for Math (Peer-Assisted Learning Strategies)",
+        "subject": "Math computation & problem solving",
+        "format": "Pairs (higher–lower); ~30 min sessions; multiple times per week",
+        "description": "Structured peer tutoring. Students alternate the Coach and Player roles working through a set problem sequence. Everyone gets more practice repetitions than a teacher-led lesson can provide alone.",
+        "video": {
+          "title": "What Is PALS (Peer-Assisted Learning Strategies)?",
+          "channel": "Aspiring Teacher Guide",
+          "url": "https://www.youtube.com/watch?v=85iNY5KYKkg"
+        },
+        "resources": [
+          {
+            "title": "IRIS Center — PALS: High School",
+            "url": "https://iris.peabody.vanderbilt.edu/module/palshs/cresource/q1/p01/"
+          }
+        ],
+        "citation": "Calhoon & Fuchs (2003)."
+      },
+      {
+        "id": "schema-based",
+        "category": "math",
+        "name": "Schema-Based Instruction (word problems)",
+        "subject": "Math word-problem solving",
+        "format": "Small group; concept-based sequence (Total, Difference, Change, Ratio)",
+        "description": "Teaches students to identify the underlying schema of a word problem (combining amounts, comparing, changing over time) and match it to a solution structure — not just hunt for keywords.",
+        "video": {
+          "title": "Additive Schemas — Total Schema, Word Problems (Project STAIR)",
+          "channel": "Project STAIR",
+          "url": "https://www.youtube.com/watch?v=nMn56Su9C0E"
+        },
+        "resources": [
+          {
+            "title": "IRIS Center — Schema Instruction (math module)",
+            "url": "https://iris.peabody.vanderbilt.edu/module/math/cresource/q2/p07/"
+          },
+          {
+            "title": "IES Practice Guide — Improving Mathematical Problem Solving (Grades 4–8)",
+            "url": "https://ies.ed.gov/ncee/wwc/Docs/practiceguide/wwc_mps_tips_summary_072517.pdf"
+          }
+        ],
+        "citation": "Jitendra et al. (multiple)."
+      },
+      {
+        "id": "math-fluency",
+        "category": "math",
+        "name": "Explicit Timed Fact / Math Fluency Intervention",
+        "subject": "Math fact fluency",
+        "format": "Small group or 1:1; short daily timings + progress chart",
+        "description": "Direct, explicit practice of a small set of facts with 1-minute timings, immediate feedback, and a visible progress chart. Best used in short blocks alongside conceptual instruction, not as a substitute for it.",
+        "video": {
+          "title": "HLP #14 — Use Cognitive and Metacognitive Strategies (background)",
+          "channel": "Council for Exceptional Children",
+          "url": "https://www.youtube.com/watch?v=GCAfB50_n18"
+        },
+        "resources": [
+          {
+            "title": "National Center on Intensive Intervention — Academic Interventions",
+            "url": "https://intensiveintervention.org/intervention-resources/academic-interventions"
+          }
+        ],
+        "citation": "National Center on Intensive Intervention (2021)."
+      },
+      {
+        "id": "srsd",
+        "category": "writing",
+        "name": "Self-Regulated Strategy Development (SRSD)",
+        "subject": "Writing (with reading transfer)",
+        "format": "Small group; six-stage sequence with mnemonics like POW + TREE",
+        "description": "A structured approach that teaches students both a writing strategy (e.g., POW for planning; TREE for persuasive essays) and self-regulation habits (goal setting, self-monitoring). One of the most-studied writing interventions.",
+        "video": {
+          "title": "SRSD in Action — A Reading/Writing Case Study (Dr. Karen Harris)",
+          "channel": "SRSD Online: The Science of Writing",
+          "url": "https://www.youtube.com/watch?v=Hv5QSp0FQIg"
+        },
+        "resources": [
+          {
+            "title": "ThinkSRSD — Free resources for teachers",
+            "url": "https://thinksrsd.com/free-resources-to-share/"
+          }
+        ],
+        "citation": "Harris, Graham, and colleagues (multiple)."
+      },
+      {
+        "id": "pals-writing",
+        "category": "writing",
+        "name": "PALS for Writing (Argumentative)",
+        "subject": "Argumentative writing",
+        "format": "Pairs; Coach and Writer roles; multi-session unit",
+        "description": "Peer-tutoring version of PALS applied to argumentative writing. Students plan, draft, revise, and edit in pairs using a shared strategy. Effective for adolescents.",
+        "video": {
+          "title": "What Is PALS (Peer-Assisted Learning Strategies)?",
+          "channel": "Aspiring Teacher Guide",
+          "url": "https://www.youtube.com/watch?v=85iNY5KYKkg"
+        },
+        "resources": [
+          {
+            "title": "IRIS Center — PALS: High School",
+            "url": "https://iris.peabody.vanderbilt.edu/module/palshs/cresource/q1/p01/"
+          }
+        ],
+        "citation": "Fuchs et al. (2001)."
+      },
+      {
+        "id": "cico-academic",
+        "category": "study",
+        "name": "Check-In / Check-Out — Academic version",
+        "subject": "Work completion, organization, engagement",
+        "format": "Brief daily; mentor check-in AM + check-out PM; teacher point sheet",
+        "description": "Student picks up a daily point sheet from a mentor before school. Teachers rate agreed-upon behaviors each period (in class, on task, work turned in). Student checks out at the end of the day. Fast to set up, high dosage, works well for the “on the bubble” students.",
+        "video": {
+          "title": "High School CICO — Best Practices",
+          "channel": "MPS PBIS",
+          "url": "https://www.youtube.com/watch?v=fXhODEenkyc"
+        },
+        "resources": [
+          {
+            "title": "PBIS.org — Check-in Check-out: A Targeted Intervention",
+            "url": "https://www.pbis.org/resource/check-in-check-out-a-targeted-intervention"
+          }
+        ],
+        "citation": "Crone, Hawken, & Horner (multiple)."
+      },
+      {
+        "id": "sipps",
+        "category": "reading",
+        "name": "SIPPS — Systematic Instruction in Phonological Awareness, Phonics, and Sight Words",
+        "subject": "Foundational decoding & phonics",
+        "format": "30 min, 4–5x/week, small group of 3–7 placed by a mastery test",
+        "description": "A published, mastery-based decoding program with placement tests and short scripted routines: sound-by-sound blending, high-frequency word practice, spelling dictation, and a decodable text read. Move students on only after mastery, so a stuck reader repeats the routine (not the whole level) until it clicks. SIPPS Plus and Challenge Level use grade 4–12 texts so older students aren't reading kindergarten stories.",
+        "video": {
+          "title": "SIPPS - Learning Reimagined",
+          "channel": "Collaborative Classroom",
+          "url": "https://www.youtube.com/watch?v=nfYqBnm12NM"
+        },
+        "resources": [
+          {
+            "title": "Collaborative Classroom — SIPPS program page",
+            "url": "https://collaborativeclassroom.org/programs/sipps/"
+          },
+          {
+            "title": "IES Practice Guide — Foundational Skills to Support Reading for Understanding K–3",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/21"
+          }
+        ],
+        "citation": "IES 2016 Foundational Skills Practice Guide (Recommendations 2–3, Strong evidence for systematic phonics)."
+      },
+      {
+        "id": "wilson-reading",
+        "category": "reading",
+        "name": "Wilson Reading System (WRS)",
+        "subject": "Structured-literacy decoding & spelling for students with severe reading difficulty",
+        "format": "60–90 min, 4–5x/week, 1:1 or small group of 2–5; certified Wilson-trained teacher",
+        "description": "An intensive Orton-Gillingham–based program built around a 10-part lesson: sound cards, word cards, sentence reading, controlled text, dictation, spelling. Every step is multisensory (tap the sounds, then blend). Best fit is the student who has already failed a lighter phonics intervention and needs the longer, more explicit sequence. WWC rates the evidence as mixed for adolescents — plan to progress-monitor decoding weekly and switch programs if you see no growth after ~30 sessions.",
+        "video": {
+          "title": "Wilson Reading System: Lesson 9.5",
+          "channel": "Science of Reading Classroom",
+          "url": "https://www.youtube.com/watch?v=woC011ISDz8"
+        },
+        "resources": [
+          {
+            "title": "Wilson Language Training — Wilson Reading System overview",
+            "url": "https://www.wilsonlanguage.com/programs/wilson-reading-system/"
+          },
+          {
+            "title": "WWC Evidence Snapshot — Wilson Reading System",
+            "url": "https://ies.ed.gov/ncee/wwc/EvidenceSnapshot/547"
+          }
+        ],
+        "citation": "What Works Clearinghouse (2010). Wilson Reading System: WWC Intervention Report. Evidence rating: mixed for adolescent readers."
+      },
+      {
+        "id": "robust-vocabulary",
+        "category": "reading",
+        "name": "Robust Vocabulary Instruction (Text Talk / Bringing Words to Life)",
+        "subject": "Academic (Tier 2) vocabulary",
+        "format": "10–15 min daily, small group or whole class; ~3 new words per read-aloud, revisited across the week",
+        "description": "Pick 2–3 high-utility (Tier 2) words from an authentic text. After reading, contextualize the word in the story, give a kid-friendly definition, prompt students to use it in their own sentences, and revisit the word for 5–7 days in new contexts. When a student is stuck, add a quick example/non-example (\"Is a puppy chasing its tail *frantic*? Is a cat napping *frantic*?\") and a sentence frame to force use.",
+        "video": {
+          "title": "Bringing Words to Life: Robust Vocabulary Instruction - Isabel L. Beck",
+          "channel": "Free Audiobooks",
+          "url": "https://www.youtube.com/watch?v=0nGlSmjDKYw"
+        },
+        "resources": [
+          {
+            "title": "Colorín Colorado — Vocabulary Instruction for English Learners",
+            "url": "https://www.colorincolorado.org/article/vocabulary-development"
+          },
+          {
+            "title": "IES Practice Guide — Improving Reading Comprehension in K–3",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/14"
+          }
+        ],
+        "citation": "Beck, McKeown, & Kucan (2013). Bringing Words to Life: Robust Vocabulary Instruction (2nd ed.). Guilford."
+      },
+      {
+        "id": "heggerty",
+        "category": "reading",
+        "name": "Heggerty Phonemic Awareness",
+        "subject": "K–2 phonological & phonemic awareness",
+        "format": "10–12 min daily, whole class or small group of 4–6; scripted 35-week sequence",
+        "description": "A fast, teacher-led oral warm-up moving through 8 phonemic-awareness skills each day — rhyming, onset-fluency, blending, isolating final sounds, segmenting, adding, deleting, substituting phonemes — all with hand motions and no worksheets. Runs before phonics as a listening bridge from sounds to letters. When a student can't hear the sounds, drop to two-phoneme words and increase modeling; when they can, extend into segmenting/manipulation with letter tiles.",
+        "video": {
+          "title": "Heggerty Phonemic Awareness Full Lesson - Kindergarten, Week 19, Day 3",
+          "channel": "Heggerty",
+          "url": "https://www.youtube.com/watch?v=6ZXaU9UtcrQ"
+        },
+        "resources": [
+          {
+            "title": "Heggerty — publisher site & sample lessons",
+            "url": "https://heggerty.org/"
+          },
+          {
+            "title": "IES Practice Guide — Foundational Skills K–3 (Recommendation 2, phonological awareness)",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/21"
+          }
+        ],
+        "citation": "IES 2016 Foundational Skills Practice Guide, Recommendation 2 (Strong evidence for phonological awareness); Kilpatrick (2015)."
+      },
+      {
+        "id": "rewards",
+        "category": "reading",
+        "name": "REWARDS — Reading Excellence: Word Attack & Rate Development Strategies",
+        "subject": "Multisyllabic decoding for grades 4–12",
+        "format": "20 lessons of ~50 min, 4–5x/week, small group of 3–8; short-term intervention (~5–6 weeks)",
+        "description": "A short, scripted intervention that teaches older students a repeatable routine for attacking long words: find vowels, circle prefixes/suffixes, say the parts, say the whole word, check it makes sense. Designed by Anita Archer to plug a specific hole — students who can decode single-syllable words but stall on \"transportation\" or \"unconstitutional.\" Pair the daily word-attack lesson with a passage read to build rate.",
+        "video": {
+          "title": "Dr. Anita Archer on REWARDS, an Explicit, Short-Term Reading Intervention",
+          "channel": "Voyager Sopris Learning",
+          "url": "https://www.youtube.com/watch?v=_gRVl30ACI4"
+        },
+        "resources": [
+          {
+            "title": "Voyager Sopris — REWARDS Intermediate & Secondary",
+            "url": "https://www.voyagersopris.com/products/reading/rewards/intermediate-secondary"
+          },
+          {
+            "title": "IES Practice Guide — Improving Adolescent Literacy",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/8"
+          }
+        ],
+        "citation": "Archer, Gleason, & Vachon (2005). REWARDS. Sopris West. Cited in IES 2008 Adolescent Literacy Practice Guide (Recommendation 3)."
+      },
+      {
+        "id": "number-talks",
+        "category": "math",
+        "name": "Number Talks (Small-Group Tier 2)",
+        "subject": "Mental math & number sense",
+        "format": "10–15 min daily, small group of 4–6; one problem or string per day",
+        "description": "Put one problem on the board (e.g., 48 + 25). Students solve mentally, put a thumb up when they have an answer, share strategies aloud while the teacher records each on the board. The goal is flexibility, not speed. In a Tier 2 group, keep the number range narrow (facts to 20 for early grades; fractions/percents strings for older) and make sure the student who never volunteers gets the first, easiest turn.",
+        "video": {
+          "title": "Using Number Talks to Build Students' Math Reasoning",
+          "channel": "BestPracticesWeekly",
+          "url": "https://www.youtube.com/watch?v=AAmLdZQCYtM"
+        },
+        "resources": [
+          {
+            "title": "Math Solutions — Number Talks (sample chapter)",
+            "url": "https://mathsolutions.com/wp-content/uploads/9781935099116_message.pdf"
+          },
+          {
+            "title": "Inside Mathematics — Number Talks classroom videos",
+            "url": "https://www.insidemathematics.org/classroom-videos/number-talks"
+          }
+        ],
+        "citation": "Parrish, S. (2010, updated 2014). Number Talks: Helping Children Build Mental Math and Computation Strategies. Math Solutions."
+      },
+      {
+        "id": "cover-copy-compare",
+        "category": "math",
+        "name": "Cover-Copy-Compare (Math Fact Fluency)",
+        "subject": "Math fact automaticity",
+        "format": "10 min, 4–5x/week, 1:1 or small group of 3–5; ~10 facts per session",
+        "description": "Give the student a worksheet with 10 target facts + answers in the left column. Student studies one fact, covers it with an index card, writes it from memory in the right column, uncovers, checks. If correct, move on; if wrong, do the fact three more times before moving on. Fast, self-managed, brief timings — well studied for building automaticity without piling on stress.",
+        "video": {
+          "title": "Cover-Copy-Compare Multiplication Facts Demonstration",
+          "channel": "Matthew Burns",
+          "url": "https://www.youtube.com/watch?v=2UujpeF7iwE"
+        },
+        "resources": [
+          {
+            "title": "Intervention Central — How To: Master Math Facts (Cover-Copy-Compare)",
+            "url": "https://www.interventioncentral.org/academic-interventions/math-facts/how-master-math-facts-cover-copy-compare"
+          },
+          {
+            "title": "IES Practice Guide — Assisting Students Struggling with Mathematics (Elementary, 2021)",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/26"
+          }
+        ],
+        "citation": "Skinner, McLaughlin, & Logan (1997); Joseph, Konrad, Cates, Vajcner, Eveleigh, & Fishley (2011). Review of Cover-Copy-Compare in Psychology in the Schools."
+      },
+      {
+        "id": "explicit-fractions",
+        "category": "math",
+        "name": "Explicit Fraction Instruction (IES Fractions Guide)",
+        "subject": "Conceptual fraction understanding, grades 3–8",
+        "format": "30–45 min, 3–4x/week, small group; number-line first, then operations",
+        "description": "Teach fractions as numbers on a number line before teaching procedures. Sequence: build fractions with strips/tiles → place them on a number line → compare fractions with common numerator/denominator reasoning → then move to operations grounded in that meaning (not \"keep-change-flip\"). When a student is stuck on 3/4 + 1/2, back up to the number line and ask them to show each fraction with a strip before writing anything.",
+        "video": {
+          "title": "Teaching Fractions with Confidence: Teaching Fractions Toolkit (REL Midwest)",
+          "channel": "Institute of Education Sciences",
+          "url": "https://www.youtube.com/watch?v=RnjeovuBESo"
+        },
+        "resources": [
+          {
+            "title": "IES Practice Guide — Developing Effective Fractions Instruction (2010)",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/15"
+          },
+          {
+            "title": "IES/REL — Teaching Fractions Toolkit",
+            "url": "https://ies.ed.gov/ncee/rel/fractions-grade-6/intro"
+          }
+        ],
+        "citation": "Siegler, R., et al. (2010). Developing Effective Fractions Instruction for K–8 Students. IES Practice Guide. Recommendations 2 (Strong) & 3 (Moderate)."
+      },
+      {
+        "id": "hochman-sentences",
+        "category": "writing",
+        "name": "The Hochman Method — Sentence-Level Writing (The Writing Revolution)",
+        "subject": "Sentence construction & academic writing",
+        "format": "10–20 min embedded daily across content classes; whole class or small group",
+        "description": "A set of short, content-embedded sentence activities: sentence expansion using the who/what/when/where/why/how prompts, combining short sentences with because/but/so, appositives, and sentence types (statement, question, exclamation, command). The idea is to teach writing through sentences before paragraphs, using the material students are already learning in social studies or science — so writing practice doubles as content review.",
+        "video": {
+          "title": "The Writing Revolution: An Overview of the Hochman Method (#3 Spotlight)",
+          "channel": "International Dyslexia Association Georgia",
+          "url": "https://www.youtube.com/watch?v=kO4lRU9LPvc"
+        },
+        "resources": [
+          {
+            "title": "The Writing Revolution — free resources",
+            "url": "https://www.thewritingrevolution.org/"
+          },
+          {
+            "title": "IES Practice Guide — Teaching Secondary Students to Write Effectively (2016)",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/22"
+          }
+        ],
+        "citation": "Hochman, J., & Wexler, N. (2017). The Writing Revolution: A Guide to Advancing Thinking Through Writing. Jossey-Bass. Grounded in Graham & Perin (2007) Writing Next."
+      },
+      {
+        "id": "pow-tree",
+        "category": "writing",
+        "name": "POW + TREE (Elementary SRSD for Persuasive Writing)",
+        "subject": "Persuasive writing, grades 2–5",
+        "format": "30–45 min, 3–4x/week, small group of 3–6; ~15–25 sessions across the SRSD six-stage cycle",
+        "description": "The elementary version of SRSD: students learn POW (Pick an idea, Organize notes, Write and say more) as the general writing strategy, and TREE (Topic sentence, Reasons ≥3, Explain each, Ending) as the persuasive genre. Teacher models a full essay with a think-aloud, students memorize the mnemonics with games, then guided practice with self-talk cards, then independent writing with goal-setting. Distinct from secondary SRSD in the read-alouds, mnemonics practice, and heavy scaffolding of self-regulation.",
+        "video": {
+          "title": "Self-Regulated Strategy Development Model (SRSD): Using the POW+TREE for Writing",
+          "channel": "Dr. Jennifer Parker",
+          "url": "https://www.youtube.com/watch?v=if8St4rz7Og"
+        },
+        "resources": [
+          {
+            "title": "ThinkSRSD — Free resources for teachers",
+            "url": "https://thinksrsd.com/free-resources-to-share/"
+          },
+          {
+            "title": "IES Practice Guide — Teaching Elementary Students to Be Effective Writers (2012)",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/17"
+          }
+        ],
+        "citation": "Harris, K. R., & Graham, S. (2018). SRSD for writing. Learning Disabilities Research & Practice. Cited in IES 2012 Elementary Writing Practice Guide (Recommendation 2, Strong evidence)."
+      },
+      {
+        "id": "handwriting-fluency",
+        "category": "writing",
+        "name": "Handwriting & Letter-Formation Intervention (e.g., Handwriting Without Tears)",
+        "subject": "Letter formation, handwriting fluency (and downstream composition)",
+        "format": "10–15 min daily, whole class K–1 or small group / 1:1 for older struggling writers",
+        "description": "Direct, brief practice of correct letter formation with a consistent verbal pathway (\"big line down, little curve\") and multi-sensory tools — wooden pieces, wet-dry-try slates, then paper. In older grades, target only the 6–8 letters a student reverses or forms inefficiently. The 2012 IES elementary writing guide flags handwriting fluency as a bottleneck for composition — automatic letter formation frees up working memory for what to say.",
+        "video": {
+          "title": "Handwriting Without Tears: Learning Letter Formation (Virtual Tour)",
+          "channel": "The Balanced Literacy Diet",
+          "url": "https://www.youtube.com/watch?v=0GxpjqLPRis"
+        },
+        "resources": [
+          {
+            "title": "Learning Without Tears — publisher site",
+            "url": "https://www.lwtears.com/"
+          },
+          {
+            "title": "IES Practice Guide — Teaching Elementary Students to Be Effective Writers (Rec. 3)",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/17"
+          }
+        ],
+        "citation": "Graham, S., et al. (2012). Teaching Elementary School Students to Be Effective Writers. IES Practice Guide. Recommendation 3 (Moderate evidence for handwriting/spelling fluency)."
+      },
+      {
+        "id": "cico-behavior",
+        "category": "behavior",
+        "name": "Check-In / Check-Out (CICO) — Behavior version",
+        "subject": "On-task, respectful, following directions",
+        "format": "Brief AM check-in (2–5 min) + teacher rating each period + PM check-out (5 min); daily",
+        "description": "The behavior-focused version of CICO: student meets a mentor before school, picks up a Daily Progress Report with 3 school-wide expectations (e.g., Be Safe / Be Respectful / Be Responsible). Each period, the teacher rates 0/1/2 with a one-sentence comment. Student checks out at the end of the day, graphs the % of points earned, and takes the sheet home for a parent signature. Distinct from the academic CICO (work-completion focus) — the point sheet here targets behavior, and consequences for meeting the daily goal are social/tangible (praise, small privileges), not grades.",
+        "video": {
+          "title": "PBIS - Check-In/Check-Out, CICO, Tier 2",
+          "channel": "KoiEducation",
+          "url": "https://www.youtube.com/watch?v=EP9mywEuaOE"
+        },
+        "resources": [
+          {
+            "title": "Center on PBIS — Check In / Check Out: A Targeted Intervention",
+            "url": "https://www.pbis.org/resource/check-in-check-out-a-targeted-intervention"
+          },
+          {
+            "title": "MO SW-PBS Tier 2 Workbook — Chapter 5, CICO",
+            "url": "https://pbismissouri.org/wp-content/uploads/2017/06/5.0-MO-SW-PBS-Tier-2-Workbook-Ch-5-CICO.pdf"
+          }
+        ],
+        "citation": "Crone, D. A., Hawken, L. S., & Horner, R. H. (2010, 3rd ed. 2022). Responding to Problem Behavior in Schools: The Check-In, Check-Out Intervention. Guilford."
+      },
+      {
+        "id": "behavior-contract",
+        "category": "behavior",
+        "name": "Behavior Contract with Home-School Note",
+        "subject": "Targeted rule-following, work completion",
+        "format": "Written contract negotiated once (~30 min); daily home-school note; weekly review meeting",
+        "description": "Sit down with the student (and, when possible, the family) and write a 1-page contract in plain language: two or three specific behaviors to increase, how they'll be measured each day, and what the student earns for meeting the goal (privileges, notes home, points toward a reward). Send the daily home-school note home every afternoon. Fade the note frequency to weekly once the student hits the goal 4 of 5 days for two weeks running. Works best when the student helps pick the reinforcers.",
+        "video": {
+          "title": "What is a Behavioral Contract? Behavior Contracts EXPLAINED",
+          "channel": "Goally Apps",
+          "url": "https://www.youtube.com/watch?v=Jgy3wEE2XXo"
+        },
+        "resources": [
+          {
+            "title": "Intervention Central — Behavior Contracts",
+            "url": "https://www.interventioncentral.org/behavioral-interventions/challenging-students/behavior-contracts"
+          },
+          {
+            "title": "PBIS World — Tier 2 Behavior Contract",
+            "url": "https://www.pbisworld.com/tier-2/behavior-contract/"
+          }
+        ],
+        "citation": "Council for Exceptional Children — HLP #7 (establish a consistent, organized, and respectful learning environment). WWC single-case design evidence for daily behavior report cards (Vannest et al., 2010)."
+      },
+      {
+        "id": "self-monitoring",
+        "category": "behavior",
+        "name": "Self-Monitoring with Count-and-Graph",
+        "subject": "On-task behavior, self-regulation",
+        "format": "10–15 min setup + daily use in one target period (e.g., 30 min of independent work)",
+        "description": "Teach the student to notice and record their own target behavior. Pick one specific behavior (e.g., \"working on my assignment\"), set an audible cue (a beep app or a timer every 3–5 minutes), and have the student mark yes/no on a small tally card at each cue. Student graphs the daily percent at the end of the period, compares against their goal line, and confers with the teacher weekly. When the numbers stall, drop the interval (more cues), then fade back up. Works because the recording itself is reactive — awareness alone moves the behavior.",
+        "video": {
+          "title": "Using Self Monitoring to Support Student Behavior in Any Setting",
+          "channel": "Kentucky Department Of Education",
+          "url": "https://www.youtube.com/watch?v=T_GCP6E7OHU"
+        },
+        "resources": [
+          {
+            "title": "IRIS Center — Self-Monitoring module",
+            "url": "https://iris.peabody.vanderbilt.edu/module/sr/cresource/q2/p04/"
+          },
+          {
+            "title": "I-Connect (KU) — self-monitoring for the classroom",
+            "url": "https://iconnect.ku.edu/i-connect-for-my-classroom/"
+          }
+        ],
+        "citation": "Bruhn, A. L., McDaniel, S. C., & Kreigh, C. (2015). Self-monitoring interventions for students with behavior problems. Behavioral Disorders, 40(2), 102–121."
+      },
+      {
+        "id": "attendance-mentor",
+        "category": "attendance",
+        "name": "Success Mentor / Personalized Attendance Check-In",
+        "subject": "Chronic absenteeism",
+        "format": "5–10 min daily greeting + 15 min weekly 1:1; mentor is a caring adult in the building",
+        "description": "A named adult in the building — teacher, counselor, coach — is assigned to 5–15 students flagged by attendance data. They greet the student every morning by name, notice absences the same day, call home, and do a short weekly conference to problem-solve barriers (transportation, sleep, bullying, work). Data comes from the Early Warning System (ADA below 90%, plus grades and behavior). The mentor doesn't fix everything — they close the awareness loop and get the student connected to the right support.",
+        "video": {
+          "title": "Success Mentors to Address Chronic Absenteeism: A Four-Step Approach",
+          "channel": "National Student Success Center",
+          "url": "https://www.youtube.com/watch?v=dBh_qXplesk"
+        },
+        "resources": [
+          {
+            "title": "Attendance Works — Tackling Chronic Absence Through Mentoring",
+            "url": "https://www.attendanceworks.org/tackling-chronic-absence-through-mentoring-a-call-to-action/"
+          },
+          {
+            "title": "IES REL Southwest — Handout: Strategies to Address Chronic Absenteeism",
+            "url": "https://ies.ed.gov/rel-southwest/2025/01/handout-strategies-address-chronic-absenteeism"
+          }
+        ],
+        "citation": "Balfanz, R., & Byrnes, V. (2013). Meeting the Challenge of Combating Chronic Absenteeism. Everyone Graduates Center, Johns Hopkins University."
+      },
+      {
+        "id": "attendance-nudge",
+        "category": "attendance",
+        "name": "Positive Attendance Parent Messaging (Postcards/Nudges)",
+        "subject": "Chronic absenteeism at scale",
+        "format": "5 mailings across the school year; automated print-and-mail or district-generated postcards",
+        "description": "Mail a short, personalized postcard to families roughly every 6–8 weeks. It shows the student's actual absence count, a comparison with a typical peer (\"your child has missed 12 days — most students in the class have missed 4\"), and one specific action step. The Rogers & Feller study across 10 districts found this design cut chronic absenteeism by ~10% at less than $7 per student. Works because most parents underestimate how many days their child has missed.",
+        "video": {
+          "title": "Reducing Chronic Absenteeism and Improving Continued Attendance at the Start of the Year",
+          "channel": "Ed Leaders Network",
+          "url": "https://www.youtube.com/watch?v=No-JuKK44Fs"
+        },
+        "resources": [
+          {
+            "title": "MDRC — Can Informing Parents Help High School Students Show Up for School?",
+            "url": "https://www.mdrc.org/work/publications/can-informing-parents-help-high-school-students-show-school"
+          },
+          {
+            "title": "FutureEd — Nudging Students and Families to Better Attendance",
+            "url": "https://www.future-ed.org/nudging-students-and-families-to-better-attendance/"
+          }
+        ],
+        "citation": "Rogers, T., & Feller, A. (2018). Reducing student absences at scale by targeting parents' misbeliefs. Nature Human Behaviour, 2, 335–342."
+      },
+      {
+        "id": "woop-goal-setting",
+        "category": "executive-function",
+        "name": "WOOP — Wish, Outcome, Obstacle, Plan",
+        "subject": "Goal-setting, follow-through",
+        "format": "15–20 min small-group lesson to introduce; 3–5 min daily/weekly WOOP entry after that",
+        "description": "A short goal-setting routine: student writes their Wish (one concrete academic goal for the week), the best Outcome if they achieve it, the main internal Obstacle in their way, and an if-then Plan (\"If I feel like scrolling my phone after school, then I will put it in my backpack and open my math notebook\"). Uses mental contrasting — you have to name the obstacle, not just visualize success. Works well as a Monday small-group routine paired with a Friday check-in.",
+        "video": {
+          "title": "WOOP Method",
+          "channel": "Rutgers Learning Centers",
+          "url": "https://www.youtube.com/watch?v=Buv0QgAY9Ss"
+        },
+        "resources": [
+          {
+            "title": "Character Lab — WOOP for Classrooms",
+            "url": "https://characterlab.org/activities/woop-for-classrooms/"
+          },
+          {
+            "title": "WOOP My Life (Oettingen)",
+            "url": "https://woopmylife.org/en/home"
+          }
+        ],
+        "citation": "Oettingen, G. (2014). Rethinking Positive Thinking. Current. See Duckworth, Kirby, Gollwitzer, & Oettingen (2013) on WOOP with adolescents."
+      },
+      {
+        "id": "binder-check",
+        "category": "executive-function",
+        "name": "Organized-Materials / Binder Check with Fading Support",
+        "subject": "Organization of materials, homework completion",
+        "format": "5 min daily binder check; 10 min weekly full cleanout; fade to student-led over 6–8 weeks",
+        "description": "Set up a single binder or folder system with named sections (Today, To-Turn-In, Graded/Keep, Reference). Every day, at the same time, a teacher or mentor spends 5 minutes checking the student's binder against the system. Weekly, the student cleans out — nothing loose, nothing crumpled, agenda updated. As accuracy climbs, move the check from daily to twice-weekly, then weekly, then student self-check with random spot-checks. The goal is not organization for its own sake — it's making the student's stuff findable so homework actually gets turned in.",
+        "video": {
+          "title": "Executive function strategies with Dr. Lynn Meltzer - preview",
+          "channel": "SMARTS Executive Function",
+          "url": "https://www.youtube.com/watch?v=7CPlw16_qUA"
+        },
+        "resources": [
+          {
+            "title": "Landmark Outreach — Executive Function overview",
+            "url": "https://www.landmarkoutreach.org/strategies/executive-function-overview/"
+          },
+          {
+            "title": "Lehigh University — Organization Checklist (Dawson & Guare)",
+            "url": "https://ed.lehigh.edu/resources/for-teachers/organization-checklist"
+          }
+        ],
+        "citation": "Dawson, P., & Guare, R. (2018). Executive Skills in Children and Adolescents (3rd ed.). Guilford. See also Meltzer, L. (2018). Executive Function in Education (2nd ed.)."
+      },
+      {
+        "id": "designated-eld",
+        "category": "el-newcomer",
+        "name": "Designated English Language Development (ELD) Block",
+        "subject": "English language proficiency for MLs / newcomers",
+        "format": "30–45 min protected daily block, grouped by ELP level (e.g., WIDA 1–2, 3–4)",
+        "description": "A protected daily block taught to a homogeneous group at the same English proficiency level. The block explicitly teaches language forms and functions — how to describe a process, ask a clarifying question, argue a claim — not just vocabulary. Lessons pair oral practice (structured discussion with a partner) with sentence frames and short writing. Distinct from Integrated ELD (which happens inside content classes); the designated block is where you go deep on the language itself.",
+        "video": {
+          "title": "ELD Model | Lindsay Unified School District",
+          "channel": "Lindsay Learns",
+          "url": "https://www.youtube.com/watch?v=MMFYgWf_d8I"
+        },
+        "resources": [
+          {
+            "title": "California Department of Education — ELD Standards",
+            "url": "https://www.cde.ca.gov/sp/ml/eldstandards.asp"
+          },
+          {
+            "title": "WIDA — English Language Development Standards Framework",
+            "url": "https://wida.wisc.edu/teach/standards/eld"
+          }
+        ],
+        "citation": "IES Practice Guide (2014). Teaching Academic Content and Literacy to English Learners in Elementary and Middle School. Recommendation 4 (Strong evidence for structured oral language)."
+      },
+      {
+        "id": "cognates",
+        "category": "el-newcomer",
+        "name": "Cognate Instruction Routine",
+        "subject": "Vocabulary bridge from L1 (esp. Spanish) to English",
+        "format": "5–10 min daily bridge inside content lessons; small group or 1:1",
+        "description": "Before reading a science or social studies passage, pre-teach 3–5 English words that share Latin/Greek roots with the student's home language (Spanish, Portuguese, French). Show the pair — *organización / organization*, *fotosíntesis / photosynthesis* — and ask the student to underline cognates as they read. Over time, students build a personal cognate chart and start noticing on their own. Especially high-leverage for Spanish-speaking MLs because 30–40% of academic English has a Spanish cognate.",
+        "video": {
+          "title": "Teaching English Learners: Using Cognates to Teach Vocabulary",
+          "channel": "Reading Universe",
+          "url": "https://www.youtube.com/watch?v=PiWgSubZPq4"
+        },
+        "resources": [
+          {
+            "title": "Colorín Colorado — Cognates strategy library",
+            "url": "https://www.colorincolorado.org/ell-strategies/cognates"
+          },
+          {
+            "title": "IES Practice Guide — Effective Literacy and English Language Instruction for English Learners (Elementary, 2007)",
+            "url": "https://ies.ed.gov/ncee/wwc/practiceguide/6"
+          }
+        ],
+        "citation": "August, D., & Shanahan, T. (2006). Developing Literacy in Second-Language Learners: Report of the National Literacy Panel on Language-Minority Children and Youth. Lawrence Erlbaum."
+      },
+      {
+        "id": "sentence-frames",
+        "category": "el-newcomer",
+        "name": "Sentence-Frame Protocol for Academic Language",
+        "subject": "Academic discussion & writing for MLs",
+        "format": "Embedded in every content lesson; a small frame bank for the unit posted on the wall",
+        "description": "Give students the language shell for the thinking you want. For a claim: \"One reason ___ is ___.\" For agreeing/disagreeing: \"I agree with ___ because ___,\" \"I see it differently — ___.\" For comparing: \"___ and ___ are alike because ___; they differ because ___.\" Model the frame, have partners rehearse it aloud, then hold students to using the frame in discussion and in writing. Fade the frames as students internalize the structure — but keep a bank posted for reference.",
+        "video": {
+          "title": "Sentence Frames and Graphic Organizers to Support Multilingual Learners",
+          "channel": "Alisa Leckie",
+          "url": "https://www.youtube.com/watch?v=--h3WMiHXbk"
+        },
+        "resources": [
+          {
+            "title": "Kinsella — Academic Discussion Routine & Sample Language (SCCOE)",
+            "url": "https://www.sccoe.org/sclis/resources/Kinsella%202011/17_Academic_Discussion_Routine_Scripted.pdf"
+          },
+          {
+            "title": "Kinsella — Sentence Frames Resource (SCCOE)",
+            "url": "https://www.sccoe.org/sclis/resources/Kinsella%202013/Writing%20Institute%20Batch%202/32_SentenceFrame_Resource.pdf"
+          }
+        ],
+        "citation": "Zwiers, J., & Crawford, M. (2011). Academic Conversations: Classroom Talk that Fosters Critical Thinking and Content Understandings. Stenhouse. See also Kinsella, K. (2012). Cutting to the Common Core: Communicating on the Same Wavelength."
+      },
+      {
+        "id": "good-behavior-game",
+        "category": "behavior",
+        "name": "Good Behavior Game (GBG)",
+        "subject": "Disruptive behavior, on-task classroom behavior",
+        "format": "10–20 min per round, 3–5x/week, teams of 4–6 within one class period; grows over the year",
+        "description": "Split the class into two or three balanced teams. Post the 3–4 rules (e.g., stay seated during work time, hand up before speaking). During the game window, every rule infraction earns the team a mark on the board. Teams under a preset threshold (e.g., 4 marks) win — all winning teams get the reward. Start with short windows during your hardest transition, then extend. One of the most-replicated behavior interventions ever, with follow-up studies showing long-term reductions in aggression and later substance use.",
+        "video": {
+          "title": "The Good Behavior Game and Other Easy-to-Implement Classroom Management Strategies",
+          "channel": "Teach Middle East",
+          "url": "https://www.youtube.com/watch?v=u7K7dmnNh4A"
+        },
+        "resources": [
+          {
+            "title": "WWC Intervention Report — Good Behavior Game (Strong evidence for student behavior)",
+            "url": "https://ies.ed.gov/ncee/wwc/Docs/InterventionReports/WWC_GBG_IR-report.pdf"
+          },
+          {
+            "title": "Kellam et al. (2011) — The Good Behavior Game and the Future of Prevention (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3188824/"
+          }
+        ],
+        "citation": "Barrish, H. H., Saunders, M., & Wolf, M. M. (1969). Good Behavior Game: Effects of individual contingencies for group consequences on disruptive behavior in a classroom. Journal of Applied Behavior Analysis, 2, 119–124."
+      },
+      {
+        "id": "tpr-newcomer",
+        "category": "el-newcomer",
+        "name": "Total Physical Response (TPR) for Newcomers",
+        "subject": "Beginning English comprehension for newcomers (WIDA 1–2)",
+        "format": "10–15 min daily, whole newcomer class or small group of 4–8; comprehensible-input first, speech emerges later",
+        "description": "Teacher gives short physical commands in English (\"stand up,\" \"pick up your book,\" \"open to page 12\") and models the action. Students listen and act — no speaking required. Once students can carry out commands reliably, vary the order, then chain commands (\"stand up, walk to the window, point to the map\"). Speech is not forced; students speak when they're ready. Especially valuable in the first weeks with a newcomer, before any productive language is realistic.",
+        "video": {
+          "title": "Total Physical Response (TPR)",
+          "channel": "Helbling English",
+          "url": "https://www.youtube.com/watch?v=1Mk6RRf4kKs"
+        },
+        "resources": [
+          {
+            "title": "Colorin Colorado — Reading 101 for English Language Learners",
+            "url": "https://www.colorincolorado.org/article/reading-101-english-language-learners"
+          },
+          {
+            "title": "IES Practice Guide — Teaching Academic Content and Literacy to English Learners (Recommendation 4)",
+            "url": "https://ies.ed.gov/ncee/wwc/PracticeGuide/19"
+          }
+        ],
+        "citation": "Asher, J. J. (1969). The Total Physical Response approach to second language learning. Modern Language Journal, 53(1), 3–17."
+      },
+      {
+        "id": "cornell-notes",
+        "category": "study",
+        "name": "Cornell / Two-Column Note-Taking",
+        "subject": "Note-taking, active study, comprehension of lectures & reading",
+        "format": "20–30 min explicit teaching + used across content classes; individual",
+        "description": "A structured page: right column for notes taken live, narrow left column for cues/questions written afterward, bottom band for a 3–5-sentence summary. Teach in one sitting with a shared text or short lecture: model each column, do one together, release. Then require students to complete the left column and summary within 24 hours — that revisit is the actual learning move. Fold the notes on the vertical crease to self-quiz. Well-suited to Tier 2 study support in secondary classrooms.",
+        "video": {
+          "title": "AVID - Learning Center - Understanding Cornell Notes",
+          "channel": "wcstv TV",
+          "url": "https://www.youtube.com/watch?v=FohOF2RaFD0"
+        },
+        "resources": [
+          {
+            "title": "Keys to Literacy — Two-Column Notes overview (Joan Sedita)",
+            "url": "https://www.youtube.com/watch?v=FPw82Svn0JY"
+          },
+          {
+            "title": "Cornell University — The Cornell Note-Taking System (LSC)",
+            "url": "https://lsc.cornell.edu/how-to-study/taking-notes/cornell-note-taking-system/"
+          }
+        ],
+        "citation": "Pauk, W., & Owens, R. J. Q. (2013). How to Study in College (11th ed.). Cengage. See also Piolat, Olive, & Kellogg (2005) on note-taking effort and comprehension."
+      }
+    ]
+  }
+}

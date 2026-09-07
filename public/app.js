@@ -139,6 +139,8 @@ const ROUTE_LABELS = {
   "standards/plan": "Build an Instructional Plan",
   "seating": "Seating & Environment",
   "interventions": "Tier 2 Interventions",
+  "mtss-plc": "MTSS & PLC — how they fit",
+  "plc-tool": "PLC Meeting & Referral Tool",
   "toolkit": "My Toolkit",
   "my-work": "My Work",
   "toolkit-examples": "Toolkit Examples",
@@ -252,6 +254,8 @@ const Routes = {
   "today": (view) => renderStrategies(view, { mode: "today" }),
   "pick-for-me": (view) => renderStrategies(view, { mode: "pick" }),
   "interventions": renderInterventionsPage,
+  "mtss-plc": renderMtssPlc,
+  "plc-tool": renderPlcTool,
   "toolkit": (view) => renderStrategies(view, { mode: "favorites" }),
   "my-work": async (view) => { await Data.ensure(); window.Data = Data; view.innerHTML = ""; window.MyWork.render(view); window.scrollTo(0, 0); },
   "add": (view) => renderStrategies(view, { mode: "add" }),
@@ -360,6 +364,36 @@ async function init() {
     sidebar.classList.remove("open");
     scrim.hidden = true;
   });
+  // Feedback links — open mailto with context (current page + teacher name).
+  // Static href on the anchors is a fine fallback for right-click / copy.
+  function feedbackMailto() {
+    const who = TeacherStore.get() || "(not signed in)";
+    const where = location.href;
+    const subject = "Turner Toolkit feedback";
+    const body =
+      "Hi Paul,\n\n" +
+      "Feedback about the Toolkit:\n\n" +
+      "[ ] Broken link\n" +
+      "[ ] Content is outdated\n" +
+      "[ ] Suggest an improvement\n" +
+      "[ ] Share a classroom example\n\n" +
+      "Details:\n\n\n" +
+      "---\n" +
+      "Page: " + where + "\n" +
+      "Signed in as: " + who + "\n";
+    return "mailto:pt2479@hotmail.com?subject=" +
+      encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  }
+  ["send-feedback-link", "page-foot-feedback"].forEach((id) => {
+    const a = document.getElementById(id);
+    if (!a) return;
+    a.addEventListener("click", (ev) => {
+      // Rebuild the URL at click time so it captures the current page + teacher.
+      a.href = feedbackMailto();
+      // Let the browser follow the mailto link normally.
+    });
+  });
+
   // Global search (needs data loaded)
   await Data.ensure().catch(() => {});
   initGlobalSearch();
@@ -1401,7 +1435,7 @@ async function renderInterventionsPage(view) {
   view.innerHTML = `
     <div class="page-kicker">Tier 2</div>
     <h1 class="page-title">Academic Interventions</h1>
-    <p class="page-lede">Evidence-based Tier 2 supports for reading, math, writing, and study skills — for the students who need more than strong Tier 1. Each one includes a short demonstration video and a research-backed resource so you can go deeper before Monday.</p>
+    <p class="page-lede">Evidence-based Tier 2 supports across academics, behavior &amp; SEL, attendance, executive function, and EL/newcomer needs — for the students who need more than strong Tier 1. Each entry has a short demonstration video and a research citation so you can go deeper before Monday. Use the <a href="#/mtss-plc">MTSS &amp; PLC page</a> for the how-it-fits, and the <a href="#/plc-tool">PLC Meeting &amp; Referral Tool</a> to file Tier 2 referrals with a documented Tier 1 history.</p>
     <div class="filter-row" id="intv-filters">
       <button type="button" class="filter-btn${IntvState.category === "all" ? " active" : ""}" data-cat="all">All (${(iv.items || []).length})</button>
       ${cats.map((c) => `<button type="button" class="filter-btn${IntvState.category === c.id ? " active" : ""}" data-cat="${escapeHtml(c.id)}">${escapeHtml(c.label)} (${(iv.items || []).filter((i) => i.category === c.id).length})</button>`).join("")}
@@ -3055,5 +3089,459 @@ function _updateSearchActive(results) {
     if (i === _searchActiveIdx) {
       el.scrollIntoView({ block: "nearest" });
     }
+  });
+}
+
+// ============================================================
+// MTSS ⇄ PLC reference page + working PLC tool
+// ============================================================
+// The reference page is a working guide to how these two systems fit
+// together at a school. The tool underneath it is what a PLC actually
+// uses in a meeting: a Tier 1 review + Tier 2 referral + progress-
+// monitoring log, all filed under the teacher's name and exportable
+// as Word later via MyWork.
+//
+// Design intent: MTSS and PLC are often taught as parallel initiatives.
+// They aren't. PLC is the meeting cadence where the data that drives
+// MTSS decisions actually gets looked at. If your PLC doesn't produce
+// MTSS actions, you have two systems doing half the work each.
+
+function renderMtssPlc(view) {
+  view.innerHTML = `
+    <section class="hero hero-compact">
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <div class="eyebrow on-dark">Tier 2 & MTSS</div>
+        <h1 class="hero-title">MTSS &amp; PLC — how they fit</h1>
+        <p class="hero-lede">MTSS is the response system. PLC is the meeting where the response gets decided. This page explains the loop so your PLC produces MTSS actions instead of parallel busy-work.</p>
+      </div>
+    </section>
+
+    <div class="callout callout-navy">
+      <h3>The one-sentence version</h3>
+      <p><strong>PLC is the engine, MTSS is the transmission.</strong> The PLC's four questions turn student data into instructional decisions; MTSS turns those decisions into tiered supports. If your PLC agenda doesn't end in Tier 1 adjustments and Tier 2 referrals, you're spinning the engine without the transmission engaged.</p>
+    </div>
+
+    <div class="callout callout-navy" style="background: linear-gradient(135deg, #6b1f3a 0%, #8b2a4a 100%);">
+      <h3>Academic, behavioral, and social-emotional needs are intertwined — don't treat them as separate systems</h3>
+      <p>Students who struggle academically tend to struggle behaviorally and emotionally, and the reverse is just as true. This is not opinion — it's one of the most consistent findings in the last thirty years of school research. A student behind in reading and a student acting out in class are often the same student, and treating those as two separate referral pipelines misses the point every time.</p>
+      <ul class="check-list" style="color:#f8e8ee;">
+        <li><strong>Reading and behavior are correlated and causally linked in both directions.</strong> Morgan, Farkas, Tufis &amp; Sperling (2008) found early reading difficulties predict later behavior problems, and early behavior problems predict later reading difficulties, controlling for prior status (<a href="https://journals.sagepub.com/doi/10.1177/0022219408321123" target="_blank" rel="noopener" style="color:#ffd4e0;">Journal of Learning Disabilities, 41(5)</a>).</li>
+        <li><strong>Externalizing behavior and academic underachievement run together throughout childhood and adolescence.</strong> Hinshaw's landmark review synthesized decades of evidence that inattention and hyperactivity are the strongest correlates of academic problems in childhood, and by adolescence antisocial behavior and delinquency are clearly linked to underachievement (<a href="https://pubmed.ncbi.nlm.nih.gov/1539086/" target="_blank" rel="noopener" style="color:#ffd4e0;">Hinshaw, 1992, Psychological Bulletin, 111(1), 127–155</a>).</li>
+        <li><strong>SEL instruction lifts academic achievement.</strong> The Durlak et al. (2011) meta-analysis of 213 universal SEL programs found an 11-percentile-point average gain in academic achievement in schools that implemented SEL with fidelity (<a href="https://onlinelibrary.wiley.com/doi/10.1111/j.1467-8624.2010.01564.x" target="_blank" rel="noopener" style="color:#ffd4e0;">Child Development, 82(1)</a>).</li>
+        <li><strong>Chronic absenteeism drives both academic and behavioral gaps.</strong> Balfanz &amp; Byrnes' national analysis found students missing 10%+ of school (chronic absence) had substantially lower reading and math achievement and higher discipline referral rates, independent of poverty (<a href="https://new.every1graduates.org/wp-content/uploads/2012/05/FINALChronicAbsenteeismReport_May16.pdf" target="_blank" rel="noopener" style="color:#ffd4e0;">Johns Hopkins / Get Schooled, 2012</a>).</li>
+        <li><strong>Integrated MTSS outperforms parallel academic-only and behavior-only systems.</strong> McIntosh &amp; Goodman (2016) synthesized the evidence for combined MTSS-A/B (academic + behavior) and found stronger student outcomes than either system alone, largely because problem-solving teams see the whole student instead of two half-pictures (<a href="https://www.guilford.com/books/Integrated-Multi-Tiered-Systems-of-Support/McIntosh-Goodman/9781462524747" target="_blank" rel="noopener" style="color:#ffd4e0;"><em>Integrated Multi-Tiered Systems of Support</em>, Guilford Press</a>).</li>
+      </ul>
+      <p><strong>What this means for your PLC and MTSS team:</strong> when a student surfaces in reading data, ask what's happening with their behavior, attendance, and SEL — and vice versa. The <a href="#/plc-tool" style="color:#ffd4e0;">PLC Meeting &amp; Referral Tool</a> supports referrals across all seven domains for exactly this reason. Don't refer for reading and separately refer for behavior six weeks later; look at the whole student in the same conversation.</p>
+    </div>
+
+    <div class="grid-2col">
+      <div class="card">
+        <div class="card-title">MTSS in one paragraph</div>
+        <p>Multi-Tiered System of Supports is a schoolwide framework for meeting every student's academic, behavioral, and social-emotional needs by matching the intensity of support to the level of need. Tier 1 is high-quality core instruction for all. Tier 2 is small-group, evidence-based intervention layered on top for students not yet responding. Tier 3 is intensive, individualized support for the smallest number of students. Universal screening data identifies who needs more; progress-monitoring data tells you whether the extra support is working; a school-level problem-solving team makes tier-movement decisions.</p>
+        <p class="small-note">Sources: <a href="https://mtss4success.org/essential-components" target="_blank" rel="noopener">Center on MTSS &mdash; Essential Components</a> &middot; <a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/26" target="_blank" rel="noopener">IES Practice Guide: Assisting Students Struggling with Reading (RTI/MTSS)</a></p>
+      </div>
+
+      <div class="card">
+        <div class="card-title">PLC in one paragraph</div>
+        <p>A Professional Learning Community is a recurring team meeting (usually weekly) where teachers who share students or standards answer four questions: (1) What do we want students to learn? (2) How will we know they've learned it? (3) What will we do when they haven't? (4) What will we do when they already have? A PLC is not a book study, a curriculum meeting, or a compliance check-in — those can happen, but they're not PLC work. PLC work is teachers looking at their own students' data and deciding what to do next.</p>
+        <p class="small-note">Source: DuFour, DuFour, Eaker &amp; Many (2016). <em>Learning by Doing.</em> Solution Tree. See also <a href="https://www.solutiontree.com/blog/plc-at-work-critical-questions/" target="_blank" rel="noopener">PLC at Work — the four critical questions</a>.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">The loop — how the two systems connect</h2>
+    <div class="mtss-loop">
+      <div class="loop-step">
+        <div class="loop-num">1</div>
+        <div class="loop-body">
+          <div class="loop-h">Universal screener (MTSS)</div>
+          <p>3× per year the school screens every student in reading and math. Results roll up by teacher, grade, and building. This is MTSS data — it never lives only in a single teacher's gradebook.</p>
+        </div>
+      </div>
+      <div class="loop-step">
+        <div class="loop-num">2</div>
+        <div class="loop-body">
+          <div class="loop-h">Weekly PLC (PLC)</div>
+          <p>Teachers who share a grade or content bring <strong>common formative assessment data</strong> (Question 2 of the PLC), plus the most recent screener. They answer: which students are on track for the standard, which are close, which need Tier 2 support?</p>
+        </div>
+      </div>
+      <div class="loop-step">
+        <div class="loop-num">3</div>
+        <div class="loop-body">
+          <div class="loop-h">Tier 1 adjustment (PLC → back to classroom)</div>
+          <p>For the "close" students, the PLC agrees on a Tier 1 adjustment — a re-teach, a small change to the next lesson, a specific strategy from the toolkit — and every teacher runs it that week. This is the <a href="#/interventions">Interventions Library</a>'s job for individual moves, and the <a href="#/weekly-plan">Weekly Plan Builder</a>'s job for putting them into next week.</p>
+        </div>
+      </div>
+      <div class="loop-step">
+        <div class="loop-num">4</div>
+        <div class="loop-body">
+          <div class="loop-h">Tier 2 referral (PLC → MTSS team)</div>
+          <p>For students not responding to Tier 1, the PLC files a Tier 2 referral to the building's MTSS/problem-solving team: what's the specific skill gap, what Tier 1 adjustments have been tried, what evidence, what the teacher recommends. The <a href="#/plc-tool">PLC Meeting &amp; Referral Tool</a> generates this from your PLC notes.</p>
+        </div>
+      </div>
+      <div class="loop-step">
+        <div class="loop-num">5</div>
+        <div class="loop-body">
+          <div class="loop-h">Tier 2 intervention (MTSS)</div>
+          <p>The MTSS team assigns an evidence-based Tier 2 intervention from the <a href="#/interventions">Interventions Library</a>, an interventionist to deliver it, a start date, and a <strong>progress-monitoring cadence</strong> (typically weekly for 6&ndash;8 weeks). The classroom teacher keeps teaching Tier 1 — the intervention is added, not substituted.</p>
+        </div>
+      </div>
+      <div class="loop-step">
+        <div class="loop-num">6</div>
+        <div class="loop-body">
+          <div class="loop-h">Progress-monitoring review (PLC + MTSS)</div>
+          <p>Every 4&ndash;8 weeks the PLC reviews progress-monitoring data alongside common formative results. Three decisions: <strong>keep going</strong>, <strong>change the intervention</strong>, or <strong>move tiers</strong> (up to Tier 3 for intensifying, back to Tier 1 for responders). Decisions and dates get logged.</p>
+        </div>
+      </div>
+      <div class="loop-step">
+        <div class="loop-num">7</div>
+        <div class="loop-body">
+          <div class="loop-h">Loop closes → back to next screener</div>
+          <p>The next universal screener validates whether Tier 1 got stronger (fewer students needing Tier 2) and whether Tier 2 is doing its job (students exiting back to Tier 1). If Tier 1 keeps flooding Tier 2, that's a PLC problem, not a Tier 2 problem — go back to Question 1.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Who owns what</h2>
+    <div class="card">
+      <table class="clean-table">
+        <thead>
+          <tr><th>Role</th><th>Owns in PLC</th><th>Owns in MTSS</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Classroom teacher</strong></td>
+            <td>Brings common formative data. Runs Tier 1 adjustments agreed to in PLC. Reflects on evidence of student learning.</td>
+            <td>Continues Tier 1. Coordinates with interventionist. Provides classroom evidence at progress-monitoring review.</td>
+          </tr>
+          <tr>
+            <td><strong>PLC team / grade-level lead</strong></td>
+            <td>Facilitates the 4 questions. Ensures the meeting ends in Tier 1 actions and (if needed) Tier 2 referrals.</td>
+            <td>Sends referrals to the MTSS team. Represents the PLC at cross-tier reviews.</td>
+          </tr>
+          <tr>
+            <td><strong>Interventionist / specialist</strong></td>
+            <td>Attends PLC when reviewing shared students. Reports Tier 2 progress-monitoring data.</td>
+            <td>Delivers the assigned Tier 2 intervention with fidelity. Collects progress-monitoring data on the agreed cadence.</td>
+          </tr>
+          <tr>
+            <td><strong>MTSS / problem-solving team</strong></td>
+            <td>&mdash;</td>
+            <td>Reviews referrals. Assigns intervention, interventionist, dose, monitoring cadence. Makes tier-movement decisions.</td>
+          </tr>
+          <tr>
+            <td><strong>Principal / instructional leader</strong></td>
+            <td>Protects PLC time. Reviews PLC minutes for evidence the four questions are being answered. Coaches teams whose meetings aren't producing actions.</td>
+            <td>Chairs or oversees MTSS team. Ensures Tier 2 stays evidence-based. Looks for the Tier-1-flooding-Tier-2 signal building-wide.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">What data moves between them</h2>
+    <div class="grid-2col">
+      <div class="card">
+        <div class="card-title">PLC → MTSS</div>
+        <ul class="check-list">
+          <li>Common formative assessment results by student and by standard</li>
+          <li>Tier 1 adjustments tried and their outcomes (this is why the tried-log matters)</li>
+          <li>Specific skill gap for referred students &mdash; not "reading" but "phonics: r-controlled vowels"</li>
+          <li>Teacher's recommended intensity level</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">MTSS → PLC</div>
+        <ul class="check-list">
+          <li>Which intervention was assigned, at what dose, by whom</li>
+          <li>Progress-monitoring data on the agreed cadence</li>
+          <li>Whether students are exiting Tier 2, staying, or intensifying to Tier 3</li>
+          <li>Building-wide Tier 1 signals: if 30%+ of students in a grade are in Tier 2, PLC has core-instruction work to do</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="section-title">Sample weekly PLC agenda (45 minutes)</h2>
+    <div class="card">
+      <ol class="check-list numbered">
+        <li><strong>2 min &mdash; Norms &amp; agenda check.</strong> Data on the table. Phones down.</li>
+        <li><strong>5 min &mdash; Q1: What do we want students to learn?</strong> Name the priority standard(s) for the coming week. Everyone shows their common formative assessment for it.</li>
+        <li><strong>10 min &mdash; Q2: How will we know they've learned it?</strong> Look at last week's common formative results. Sort students into on-track / close / not-yet.</li>
+        <li><strong>15 min &mdash; Q3: What will we do when they haven't?</strong> Two moves:
+          <ul>
+            <li>For "close" students: agree on a Tier 1 adjustment for next week (a specific strategy from the <a href="#/strategies">library</a>, a re-teach block, a small-group pull during independent work).</li>
+            <li>For "not-yet" students already on Tier 1 adjustments: check whether a Tier 2 referral is warranted. If yes, open the <a href="#/plc-tool">PLC Meeting &amp; Referral Tool</a> and file it in this meeting.</li>
+          </ul>
+        </li>
+        <li><strong>8 min &mdash; Q4: What will we do for students who already know it?</strong> Extension task, deeper text, harder problem set &mdash; not just "give them the next worksheet."</li>
+        <li><strong>5 min &mdash; Close.</strong> Every teacher restates the one Tier 1 adjustment they will run this week and how they will measure it. Log it in the tool.</li>
+      </ol>
+      <p><a class="btn primary" href="#/plc-tool">Open the PLC Meeting &amp; Referral Tool &rarr;</a></p>
+    </div>
+
+    <h2 class="section-title">Common failure modes (and the fix)</h2>
+    <div class="grid-2col">
+      <div class="card"><strong>PLC becomes a curriculum meeting.</strong><br>Fix: bring student data, not just next week's plan. If you're not looking at student work, it's not a PLC.</div>
+      <div class="card"><strong>MTSS team assigns Tier 2 without knowing what Tier 1 was tried.</strong><br>Fix: no referral without a documented Tier 1 adjustment period. The referral form should require it.</div>
+      <div class="card"><strong>Tier 2 substitutes for Tier 1 instead of adding to it.</strong><br>Fix: schedule Tier 2 outside core instruction blocks. Students in intervention still get all of Tier 1.</div>
+      <div class="card"><strong>30%+ of a grade lands in Tier 2.</strong><br>Fix: this is a Tier 1 problem, not a Tier 2 problem. Take it back to the PLC and to instructional leadership. Intervening your way out is not possible.</div>
+      <div class="card"><strong>Interventions aren't evidence-based.</strong><br>Fix: pull only from the <a href="#/interventions">Interventions Library</a> or the WWC/IES Practice Guides. If a program isn't there, it doesn't belong in Tier 2 &mdash; someone loved it once.</div>
+      <div class="card"><strong>Progress monitoring doesn't happen.</strong><br>Fix: the cadence gets set at referral (e.g., weekly CBM for 6 weeks) and put on the calendar. If it isn't measured, you can't decide.</div>
+    </div>
+
+    <h2 class="section-title">Further reading</h2>
+    <div class="card">
+      <ul class="related-list">
+        <li><a href="https://mtss4success.org/essential-components" target="_blank" rel="noopener">Center on MTSS &mdash; Essential Components of MTSS</a> (American Institutes for Research)</li>
+        <li><a href="https://ies.ed.gov/ncee/wwc/practiceguides" target="_blank" rel="noopener">IES Practice Guides library</a> &mdash; the Tier 2 evidence base for reading, writing, math, and behavior</li>
+        <li><a href="https://www.solutiontree.com/blog/plc-at-work-critical-questions/" target="_blank" rel="noopener">PLC at Work &mdash; the four critical questions</a> (Solution Tree)</li>
+        <li>DuFour, DuFour, Eaker &amp; Many (2016). <em>Learning by Doing: A Handbook for Professional Learning Communities at Work</em> (3rd ed.). Solution Tree.</li>
+        <li><a href="https://intensiveintervention.org/" target="_blank" rel="noopener">National Center on Intensive Intervention</a> &mdash; Tier 3 tools when Tier 2 isn't enough</li>
+      </ul>
+    </div>
+  `;
+}
+
+// ------------------------------------------------------------
+// PLC Meeting & Referral Tool
+// ------------------------------------------------------------
+// Three tabs, all saving under teacher name in localStorage:
+//   1. Meeting notes (4 PLC questions, action items)
+//   2. Tier 2 referrals (per-student, requires documented Tier 1 attempts)
+//   3. Progress-monitoring log (weekly data points on referred students)
+// Nothing leaves the browser. Later, MyWork can export any of these.
+
+const PlcStore = {
+  key(kind) { return `plc:${kind}:${TeacherStore.get() || "anon"}`; },
+  all(kind) {
+    try { return JSON.parse(localStorage.getItem(this.key(kind)) || "[]"); } catch { return []; }
+  },
+  add(kind, item) {
+    const list = this.all(kind);
+    list.unshift({ id: Date.now().toString(36), createdAt: new Date().toISOString(), ...item });
+    localStorage.setItem(this.key(kind), JSON.stringify(list));
+    return list[0];
+  },
+  update(kind, id, patch) {
+    const list = this.all(kind).map((r) => r.id === id ? { ...r, ...patch, updatedAt: new Date().toISOString() } : r);
+    localStorage.setItem(this.key(kind), JSON.stringify(list));
+  },
+  remove(kind, id) {
+    const list = this.all(kind).filter((r) => r.id !== id);
+    localStorage.setItem(this.key(kind), JSON.stringify(list));
+  },
+};
+
+let PlcTab = "meeting";
+
+function renderPlcTool(view) {
+  const teacher = TeacherStore.get();
+  if (!teacher) {
+    view.innerHTML = `
+      <h1 class="page-title">PLC Meeting &amp; Referral Tool</h1>
+      <div class="callout">
+        <h3>Sign in first</h3>
+        <p>Type your name in the sidebar. Meeting notes, referrals, and progress-monitoring data are saved under your name in this browser.</p>
+      </div>
+    `;
+    return;
+  }
+
+  view.innerHTML = `
+    <h1 class="page-title">PLC Meeting &amp; Referral Tool</h1>
+    <p class="page-lede">A PLC meeting that produces MTSS actions. Fill in the four questions during your meeting, refer students to Tier 2 with a documented Tier 1 history, and log progress-monitoring data as it comes in.</p>
+    <p class="small-note">Everything here saves in this browser only, under <strong>${escapeHtml(teacher)}</strong>. Nothing is sent anywhere. Use <a href="#/my-work">My Work</a> to download a Word copy.</p>
+
+    <div class="tabs" id="plc-tabs">
+      <button class="tab ${PlcTab === "meeting" ? "active" : ""}" data-tab="meeting">Meeting notes</button>
+      <button class="tab ${PlcTab === "referrals" ? "active" : ""}" data-tab="referrals">Tier 2 referrals</button>
+      <button class="tab ${PlcTab === "monitoring" ? "active" : ""}" data-tab="monitoring">Progress monitoring</button>
+    </div>
+    <div id="plc-body"></div>
+  `;
+
+  const draw = () => {
+    const body = $("#plc-body");
+    if (PlcTab === "meeting") body.innerHTML = plcMeetingHtml();
+    else if (PlcTab === "referrals") body.innerHTML = plcReferralsHtml();
+    else body.innerHTML = plcMonitoringHtml();
+    plcWireBody(draw);
+  };
+  view.querySelectorAll("#plc-tabs .tab").forEach((t) => {
+    t.addEventListener("click", () => { PlcTab = t.dataset.tab; router(); });
+  });
+  draw();
+}
+
+function plcMeetingHtml() {
+  const meetings = PlcStore.all("meetings");
+  return `
+    <div class="card">
+      <h3 class="subsection-title">New meeting</h3>
+      <form id="plc-meeting-form" class="form-grid">
+        <div class="form-row"><label>Meeting date</label><input class="input" name="date" type="date" value="${new Date().toISOString().slice(0,10)}" required /></div>
+        <div class="form-row"><label>Team / grade / course</label><input class="input" name="team" placeholder="e.g., 6th grade ELA" required /></div>
+        <div class="form-row"><label>Q1 &mdash; What do we want students to learn?</label><textarea class="textarea" name="q1" placeholder="Priority standard(s) for the coming week"></textarea></div>
+        <div class="form-row"><label>Q2 &mdash; How do we know they've learned it? (data brought to meeting)</label><textarea class="textarea" name="q2" placeholder="Common formative results — on-track / close / not-yet counts"></textarea></div>
+        <div class="form-row"><label>Q3 &mdash; What will we do when they haven't? (Tier 1 adjustments + Tier 2 referrals)</label><textarea class="textarea" name="q3" placeholder="Tier 1 adjustment agreed to for next week + which students are being referred to Tier 2"></textarea></div>
+        <div class="form-row"><label>Q4 &mdash; What will we do for students who already know it?</label><textarea class="textarea" name="q4" placeholder="Extension / deeper task"></textarea></div>
+        <div class="form-row"><label>Action items (one per line, owner + due)</label><textarea class="textarea" name="actions" placeholder="e.g., All teachers run cold-call routine daily &mdash; check next Fri&#10;Ms. Turner files Tier 2 referral for J.S. by Weds"></textarea></div>
+        <button type="submit" class="btn primary" style="justify-self:start;">Save meeting</button>
+      </form>
+    </div>
+
+    <h2 class="section-title">Saved meetings (${meetings.length})</h2>
+    ${meetings.length === 0 ? `<div class="empty">No meetings saved yet.</div>` : meetings.map(m => `
+      <div class="card">
+        <div class="card-meta">${escapeHtml(m.date || "")} &middot; ${escapeHtml(m.team || "")}</div>
+        <div class="card-title">Meeting on ${escapeHtml(m.date || "?")}</div>
+        ${m.q1 ? `<div class="section"><strong>Q1 &mdash; Learn:</strong> ${nl2br(m.q1)}</div>` : ""}
+        ${m.q2 ? `<div class="section"><strong>Q2 &mdash; Know:</strong> ${nl2br(m.q2)}</div>` : ""}
+        ${m.q3 ? `<div class="section"><strong>Q3 &mdash; Respond:</strong> ${nl2br(m.q3)}</div>` : ""}
+        ${m.q4 ? `<div class="section"><strong>Q4 &mdash; Extend:</strong> ${nl2br(m.q4)}</div>` : ""}
+        ${m.actions ? `<div class="section"><strong>Actions:</strong><br>${nl2br(m.actions)}</div>` : ""}
+        <button class="btn ghost small" data-plc-del="meetings:${m.id}">Delete</button>
+      </div>
+    `).join("")}
+  `;
+}
+
+function plcReferralsHtml() {
+  const referrals = PlcStore.all("referrals");
+  return `
+    <div class="card">
+      <h3 class="subsection-title">New Tier 2 referral</h3>
+      <p class="small-note">A referral is only valid when Tier 1 adjustments have already been tried and documented. That's the rule &mdash; not paperwork.</p>
+      <form id="plc-referral-form" class="form-grid">
+        <div class="form-row"><label>Student (initials or code &mdash; keep it private)</label><input class="input" name="student" placeholder="e.g., J.S." required /></div>
+        <div class="form-row"><label>Grade / class</label><input class="input" name="grade" placeholder="e.g., 6th grade / period 3" /></div>
+        <div class="form-row"><label>Referral date</label><input class="input" name="date" type="date" value="${new Date().toISOString().slice(0,10)}" required /></div>
+        <div class="form-row"><label>Domain</label>
+          <select class="input" name="domain">
+            <option>Reading</option>
+            <option>Math</option>
+            <option>Writing</option>
+            <option>Behavior / SEL</option>
+            <option>Attendance</option>
+            <option>Executive function</option>
+            <option>EL / Newcomer support</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Specific skill gap (not "reading" &mdash; "phonics: r-controlled vowels")</label><input class="input" name="skillGap" placeholder="Be specific" required /></div>
+        <div class="form-row"><label>Data supporting the concern (screener score, CFA results, dates)</label><textarea class="textarea" name="data" placeholder="e.g., iReady Fall: 12th %ile in fluency; last 3 CFAs 40%, 45%, 42%"></textarea></div>
+        <div class="form-row"><label>Tier 1 adjustments already tried (which strategies, how long, what evidence)</label><textarea class="textarea" name="tier1Tried" placeholder="e.g., Cold-call + partner talk daily for 3 weeks; exit tickets show fluency has not improved" required></textarea></div>
+        <div class="form-row"><label>Recommended Tier 2 intervention (from the library)</label><input class="input" name="recommendation" placeholder="e.g., HELPS or Repeated Reading" /></div>
+        <div class="form-row"><label>Progress-monitoring cadence</label>
+          <select class="input" name="cadence">
+            <option>Weekly</option>
+            <option>Every 2 weeks</option>
+            <option>Monthly</option>
+          </select>
+        </div>
+        <div class="form-row"><label>Review-back date (typically 6&ndash;8 weeks out)</label><input class="input" name="reviewDate" type="date" /></div>
+        <button type="submit" class="btn primary" style="justify-self:start;">Save referral</button>
+      </form>
+    </div>
+
+    <h2 class="section-title">Saved referrals (${referrals.length})</h2>
+    ${referrals.length === 0 ? `<div class="empty">No Tier 2 referrals filed yet.</div>` : referrals.map(r => `
+      <div class="card">
+        <div class="card-meta">${escapeHtml(r.date || "")} &middot; ${escapeHtml(r.domain || "")}</div>
+        <div class="card-title">${escapeHtml(r.student)} &mdash; ${escapeHtml(r.skillGap)}</div>
+        <div class="section"><strong>Data:</strong> ${nl2br(r.data || "—")}</div>
+        <div class="section"><strong>Tier 1 tried:</strong> ${nl2br(r.tier1Tried || "—")}</div>
+        <div class="section"><strong>Recommended:</strong> ${escapeHtml(r.recommendation || "—")} &middot; <strong>Cadence:</strong> ${escapeHtml(r.cadence || "—")} &middot; <strong>Review by:</strong> ${escapeHtml(r.reviewDate || "—")}</div>
+        <button class="btn ghost small" data-plc-del="referrals:${r.id}">Delete</button>
+      </div>
+    `).join("")}
+  `;
+}
+
+function plcMonitoringHtml() {
+  const entries = PlcStore.all("monitoring");
+  const referrals = PlcStore.all("referrals");
+  const studentOpts = referrals.map(r => `<option value="${escapeHtml(r.student)}">${escapeHtml(r.student)} &mdash; ${escapeHtml(r.skillGap)}</option>`).join("");
+  return `
+    <div class="card">
+      <h3 class="subsection-title">Log a progress-monitoring data point</h3>
+      <p class="small-note">One row per data point per student. Weekly is typical for CBM measures; every-two-weeks or monthly is fine for broader measures.</p>
+      <form id="plc-monitoring-form" class="form-grid">
+        <div class="form-row"><label>Student (pick from your referrals, or type)</label>
+          <input class="input" name="student" list="plc-student-list" placeholder="e.g., J.S." required />
+          <datalist id="plc-student-list">${studentOpts}</datalist>
+        </div>
+        <div class="form-row"><label>Date measured</label><input class="input" name="date" type="date" value="${new Date().toISOString().slice(0,10)}" required /></div>
+        <div class="form-row"><label>Measure (what you gave)</label><input class="input" name="measure" placeholder="e.g., DIBELS ORF; 1-min math facts; CBM writing correct word sequences" required /></div>
+        <div class="form-row"><label>Score</label><input class="input" name="score" placeholder="e.g., 62 wcpm; 18/25; 4 CWS" required /></div>
+        <div class="form-row"><label>Goal / benchmark</label><input class="input" name="goal" placeholder="e.g., 85 wcpm by end of Q2" /></div>
+        <div class="form-row"><label>Notes (fidelity, attendance, anything unusual)</label><textarea class="textarea" name="notes"></textarea></div>
+        <div class="form-row"><label>Decision so far</label>
+          <select class="input" name="decision">
+            <option>Continue as is</option>
+            <option>Increase intensity / change intervention</option>
+            <option>Move up a tier</option>
+            <option>Exit back to Tier 1</option>
+            <option>Not enough data yet</option>
+          </select>
+        </div>
+        <button type="submit" class="btn primary" style="justify-self:start;">Log data point</button>
+      </form>
+    </div>
+
+    <h2 class="section-title">Data points logged (${entries.length})</h2>
+    ${entries.length === 0 ? `<div class="empty">No progress-monitoring data logged yet.</div>` : `
+      <div class="card" style="padding:0;overflow:auto;">
+        <table class="clean-table">
+          <thead><tr><th>Date</th><th>Student</th><th>Measure</th><th>Score</th><th>Goal</th><th>Decision</th><th>Notes</th><th></th></tr></thead>
+          <tbody>
+            ${entries.map(e => `<tr>
+              <td>${escapeHtml(e.date || "")}</td>
+              <td>${escapeHtml(e.student || "")}</td>
+              <td>${escapeHtml(e.measure || "")}</td>
+              <td>${escapeHtml(e.score || "")}</td>
+              <td>${escapeHtml(e.goal || "")}</td>
+              <td>${escapeHtml(e.decision || "")}</td>
+              <td>${escapeHtml(e.notes || "")}</td>
+              <td><button class="btn ghost small" data-plc-del="monitoring:${e.id}">Delete</button></td>
+            </tr>`).join("")}
+          </tbody>
+        </table>
+      </div>
+    `}
+  `;
+}
+
+function plcWireBody(redraw) {
+  const meetingForm = $("#plc-meeting-form");
+  if (meetingForm) meetingForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(meetingForm);
+    PlcStore.add("meetings", Object.fromEntries(fd));
+    toast("Meeting saved.");
+    redraw();
+  });
+  const referralForm = $("#plc-referral-form");
+  if (referralForm) referralForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(referralForm);
+    PlcStore.add("referrals", Object.fromEntries(fd));
+    toast("Tier 2 referral saved.");
+    redraw();
+  });
+  const monitoringForm = $("#plc-monitoring-form");
+  if (monitoringForm) monitoringForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(monitoringForm);
+    PlcStore.add("monitoring", Object.fromEntries(fd));
+    toast("Data point logged.");
+    redraw();
+  });
+  document.querySelectorAll("[data-plc-del]").forEach((b) => {
+    b.addEventListener("click", () => {
+      const [kind, id] = b.dataset.plcDel.split(":");
+      if (confirm("Delete this entry? This cannot be undone.")) {
+        PlcStore.remove(kind, id);
+        redraw();
+      }
+    });
   });
 }
