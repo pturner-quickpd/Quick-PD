@@ -1,2 +1,22 @@
-# Quick-PD
-Teacher Development 
+# Quick PD · Wewoka High School
+
+Teacher-facing professional development site: strategy library with videos,
+Oklahoma Academic Standards, weekly/unit/daily planners and PL-goal writer with
+Word export, Elementary Foundations, and a My Work page for downloads and backups.
+
+The site is fully static (`public/`). No build step.
+
+## How it deploys
+Cloudflare Pages watches this repo. Every push to `main` publishes `public/`
+automatically within about a minute. Nothing else to run.
+
+`wrangler.toml` is kept for the optional Workers route (`npm run deploy`).
+
+## Layout
+- `public/index.html`, `app.js`, `styles.css` — app shell and router
+- `public/api-shim.js` — serves content from `data/` and keeps teacher saves in the browser
+- `public/planner-core.js`, `planner-pages.js` — planners, standards picker, .docx builder
+- `public/elementary.js` — Early Reading / Math / Writing pages
+- `public/my-work.js` — downloads, portfolio, backup/restore
+- `public/data/*.json` — strategies, techniques, rigor, seating, standards, OAS
+- `public/vendor/docx.umd.min.js` — Word library, bundled so no CDN is needed
