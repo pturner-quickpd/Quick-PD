@@ -2895,6 +2895,10 @@ async function renderAbout(view) {
       <h2>Who built it</h2>
       <p>Paul Turner, principal at Wewoka High School in Oklahoma. Built for the teachers at Wewoka first, opened up because good practical PD shouldn't be locked behind a vendor. The strategies come from IES practice guides, the What Works Clearinghouse, the IRIS Center, Doug Lemov's work, and years of watching what actually moves the needle in real classrooms.</p>
 
+      <h2>A note on MTSS and special education</h2>
+      <p>This toolkit takes MTSS seriously — the <a href="#/mtss-plc">MTSS &amp; PLC page</a>, the <a href="#/plc-tool">PLC Meeting &amp; Referral Tool</a>, and the Tier 2 intervention pages all exist to help teachers try the right instruction and interventions before escalating. But MTSS is not, and never has been, a gatekeeper for special education. <strong>A student can be referred for a SPED evaluation at any time.</strong></p>
+      <p>If a teacher, parent, or team member suspects a disability, the district's <strong>Child Find</strong> obligation under IDEA is triggered <em>immediately</em> — not after a Tier 2 cycle finishes, not after a certain number of interventions have been documented. The U.S. Department of Education is explicit on this in <a href="https://sites.ed.gov/idea/idea-files/osep-memo-11-07-response-to-intervention-rti-memo/" target="_blank" rel="noopener">OSEP Memo 11-07 (2011)</a> and again in the <a href="https://sites.ed.gov/idea/idea-files/rts-qa-child-find-part-b-08-24-2021/" target="_blank" rel="noopener">2021 Child Find Q&amp;A</a>. Tier 2 data is useful evidence <em>within</em> a SPED evaluation — it is never a prerequisite to one. Every page in this toolkit assumes that principle; the <a href="#/mtss-plc">MTSS &amp; PLC page</a> spells it out in detail.</p>
+
       <h2>Why it's free</h2>
       <p>Because it should be. Teachers already pay for their own supplies. If the Toolkit saves you an hour of planning a week, that's the entire point.</p>
 
