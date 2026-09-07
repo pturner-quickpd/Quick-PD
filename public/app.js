@@ -1468,10 +1468,17 @@ async function renderPLTool(view) {
             <option>Reading &amp; writing across the curriculum</option>
             <option>Student discourse &amp; talk</option>
             <option>Formative assessment &amp; feedback</option>
+            <option>Teacher–student feedback (Hattie, Wiliam, Shute)</option>
             <option>Explicit modeling &amp; think-alouds</option>
             <option>Classroom management &amp; culture</option>
             <option>Cognitive rigor &amp; questioning</option>
             <option>Differentiation &amp; small-group instruction</option>
+            <option>Early reading foundations (K–5)</option>
+            <option>Early math &amp; number sense (K–5)</option>
+            <option>Early writing &amp; composition (K–5)</option>
+            <option>Elementary science &amp; phenomena-based instruction (K–5)</option>
+            <option>Elementary social studies &amp; historical thinking (K–5)</option>
+            <option>Physical education, movement &amp; health-related fitness (K–5)</option>
           </select>
         </div>
         <div class="form-row">
