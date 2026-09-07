@@ -2027,3 +2027,55 @@ mark {
   font-size: 13px;
   padding: 6px 12px;
 }
+
+/* ==========================================================
+   Curriculum hubs v2 — evidence, provenance, standards,
+   share controls, learner supports (PR #1)
+   ========================================================== */
+/* Evidence, provenance, standards, and share controls */
+.strategy-card-actions { display:flex; align-items:center; gap:4px; flex:none; }
+.copy-link-btn {
+  width:32px; height:32px; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--navy); cursor:pointer; font-size:14px;
+}
+.copy-link-btn:hover { background:#f4f7fb; border-color:#b9c5d3; }
+.metadata-row { display:flex; flex-wrap:wrap; gap:6px; margin:11px 0; }
+.meta-badge {
+  display:inline-flex; align-items:center; padding:4px 8px; border-radius:999px;
+  font-size:10px; line-height:1.2; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+}
+.meta-badge.provenance { background:#fff3cf; color:#745400; }
+.meta-badge.stage { background:#e8f2ff; color:#174c7e; }
+.meta-badge.oktle { background:#edf7ee; color:#24612e; }
+.example-preview {
+  margin:10px 0; padding:10px 12px; border-left:3px solid var(--gold);
+  border-radius:4px; background:#fffaf0; color:#384554; font-size:13px; line-height:1.5;
+}
+.evidence-line { margin:10px 0; color:#46566a; font-size:12px; line-height:1.45; }
+.evidence-source-block { align-items:baseline; flex-wrap:wrap; }
+.example-in-action { padding:16px; background:#fffaf0; border-radius:8px; border:1px solid #f1dfad; }
+.example-heading { display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.example-heading .subsection-title { margin:0; }
+.methodology-note {
+  margin:-2px 0 18px; padding:11px 14px; border:1px solid var(--line); border-radius:8px; background:#f8fafc;
+}
+.methodology-note summary { cursor:pointer; color:var(--navy); font-size:13px; font-weight:750; }
+.methodology-note p { margin:10px 0 2px; color:#46566a; font-size:13px; line-height:1.55; }
+
+/* New content hubs and onboarding pathways */
+.support-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin-top:20px; }
+.support-card { margin:0; }
+.voice-questions, .lesson-arc { padding-left:22px; }
+.voice-questions li, .lesson-arc li { margin:7px 0; line-height:1.45; }
+.exemplar-intro { margin-top:-8px; }
+.exemplar-grid { align-items:start; }
+.exemplar-card .video-block { margin:14px 0; }
+
+@media (max-width: 760px) {
+  .support-grid { grid-template-columns:1fr; }
+}
+
+@media print {
+  .sidebar, .topbar, .actions-row, .side-foot { display:none !important; }
+  .content { margin:0 !important; padding:0 !important; }
+}

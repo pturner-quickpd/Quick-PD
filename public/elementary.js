@@ -1,5 +1,5 @@
 /**
- * Elementary Foundations — K–3 Reading, Math, and Writing
+ * Elementary Foundations — K–5 Reading, Math, Writing, Science, and Social Studies
  *
  * Every strategy on these pages is grounded in evidence-based practice
  * (IES Practice Guides, What Works Clearinghouse, National Reading Panel,
