@@ -1,5 +1,5 @@
 /**
- * Elementary Foundations — K–3 Reading, Math, and Writing
+ * Elementary Foundations — K–5 Reading, Math, Writing, Science, and Social Studies
  *
  * Every strategy on these pages is grounded in evidence-based practice
  * (IES Practice Guides, What Works Clearinghouse, National Reading Panel,
@@ -783,12 +783,14 @@
     
     frag.appendChild(el("h1", { class: "page-title" }, "Elementary Foundations"));
     frag.appendChild(el("p", { class: "page-lede" },
-      "Teach reading, math, and writing early \u2014 the way the evidence says works. Three domain pages, six to eight strategies each, every one paired with a classroom video from IES, Reading Rockets, Edutopia, Inside Mathematics, or Teaching Channel."));
+      "Teach reading, math, writing, science, and social studies early—the way the evidence says works. Five focused domain pages put high-leverage practices, classroom moves, and credible sources in one place."));
 
     var grid = el("div", { class: "hub-grid" }, [
       hubCard("early-reading", "Early Reading", "Phonemic awareness \u2192 phonics \u2192 fluency \u2192 vocabulary \u2192 comprehension. Rooted in the IES K\u20133 Foundational Skills Practice Guide."),
       hubCard("early-math",    "Early Math",    "Number sense first. Number talks, subitizing, CRA, CGI, and math discourse. Rooted in the IES Teaching Math to Young Children guide."),
       hubCard("early-writing", "Early Writing", "Write daily. Handwriting, encoding, shared writing, and SRSD. Rooted in the IES Effective Writers guide."),
+      hubCard("early-science", "Elementary Science", "Phenomena, investigation, models, science notebooks, and evidence-based explanations."),
+      hubCard("early-social-studies", "Elementary Social Studies", "Compelling questions, primary sources, maps, multiple perspectives, and civic action."),
     ]);
     frag.appendChild(grid);
     return frag;

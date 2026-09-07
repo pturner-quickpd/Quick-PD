@@ -151,6 +151,16 @@ const ROUTE_LABELS = {
   "early-reading": "Early Reading (K–5)",
   "early-math": "Early Math (K–5)",
   "early-writing": "Early Writing (K–5)",
+  "early-science": "Elementary Science (K–5)",
+  "science": "Elementary Science (K–5)",
+  "early-social-studies": "Elementary Social Studies (K–5)",
+  "social-studies": "Elementary Social Studies (K–5)",
+  "secondary": "Secondary Foundations (6–12)",
+  "secondary-reading": "Secondary Reading (6–12)",
+  "secondary-math": "Secondary Math (6–12)",
+  "secondary-writing": "Secondary Writing (6–12)",
+  "student-voice": "Student Voice & Engagement Evidence",
+  "learner-supports": "Accessibility & Learner Supports",
   "first-30-days": "First 30 Days",
   "about": "About Quick PD",
   "strategy": "Strategy detail",
@@ -225,6 +235,16 @@ const Routes = {
   "early-reading": renderModulePage("Elementary","renderReading"),
   "early-math": renderModulePage("Elementary","renderMath"),
   "early-writing": renderModulePage("Elementary","renderWriting"),
+  "early-science": (view) => window.ContentHubs.renderK5Science(view),
+  "science": (view) => window.ContentHubs.renderK5Science(view),
+  "early-social-studies": (view) => window.ContentHubs.renderK5Social(view),
+  "social-studies": (view) => window.ContentHubs.renderK5Social(view),
+  "secondary": (view) => window.ContentHubs.renderSecondaryHub(view),
+  "secondary-reading": (view) => window.ContentHubs.renderSecondaryReading(view, Data.strategies),
+  "secondary-math": (view) => window.ContentHubs.renderSecondaryMath(view, Data.strategies),
+  "secondary-writing": (view) => window.ContentHubs.renderSecondaryWriting(view, Data.strategies),
+  "student-voice": (view) => window.ContentHubs.renderStudentVoice(view),
+  "learner-supports": (view) => window.ContentHubs.renderLearnerSupports(view),
   // We-Town Toolkit parity routes — thin adapters into existing views.
   "today": (view) => renderStrategies(view, { mode: "today" }),
   "pick-for-me": (view) => renderStrategies(view, { mode: "pick" }),
@@ -609,15 +629,26 @@ async function renderStartHere(view) {
       });
       return secs.length ? `<h2 class="section-title">Onboarding videos</h2>${secs.join("")}` : "";
     })()}
+
+    <h2 class="section-title">Exemplar lessons by pathway</h2>
+    <p class="page-lede exemplar-intro">Use these pathway-specific videos as a starting point, then trace the same complete lesson arc in each setting.</p>
+    <div class="card-grid exemplar-grid">
+      ${[
+        { title: "Technology", description: "Plan technology as a tool for access, thinking, feedback, and creation—not as the learning target.", video: { title: "Integration of Technology in the Classroom", channel: "Jenny Eppard", url: "https://www.youtube.com/watch?v=4jLKL2VCZrA" } },
+        { title: "Special Education", description: "Keep the grade-level goal visible while explicitly modeling, scaffolding, checking understanding, and implementing required supports.", video: { title: "Differentiated Instruction: Why, How, and Examples", channel: "Edutopia", url: "https://www.youtube.com/watch?v=t7kcFkRgiV4" } },
+        { title: "Intervention & support classes", description: "Use current student evidence to choose one precise target, teach it explicitly, and monitor whether the response changes.", video: { title: "Using Data to Drive Instruction", channel: "Teacher Tech Toolbox", url: "https://www.youtube.com/watch?v=izQVjqtrDiU" } },
+      ].map((x) => `<article class="card exemplar-card"><div class="card-meta">${escapeHtml(x.title)} pathway</div><div class="card-title">${escapeHtml(x.title)} exemplar</div><p>${escapeHtml(x.description)}</p>${videoCard(x.video)}<div class="resource-heading">Trace the lesson arc</div><ol class="lesson-arc"><li>Standards & success criteria</li><li>Questioning & sensemaking</li><li>Reading or information access</li><li>Writing or constructed response</li><li>Assessment & feedback</li><li>Scaffolding and learner supports</li><li>Student evidence and reflection</li></ol></article>`).join("")}
+    </div>
   `;
 
   // Wire recent-favs cards
   $$("#start-recent-favs .card").forEach((el) => {
     el.addEventListener("click", (ev) => {
-      if (ev.target.closest(".fav-btn")) return;
+      if (ev.target.closest(".strategy-card-action")) return;
       location.hash = `#/strategy/${el.dataset.id}`;
     });
   });
+  wireStrategyCopyButtons(view);
 
   // Wire reflection form
   const rf = $("#reflection-form");
@@ -719,6 +750,11 @@ async function renderStrategies(view, params) {
       </div>
     </div>
 
+    <details class="methodology-note">
+      <summary>How evidence and examples are labeled</summary>
+      <p><strong>From the book</strong> means the example is drawn from the source named on the strategy. <strong>Illustrative example</strong> means Quick PD created a classroom-ready example to show the move in context. The separate <strong>Evidence:</strong> line reports the evidence type and any effect size stored with the strategy; it does not rank strategies or guarantee the same result in every classroom.</p>
+    </details>
+
     <div id="results-summary" style="margin-bottom:12px;color:var(--muted);font-size:13px;"></div>
     <div id="results" class="card-grid"></div>
 
@@ -779,7 +815,7 @@ async function renderStrategies(view, params) {
     results.innerHTML = list.map((s) => strategyCard(s)).join("");
     $$("#results .card").forEach((el) => {
       el.addEventListener("click", (ev) => {
-        if (ev.target.closest(".fav-btn")) return;
+        if (ev.target.closest(".strategy-card-action")) return;
         location.hash = `#/strategy/${el.dataset.id}`;
       });
     });
@@ -792,6 +828,7 @@ async function renderStrategies(view, params) {
         btn.textContent = on ? "♥" : "♡";
       });
     });
+    wireStrategyCopyButtons(results);
   };
 
   // Wire filters
@@ -877,14 +914,19 @@ async function renderStrategies(view, params) {
 function strategyCard(s) {
   const fav = Data.favorites?.has(s.id);
   const isToday = TodayFocusId === s.id;
+  const provenance = strategyProvenance(s);
+  const examplePreview = s.example ? truncateText(String(s.example).replace(/\s+/g, " "), 170) : "";
   return `
     <div class="card" data-id="${escapeHtml(s.id)}">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
         <div class="card-meta">${escapeHtml(s.category || "")}${isToday ? ' <span class="tag-pill">Today\'s focus</span>' : ""}${s.isCustom ? ' <span class="tag-pill">Custom</span>' : ""}</div>
-        <button class="fav-btn ${fav ? "on" : ""}" data-id="${escapeHtml(s.id)}" title="Favorite" aria-label="Favorite">${fav ? "♥" : "♡"}</button>
+        <div class="strategy-card-actions"><button class="copy-link-btn strategy-card-action" data-id="${escapeHtml(s.id)}" title="Copy strategy link" aria-label="Copy link to ${escapeHtml(s.title)}">🔗</button><button class="fav-btn strategy-card-action ${fav ? "on" : ""}" data-id="${escapeHtml(s.id)}" title="Favorite" aria-label="Favorite">${fav ? "♥" : "♡"}</button></div>
       </div>
       <div class="strategy-mini-title">${escapeHtml(s.title)}</div>
       <div class="strategy-mini-desc">${escapeHtml(s.description || "")}</div>
+      <div class="metadata-row">${provenance ? `<span class="meta-badge provenance">${escapeHtml(provenance)}</span>` : ""}${s.telStage ? `<span class="meta-badge stage">${escapeHtml(s.telStage)} stage</span>` : ""}${(s.indicators || []).map((x) => `<span class="meta-badge oktle">OKTLE ${escapeHtml(x)}</span>`).join("")}</div>
+      ${examplePreview ? `<div class="example-preview"><strong>Example in action:</strong> ${escapeHtml(examplePreview)}</div>` : ""}
+      <div class="evidence-line"><strong>Evidence:</strong> ${escapeHtml(strategyEvidence(s))}</div>
       <div class="card-tags">
         ${(s.subjects || []).slice(0, 3).map((x) => `<span class="tag subject">${escapeHtml(x)}</span>`).join("")}
         ${(s.grades || []).slice(0, 2).map((x) => `<span class="tag grade">${escapeHtml(x)}</span>`).join("")}
@@ -892,6 +934,44 @@ function strategyCard(s) {
       </div>
     </div>
   `;
+}
+
+function truncateText(value, max) {
+  if (value.length <= max) return value;
+  return value.slice(0, max - 1).replace(/\s+\S*$/, "") + "…";
+}
+
+function strategyProvenance(s) {
+  if (!s.example) return "";
+  return s.exampleIsFromBook === true ? "From the book" : "Illustrative example";
+}
+
+function strategyEvidence(s) {
+  if (s.effectSize != null) return `Hattie: ${s.effectSizeLabel || "reported influence"}, d = ${s.effectSize}`;
+  if (s.evidenceType === "peer-reviewed") return `Peer-reviewed source${s.sourceName ? " · " + s.sourceName : ""}`;
+  if (s.evidenceType === "book") return `Book source${s.sourceName ? " · " + s.sourceName : ""}`;
+  if (s.evidenceType === "practitioner") return `Practitioner / implementation source${s.sourceName ? " · " + s.sourceName : ""}`;
+  return s.sourceName || "Research-informed; review the linked source and local student evidence";
+}
+
+async function copyStrategyLink(id, button) {
+  const url = `${location.href.split("#")[0]}#/strategy/${encodeURIComponent(id)}`;
+  try {
+    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(url);
+    else {
+      const input = document.createElement("textarea");
+      input.value = url; input.style.position = "fixed"; input.style.opacity = "0";
+      document.body.appendChild(input); input.select(); document.execCommand("copy"); input.remove();
+    }
+    if (button) { const old = button.textContent; button.textContent = "✓"; setTimeout(() => { button.textContent = old; }, 1200); }
+    toast("Strategy link copied");
+  } catch { toast("Copy failed — use the address bar link"); }
+}
+
+function wireStrategyCopyButtons(root) {
+  root.querySelectorAll(".copy-link-btn").forEach((button) => {
+    button.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); copyStrategyLink(button.dataset.id, button); });
+  });
 }
 
 // ------------------ Strategy Detail ------------------
@@ -910,11 +990,13 @@ async function renderStrategyDetail(view, params) {
     <div class="actions-row">
       <button class="btn ${fav ? "gold" : ""}" id="detail-fav">${fav ? "♥ Favorited" : "♡ Add to favorites"}</button>
       <button class="btn" id="detail-tried">✎ I tried this</button>
+      <button class="btn" id="detail-copy">🔗 Copy link</button>
       ${Data.triedStrategyIds().has(s.id) ? '<span class="tried-badge">Tried</span>' : ""}
     </div>
 
     <div class="card">
-      <div class="card-meta">${escapeHtml(s.category || "")}${s.telStage ? " · " + escapeHtml(s.telStage) : ""}</div>
+      <div class="card-meta">${escapeHtml(s.category || "")}</div>
+      <div class="metadata-row">${strategyProvenance(s) ? `<span class="meta-badge provenance">${escapeHtml(strategyProvenance(s))}</span>` : ""}${s.telStage ? `<span class="meta-badge stage">${escapeHtml(s.telStage)} stage</span>` : ""}${(s.indicators || []).map((x) => `<span class="meta-badge oktle">OKTLE ${escapeHtml(x)}</span>`).join("")}</div>
       <div class="card-tags" style="margin-bottom:12px;">
         ${(s.subjects || []).map((x) => `<span class="tag subject">${escapeHtml(x)}</span>`).join("")}
         ${(s.grades || []).map((x) => `<span class="tag grade">${escapeHtml(x)}</span>`).join("")}
@@ -922,7 +1004,7 @@ async function renderStrategyDetail(view, params) {
       </div>
 
       ${s.howTo ? `<div class="section"><h3 class="subsection-title">How to use it</h3><p>${nl2br(s.howTo)}</p></div>` : ""}
-      ${s.example ? `<div class="section"><h3 class="subsection-title">Classroom example</h3><p>${nl2br(s.example)}</p></div>` : ""}
+      ${s.example ? `<div class="section example-in-action"><div class="example-heading"><h3 class="subsection-title">Example in action</h3><span class="meta-badge provenance">${escapeHtml(strategyProvenance(s))}</span></div><p>${nl2br(s.example)}</p></div>` : ""}
       ${s.weeklyProduct ? `<div class="section"><h3 class="subsection-title">Weekly product</h3><p>${nl2br(s.weeklyProduct)}</p></div>` : ""}
 
       ${video ? `<div class="section">${videoCard(video)}</div>` : ""}
@@ -933,11 +1015,7 @@ async function renderStrategyDetail(view, params) {
           <a href="${escapeHtml(s.sourceUrl)}" target="_blank" rel="noopener">${escapeHtml(s.sourceName || s.sourceUrl)}</a>
         </div>` : ""}
 
-      ${s.evidenceSourceUrl && s.evidenceSourceUrl !== s.sourceUrl ? `
-        <div class="source-block">
-          <span class="source-label">Evidence</span>
-          <a href="${escapeHtml(s.evidenceSourceUrl)}" target="_blank" rel="noopener">${escapeHtml(s.evidenceType || s.evidenceSourceUrl)}${s.effectSizeLabel ? " — effect size " + escapeHtml(s.effectSizeLabel) : ""}</a>
-        </div>` : ""}
+      <div class="source-block evidence-source-block"><span class="source-label">Evidence</span><span>${escapeHtml(strategyEvidence(s))}</span>${s.evidenceSourceUrl ? ` · <a href="${escapeHtml(s.evidenceSourceUrl)}" target="_blank" rel="noopener">Review evidence source</a>` : ""}</div>
     </div>
   `;
 
@@ -947,6 +1025,7 @@ async function renderStrategyDetail(view, params) {
     btn.classList.toggle("gold", on);
     btn.textContent = on ? "♥ Favorited" : "♡ Add to favorites";
   });
+  $("#detail-copy").addEventListener("click", (event) => copyStrategyLink(s.id, event.currentTarget));
 
   $("#detail-tried").addEventListener("click", () => openTriedModal(s));
 }
@@ -2768,6 +2847,13 @@ function _searchIndex() {
     { label: "Weekly Plan", sub: "Tool", href: "#/weekly-plan" },
     { label: "Lesson Plan Templates", sub: "Templates", href: "#/lesson-plans" },
     { label: "Toolkit Examples", sub: "Examples", href: "#/toolkit-examples" },
+    { label: "Elementary Science (K–5)", sub: "Foundations", href: "#/early-science" },
+    { label: "Elementary Social Studies (K–5)", sub: "Foundations", href: "#/early-social-studies" },
+    { label: "Secondary Reading (6–12)", sub: "Foundations", href: "#/secondary-reading" },
+    { label: "Secondary Math (6–12)", sub: "Foundations", href: "#/secondary-math" },
+    { label: "Secondary Writing (6–12)", sub: "Foundations", href: "#/secondary-writing" },
+    { label: "Student Voice & Engagement Evidence", sub: "Teacher tool", href: "#/student-voice" },
+    { label: "Accessibility & Learner Supports", sub: "Teacher guide", href: "#/learner-supports" },
     { label: "About Quick PD", sub: "About", href: "#/about" },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
   return idx;

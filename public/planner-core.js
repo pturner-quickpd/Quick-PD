@@ -38,6 +38,7 @@
     { key: "FineArts_Music",     label: "Fine Arts: Music — Band & Music Appreciation (2023)", url: "https://oklahoma.gov/education/services/standards-learning/fine-arts.html" },
     { key: "FineArts_MediaArts", label: "Fine Arts: Media Arts (2023)", url: "https://oklahoma.gov/education/services/standards-learning/fine-arts.html" },
     { key: "ComputerScience",    label: "Computer Science (2023)", url: "https://oklahoma.gov/education/services/standards-learning/computer-science.html" },
+    { key: "PhysicalEducation",  label: "Physical Education (2026)", url: "https://oklahoma.gov/education/services/standards-learning/physical-education1.html" },
   ];
 
   // Sort grades in canonical PK → HS course order
@@ -52,6 +53,7 @@
     "Proficient (Level I)","Advanced (Level II)","Accomplished (Level III)",
     "Band / Secondary Music — Novice","Band / Secondary Music — Intermediate","Band / Secondary Music — Proficient","Band / Secondary Music — Advanced","Band / Secondary Music — Accomplished",
     "Media — High School (9–12)","Grades 9–10 · Level 1","Grades 11–12 · Level 2",
+    "PK–5","PreK–K","Grades 1–2","Grades 3–5","Grades 6–8","Grades 6–8 · Levels 1–2","Grades 9–12","Grades 9–12 · Levels 1–2",
     "Unspecified",
   ];
   function gradeSort(a, b) {
