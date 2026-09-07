@@ -632,10 +632,853 @@
     ],
   };
 
+    var SCIENCE = {
+  "slug": "early-science",
+  "title": "Early Science (K–5)",
+  "lede": "Science in the elementary classroom is figuring out how the world works — starting with a puzzling phenomenon, making sense of it through talk and models, and writing to defend claims with evidence. Every recommendation below is anchored in the NRC Framework, NGSS, IES/WWC guidance, or the STEM Teaching Tools practice briefs from the University of Washington.",
+  "guides": [
+    {
+      "label": "NRC Consensus Report",
+      "title": "A Framework for K–12 Science Education: Practices, Crosscutting Concepts, and Core Ideas (2012)",
+      "url": "https://www.nap.edu/catalog/13165/a-framework-for-k-12-science-education-practices-crosscutting-concepts"
+    },
+    {
+      "label": "IES Practice Guide",
+      "title": "Teaching Academic Content and Literacy to English Learners in Elementary and Middle School (2014)",
+      "url": "https://ies.ed.gov/ncee/wwc/practiceguide/19"
+    },
+    {
+      "label": "Practice Briefs",
+      "title": "STEM Teaching Tools — Research-to-practice briefs (Univ. of Washington, IES-funded)",
+      "url": "https://stemteachingtools.org/tools"
+    }
+  ],
+  "strategies": [
+    {
+      "libraryId": null,
+      "title": "Anchor every unit in a real phenomenon",
+      "band": "K–5 · Launch each 2–4 week unit",
+      "why": "The NRC Framework and NGSS reorganize science instruction around explaining phenomena and solving problems — not covering topics. A well-chosen anchoring phenomenon gives students a reason to learn the disciplinary core ideas and use the science and engineering practices to make sense of it.",
+      "moves": [
+        "Open with the phenomenon (video, demo, or student experience) — 2–5 minutes, no vocabulary preview.",
+        "Elicit initial ideas: students draw an initial model and write 'I notice / I wonder' in the notebook.",
+        "Post a class 'Driving Question Board' of student questions; revisit and cross off as you build explanations.",
+        "Close each lesson with 'How does today's investigation help us explain the phenomenon?'"
+      ],
+      "evidence": "NRC (2012) A Framework for K–12 Science Education — phenomena drive three-dimensional learning (Practices + Crosscutting Concepts + DCIs). Ambitious Science Teaching (Windschitl, Thompson, Braaten, 2018) — anchoring events are one of four core practices.",
+      "video": {
+        "title": "introduction to anchoring events",
+        "channel": "Ambitious Science Teaching",
+        "url": "https://www.youtube.com/watch?v=Ifxg_qR29H4"
+      },
+      "moreVideos": [
+        {
+          "title": "Putting Student Curiosity at the Heart of Scientific Inquiry",
+          "channel": "Edutopia",
+          "url": "https://www.youtube.com/watch?v=xaltB0GQjOE"
+        },
+        {
+          "title": "STEM Teaching Tools — Practice Briefs (phenomena, SEPs, CCCs)",
+          "channel": "STEM Teaching Tools / Univ. of Washington",
+          "url": "https://stemteachingtools.org/tools"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Productive science talk — talk moves + Scientists Circle",
+      "band": "K–5 · Woven into every investigation",
+      "why": "Talk is how children make thinking visible in science — sharing, clarifying, critiquing, and building on ideas. Structured talk moves ensure it isn't just the same three kids each time. STEM Teaching Tools calls productive talk one of the highest-leverage moves a science teacher can make.",
+      "moves": [
+        "Post 4–6 talk moves visibly: 'Say more…', 'Who can revoice that?', 'Do you agree/disagree? Why?', 'What's your evidence?'",
+        "Use a Scientists Circle (horseshoe on the rug) for whole-class sensemaking after an investigation.",
+        "Give at least one small-group turn before whole-class share — the talker is the learner.",
+        "Track participation on a class list; name one student idea back to them ('Marcus's claim was…') the next day."
+      ],
+      "evidence": "STEM Teaching Tools Brief #6 (Michaels & O'Connor) — productive talk moves; Brief #48 — teacher-guided classroom conversation. Hattie: classroom discussion d ≈ 0.82.",
+      "video": {
+        "title": "Encouraging Collaboration With a Scientists Circle",
+        "channel": "Edutopia",
+        "url": "https://www.youtube.com/watch?v=f__Jg6_Xo7o"
+      },
+      "moreVideos": [
+        {
+          "title": "Eliciting students' ideas overview",
+          "channel": "Ambitious Science Teaching",
+          "url": "https://www.youtube.com/watch?v=lEDvaIsZOek"
+        },
+        {
+          "title": "STEM Teaching Tools Brief #6 — Getting students to learn science by productively talking",
+          "channel": "STEM Teaching Tools",
+          "url": "https://stemteachingtools.org/brief/6"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Science notebooks + Claim–Evidence–Reasoning (CER)",
+      "band": "1–5 · Every investigation",
+      "why": "A science notebook is where students record data, revise models, and write explanations. Framing every written explanation as Claim–Evidence–Reasoning (McNeill & Krajcik) makes scientific writing concrete and gives teachers a formative window into student thinking.",
+      "moves": [
+        "Set the notebook page: date, question, prediction, data (table/sketch), claim, evidence, reasoning.",
+        "Model one full CER in front of the class the first three times — think-aloud how the evidence links to the claim.",
+        "Post sentence stems: 'My claim is ___. My evidence is ___. This shows ___ because (science idea) ___.'",
+        "Give feedback on reasoning, not spelling — the reasoning sentence is where the science thinking lives."
+      ],
+      "evidence": "McNeill & Krajcik (2012) Supporting Grade 5–8 Students in Constructing Explanations in Science — the CER framework. NRC Framework — SEP 7 (Engaging in Argument from Evidence) is a K–12 progression starting in Kindergarten.",
+      "video": {
+        "title": "CER - Claim Evidence Reasoning",
+        "channel": "Bozeman Science (Paul Andersen)",
+        "url": "https://www.youtube.com/watch?v=5KKsLuRPsvU"
+      },
+      "moreVideos": [
+        {
+          "title": "How to Set Up a Highly Engaged Science Classroom",
+          "channel": "Edutopia",
+          "url": "https://www.youtube.com/watch?v=YtggVEmuyEM"
+        },
+        {
+          "title": "Using the Claim, Evidence, Reasoning (CER) Framework in Elementary Grades",
+          "channel": "Edutopia (Brunsell)",
+          "url": "https://www.edutopia.org/blog/science-inquiry-claim-evidence-reasoning-eric-brunsell"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Explicit vocabulary + language routines for MLLs in science",
+      "band": "K–5 · Every lesson",
+      "why": "Science is a language-rich subject, and multilingual learners need repeated, structured chances to use the target vocabulary in speaking and writing. The IES English Learners Practice Guide recommends teaching a small set of academic vocabulary intensively, and integrating oral and written English into content-area teaching.",
+      "moves": [
+        "Pick 3–5 tier-3 words per lesson (e.g. evaporate, condense); teach with student-friendly definitions, images, and a physical gesture.",
+        "Use a word sort or Frayer card as the daily warm-up; students discuss why words belong together in pairs.",
+        "Give a sentence frame for every response: 'I predict ___ because ___.' 'The ___ caused the ___ to ___.'",
+        "End with a 2-minute 'talk-and-write': partner talks first, then each student writes one sentence using two of the target words."
+      ],
+      "evidence": "IES Practice Guide (2014) Recommendations 1 & 2 (Strong evidence for intensive academic vocabulary; Moderate for integrating oral/written language into content teaching). NAP (2018) English Learners in STEM Subjects — repeated productive use is essential.",
+      "video": {
+        "title": "Making the connection: Vascular plants and straws (5th-grade ELLs)",
+        "channel": "Colorín Colorado",
+        "url": "https://www.youtube.com/watch?v=svP7hczkh3Y"
+      },
+      "moreVideos": [
+        {
+          "title": "Hands-on science fun with ELLs",
+          "channel": "Colorín Colorado",
+          "url": "https://www.youtube.com/watch?v=Jj3ZLznJwTE"
+        },
+        {
+          "title": "60-Second Strategy: Science Word Sorts",
+          "channel": "Edutopia",
+          "url": "https://www.youtube.com/watch?v=VdJ2kLbcSTU"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Hands-on investigation tied to the phenomenon (5E)",
+      "band": "K–5 · At least 1×/week",
+      "why": "Elementary science should be a doing subject. The BSCS 5E instructional model — Engage, Explore, Explain, Elaborate, Evaluate — sequences investigation so that students explore before the teacher explains, so the vocabulary lands on top of experience, not before it.",
+      "moves": [
+        "Engage: return to the anchor phenomenon or a puzzling sub-question — 3–5 minutes.",
+        "Explore: students investigate with real materials in pairs (data goes in the notebook, not on a worksheet).",
+        "Explain: teacher introduces the scientific term or model — after students have described what they saw.",
+        "Elaborate + Evaluate: apply the idea to a new situation; use a CER or exit ticket as the check."
+      ],
+      "evidence": "Bybee et al. (2006) — The BSCS 5E Instructional Model: Origins, Effectiveness, and Applications. NRC Framework — students learn science by engaging in the practices, not by reading about them. Hattie: inquiry-based teaching d ≈ 0.46 when paired with explicit explanation.",
+      "video": {
+        "title": "4 Nature Experiments to Bring Science to Life",
+        "channel": "Edutopia",
+        "url": "https://www.youtube.com/watch?v=L1jxX0erH-0"
+      },
+      "moreVideos": [
+        {
+          "title": "A Project-Based Approach to Teaching Elementary Science",
+          "channel": "Edutopia",
+          "url": "https://www.youtube.com/watch?v=wSDOQ7_AAdk"
+        },
+        {
+          "title": "OpenSciEd — free, phenomenon-driven K–12 curriculum (exemplars)",
+          "channel": "OpenSciEd",
+          "url": "https://www.openscied.org/"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Read complex informational science text — integrate with literacy",
+      "band": "K–5 · 2–3× per unit",
+      "why": "Text is one of the ways scientists share evidence, and complex informational text is where knowledge — and vocabulary — actually builds. Reading science texts inside science (not just during ELA) doubles the return on the block: students build background knowledge for the phenomenon and practice comprehension on grade-level text.",
+      "moves": [
+        "Choose a short (200–500 word) text tied to this week's phenomenon; read it AFTER the first investigation, not before.",
+        "First read for gist; second read with a purpose ('Underline evidence that could support/refute our claim').",
+        "Use a graphic organizer that matches the text structure (cause/effect, sequence, compare/contrast).",
+        "Close with a written response using text evidence: '___. The text says ___ (p. __), which shows ___.'"
+      ],
+      "evidence": "IES Practice Guide (2014) EL Recommendation 1 (Strong) — informational text is the platform for intensive vocabulary. Cervetti et al. (2012) — integrating literacy and science instruction produced significant gains in both science understanding and reading comprehension.",
+      "video": {
+        "title": "Making Science Connections Across the Curriculum",
+        "channel": "Edutopia",
+        "url": "https://www.youtube.com/watch?v=4H_xlkNSRLk"
+      },
+      "moreVideos": [
+        {
+          "title": "Melissa Stewart: Getting Kids Excited About All Kinds of Science (nonfiction)",
+          "channel": "Reading Rockets",
+          "url": "https://www.youtube.com/watch?v=QwYuwD8KBOI"
+        },
+        {
+          "title": "Ambitious Science Teaching — Elementary Series (K–2 modeling with text)",
+          "channel": "Ambitious Science Teaching",
+          "url": "https://ambitiousscienceteaching.org/elementary-series/"
+        }
+      ]
+    }
+  ],
+  "lookFors": [
+    "A visible phenomenon and driving question board — not just a topic on the board.",
+    "Kids are talking science to each other, using talk moves and evidence — not just answering the teacher.",
+    "Every child has a science notebook with sketches, data, and at least one CER per week.",
+    "Hands-on materials on desks, and target vocabulary landing after the investigation — not before."
+  ]
+};
+
+  var SOCIAL_STUDIES = {
+  "slug": "early-social-studies",
+  "title": "Early Social Studies (K–5)",
+  "lede": "Social studies in the elementary grades is where children learn to ask questions about their world, read evidence, and act as members of a community. Every strategy below is anchored in the C3 Framework, NCSS guidance, the Library of Congress and Stanford History Education Group primary-source work, iCivics, and the Oklahoma Academic Standards for the Social Studies.",
+  "guides": [
+    {
+      "label": "NCSS Framework",
+      "title": "The College, Career, and Civic Life (C3) Framework for Social Studies State Standards",
+      "url": "https://www.socialstudies.org/standards/c3"
+    },
+    {
+      "label": "Oklahoma Standards",
+      "title": "Oklahoma Academic Standards for the Social Studies (OSDE, 2025)",
+      "url": "https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/social-studies/Final%202025%20SS%20OAS.pdf"
+    },
+    {
+      "label": "Library of Congress",
+      "title": "Teacher's Guides and Primary Source Analysis Tool",
+      "url": "https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/guides/"
+    }
+  ],
+  "strategies": [
+    {
+      "libraryId": null,
+      "title": "Inquiry Design Model — start with a compelling question",
+      "band": "K–5 · 1–2 week inquiry arc",
+      "why": "The C3 Framework's Inquiry Arc puts a compelling question at the heart of every unit, with supporting questions, sources, and a task where students take informed action. In K–2 the compelling question is concrete and personal ('What makes a good rule?'); by grades 3–5 it stretches to community, state, and nation.",
+      "moves": [
+        "Write ONE compelling question on the board — student-facing, arguable, and worth a week. In grade 3 Oklahoma studies: 'Whose land is this?' or 'What makes a community?'",
+        "Break it into 3–4 supporting questions students can actually answer with a source, a map, or an interview.",
+        "Pair each supporting question with 1–2 sources (photo, map, chart, short text) — not a textbook chapter.",
+        "End the arc with a summative task AND a small 'informed action' — a letter, a poster, a class vote, a note to the principal."
+      ],
+      "evidence": "NCSS C3 Framework (2013), Dimension 1: Developing Questions and Planning Inquiries. Grant, Swan, & Lee's Inquiry Design Model (IDM) operationalizes the arc for K–12 classrooms.",
+      "video": {
+        "title": "National Geographic Geo-Inquiry Process — Capstone Video",
+        "channel": "Brennan Caverhill / National Geographic Education",
+        "url": "https://www.youtube.com/watch?v=djEDXukSGpQ"
+      },
+      "moreVideos": [
+        {
+          "title": "Exploring the World through Geo-Inquiry and Writing",
+          "channel": "National Geographic Education",
+          "url": "https://www.youtube.com/watch?v=iOm2N06L5RM"
+        },
+        {
+          "title": "Inquiry Design Model — free K–12 blueprints and toolkit",
+          "channel": "C3 Teachers",
+          "url": "https://c3teachers.org/idm/"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Primary source analysis — Observe · Reflect · Question",
+      "band": "K–5 · 15–20 min, 2–3× per week",
+      "why": "Children can 'read' a photograph, map, or artifact long before they can decode a document. The Library of Congress 'Analyzing Primary Sources' routine — Observe, Reflect, Question — gives every grade a shared protocol and every teacher a scaffold.",
+      "moves": [
+        "Project one primary source. Silent looking for 60 seconds. No pointing, no talking.",
+        "Chart three columns: OBSERVE (what do you see?), REFLECT (what do you think is happening?), QUESTION (what do you wonder?).",
+        "Take 4–5 responses per column; press for evidence — 'What in the picture makes you say that?'",
+        "Close by revealing source information (who, when, where). Ask: 'Does knowing that change what we think?'"
+      ],
+      "evidence": "Library of Congress Teachers Program 'Analyzing Primary Sources' tool (2015). NCSS C3 Dimension 3: Evaluating Sources and Using Evidence.",
+      "video": {
+        "title": "Engaging Young Learners with Primary Sources",
+        "channel": "Library of Congress",
+        "url": "https://www.youtube.com/watch?v=RKC88CW3h00"
+      },
+      "moreVideos": [
+        {
+          "title": "Evaluating Primary Sources Through a See, Think, Wonder Routine",
+          "channel": "Edutopia",
+          "url": "https://www.edutopia.org/video/evaluating-primary-sources-see-think-wonder/"
+        },
+        {
+          "title": "LOC Teacher's Guides & Primary Source Analysis Tool (PDF)",
+          "channel": "Library of Congress",
+          "url": "https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/guides/"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Reading Like a Historian — sourcing, contextualizing, corroborating",
+      "band": "3–5 · Once per unit",
+      "why": "SHEG's Reading Like a Historian teaches students the four moves historians use: sourcing (who made this?), contextualization (when and where?), close reading, and corroboration (do the sources agree?). Even in grade 3, kids can compare two short accounts of the same event and notice they don't match.",
+      "moves": [
+        "Give students TWO short accounts of the same event (a settler's diary AND a Cherokee oral history; a newspaper AND a photo caption).",
+        "Model sourcing aloud: 'Who wrote this? When? Why?' Post the four historian questions on the wall.",
+        "Chart what each source says. Circle where they agree (corroboration) and where they don't.",
+        "Ask the guiding question: 'Which account do you trust more, and why?' Every claim needs a source."
+      ],
+      "evidence": "Wineburg, Martin, & Monte-Sano, Reading Like a Historian (Teachers College Press, 2012). Stanford History Education Group / Digital Inquiry Group lesson library.",
+      "video": {
+        "title": "Reading Like a Historian — Introduction",
+        "channel": "Stanford History Education Group",
+        "url": "https://www.youtube.com/watch?v=7IJFIx4w56U"
+      },
+      "moreVideos": [
+        {
+          "title": "Stanford History Education Group: Reading Like a Historian (overview)",
+          "channel": "Stanford History Education Group",
+          "url": "https://www.youtube.com/watch?v=CnWnLNSZTAg"
+        },
+        {
+          "title": "Free K–12 history lessons — Digital Inquiry Group (formerly SHEG)",
+          "channel": "Digital Inquiry Group",
+          "url": "https://sheg.stanford.edu/history-lessons"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Structured Academic Controversy — every voice, every side",
+      "band": "3–5 · 30–45 min lesson",
+      "why": "SAC is a structured discussion protocol in which pairs argue one side of an issue, then switch sides, then drop positions to reach consensus. Unlike open debate, SAC forces students to understand — not just defeat — the other side. It's the workhorse civil-discourse routine in the C3 civics dimension.",
+      "moves": [
+        "Frame a genuine question with two defensible answers ('Should our town build a new park OR fix the old one?'). Give each pair a short background text with both views.",
+        "Round 1: Pair A argues Side 1 to Pair B; Pair B listens and restates until A agrees they've been heard. Then switch.",
+        "Round 2: Pairs SWAP sides and argue the opposite position — using at least one new piece of evidence.",
+        "Round 3: Drop the sides. As a group of four, reach the best consensus you can. Report to the class on where you agreed and what still divides you."
+      ],
+      "evidence": "Johnson & Johnson (1988, 1995), Structured Academic Controversy. NCSS Position Statement on Academic Freedom and the Social Studies Teacher. Hattie: classroom discussion d ≈ 0.82 (general routine).",
+      "video": {
+        "title": "Teach My Class With Me | Structured Academic Controversy",
+        "channel": "YouTube (classroom demonstration)",
+        "url": "https://www.youtube.com/watch?v=nlt5uOylCWU"
+      },
+      "moreVideos": [
+        {
+          "title": "Structured Academic Controversies for Civics Classrooms",
+          "channel": "YouTube (civics PD)",
+          "url": "https://www.youtube.com/watch?v=q7ECTdyPt3I"
+        },
+        {
+          "title": "Structured Academic Controversy (SAC) — teaching guide",
+          "channel": "TeachingHistory.org (National History Education Clearinghouse)",
+          "url": "https://teachinghistory.org/teaching-materials/teaching-guides/structured-academic-controversy-sac/"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Geographic & historical thinking through maps and place",
+      "band": "K–5 · Woven into every unit",
+      "why": "Maps, timelines, and place-based inquiry are how young children build the geographic and historical thinking the C3 Framework calls for. Start with the map of the classroom in kindergarten and grow to the map of Oklahoma, its counties, and its Native Nations by grade 4.",
+      "moves": [
+        "Every social studies unit gets a map on the wall — updated by students, not the teacher.",
+        "Teach the five themes (location, place, human-environment interaction, movement, region) with the school as case study before the state or nation.",
+        "Grade 4 Oklahoma unit: overlay the Native Nations map on the modern county map. Ask: 'Whose land are we standing on?'",
+        "Timelines get physical — a clothesline across the room with student-made cards. Add one event per lesson."
+      ],
+      "evidence": "NCSS C3 Framework Dimension 2: Geographic Representations and Human-Environment Interaction. Oklahoma Academic Standards for Social Studies (2025), Grade 3–4 geography strand. National Geographic Geo-Inquiry Process.",
+      "video": {
+        "title": "Exploring Writing, Social Studies, and Math in a Map Challenge",
+        "channel": "Edutopia",
+        "url": "https://www.edutopia.org/video/map-challenge-elementary-writing-social-studies-math/"
+      },
+      "moreVideos": [
+        {
+          "title": "Using Place-Based Learning to Spark Inquiry",
+          "channel": "Edutopia",
+          "url": "https://www.edutopia.org/article/strategies-teaching-place-based-learning/"
+        },
+        {
+          "title": "Oklahoma Indian Education Lesson Plans (OSDE)",
+          "channel": "Oklahoma State Department of Education",
+          "url": "https://oklahoma.gov/education/services/american-indian-education/indian-education-lesson-plans.html"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Simulations & civic action — from mock election to community change",
+      "band": "K–5 · 1–2 simulations per year",
+      "why": "Simulations and small civic-action projects make abstract civic knowledge stick — a class election in K, a mock town hall in grade 3, a service-learning campaign in grade 5. iCivics' game-based simulations show measurable civic knowledge gains, and the C3 arc explicitly ends in 'taking informed action.'",
+      "moves": [
+        "Grades K–2: run a real class vote (snack, book, class name). Model the ballot, the count, and the peaceful transition.",
+        "Grades 3–4: mock town hall on a local issue — students take roles (mayor, business owner, resident, kid). Rules: cite evidence, no interrupting, one 30-second turn each.",
+        "Grade 5: pick one iCivics simulation (Cast Your Vote, Do I Have A Right?, Court Quest) and pair it with a real civic-action task (letter to a state legislator, playground redesign proposal).",
+        "Every simulation ends in a debrief: 'What did the role feel like? What surprised you? What would you do next?'"
+      ],
+      "evidence": "LeCompte et al. (2011, JSR): iCivics games produced significant gains in civic knowledge in randomized studies. NCSS C3 Dimension 4: Taking Informed Action. Oklahoma OAS Civics strand, K–5.",
+      "video": {
+        "title": "Sparking Civic Engagement by Building in Public Spaces",
+        "channel": "Edutopia",
+        "url": "https://www.edutopia.org/video/sparking-civic-engagement-building-public-spaces/"
+      },
+      "moreVideos": [
+        {
+          "title": "Back to School with iCivics",
+          "channel": "iCivics",
+          "url": "https://www.youtube.com/watch?v=GC8QnLRDQfM"
+        },
+        {
+          "title": "Cast Your Vote — iCivics classroom-ready election simulation",
+          "channel": "iCivics",
+          "url": "https://ed.icivics.org/resources/game/2190/cast-your-vote"
+        }
+      ]
+    }
+  ],
+  "lookFors": [
+    "A compelling question is visible in the room, and students can say what they're trying to figure out this week.",
+    "Every social studies lesson uses at least one primary source — a photo, map, artifact, or short document — and students are asked what they observe before they're told what it means.",
+    "Student talk sounds like historians: 'Who made this?' 'When?' 'Do the sources agree?' — with sentence stems on the wall.",
+    "Maps, timelines, and student work products are updated by students, not just posted by the teacher; at least one unit per year ends in informed action."
+  ]
+};
+
+  var PE = {
+  "slug": "early-pe",
+  "title": "Early PE (K–5)",
+  "lede": "Fundamental motor skills, health-related fitness, and responsible participation — taught with high activity time and clear cues. Every strategy below is aligned to Oklahoma's 2026 Academic Standards for Physical Education and SHAPE America's National Standards.",
+  "guides": [
+    {
+      "label": "Oklahoma Standards",
+      "title": "Oklahoma Academic Standards for Physical Education (2026)",
+      "url": "https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/physical-education/2026%20OAS%20Physical%20Education.pdf"
+    },
+    {
+      "label": "National Standards",
+      "title": "SHAPE America National Physical Education Standards (2024)",
+      "url": "https://shapeamerica.org/standards/pe/"
+    },
+    {
+      "label": "CDC / HHS Guidance",
+      "title": "Physical Activity Guidelines for Americans — Children & Adolescents",
+      "url": "https://www.cdc.gov/physical-activity-education/guidelines/index.html"
+    }
+  ],
+  "strategies": [
+    {
+      "libraryId": null,
+      "title": "Locomotor skill development — the K–2 alphabet of movement",
+      "band": "PK–2 · 10–15 min/lesson",
+      "why": "Walking, jogging, hopping, skipping, galloping, side-sliding, and leaping are the alphabet of every game that comes later. OAS PE 2026 S1.E1.K asks children to practice these while maintaining balance; by S1.E1.2 they must show a mature pattern.",
+      "moves": [
+        "Introduce ONE locomotor pattern per lesson with a 2-cue demo (e.g., skip = 'step-hop, step-hop; arms swing opposite').",
+        "Use scattered general-space practice — no lines, no waiting — so every child gets 30+ repetitions per skill.",
+        "Add music, tempo changes, and pathways (straight, zigzag, curved — S2.E2.K) to keep the drill from feeling like a drill.",
+        "Assess with a 30-second observation window per child against the 2–3 critical cues; reteach the pattern most students missed."
+      ],
+      "evidence": "Aligns with OAS PE 2026 S1.E1.K → S1.E1.2 (locomotor mature patterns) and SHAPE America Standard 1. Pangrazi's Dynamic Physical Education emphasizes short, distributed skill practice with maximum repetitions as the driver of fundamental-movement-skill (FMS) proficiency.",
+      "video": {
+        "title": "Get Your Kindergarteners Moving: PE Skills You NEED!",
+        "channel": "Prime Coaching Sport",
+        "url": "https://www.youtube.com/watch?v=ELegorB5270"
+      },
+      "moreVideos": [
+        {
+          "title": "Locomotor 'Roll & Go' w/ K–2",
+          "channel": "PE4EVERYKID",
+          "url": "https://www.youtube.com/watch?v=QXnJBVqDHCQ"
+        },
+        {
+          "title": "The 7 Basic Locomotion Movements for Sport",
+          "channel": "Prime Coaching Sport",
+          "url": "https://www.youtube.com/watch?v=rCg-MkVkxyU"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Manipulative skills — critical elements + cue words",
+      "band": "1–5 · 15–20 min/lesson",
+      "why": "Throwing, catching, dribbling, kicking, and striking each have 3–5 critical elements. Teach the elements explicitly with short cue words and children reach a mature pattern years earlier than through incidental practice. OAS PE 2026 walks these from S1.E11 (rolling/throwing) through S1.E22 (implement skills).",
+      "moves": [
+        "Post 2–4 cue words per skill (Overhand throw: 'side, T, step, throw, follow'). Every demo names them; every peer coach uses them.",
+        "Whole-part-whole: brief demo → isolated part practice (footwork alone, arm alone) → put it back together.",
+        "Every child has an object; use walls, targets, and self-toss stations before partner work — no 'watch while I throw' lines.",
+        "Progress non-dynamic → dynamic per OAS: stationary target (S1.E11.5a) → moving partner (S1.E12.5b) → small-sided game (S1.E12.5c)."
+      ],
+      "evidence": "Aligns with OAS PE 2026 S1.E11–S1.E22 and SHAPE America Standard 1 outcomes. Meta-analytic research on fundamental-movement-skill instruction (Logan et al., JTPE; Morgan et al., RQES) shows explicit cue-based teaching outperforms free play for FMS acquisition in K–5.",
+      "video": {
+        "title": "Overhand Throw Cues for PE and an Instant Activity Example",
+        "channel": "The PE Specialist",
+        "url": "https://www.youtube.com/watch?v=Nnosl8emm5E"
+      },
+      "moreVideos": [
+        {
+          "title": "Manipulative Skill: Catching — FMS Break Down",
+          "channel": "Northern Sydney Local Health District",
+          "url": "https://www.youtube.com/watch?v=lIhK8bpRaEg"
+        },
+        {
+          "title": "Elementary PE — Overhand Throwing at Targets",
+          "channel": "Round Hill PE",
+          "url": "https://www.youtube.com/watch?v=ge2oJ4WKs3M"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Small-sided games — max activity, no elimination",
+      "band": "K–5 · Core of every lesson",
+      "why": "The child sitting on the wall in Dodgeball is the child who most needed the movement. Small-sided games (2v2, 3v3, everyone-in variants) keep every student in the action and produce the touches, decisions, and MVPA time that big-team games destroy.",
+      "moves": [
+        "Cap teams at 2–4; run 3–6 games at once so every child is 3 feet from the ball, not 30.",
+        "Replace elimination with a 'reset' rule — tagged players do 5 jumping jacks and return, so no one loses activity time.",
+        "Modify one variable at a time (space, players, rules, equipment — the STEP framework) to differentiate up or down.",
+        "Debrief in 60 seconds: 'What worked? What will you try next round?' — this hits Standard 2 tactical thinking."
+      ],
+      "evidence": "Supports OAS PE 2026 S3.E2.K/2/5 (MVPA 50%+ of class time) and S1.E5.5b (traveling with manipulative skills in small-sided practice tasks). SHAPE America's 'Appropriate Instructional Practice Guidelines' explicitly identifies elimination games as inappropriate practice for K–5.",
+      "video": {
+        "title": "PE Games for ALL Skill Levels (no equipment needed!)",
+        "channel": "Prime Coaching Sport",
+        "url": "https://www.youtube.com/watch?v=nm8j8YRAn7U"
+      },
+      "moreVideos": [
+        {
+          "title": "9 P.E. Games For Elementary Classrooms (Low Prep!)",
+          "channel": "The Time-Crunched Teacher",
+          "url": "https://www.youtube.com/watch?v=66l6Npp9WtI"
+        },
+        {
+          "title": "OPEN Curriculum Modules (free lesson plans)",
+          "channel": "OPEN Physical Education",
+          "url": "https://openphysed.org/curriculummodules"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Fitness education — MVPA time, not fitness testing",
+      "band": "K–5 · Every lesson · Formal assessment 4–5",
+      "why": "The CDC/HHS Physical Activity Guidelines call for 60 minutes of moderate-to-vigorous activity daily for youth. OAS PE 2026 S3.E2 puts PE on the hook for at least 50% of class time in MVPA. Fitness knowledge is built through participation, not push-up counts.",
+      "moves": [
+        "Design lessons so movement is the default: instant activity from the moment students enter (no roll call sit-and-wait).",
+        "Teach body cues to K–2 (heart rate, breathing — S3.E3.K); introduce FITT to 4–5 (S3.E4.5).",
+        "Use FitnessGram in grades 4–5 as a personal-progress tool, not a competition; publish class norms, not individual scores.",
+        "Chart activity outside PE (S3.E1.5) with a weekly log; connect it to Standard 3 goals and PLE.PK-5.4 (personal relevance)."
+      ],
+      "evidence": "Aligns with OAS PE 2026 S3.E1–S3.E6 and the CDC/HHS Physical Activity Guidelines for Americans (2nd ed., 2018). SHAPE America position: fitness education, not fitness testing, is the K–5 focus; PACER and FitnessGram are Cooper Institute assessments used developmentally in grades 4–12.",
+      "video": {
+        "title": "Pacer Test Intro — Cardio Vascular Endurance Overview | Elementary PE",
+        "channel": "The PE Specialist",
+        "url": "https://www.youtube.com/watch?v=wtQKBYzTrvg"
+      },
+      "moreVideos": [
+        {
+          "title": "Tips for Giving the Pacer Test — Teaching Intro",
+          "channel": "The PE Specialist",
+          "url": "https://www.youtube.com/watch?v=ZPTIdDRVFXI"
+        },
+        {
+          "title": "Physical Activity Guidelines for Americans, 2nd Edition (HHS PDF)",
+          "channel": "U.S. Department of Health & Human Services",
+          "url": "https://www.cdc.gov/physical-activity/media/pdfs/Physical_Activity_Guidelines_2nd_edition.pdf"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Cooperative games & TPSR — teaching responsibility on purpose",
+      "band": "K–5 · Woven through every unit",
+      "why": "Hellison's Teaching Personal and Social Responsibility (TPSR) model gives K–5 students a ladder they can name: respect → participation → self-direction → helping others → transfer. It turns the affective standard from a slogan into a taught skill.",
+      "moves": [
+        "Post the five TPSR levels; open each class with a 60-second 'Level check' — students self-rate on a fist-to-five.",
+        "Use cooperative challenges (no-losers) that require every voice — 'Group Juggle,' 'All Aboard,' 'Human Knot' — before any competition.",
+        "Assign rotating roles (coach, referee, equipment manager) so leadership is taught, not left to the loudest child.",
+        "Close with a 60-second reflection tied to S4.E1/E2/E4 and PLE.PK-5.2: 'Where did you show responsibility today?'"
+      ],
+      "evidence": "Aligns with OAS PE 2026 Standard 4 (S4.E1–S4.E6) and PLE.PK-5.2. Hellison's TPSR model has 30+ years of peer-reviewed support; recent meta-analyses (e.g., Pozo, Grao-Cruces & Pérez-Ordás, 2018, European Physical Education Review) show positive effects on prosocial behavior, self-regulation, and engagement.",
+      "video": {
+        "title": "7 Team Building and Cooperative Games — Physical Education",
+        "channel": "Jakob Gyring",
+        "url": "https://www.youtube.com/watch?v=o7vjMQUgNmQ"
+      },
+      "moreVideos": [
+        {
+          "title": "Cooperative Games For Elementary PE",
+          "channel": "PLT4M",
+          "url": "https://www.youtube.com/watch?v=i8Ng8UDGlCo"
+        },
+        {
+          "title": "TPSR — Levels of Responsibility (Hellison model, explained)",
+          "channel": "The Physical Educator",
+          "url": "https://www.thephysicaleducator.com/blog/tpsr-levels-of-responsibility"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Movement concepts — space, effort, relationships, tactics",
+      "band": "K–5 · 5–10 min woven per lesson",
+      "why": "Movement concepts (space, effort, relationships) are the vocabulary students use to think about their own movement. Without them, a child can perform a skill but cannot adjust it. With them, kindergartners talk about 'general space' and fifth graders talk about 'open space' in a small-sided game.",
+      "moves": [
+        "Teach the vocabulary explicitly: self-space vs. general space; low/middle/high; slow/medium/fast; straight/zigzag/curved (S2.E1–S2.E3).",
+        "Constrain-to-teach: 'Dribble only in curved pathways.' 'Pass only into open space.' The concept has to be USED, not just named.",
+        "For grades 3–5, add tactical questions — 'How do you create space?' 'How do you close it down?' (S2.E1.5, S2.E5).",
+        "Use a Word Wall of Movement in the gym; refer to it in every debrief."
+      ],
+      "evidence": "Aligns with OAS PE 2026 Standard 2 (S2.E1–S2.E5) and SHAPE America Standard 2. Rooted in the Laban movement framework and the Teaching Games for Understanding (TGfU) tactical approach; both are foundational to modern elementary PE curriculum design (Pangrazi; Graham, Holt/Hale & Parker, 'Children Moving').",
+      "video": {
+        "title": "Teaching Elementary PE Movement Concepts",
+        "channel": "GVSU HPE",
+        "url": "https://www.youtube.com/watch?v=XLK8vmatFys"
+      },
+      "moreVideos": [
+        {
+          "title": "Pathways, Levels, and Directions — PE at Home",
+          "channel": "Leslee Mendez",
+          "url": "https://www.youtube.com/watch?v=h_JHIVK7pgg"
+        },
+        {
+          "title": "The 5 SHAPE America National Physical Education Standards",
+          "channel": "SHAPE America",
+          "url": "https://www.youtube.com/watch?v=3AD8yoT_2QA"
+        }
+      ]
+    }
+  ],
+  "lookFors": [
+    "Every child is moving — at least 50% of class time is spent in moderate-to-vigorous activity, and no student is eliminated or waiting in a long line.",
+    "2–4 skill cues are posted and named on every demo; peer feedback uses the same words.",
+    "Small-sided games (2v2, 3v3) — not full-class Kickball — are the default game format, so every child gets touches and decisions.",
+    "Standard 4 is taught, not assumed: TPSR levels, class norms, or role cards are visible, and the teacher closes with a reflection tied to responsibility or personal relevance (PLE.PK-5.2, PLE.PK-5.4)."
+  ]
+};
+
+  var FEEDBACK = {
+  "slug": "feedback",
+  "title": "Teacher–Student Feedback",
+  "lede": "Feedback is one of the highest-leverage moves in the research — Hattie reports an average effect of d ≈ 0.70 across studies, and Hattie & Timperley (2007) put it near d ≈ 0.79 when it is done well. The strategies below turn that finding into six teacher-facing routines that work from kindergarten through senior English.",
+  "guides": [
+    {
+      "label": "Foundational paper",
+      "title": "Hattie & Timperley (2007) — The Power of Feedback (Review of Educational Research)",
+      "url": "https://conselhopedagogico.tecnico.ulisboa.pt/files/sites/32/hattie-and-timperley-2007.pdf"
+    },
+    {
+      "label": "Meta-analysis",
+      "title": "Shute (2008) — Focus on Formative Feedback (Review of Educational Research 78:1)",
+      "url": "https://journals.sagepub.com/doi/10.3102/0034654307313795"
+    },
+    {
+      "label": "ASCD book",
+      "title": "Brookhart — How to Give Effective Feedback to Your Students (2nd ed.)",
+      "url": "https://www.ascd.org/books/how-to-give-effective-feedback-to-your-students-2nd-edition?variant=116066"
+    }
+  ],
+  "strategies": [
+    {
+      "libraryId": null,
+      "title": "Answer the three feedback questions",
+      "band": "K–12 · Every task, every conference",
+      "why": "Hattie & Timperley argue effective feedback answers three questions for the learner: Where am I going? How am I going? Where to next? When any one is missing, feedback degrades into praise or grading. Their synthesis put the average effect of well-formed feedback at d ≈ 0.79.",
+      "moves": [
+        "Post the success criteria in student-facing language before work begins — 'Where am I going?' is answered by the criteria, not by you.",
+        "When you respond to work, name one criterion the student is meeting and one that is not yet met — that answers 'How am I going?'",
+        "Close every feedback move with a next step the student can act on in the next 10 minutes — that is 'Where to next?'",
+        "Audit your own comments once a week: highlight each in three colors — goal, current state, next step. Add whatever color is missing."
+      ],
+      "evidence": "Hattie & Timperley (2007), Review of Educational Research — average feedback effect d = 0.79; the three questions frame the paper. Hattie, Visible Learning: feedback d = 0.70 across 12 meta-analyses.",
+      "video": {
+        "title": "The Power of Feedback: John Hattie",
+        "channel": "Digitally Enhanced Education Webinars",
+        "url": "https://www.youtube.com/watch?v=HbHt1OecP0U"
+      },
+      "moreVideos": [
+        {
+          "title": "John Hattie on Visible Learning and Feedback in the Classroom",
+          "channel": "Taylor & Francis Books",
+          "url": "https://www.youtube.com/watch?v=Vpq09eY4pZo"
+        },
+        {
+          "title": "Hattie & Timperley (2007) — The Power of Feedback (PDF)",
+          "channel": "Review of Educational Research",
+          "url": "https://conselhopedagogico.tecnico.ulisboa.pt/files/sites/32/hattie-and-timperley-2007.pdf"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Feed the task, the process, and self-regulation — not the self",
+      "band": "K–12 · During work time",
+      "why": "Hattie & Timperley distinguish four levels of feedback: task (FT), process (FP), self-regulation (FR), and self (FS). Task, process, and self-regulation feedback move learning; personal praise ('good job', 'you're so smart') does not — and Kluger & DeNisi found roughly one-third of feedback interventions actually depressed performance, most often when they shifted attention to the self.",
+      "moves": [
+        "Task-level: name what is correct or incorrect against the criteria ('Your claim is clear; two of three pieces of evidence don't yet support it').",
+        "Process-level: comment on the strategy, not the answer ('When you got stuck, you reread — try annotating the confusing paragraph next').",
+        "Self-regulation: hand the monitoring back ('Check your work against criterion 3 and mark the one line that needs the most revision').",
+        "Cut personal praise from written feedback. Save warmth for relationship, not for evaluating the person."
+      ],
+      "evidence": "Hattie & Timperley (2007) — four levels FT/FP/FR/FS. Kluger & DeNisi (1996), Psychological Bulletin: mean feedback d = 0.41; over one-third of interventions decreased performance, most often when feedback drew attention to the self.",
+      "video": {
+        "title": "Descriptive Feedback — A Deeper Dive",
+        "channel": "Edmonton Regional Learning Consortium (ERLC)",
+        "url": "https://www.youtube.com/watch?v=QjxUEdoaOGQ"
+      },
+      "moreVideos": [
+        {
+          "title": "Kluger & DeNisi (1996) — The Effects of Feedback Interventions on Performance",
+          "channel": "APA PsycNet",
+          "url": "https://psycnet.apa.org/record/1996-02773-003"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Rubric-referenced, descriptive feedback",
+      "band": "Grades 2–12 · Any product task",
+      "why": "Sadler argued students can only close the gap if they can see the standard, judge current work against it, and know what to do. Wiliam calls this 'descriptive feedback' — comments students can act on, tied to explicit criteria rather than a grade. Shute's synthesis is consistent: specific, criterion-referenced feedback beats normative or evaluative feedback.",
+      "moves": [
+        "Give the rubric to students before the task — and rehearse it on an anonymous sample so 'proficient' means the same thing to every student.",
+        "Comment against the rubric row, not in the margin at random — 'Row 2 — Evidence: 3/5. Two quotes are relevant but not explained.'",
+        "Use two-column feedback: What I see (evidence from your work) | What to try (specific action).",
+        "Delay the grade. Return the work with feedback only; require a revision before the score is posted."
+      ],
+      "evidence": "Sadler (1989), Instructional Science — formative assessment and design of instructional systems. Shute (2008), Review of Educational Research 78(1): specific, task-focused, timely feedback is the strongest formative move. Wiliam (2011/2018), Embedded Formative Assessment.",
+      "video": {
+        "title": "Helping Students Look Beyond Grades With Visual Rubrics",
+        "channel": "Edutopia",
+        "url": "https://www.edutopia.org/video/helping-students-look-beyond-grades-with-visual-rubrics/"
+      },
+      "moreVideos": [
+        {
+          "title": "EduTip 4: Hold off on most feedback until AFTER a task is done",
+          "channel": "Cult of Pedagogy",
+          "url": "https://www.youtube.com/watch?v=UTUT-XX-Ih4"
+        },
+        {
+          "title": "Delaying the Grade: How to Get Students to Read Feedback",
+          "channel": "Cult of Pedagogy",
+          "url": "https://www.cultofpedagogy.com/delayed-grade/"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Timely, specific written feedback students actually use",
+      "band": "Grades 3–12 · After a graded task",
+      "why": "Shute's Focus on Formative Feedback synthesizes decades of research: feedback works when it is specific, task-focused, timely, and moderate in length — not when it is vague, evaluative, or arrives after students have moved on. Written feedback that never gets acted on is a workload sink with no achievement return.",
+      "moves": [
+        "Choose 2–3 focused comments per paper aligned to the current learning targets — not a red-pen sweep.",
+        "Comment in the second person and imperative mood: 'Combine these two sentences to show cause.' Not 'awkward.'",
+        "Return work within one class cycle. Feedback more than a week old competes with new instruction and rarely gets read.",
+        "Build a 15-minute 'act on feedback' block into the next lesson: students revise or reattempt using the comments before anything new is added."
+      ],
+      "evidence": "Shute (2008), Review of Educational Research 78(1) — Focus on Formative Feedback (guidelines: specific, timely, actionable). Brookhart (2017), ASCD — How to Give Effective Feedback to Your Students.",
+      "video": {
+        "title": "87: Moving from Feedback to Feedforward",
+        "channel": "Cult of Pedagogy",
+        "url": "https://www.youtube.com/watch?v=LkoPALs5ioQ"
+      },
+      "moreVideos": [
+        {
+          "title": "Shute (2008) — Focus on Formative Feedback",
+          "channel": "Review of Educational Research",
+          "url": "https://journals.sagepub.com/doi/10.3102/0034654307313795"
+        },
+        {
+          "title": "How to Give Effective Feedback to Your Students (sample chapters)",
+          "channel": "ASCD",
+          "url": "https://files.ascd.org/staticfiles/ascd/pdf/siteASCD/publications/books/How-to-Give-Effective-Feedback-to-Your-Students-2nd-Edition-sample-chapters.pdf"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "In-the-moment verbal feedback: the 3–5 minute conference",
+      "band": "K–12 · During independent work",
+      "why": "Wiliam's Embedded Formative Assessment argues the most powerful feedback is verbal, short, and delivered while the work is still moving. A quick conference — research the student, decide what to teach, teach one thing, ask them to try it — outperforms marginal comments returned days later.",
+      "moves": [
+        "Circulate with a clipboard and a class list; conference with 4–6 students per block, not all of them.",
+        "Open with a 'research' question: 'Talk me through what you're doing here.' Listen for 30 seconds before you teach.",
+        "Teach one thing. Model it in their work, then hand the pencil back and watch them try it.",
+        "Log a two-word note per conference (student, what you taught) so the next conference builds instead of repeating."
+      ],
+      "evidence": "Wiliam (2011/2018), Embedded Formative Assessment — five key strategies of formative assessment. Black & Wiliam (1998), Inside the Black Box — formative assessment interventions produce effect sizes in the 0.4–0.7 range. Calkins' writing conference architecture (research → decide → teach) is the K–5 template.",
+      "video": {
+        "title": "Dylan Wiliam: Feedback on learning",
+        "channel": "Education Scotland",
+        "url": "https://www.youtube.com/watch?v=n7Ox5aoZ4ww"
+      },
+      "moreVideos": [
+        {
+          "title": "How do I have a writing conference?",
+          "channel": "Amanda Werner",
+          "url": "https://www.youtube.com/watch?v=UnSFGEp35ag"
+        },
+        {
+          "title": "An introduction to formative assessment",
+          "channel": "Dylan Wiliam",
+          "url": "https://www.youtube.com/watch?v=zZL6Zf5lMVw"
+        }
+      ]
+    },
+    {
+      "libraryId": null,
+      "title": "Peer & self critique — done under a protocol",
+      "band": "Grades 2–12 · Draft-and-revise cycles",
+      "why": "Peer feedback usually fails because students are polite and vague. Under a structured protocol — Berger's kind/specific/helpful rules, Austin's Butterfly critique, TAG, or Two Stars and a Wish — peer and self-assessment become one of the strongest formative moves in the classroom. Berger's first-graders lifted a scientific illustration through six drafts of peer critique against a model.",
+      "moves": [
+        "Set Berger's three rules on the wall and enforce them every time: feedback must be Kind, Specific, and Helpful.",
+        "Always critique against a model of excellence and the criteria — never against opinion.",
+        "Use a fixed structure. Elementary: TAG (Tell something you like · Ask a question · Give a suggestion) or Two Stars and a Wish. Secondary: 'I noticed… I wondered… Have you considered…' with a rubric row named.",
+        "Require action: students revise using at least two pieces of peer feedback and highlight the change. No revision, no credit for the critique."
+      ],
+      "evidence": "Berger, An Ethic of Excellence (2003) and the EL Education 'Austin's Butterfly' case study. Hattie & Timperley (2007) — self-regulation-level feedback among the most powerful. Black & Wiliam (1998) — peer/self assessment central to formative assessment gains.",
+      "video": {
+        "title": "Austin's Butterfly: Models, Critique, and Descriptive Feedback",
+        "channel": "EL Education",
+        "url": "https://www.youtube.com/watch?v=E_6PskE3zfQ"
+      },
+      "moreVideos": [
+        {
+          "title": "Ron Berger — Rules For Critique",
+          "channel": "High Tech High Unboxed",
+          "url": "https://www.youtube.com/watch?v=cWMH_X4IvOk"
+        },
+        {
+          "title": "60-Second Strategy: TAG Feedback",
+          "channel": "Edutopia",
+          "url": "https://www.edutopia.org/video/60-second-strategy-tag-feedback/"
+        }
+      ]
+    }
+  ],
+  "lookFors": [
+    "Students can tell an observer, in their own words, what they are trying to learn, how their current work stacks up, and what their next step is.",
+    "Comments — verbal or written — name a criterion and a next action, and are almost never personal praise ('good job', 'smart') or bare grades.",
+    "The teacher is conferencing with individuals or small groups during work time, with a visible log or clipboard system, rather than marking at the desk.",
+    "Peer or self critique is happening under a named protocol (rubric row, TAG, Two Stars and a Wish, Berger's kind/specific/helpful) and students are visibly revising in response."
+  ]
+};
+
   var PAGES = {
     "early-reading": READING,
     "early-math": MATH,
     "early-writing": WRITING,
+    "early-science": SCIENCE,
+    "early-social-studies": SOCIAL_STUDIES,
+    "early-pe": PE,
+    "feedback": FEEDBACK,
   };
 
   // -----------------------------------------------------------------
@@ -783,12 +1626,15 @@
     
     frag.appendChild(el("h1", { class: "page-title" }, "Elementary Foundations"));
     frag.appendChild(el("p", { class: "page-lede" },
-      "Teach reading, math, and writing early \u2014 the way the evidence says works. Three domain pages, six to eight strategies each, every one paired with a classroom video from IES, Reading Rockets, Edutopia, Inside Mathematics, or Teaching Channel."));
+      "Teach reading, math, writing, science, social studies, and PE early \u2014 the way the evidence says works. Six domain pages, six or more strategies each, every one paired with a verified classroom video from IES, Reading Rockets, Edutopia, Inside Mathematics, STEM Teaching Tools, Ambitious Science Teaching, Library of Congress, iCivics, SHAPE America, OPEN PhysEd, and other trusted sources."));
 
     var grid = el("div", { class: "hub-grid" }, [
-      hubCard("early-reading", "Early Reading", "Phonemic awareness \u2192 phonics \u2192 fluency \u2192 vocabulary \u2192 comprehension. Rooted in the IES K\u20133 Foundational Skills Practice Guide."),
-      hubCard("early-math",    "Early Math",    "Number sense first. Number talks, subitizing, CRA, CGI, and math discourse. Rooted in the IES Teaching Math to Young Children guide."),
-      hubCard("early-writing", "Early Writing", "Write daily. Handwriting, encoding, shared writing, and SRSD. Rooted in the IES Effective Writers guide."),
+      hubCard("early-reading",        "Early Reading",        "Phonemic awareness \u2192 phonics \u2192 fluency \u2192 vocabulary \u2192 comprehension. Rooted in the IES K\u20133 Foundational Skills Practice Guide."),
+      hubCard("early-math",           "Early Math",           "Number sense first. Number talks, subitizing, CRA, CGI, and math discourse. Rooted in the IES Teaching Math to Young Children guide."),
+      hubCard("early-writing",        "Early Writing",        "Write daily. Handwriting, encoding, shared writing, and SRSD. Rooted in the IES Effective Writers guide."),
+      hubCard("early-science",        "Early Science",        "Anchor in a phenomenon. Science discourse, notebooks, CER, hands-on investigation, and science text. Rooted in the NRC Framework and NGSS."),
+      hubCard("early-social-studies", "Early Social Studies", "Compelling questions, primary sources, historical thinking, discussion, geography, and civic action. Rooted in the C3 Framework and Oklahoma Academic Standards."),
+      hubCard("early-pe",             "Early PE",             "Locomotor and manipulative skills, small-sided games, MVPA fitness, TPSR, and movement concepts. Aligned to the 2026 Oklahoma Academic Standards for PE and SHAPE America."),
     ]);
     frag.appendChild(grid);
     return frag;
@@ -804,8 +1650,12 @@
 
   window.Elementary = {
     renderHub: renderHub,
-    renderReading: function () { return renderDomainPage("early-reading"); },
-    renderMath:    function () { return renderDomainPage("early-math");    },
-    renderWriting: function () { return renderDomainPage("early-writing"); },
+    renderReading:       function () { return renderDomainPage("early-reading"); },
+    renderMath:          function () { return renderDomainPage("early-math");    },
+    renderWriting:       function () { return renderDomainPage("early-writing"); },
+    renderScience:       function () { return renderDomainPage("early-science"); },
+    renderSocialStudies: function () { return renderDomainPage("early-social-studies"); },
+    renderPE:            function () { return renderDomainPage("early-pe"); },
+    renderFeedback:      function () { return renderDomainPage("feedback"); },
   };
 })();
