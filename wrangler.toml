@@ -1,9 +1,7 @@
 # Quick PD · Wewoka High — static site served by a Cloudflare Worker.
-# Cloudflare Workers Builds is bound to the "quick-pd1" service in the dashboard.
-# We deliberately keep `name = "turnerpd"` here because that config was building
-# and deploying successfully to quick-pd1.pt2479.workers.dev — the CF Builds
-# integration uses the dashboard-bound service, not the wrangler.toml name.
-name = "turnerpd"
+# Deploys to the "quick-pd1" worker → https://quick-pd1.pt2479.workers.dev
+# Deploy path: GitHub push → .github/workflows/deploy.yml → wrangler deploy
+name = "quick-pd1"
 compatibility_date = "2025-09-01"
 
 [assets]
