@@ -253,6 +253,12 @@ p { margin: 0 0 12px; color: var(--ink-2); overflow-wrap: anywhere; }
 }
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }
+  /* Grid tracks default to min-content, so any wide child (like a table with
+     min-width) can blow the track past the viewport. min-width:0 on both the
+     grid item AND its child #view forces the track to honor the viewport and
+     lets #view's overflow-x:hidden actually clip. */
+  .layout > .content { min-width: 0; }
+  #main.content > #view { min-width: 0; overflow-x: hidden; }
   .sidebar {
     position: fixed; top: var(--banner-h); left: 0; width: 280px; height: calc(100vh - var(--banner-h));
     transform: translateX(-100%); transition: transform 0.25s ease; z-index: 45; box-shadow: var(--shadow-lg);
