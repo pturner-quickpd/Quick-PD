@@ -1806,6 +1806,42 @@ mark {
   font-size: 16px;
 }
 
+/* Warning / legal-safeguard callout. Amber-on-cream with a strong left border so
+   it reads as a heads-up, not a decorative block. */
+.callout-warn {
+  background: #fff8e6;
+  border: 1px solid #f0d488;
+  border-left: 6px solid #b8892b;
+  color: #2a1a05;
+  padding: 20px 22px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.callout-warn .warn-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a5a00;
+  background: #ffe6a8;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.callout-warn h3 {
+  color: #4a2c00;
+  font-family: "Merriweather", serif;
+  font-size: 19px;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+}
+.callout-warn p { color: #2a1a05; line-height: 1.55; margin: 0; }
+.callout-warn p + p { margin-top: 10px; }
+.callout-warn strong { color: #4a2c00; font-weight: 700; }
+.callout-warn a { color: #8a5a00; text-decoration: underline; font-weight: 600; }
+.callout-warn a:hover { color: #6b4600; }
+
 .mtss-loop {
   display: flex; flex-direction: column; gap: 14px; margin: 20px 0;
   counter-reset: loop;
@@ -1828,11 +1864,13 @@ mark {
 .loop-h { font-weight: 700; margin-bottom: 4px; font-size: 15px; color: var(--text, #111); }
 .loop-body p { margin: 4px 0 0 0; color: var(--text-secondary, #444); line-height: 1.5; }
 
-/* Tables use a horizontal-scroll wrapper on narrow screens so the first
-   column doesn't collapse to one letter per line. Wrap every .clean-table
-   in <div class="clean-table-wrap"> in the markup. */
+/* Tables live inside a horizontal-scroll wrapper so narrow phones can pan
+   sideways instead of collapsing the first column to one letter per line.
+   The wrapper itself is width:100% and clips overflow so the page never
+   grows past the viewport. */
 .clean-table-wrap {
   width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid var(--card-border, #e5e7eb);
@@ -1842,7 +1880,6 @@ mark {
 }
 .clean-table {
   width: 100%;
-  min-width: 640px;
   border-collapse: collapse;
   font-size: 14px;
   table-layout: auto;
@@ -1853,13 +1890,11 @@ mark {
   border-bottom: 1px solid var(--card-border, #e5e7eb);
   vertical-align: top;
   line-height: 1.5;
-  word-break: normal;
   overflow-wrap: break-word;
-  hyphens: auto;
+  word-break: normal;
 }
 .clean-table th:first-child, .clean-table td:first-child {
-  min-width: 140px;
-  white-space: normal;
+  min-width: 120px;
 }
 .clean-table thead th {
   background: #f8fafc;
@@ -1870,8 +1905,9 @@ mark {
 }
 .clean-table tbody tr:last-child td { border-bottom: none; }
 @media (max-width: 640px) {
-  .clean-table { font-size: 13px; }
+  .clean-table { font-size: 13px; min-width: 520px; }
   .clean-table th, .clean-table td { padding: 8px 10px; }
+  .clean-table th:first-child, .clean-table td:first-child { min-width: 110px; }
 }
 
 .check-list { margin: 8px 0 0 20px; padding: 0; }

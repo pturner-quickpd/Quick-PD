@@ -3135,6 +3135,14 @@ function renderMtssPlc(view) {
       <p><strong>What this means for your PLC and MTSS team:</strong> when a student surfaces in reading data, ask what's happening with their behavior, attendance, and SEL — and vice versa. The <a href="#/plc-tool">PLC Meeting &amp; Referral Tool</a> supports referrals across all seven domains for exactly this reason. Don't refer for reading and separately refer for behavior six weeks later; look at the whole student in the same conversation.</p>
     </div>
 
+    <div class="callout callout-warn" role="note" aria-label="Legal safeguard">
+      <span class="warn-eyebrow">Important — legal safeguard</span>
+      <h3>MTSS is not a gatekeeper for special education. A student can be referred for a SPED evaluation at any time.</h3>
+      <p>The point of MTSS is to make sure every student gets the right instruction and intervention as early as possible — not to delay evaluations. If a teacher, parent, or team member suspects a disability, the district's <strong>Child Find</strong> obligation under IDEA is triggered <em>immediately</em>, and a request for an initial special education evaluation must be acted on within the timelines your state sets. A student does not have to “fail through the tiers” first, and the school cannot require the family to wait out an intervention cycle before evaluating.</p>
+      <p>The U.S. Department of Education's Office of Special Education Programs is explicit on this point in <a href="https://sites.ed.gov/idea/idea-files/osep-memo-11-07-response-to-intervention-rti-memo/" target="_blank" rel="noopener">OSEP Memo 11-07 (Jan. 21, 2011)</a>: “States and LEAs have an obligation to ensure that evaluations of children suspected of having a disability are not delayed or denied because of implementation of an RTI strategy.” The same guidance is restated in OSEP's <a href="https://sites.ed.gov/idea/idea-files/rts-qa-child-find-part-b-08-24-2021/" target="_blank" rel="noopener">2021 Child Find Q&amp;A (Part B)</a>.</p>
+      <p><strong>What this means for our PLC and MTSS work:</strong> Tier 2 data is useful evidence <em>within</em> a SPED evaluation, but it is never a prerequisite to one. If a parent or teacher requests an evaluation, or the team suspects a disability, log it, notify the SPED team the same day, and start the evaluation timeline in parallel with any Tier 2 intervention already underway. Ask three questions in every PLC discussion of a struggling student: <strong>(1)</strong> Is Tier 1 working for most of the class? <strong>(2)</strong> Is Tier 2 working for this student? <strong>(3)</strong> Do we suspect a disability — and if yes, has SPED been notified?</p>
+    </div>
+
     <div class="grid-2col">
       <div class="card">
         <div class="card-title">MTSS in one paragraph</div>
@@ -3412,6 +3420,10 @@ function plcReferralsHtml() {
     <div class="card">
       <h3 class="subsection-title">New Tier 2 referral</h3>
       <p class="small-note">A referral is only valid when Tier 1 adjustments have already been tried and documented. That's the rule &mdash; not paperwork.</p>
+      <div class="callout callout-warn" style="margin:8px 0 16px 0; padding:14px 16px;">
+        <span class="warn-eyebrow">SPED referral — not a gatekeeper</span>
+        <p style="margin-top:4px;">This form is for <strong>Tier 2</strong> intervention referrals. If you or a parent <em>suspect a disability</em>, do not wait for Tier 2 to run. Notify the SPED team the same day and start the special-education evaluation timeline in parallel. MTSS is not a prerequisite to a SPED evaluation — that's <a href="https://sites.ed.gov/idea/idea-files/osep-memo-11-07-response-to-intervention-rti-memo/" target="_blank" rel="noopener">OSEP Memo 11-07 (2011)</a> and reaffirmed in the <a href="https://sites.ed.gov/idea/idea-files/rts-qa-child-find-part-b-08-24-2021/" target="_blank" rel="noopener">2021 Child Find Q&amp;A</a>. See the <a href="#/mtss-plc">MTSS &amp; PLC reference page</a> for the full rule.</p>
+      </div>
       <form id="plc-referral-form" class="form-grid">
         <div class="form-row"><label>Student (initials or code &mdash; keep it private)</label><input class="input" name="student" placeholder="e.g., J.S." required /></div>
         <div class="form-row"><label>Grade / class</label><input class="input" name="grade" placeholder="e.g., 6th grade / period 3" /></div>
