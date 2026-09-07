@@ -2144,14 +2144,18 @@ async function renderStats(view) {
   `;
 
   try {
-    const [strategies, techniques, rigor, seating, standards, qpd] = await Promise.all([
-      fetchJSON("/api/strategies"),
+    // Ensure Data.strategies is loaded — this is the same 301-row list the Library shows
+    // (base strategies.json + formative_assessment.json + K–5 elementary domain rows added
+    // by Data._withElementaryRows). Fetching /api/strategies directly only returns 258.
+    await Data.ensure();
+    const [techniques, rigor, seating, standards, qpd] = await Promise.all([
       fetchJSON("/api/classroom-techniques"),
       fetchJSON("/api/rigor-practices"),
       fetchJSON("/api/seating-guides"),
       fetchJSON("/api/standards-guides"),
       fetchJSON("/api/qpd-content"),
     ]);
+    const strategies = Data.strategies || [];
 
     const teacher = TeacherStore.get();
     let favCount = 0, planCount = 0, weekCount = 0, goalCount = 0;
@@ -2167,11 +2171,18 @@ async function renderStats(view) {
       } catch {}
     }
 
-    const customStrategies = strategies.filter((s) => s.isCustom).length;
+    // Only count truly teacher-added strategies (POSTed via api-shim, which stamps them
+    // with id 'custom-<hex>' and persists to localStorage['qpd:custom_strategies']).
+    // The isCustom flag alone is unreliable: 49 rows in the shipped strategies.json also
+    // carry isCustom:true for legacy reasons.
+    const customStrategies = strategies.filter((s) => typeof s.id === "string" && s.id.startsWith("custom-")).length;
+    const customLine = customStrategies
+      ? `strategies (${customStrategies} teacher-added)`
+      : `strategies`;
 
     $("#stats-body").innerHTML = `
       <div class="card-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
-        <div class="card"><div class="card-meta">Library</div><div style="font-size:32px;font-weight:800;color:var(--navy);">${strategies.length}</div><div class="page-lede" style="font-size:13px;">strategies (${customStrategies} teacher-added)</div></div>
+        <div class="card"><div class="card-meta">Library</div><div style="font-size:32px;font-weight:800;color:var(--navy);">${strategies.length}</div><div class="page-lede" style="font-size:13px;">${customLine}</div></div>
         <div class="card"><div class="card-meta">Classroom Mgmt</div><div style="font-size:32px;font-weight:800;color:var(--navy);">${techniques.length}</div><div class="page-lede" style="font-size:13px;">techniques</div></div>
         <div class="card"><div class="card-meta">Rigor &amp; Questioning</div><div style="font-size:32px;font-weight:800;color:var(--navy);">${rigor.length}</div><div class="page-lede" style="font-size:13px;">practices</div></div>
         <div class="card"><div class="card-meta">Seating</div><div style="font-size:32px;font-weight:800;color:var(--navy);">${seating.length}</div><div class="page-lede" style="font-size:13px;">arrangements</div></div>
