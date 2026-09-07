@@ -2872,6 +2872,21 @@ async function renderFirst30Days(view) {
 // ABOUT
 // ============================================================
 async function renderAbout(view) {
+  // Live-computed content counts so the About page stays in sync with the
+  // actual library. Data.ensure() hydrates if the user landed here directly.
+  await Data.ensure();
+  const nStrategies = (Data.strategies || []).length;
+  const nFormative = 16; // formative_assessment.json (merged into strategies; count is fixed for now)
+  const nClassroom = (Data.classroom || []).length;
+  const nInterventions = (Data.qpd?.interventions?.items || []).length;
+  // Marketing-friendly floor for strategies (250+, 300+, ...).
+  const strategiesLabel = nStrategies >= 300 ? "300+"
+                        : nStrategies >= 250 ? "250+"
+                        : nStrategies >= 200 ? "200+"
+                        : String(nStrategies);
+  const strategiesFloor = strategiesLabel === "300+" ? "300"
+                         : strategiesLabel === "250+" ? "250"
+                         : String(nStrategies);
   view.innerHTML = `
     <section class="hero hero-compact">
       <div class="hero-media" style="background-image:url('./img/heroes/seating.jpg');"></div>
@@ -2889,7 +2904,7 @@ async function renderAbout(view) {
       <p style="color:var(--muted);font-size:14px;margin-top:8px;"><em>Built and maintained by Paul Turner (principal, Wewoka High School). This is a personal, portable toolkit — it works the same wherever the teacher goes.</em></p>
 
       <h2>What it is</h2>
-      <p>A curated library of over 250 evidence-based classroom strategies, plus tools for weekly planning, unit planning, and writing a defensible professional learning goal. Every strategy card is short and specific: how to run it, a real classroom example, and where the evidence comes from. Nothing is longer than it needs to be.</p>
+      <p>A curated library of over ${strategiesFloor} evidence-based classroom strategies, plus tools for weekly planning, unit planning, and writing a defensible professional learning goal. Every strategy card is short and specific: how to run it, a real classroom example, and where the evidence comes from. Nothing is longer than it needs to be.</p>
       <p>It's <strong>not a course</strong>. There's no sequence you have to follow, no completion badge, no cost. Pick what you need, try it, come back for the next thing.</p>
 
       <h2>Who built it</h2>
@@ -2906,7 +2921,7 @@ async function renderAbout(view) {
       <p>Tried something that worked? <a href="#/add">Add a strategy</a> to the library. Have feedback — a broken link, an outdated video, a strategy you want included, a classroom example to share? Use the <strong>Send feedback</strong> link at the bottom of every page.</p>
 
       <h2>What's in it right now</h2>
-      <p>250+ strategies · 16 formative assessment routines · 30+ classroom techniques · rigor practices · seating guides · standards guides · 13 Tier 2 academic interventions · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print · six K–5 domain pages (Reading, Math, Writing, Science, Social Studies, PE) · a dedicated Teacher–Student Feedback page. All searchable from the sidebar. All yours.</p>
+      <p>${strategiesLabel} strategies · ${nFormative} formative assessment routines · ${nClassroom} classroom techniques · rigor practices · seating guides · standards guides · ${nInterventions} Tier 2 interventions (reading, math, writing, study, behavior, attendance, executive function, EL) · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print · six K–5 domain pages (Reading, Math, Writing, Science, Social Studies, PE) · a dedicated Teacher–Student Feedback page. All searchable from the sidebar. All yours.</p>
     </div>
   `;
 }
