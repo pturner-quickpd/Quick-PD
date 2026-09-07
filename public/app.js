@@ -546,7 +546,7 @@ async function renderStartHere(view) {
 
     <div class="announce-callout" role="note">
       <span class="announce-eyebrow">New</span>
-      <p class="announce-text">15 formative assessment strategies just added — <a href="#/strategies">see them in the Library</a>.</p>
+      <p class="announce-text">16 formative assessment strategies just added — <a href="#/strategies">see them in the Library</a>.</p>
     </div>
 
     <div class="audience-card">
@@ -2902,7 +2902,7 @@ async function renderAbout(view) {
       <p>Tried something that worked? <a href="#/add">Add a strategy</a> to the library. Have feedback — a broken link, an outdated video, a strategy you want included, a classroom example to share? Use the <strong>Send feedback</strong> link at the bottom of every page.</p>
 
       <h2>What's in it right now</h2>
-      <p>250+ strategies · 15 formative assessment routines · 30+ classroom techniques · rigor practices · seating guides · standards guides · 13 Tier 2 academic interventions · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print · six K–5 domain pages (Reading, Math, Writing, Science, Social Studies, PE) · a dedicated Teacher–Student Feedback page. All searchable from the sidebar. All yours.</p>
+      <p>250+ strategies · 16 formative assessment routines · 30+ classroom techniques · rigor practices · seating guides · standards guides · 13 Tier 2 academic interventions · a PL goal writer · a unit planner · a weekly plan builder · lesson plan templates you can print · six K–5 domain pages (Reading, Math, Writing, Science, Social Studies, PE) · a dedicated Teacher–Student Feedback page. All searchable from the sidebar. All yours.</p>
     </div>
   `;
 }
