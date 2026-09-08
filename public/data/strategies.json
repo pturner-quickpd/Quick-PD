@@ -9611,5 +9611,1601 @@
     "isCustom": false,
     "createdBy": null,
     "createdAt": "2026-09-07T15:35:00.000Z"
+  },
+  {
+    "id": "tlac-01-no-opt-out",
+    "title": "No Opt Out",
+    "description": "When a student says \"I don't know\" or gives a wrong answer, they still end up giving the correct one — either by repeating a peer's answer or getting a cue that lets them finish it themselves.",
+    "howTo": "When a student stalls, take the answer from another student, then return to the first student and have them repeat it in their own words. You can also offer a hint or a partial answer and let them complete it. Either way, no student ends the exchange having said \"I don't know\" as the last word.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=tWeaMBxmNeE",
+    "videoTitle": "No Opt Out",
+    "videoChannel": "allidaviddaniel",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 9th-grade biology class, Marcus is asked what happens during meiosis and mutters, \"I don't know.\" The teacher calls on Aisha, who says chromosomes split into four haploid cells. The teacher immediately turns back to Marcus: \"Marcus, tell me what Aisha just said.\" Marcus repeats it, and the teacher nods — \"That's the answer. You knew it once you heard it.\" The exchange ends with Marcus having said the right thing out loud.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is students who initially said \"I don't know\" ending the exchange by voicing the correct answer.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 1
+  },
+  {
+    "id": "tlac-02-right-is-right",
+    "title": "Right Is Right",
+    "description": "Hold out for a fully correct, precise answer instead of rounding up a partially right response — don't do the last mile of thinking for students.",
+    "howTo": "When a student's answer is almost there, resist the urge to fill in the missing piece. Say \"You're close — tell me more\" or \"That's part of it; what else?\" Only accept the answer when it is complete, on-topic, and technically accurate.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Feedback & Formative Assessment",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=VSvg6Irqtjg",
+    "videoTitle": "Teach Like A Champion: Right Is Right: The Pedagogy of Precision and Mastery",
+    "videoChannel": "Curriculum Bytes",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In 7th-grade math, the teacher asks what the slope of the line is. Jayden says \"It goes up.\" The teacher smiles: \"It does go up — but I need the number and the units.\" Jayden looks back at the graph and says \"Two — rises two for every one across.\" The teacher writes it on the board: \"Now that's the answer.\"",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is student answers restated with the full precision the question required.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 2
+  },
+  {
+    "id": "tlac-03-stretch-it",
+    "title": "Stretch It",
+    "description": "When a student gives a correct answer, reward it with a harder follow-up question rather than moving on — so the reward for thinking is more thinking.",
+    "howTo": "After a right answer, ask \"why,\" \"how do you know,\" \"what would happen if,\" or \"give me another example.\" Push into the reasoning, an edge case, or a transfer. Don't stretch every answer — pick the ones where a second layer is worth the class time.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Feedback & Formative Assessment"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=I3kiFUrXmdQ",
+    "videoTitle": "Teach Like A Champion: Stretch It: Architecture of Rigorous Elaboration",
+    "videoChannel": "Curriculum Bytes",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In 5th-grade reading, Priya correctly identifies the narrator as unreliable. The teacher pauses: \"Good — now, what's one line on this page that made you sure?\" Priya scans and points to a paragraph where the narrator contradicts himself. \"And,\" the teacher adds, \"why would the author want us to catch that?\" Priya thinks for a beat and answers — and the class has watched one right answer turn into three layers of thinking.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is students routinely giving second-layer reasoning after their first correct answer.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 3
+  },
+  {
+    "id": "tlac-04-format-matters",
+    "title": "Format Matters",
+    "description": "Require answers in complete sentences and academic language — the format of the answer is part of what you're teaching.",
+    "howTo": "Set the expectation up front: answers in this class are in complete sentences using the vocabulary of the discipline. When a student answers in a fragment, prompt \"complete sentence\" or \"how would a scientist say that?\" and wait. Don't accept the fragment and reword it yourself.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Reading & Literacy"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=duODR1JOiXw",
+    "videoTitle": "Teach like a Champ: Format Matters: Clip #5",
+    "videoChannel": "Katiegirl240",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In 6th-grade science, the teacher asks why the ice cube melts. Tyler shrugs and says \"heat.\" The teacher: \"Complete sentence, please, and use the word energy.\" Tyler tries again: \"The ice cube melts because heat energy is transferred from the room into the ice.\" The teacher writes his sentence up on the board as the class model.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A stack of student responses (verbal or written) that use complete sentences and content-area vocabulary as the default.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 4
+  },
+  {
+    "id": "tlac-05-without-apology",
+    "title": "Without Apology",
+    "description": "Never apologize for the material — don't signal that a text is boring, a topic is too hard, or a standard is only there because someone made you teach it.",
+    "howTo": "Watch your framing language. Cut phrases like \"I know this is boring, but…\" or \"This is really hard, so don't worry if you don't get it.\" Replace them with an honest reason the work matters: what it unlocks, why it's interesting, what it prepares them for.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=w-SJDWlIZu0",
+    "videoTitle": "Teach Like a Champion Technique 5 - Without Apology",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 10th-grade English teacher is about to hand out a Shakespeare sonnet. Instead of \"I know the language is a pain,\" she says, \"This one's only fourteen lines, and by the end of class you'll be able to say what Shakespeare thought love actually was — not the greeting-card version.\" Students lean in. The sonnet is the same; the framing changed what the room expected of it.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is teacher language that presents every text and task as worth doing.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 5
+  },
+  {
+    "id": "tlac-06-begin-with-the-end",
+    "title": "Begin with the End",
+    "description": "Plan the lesson backwards from the objective and the way you'll check for it — decide what mastery looks like before you decide what activities to run.",
+    "howTo": "Start every lesson plan with one sentence: what will students know or be able to do by the end? Then write the check — the exit ticket, the problem, the question — that will tell you if they got there. Only then pick activities, and cut any activity that doesn't move students toward that check.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Feedback & Formative Assessment"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=c45MypjQxoo",
+    "videoTitle": "Teach Like a Champion Technique 6 - Begin with the End",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 4th-grade teacher planning a fractions lesson writes the objective: \"Students will add fractions with unlike denominators.\" She writes three exit-ticket problems that would prove it, then designs the lesson. When she notices her planned \"fraction pizza\" game only practices identifying fractions, she cuts it — it doesn't move students toward the exit ticket. What replaces it is ten minutes of guided practice on unlike denominators.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A lesson plan whose objective, check for understanding, and activities line up on one page.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 6
+  },
+  {
+    "id": "tlac-07-4-ms",
+    "title": "4 Ms",
+    "description": "Write objectives that are Manageable in one lesson, Measurable, Made first before activities, and cover the Most important thing students need — the four Ms.",
+    "howTo": "Before you plan activities, draft the day's objective and stress-test it: Can I teach and assess it in one class period? Can I tell at the end if a student got it? Did I write this before I picked the activity? Is this the most important thing today, not just something fun? Rewrite until all four are yes.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Feedback & Formative Assessment"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=GKtJ-BkVGbc",
+    "videoTitle": "Teach Like a Champion- Begin with the End and 4 Ms",
+    "videoChannel": "Andrew Jones",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "An 8th-grade civics teacher first writes \"Explore the Bill of Rights.\" She checks it against the 4 Ms: not measurable, not manageable in a day, not specific. She rewrites: \"Students will match each of the first ten amendments to a real-world scenario and defend one match in writing.\" Now she can plan a 45-minute lesson around it and grade the outcome that afternoon.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A one-line lesson objective that a colleague could read and immediately picture the exit ticket for.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 7
+  },
+  {
+    "id": "tlac-08-post-it",
+    "title": "Post It",
+    "description": "Post the day's objective where students can see it, in student-friendly language — so both they and any visitor know what the lesson is aiming at.",
+    "howTo": "Write the objective on the board or a corner of a slide in kid-language, not standards code. Reference it out loud at the start, at a transition, and at the close. When students ask why they're doing something, point at it.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=Bg7qDczvVx8",
+    "videoTitle": "Teaching techniques to help in the classroom by Doug Lemov, Wiley author",
+    "videoChannel": "Wiley",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 3rd-grade room has a small square in the top left of the whiteboard: \"I can compare two three-digit numbers and use <, >, or =.\" When a student asks midway through why they're playing a card game with number cards, the teacher points at the square. The student nods and gets back to it. At the end of class the teacher circles the objective and asks, \"Show me on your card who won and why.\"",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A visible, student-language objective on the board at the start of every lesson.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 8
+  },
+  {
+    "id": "tlac-09-shortest-path",
+    "title": "Shortest Path",
+    "description": "Choose the simplest route to the objective — the elaborate lesson isn't better than the direct one if the direct one gets students there.",
+    "howTo": "After you draft a lesson, ask: is there a shorter path from where students are now to the objective? If a mini-lecture and ten problems will do it, don't dress it up with a station rotation. Save the elaborate structure for the day it actually earns its keep.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=pfKDOMfHP8g",
+    "videoTitle": "Teach Like a Champion Technique 9 - Shortest Path",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A high school algebra teacher had planned a full jigsaw for solving two-step equations — four groups, four problem types, gallery walk. Looking again, she realizes a five-minute model, ten minutes of guided practice, and fifteen minutes of independent problems will get everyone there faster. She cuts the jigsaw. The exit ticket scores go up, and she banks the jigsaw for a topic that actually needs peer explanation.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A lesson plan whose structure is no more complicated than the objective requires.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 9
+  },
+  {
+    "id": "tlac-10-double-plan",
+    "title": "Double Plan",
+    "description": "Plan what students will do minute by minute, not just what you will do — the student side of the lesson is a separate plan.",
+    "howTo": "Divide your lesson planning page in two columns: teacher moves on the left, what students are doing on the right. For every teacher move, write the corresponding student behavior — writing what, talking to whom, producing what. If the right column ever reads \"listening\" for more than a few minutes, redesign.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Engagement & Motivation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=j0w6gK-cRmU",
+    "videoTitle": "Teach Like a Champion Technique 10 - Double Plan",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 6th-grade social studies teacher planning a lesson on the Columbian Exchange writes \"I show map, describe three goods moving each way\" on the left. On the right she writes \"Students annotate their own blank map, one arrow per good, whisper-read arrows to partner.\" The right-side plan makes her realize she needs to print the blank maps. Without the double plan, she'd have shown a slide and hoped.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A two-column lesson plan showing paired teacher and student actions across the period.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 10
+  },
+  {
+    "id": "tlac-11-draw-the-map",
+    "title": "Draw the Map",
+    "description": "Design the room layout deliberately to support the kind of teaching and student work you're doing — the seating chart is an instructional decision, not a housekeeping one.",
+    "howTo": "Ask what students should be doing most days, then arrange seats to make that easy: rows facing the board for direct instruction, clustered pairs for turn-and-talks, U-shape for seminar. Put the students who need proximity closest to where you circulate. Change the map when the work changes.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Attention & Focus",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=cxYjboGVwaQ",
+    "videoTitle": "Teach Like a Champion Technique 11 - Draw the Map",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A middle-school ELA teacher who runs a lot of turn-and-talks switches from rows to paired desks facing each other with a shared aisle down the middle. Now the \"turn to your partner\" prompt takes two seconds instead of ten, and she can walk the aisle and hear every pair. Two students who were pulling each other off-task are placed in pairs with steadier neighbors. The map is doing instructional work.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A seating chart that reflects the current unit's dominant work — pairs, rows, or clusters — with named reasons for the placements.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 11
+  },
+  {
+    "id": "tlac-12-the-hook",
+    "title": "The Hook",
+    "description": "Open the lesson with a short, sharp moment — a story, image, question, or artifact — that pulls students into the day's content in under two minutes.",
+    "howTo": "Prepare a 60-90 second opener tied directly to the objective — not tangential fun. It can be a striking photo, a one-sentence anecdote, a short prop, a \"what would you do\" scenario. Keep it tight; the point is to earn attention, then hand it off to the lesson.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=cArUHPZjilc",
+    "videoTitle": "Teach Like a Champion Technique 12 - The Hook",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 7th-grade science lesson on density starts with the teacher dropping a can of regular Coke and a can of Diet Coke into a clear tub of water. The regular sinks; the diet floats. \"Same can, same size — one sinks, one swims. By the end of today you'll be able to tell me why.\" Ninety seconds. Every kid is in.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A short opener each day that is on-topic and takes under two minutes.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 12
+  },
+  {
+    "id": "tlac-13-name-the-steps",
+    "title": "Name the Steps",
+    "description": "Break a complex skill into a small number of named, ordered steps students can hold onto — the steps get a name, a number, and a place on the wall.",
+    "howTo": "Take the procedure you're teaching and boil it down to 3-5 steps with short, memorable names. Post them, reference them by name during modeling and practice, and require students to name the step they're on. Keep the list short — if it grows past five, combine or drop.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Foundational Skills"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=hM4z74QJQN0",
+    "videoTitle": "Teach Like a Champion Technique 13 - Name the Steps",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 4th-grade teacher teaching long division names four steps: Divide, Multiply, Subtract, Bring Down. She posts them, chants them once, and then during modeling narrates \"We're on Subtract\" at each stage. Later, when a student is stuck, she asks \"Which step are you on?\" and the student points at the poster: \"Bring Down.\" The vocabulary makes the help specific.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A named, numbered step chart students can point to when they get stuck.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 13
+  },
+  {
+    "id": "tlac-14-board-paper",
+    "title": "Board = Paper",
+    "description": "What you put on the board is what students put on paper — model the notes and layout you want, so their page mirrors yours.",
+    "howTo": "Set up your board or slide as the template for their page: same headings, same diagrams, same key terms in the same spots. Narrate what to write, when to underline, when to draw the arrow. Circulate to check that pages match before moving on.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Foundational Skills"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=hz58o6fnGgo",
+    "videoTitle": "TEACHING TIPS: BOARD = PAPER (MODELLING & GUIDING NOTE-TAKING)",
+    "videoChannel": "Teaching with Ben Wardle",
+    "buildingFocus": [],
+    "telStage": "Teaching",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A high school chemistry teacher setting up notes on stoichiometry writes the problem across the top, \"Given\" and \"Find\" boxes on the left, work space in the middle, \"Answer with units\" boxed on the right. She says, \"Your paper should look like this.\" As she works the problem she pauses to let students catch up. When she circulates, every page has the same structure, and the ones who missed a step are easy to spot.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "Student notebooks whose page layout mirrors the board model for that lesson.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 14
+  },
+  {
+    "id": "tlac-15-circulate",
+    "title": "Circulate",
+    "description": "Move through the whole room with purpose during independent and group work — see every student's page, not just the front row's.",
+    "howTo": "Plan a route that reaches every desk during work time; don't stand at the front or camp with one group. As you circulate, glance at papers, drop short feedback (a check, a redirect, a good-job), and note who's stuck. Break the invisible barrier around the back corners and quiet students.",
+    "category": "Feedback & Formative Checks",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Feedback & Formative Assessment",
+      "Behavior & Self-Regulation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=SmzNUNh0NDU",
+    "videoTitle": "Lesson Structure Technique: Circulate",
+    "videoChannel": "Tania Martinez",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "During independent practice in a 5th-grade math class, the teacher walks a loop that hits every table within four minutes. He drops \"check your negative sign here\" at one desk, \"nice — try #7 next\" at another, and taps quietly next to a student who is off-task. By the time he's back at the front he knows three students missed the same step, and he pulls them for a two-minute reteach.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a teacher who has been within arm's reach of every student during work time.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 15
+  },
+  {
+    "id": "tlac-16-break-it-down",
+    "title": "Break It Down",
+    "description": "When a student is stuck, give the smallest possible hint — not the answer — so they get to finish the thinking themselves.",
+    "howTo": "Have a mental ladder of hints from most subtle to most direct: point to the relevant part of the page, ask a clarifying question, remind them of a rule, give a related easier example. Stop at the smallest rung that unblocks them. Never take the pencil.",
+    "category": "Feedback & Formative Checks",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Feedback & Formative Assessment",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=dV12xViyBMU",
+    "videoTitle": "Teach Like a Champion Technique 16 - Break it Down",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In 3rd-grade reading, Emily is stuck answering \"how does the character feel.\" The teacher doesn't say \"sad.\" She asks, \"What did she just do on this page?\" Emily says, \"She stopped talking to her friend.\" Teacher: \"And when you stop talking to someone, how are you usually feeling?\" Emily lights up: \"Hurt. She feels hurt.\" Emily gets the answer, and the teacher gave the smallest push that worked.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is stuck students finishing their own answers with minimal teacher input.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 16
+  },
+  {
+    "id": "tlac-17-ratio",
+    "title": "Ratio",
+    "description": "Push more of the thinking work onto students — over time, the balance of who is talking, explaining, and reasoning tips from the teacher toward the class.",
+    "howTo": "After you demonstrate, hand the reasoning back: instead of restating a rule, ask a student to. Instead of solving the next problem, ask a student to narrate the steps. Track your own talk time for a lesson and aim to shrink it while student explanation grows.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=bxgmfSOsW2k",
+    "videoTitle": "Teach Like a Champion Technique 17 - Ratio",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A high-school history teacher used to summarize the causes of WWI himself at the end of each class. Now he asks three students in a row to each add one cause and explain why it mattered, prompting \"who can add on?\" between them. His two-minute summary is now four minutes of students summarizing to each other. He learns more about what they know, and they leave having said it aloud.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a lesson where more sentences of explanation come from students than from the teacher.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 17
+  },
+  {
+    "id": "tlac-18-check-for-understanding",
+    "title": "Check for Understanding",
+    "description": "Gather data on student understanding during the lesson — not just at the end — and change what you do next based on what you see.",
+    "howTo": "Build in short checks every 5-10 minutes: whiteboards up, thumbs, a targeted cold call, a two-question quick-write. When the check shows most students are lost, reteach right then; when it shows they've got it, move on. The point is to act on what you see, not just to have collected it.",
+    "category": "Feedback & Formative Checks",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Feedback & Formative Assessment",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=4eiuM7PKTPs",
+    "videoTitle": "Teach Like a Champion Technique 18 - Check for Understanding Part 1",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 6th-grade math teacher pauses mid-lesson and says, \"Whiteboards up: what's 3/4 divided by 1/2?\" Half the boards say 3/8, half say 3/2. Rather than push forward, she stops and does a two-minute reteach on the \"keep-change-flip\" step. On the next whiteboard check, nearly every board shows 3/2. Now she moves on.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A quick check embedded in the lesson whose result visibly changed the next teacher move.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 18
+  },
+  {
+    "id": "tlac-19-at-bats",
+    "title": "At Bats",
+    "description": "Give students many repetitions of a skill in one lesson — mastery comes from at-bats, not from watching demonstrations.",
+    "howTo": "After you model, plan for 10-20 practice reps of the target skill, not two. Vary the surface (numbers, contexts) while keeping the underlying move the same. Move students to independent reps as fast as they can handle, then keep them there.",
+    "category": "Explicit Instruction & Modeling",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Foundational Skills",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=mtjRcf0UTZY",
+    "videoTitle": "Teach Like a Champion Technique 19 - At Bats",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 2nd-grade teacher introducing regrouping in subtraction models two problems, does two together, then hands students a page of twenty problems that all require the same regrouping move. By problem ten most students are humming; by problem twenty the fluency has clicked. The teacher pulls the three students still stuck for small-group work while the rest keep swinging.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A practice set with enough problems that every student gets many reps of the target skill in one sitting.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 19
+  },
+  {
+    "id": "tlac-20-exit-ticket",
+    "title": "Exit Ticket",
+    "description": "End the lesson with a short, focused check — one to three questions on the day's objective — that you actually look at before tomorrow's plan.",
+    "howTo": "Write two or three questions tightly aligned to today's objective; the last two minutes of class are for students to answer them silently on a half-sheet. Collect on the way out, sort into got-it and not-yet piles that night, and adjust the next lesson accordingly.",
+    "category": "Feedback & Formative Checks",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Feedback & Formative Assessment",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=fTNqwPZ3UzY",
+    "videoTitle": "Teach Like A Champion: Exit Tickets: Formative Assessment and Instructional Triage",
+    "videoChannel": "Curriculum Bytes",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 5th-grade science lesson on food webs closes with three exit questions: label the producer, the primary consumer, and one decomposer in this diagram. That evening the teacher sees that 18 of 24 students confused primary and secondary consumers. Tomorrow's opener is a two-minute clarifier on exactly that distinction instead of the planned review.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "Five stacks of exit tickets — one per lesson — sorted into got-it and not-yet piles that drove the next day's opener.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 20
+  },
+  {
+    "id": "tlac-21-take-a-stand",
+    "title": "Take a Stand",
+    "description": "Ask students to publicly agree or disagree with a peer's answer and explain why — accountability for listening and reasoning, not just for speaking.",
+    "howTo": "After a student answers, ask the class \"agree or disagree — thumbs up or down\" and then cold-call someone to justify their thumb. Vary who you call. When there's a split, put the two positions in dialogue: \"Marco says A, Rosa says B — who can convince us?\"",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Feedback & Formative Assessment"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=Ar-31jygtAk",
+    "videoTitle": "Doug Lemov - Strategies to teach like a champion",
+    "videoChannel": "Equitatorg",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In an 8th-grade math class, Josh says the answer to the word problem is 24 miles. The teacher: \"Thumbs — agree, disagree, or unsure.\" She sees three thumbs down and cold-calls Priya, who says she got 26 because she added the return trip. The class works both interpretations aloud, decides the problem asked one-way, and Josh gets to be right — but now everyone had to think about it.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is students routinely defending or disputing a peer's answer with reasoning.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 21
+  },
+  {
+    "id": "tlac-22-cold-call",
+    "title": "Cold Call",
+    "description": "Call on students regardless of whether their hands are up — hands become optional, being ready becomes the norm.",
+    "howTo": "Tell the class at the start of the year that you'll call on anyone at any time, and that \"I don't know\" is not the end of the conversation. Ask the question first, pause, then name the student — so everyone thinks before anyone is picked. Keep it warm and predictable, not gotcha.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=PY4l9J7V0QQ",
+    "videoTitle": "Teach Like a Champion - Cold Call",
+    "videoChannel": "StoneRanch92127",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 9th-grade English teacher asks, \"What do we know so far about the narrator's reliability?\" She pauses for four seconds, then says, \"Daniel.\" Daniel — who hadn't raised his hand — begins with what he noticed on page 12. Two questions later she calls on Amina, then Marcus. The whole room is in the game because they all had to be ready.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a class discussion where student contributions come from across the room, not only from volunteers.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 22
+  },
+  {
+    "id": "tlac-23-call-and-response",
+    "title": "Call and Response",
+    "description": "Use whole-class choral answers for facts, definitions, and quick reviews — everyone speaks, everyone hears the correct answer.",
+    "howTo": "Signal clearly when a call-and-response is coming (a hand raise, a phrase like \"class\") so students know to answer together. Use it for content that has one right answer and benefits from being said aloud: math facts, definitions, key vocabulary. Listen for the students who mouth without speaking and coach them in.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Foundational Skills"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=hzYPYNeExpc",
+    "videoTitle": "Teach Like a Champion Technique 23 - Call and Response",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 1st-grade teacher signals with a raised hand and asks, \"Class, what letter makes the /sh/ sound?\" The class answers together: \"S-H!\" She goes through five sounds this way in under a minute. On the sixth, she notices Marcus is silent, and after the round she gently prompts him to try the next one out loud with her.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is fluent, in-unison choral responses on key facts and vocabulary.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 23
+  },
+  {
+    "id": "tlac-24-pepper",
+    "title": "Pepper",
+    "description": "Run short, fast rounds of quick-answer review questions — a game-like drill that keeps energy high and gets many reps in a small window.",
+    "howTo": "Pick a set of quick-recall questions (math facts, vocab, dates). Fire them in rapid succession, moving around the room, one question per student. Keep the pace crisp; if a student stalls, move on and return to them. Frame it as a warm-up game, not a test.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Foundational Skills"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=DveAnbzwZLo",
+    "videoTitle": "Teach Like a Champion - Pepper",
+    "videoChannel": "StoneRanch92127",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A middle-school Spanish class starts every Friday with a pepper round on verb conjugations. Teacher points: \"Yo — hablar.\" Student: \"hablo.\" Point: \"Tú — comer.\" Student: \"comes.\" Twenty students, twenty verbs, three minutes. Energy is high, and any conjugation that trips someone up becomes a two-minute reteach.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a short, high-energy recall round that gets every student answering aloud.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 24
+  },
+  {
+    "id": "tlac-25-wait-time",
+    "title": "Wait Time",
+    "description": "After asking a question, pause — three to five seconds — before taking any answer, so more students have time to think.",
+    "howTo": "After you ask a question, silently count to five before taking a hand or calling on someone. Resist your own urge to fill the silence. When you do take an answer, wait again before responding — so the answerer can add more, and other students can process.",
+    "category": "Structured Talk & Questioning",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=YB0WElra8Eo",
+    "videoTitle": "Teach Like a Champion - Wait Time",
+    "videoChannel": "StoneRanch92127",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 4th-grade teacher asks, \"Why do you think the author ended the chapter with a question?\" She counts silently to five. Three more hands go up in that pause. She calls on a student who didn't raise her hand at the two-second mark but did by five. The answer is thoughtful — because she had time to build it.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is more hands raised and longer, more considered answers after each question.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 25
+  },
+  {
+    "id": "tlac-26-everybody-writes",
+    "title": "Everybody Writes",
+    "description": "Have every student write a brief response before discussion begins — everyone thinks on paper first, so the discussion isn't dominated by the fastest talkers.",
+    "howTo": "Pose the question and give 90 seconds to two minutes of silent writing before any hands go up or partner talk begins. Circulate to read what students wrote — you now know who to call on, and every student walks into the discussion with a position on paper.",
+    "category": "Written Production",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Feedback & Formative Assessment"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=M_cuE8fmZK0",
+    "videoTitle": "Teach Like a Champion - Everybody Writes",
+    "videoChannel": "StoneRanch92127",
+    "buildingFocus": [],
+    "telStage": "Learning",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "Before discussing whether Atticus Finch is a hero, an 11th-grade English teacher asks students to write for two minutes: \"In one paragraph, defend a yes or a no.\" She circulates and reads. When discussion opens she cold-calls a student whose paragraph she liked but who never volunteers. He reads what he wrote. Now the room has a real argument to work with, seeded by a voice that usually stays quiet.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A short written response from every student for at least one discussion prompt per week.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 26
+  },
+  {
+    "id": "tlac-27-vegas",
+    "title": "Vegas",
+    "description": "Bring a moment of showmanship or fun into the lesson — a chant, a cheer, a silly voice — but tie it directly to the content so the fun serves the learning.",
+    "howTo": "Pick one or two small rituals that celebrate content: a chant for a solved problem, a hand-clap for a hard word pronounced right, a mock game-show intro for a review round. Keep it short, keep it tied to what you're teaching, and use it sparingly enough that it stays fun.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=PPHv4tbEzSg",
+    "videoTitle": "Teach Like a Champion - Vegas",
+    "videoChannel": "StoneRanch92127",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 3rd-grade class solving a tough two-step word problem gets a \"brainiac clap\" — three claps and a finger tap to the head — whenever the class collectively figures it out. The teacher doesn't use it for every problem, only the ones that took real thinking. The clap takes four seconds and buys another twenty minutes of focus.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a short, content-tied ritual that students enjoy and know the meaning of.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 27
+  },
+  {
+    "id": "tlac-28-entry-routine",
+    "title": "Entry Routine",
+    "description": "Establish a predictable, non-negotiable routine for how students enter the room — where they go, what they pick up, what they start on — so the first minutes cost you nothing.",
+    "howTo": "Teach the entry routine explicitly in the first week: greet at the door, materials on the desk, Do Now started before the bell. Practice it until it runs itself. Reinforce the routine every day, warmly but firmly — the routine is what protects your instructional time.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=zw6m3-fnahw",
+    "videoTitle": "Teach Like a Champion Technique 28 - Entry Routine",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 6th-grade classroom, every student enters, picks up a Do Now half-sheet from the tray by the door, sits down, and begins. There is no announcement. The teacher greets each student by name at the door and by minute two of the period every pencil is moving. The lesson can start on time because the entry didn't need managing.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a bell-to-work interval under two minutes with no verbal prompting from the teacher.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 28
+  },
+  {
+    "id": "tlac-29-do-now",
+    "title": "Do Now",
+    "description": "Have a short, self-explanatory task waiting for students the moment they arrive — so the class starts working before you say a word.",
+    "howTo": "Post or hand out a 3-5 minute task tied to prior content or previewing today's. It should require no directions from you: students who did the routine yesterday know what to do today. Circulate as they work — the Do Now doubles as your first check for understanding.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Attention & Focus",
+      "Behavior & Self-Regulation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=vRyaWckh_x8",
+    "videoTitle": "Teach Like A Champion: Lemov's Do Now Technique",
+    "videoChannel": "Curriculum Bytes",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "On the whiteboard in a high school biology room: \"Do Now — 4 minutes. Sketch and label a plant cell from memory. Compare with a partner when done.\" Students walk in, pick up a sticky note from the tray, and start sketching. The teacher circulates and spots three students who forgot the vacuole. By the time she calls attention, she already knows what to review.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "A Do Now prompt on the board every day that students can start on without teacher direction.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 29
+  },
+  {
+    "id": "tlac-30-tight-transitions",
+    "title": "Tight Transitions",
+    "description": "Make transitions between activities fast, quiet, and orderly — the seconds you save on transitions become instructional minutes.",
+    "howTo": "Teach the transition like you teach content: name the sequence (close notebooks, materials to corner, eyes up), model it, practice it, and time it. Aim for under 30 seconds. When it drags, stop and re-run it until it's sharp — protect the standard.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Attention & Focus",
+      "Behavior & Self-Regulation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=o2KOnHRPd5g",
+    "videoTitle": "Teach Like a Champion Technique 30 - Tight Transitions",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 5th-grade teacher signals the transition from small-group to whole-class: \"Notebooks closed, papers in the middle of the table, eyes on me — in ten.\" She counts down. At six, every table is set. At ten, all eyes are on her. Instead of five minutes of drift, she gained four minutes of teaching. On days it takes longer, she does it again — clean.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is transitions that consistently take under 30 seconds.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 30
+  },
+  {
+    "id": "tlac-31-binder-control",
+    "title": "Binder Control",
+    "description": "Set up a clear system for how students store and retrieve handouts, notes, and work — so no minutes are lost hunting for paper.",
+    "howTo": "Choose one organizing structure for the class — a section binder, a folder with tabs, a spiral by subject — and teach students exactly where each type of paper lives. Model filing during class the first month. Do periodic binder checks and coach students who fall behind.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Explicit Instruction"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=I-MwP6js30c",
+    "videoTitle": "Teach Like a Champion 31 - Control Binders",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 7th-grade social studies class, every student has a three-tab folder: Do Nows, Notes, Returned Work. When the teacher hands back essays she says, \"Returned Work tab, right side,\" and pauses ten seconds. Every folder gets updated in real time. When it's time to study for the unit test, students already know where their materials are.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "Student binders or folders that are up to date and organized to the class system by Friday.",
+    "prepTime": "planned",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 31
+  },
+  {
+    "id": "tlac-32-slant",
+    "title": "SLANT",
+    "description": "SLANT is an acronym for a set of attention signals — Sit up, Listen, Ask and answer questions, Nod, Track the speaker — used to make focus visible and teachable. Note: Uncommon Schools — Lemov's own network — publicly retired SLANT in 2020 after equity critique. Consider whether attention signals can be built without prescribing posture.",
+    "howTo": "Teach and name each behavior explicitly so \"SLANT\" is a shorthand, not a mystery. Cue it when attention drifts (\"I need SLANT from row two\") rather than as a constant demand. Before you use it, think about which students may already be over-policed for posture and whether a lighter tracking cue would do the same work.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Attention & Focus",
+      "Behavior & Self-Regulation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=BZ5eKZT8IqA",
+    "videoTitle": "SLANT Demonstration",
+    "videoChannel": "Levonde Fitzhugh",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 6th-grade class, when the teacher is about to give directions for a lab, she says, \"SLANT, please — I need everyone tracking me for the next 30 seconds.\" Students sit up, put pencils down, and turn toward her. The directions land in one pass instead of three. The teacher has also decided not to use SLANT during independent reading, where posture doesn't matter.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a class that responds to a single attention cue when directions are about to matter.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 32
+  },
+  {
+    "id": "tlac-33-on-your-mark",
+    "title": "On Your Mark",
+    "description": "Set the expectation that students arrive with materials ready — pencil sharpened, paper out, homework on the desk — so class starts when the bell does.",
+    "howTo": "Define \"on your mark\" explicitly: what's on the desk, what's in hand, what's put away. Teach it, practice it, and enforce it with a small, quick consequence for missing materials — plus a pencil loan system that removes the excuse. Reset the expectation after every break.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=okNAawQlq2g",
+    "videoTitle": "Teach Like a Champion Technique 33 - On Your Mark",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 9th-grade algebra class, \"on your mark\" means pencil, calculator, and notebook out before the bell. On day one the teacher walks the room during the bell and taps desks where anything is missing. There's a coffee can of loaner pencils on the counter. By week two, the whole room is set at the bell, and the teacher can start with \"Open to page 84.\"",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is students starting each period with the required materials already on the desk.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 33
+  },
+  {
+    "id": "tlac-34-seat-signals",
+    "title": "Seat Signals",
+    "description": "Teach students a set of nonverbal signals from their seat for common needs — bathroom, tissue, pencil, question — so requests don't interrupt the lesson.",
+    "howTo": "Choose a small set of signals (a specific number of fingers, a hand shape) for each common need. Teach them explicitly, post them on a small chart, and consistently acknowledge with a nod or gesture rather than stopping instruction. Practice the routine until students use it without thinking.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=4ZzIAQEP6tA",
+    "videoTitle": "Teach Like a Champion Technique 34 - Seat Signals",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 4th-grade room, one finger up means restroom, two means tissue, three means pencil trouble. During a mini-lesson a student holds up one finger; the teacher nods without pausing. The student walks out with a pass and back. The lesson never stopped, and the teacher didn't have to negotiate.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is students handling routine needs via signals without interrupting instruction.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 34
+  },
+  {
+    "id": "tlac-35-props",
+    "title": "Props",
+    "description": "Use quick, public, class-wide recognition for good work — a short cheer, chant, or gesture the whole class does together in a few seconds.",
+    "howTo": "Build a small menu of two or three quick recognitions (the class snap, a two-second cheer, a specific clap) and teach them. Use them for genuine effort or a right answer that took real work. Keep them fast and specific — the point is warmth without derailment.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Engagement & Motivation",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=FvR1jIy9MyY",
+    "videoTitle": "Teach Like a Champion Technique 35 - Props",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 3rd-grade class, when a student explains a hard word problem correctly, the teacher says, \"Give her the Roller Coaster.\" The class raises both hands, makes a whoosh sound, and drops them — three seconds. The student beams. The lesson resumes without missing a beat, and the recognition landed.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a short, warm recognition ritual used for real effort and correct thinking.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 35
+  },
+  {
+    "id": "tlac-36-100-percent",
+    "title": "100 Percent",
+    "description": "Aim for 100% compliance with any direction you give — but achieved with the least invasive intervention: a look, a proximity move, a private word, before a public correction.",
+    "howTo": "When you give a direction (\"pencils down, eyes up\"), scan for full compliance and address the gaps. Start with the smallest move: eye contact, a slow walk over, a whispered name. Escalate only if needed. Do not proceed past a partial-compliance moment — the standard is the whole class.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=9sX881J7RSE",
+    "videoTitle": "Teach Like a Champion Technique 36 - 100 Percent (Part 1 of 4)",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A middle-school teacher says, \"Pencils down, eyes up.\" Twenty-two of 24 comply. She makes eye contact with one; he puts his pencil down. She walks two steps toward the second and quietly taps his desk; he looks up. Only then does she continue with directions. Total delay: seven seconds. Total voice raised: none.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is directions met with full compliance using the smallest necessary correction.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 36
+  },
+  {
+    "id": "tlac-37-what-to-do",
+    "title": "What to Do",
+    "description": "Give directions that are Specific, Concrete, Sequential, and Observable — tell students exactly what to do, not what to stop doing.",
+    "howTo": "Rewrite vague directions (\"get ready\", \"pay attention\") into steps you could watch happen: \"Close your Chromebook. Push it to the top of your desk. Take out your green folder. Eyes up.\" Give them in order, one clean list. Then watch to see whether they were followed.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Explicit Instruction",
+      "Behavior & Self-Regulation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=4NBz6cuxHTE",
+    "videoTitle": "S5E08: Doug Lemov on “what to do” and active observation techniques",
+    "videoChannel": "Dr. Zach Groshell",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "Instead of saying \"get ready for the quiz,\" a 7th-grade teacher says, \"Clear your desk of everything but a pencil. Get out your quiz cover sheet. When your desk is clear and your name is on the cover, look up at me.\" She watches. She sees exactly who did the sequence and who didn't. The direction was a checklist she could observe.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is directions phrased as specific, observable steps that students can be seen doing or not doing.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 37
+  },
+  {
+    "id": "tlac-38-strong-voice",
+    "title": "Strong Voice",
+    "description": "Use economy of language, square up to the student, don't talk over the class, and don't engage in debates about the direction — authority is calm and quiet, not loud.",
+    "howTo": "Give short, unambiguous directions. When the class is talking, stop and wait — don't raise your voice over them. Turn your body fully toward the person you're speaking to. If a student tries to argue the direction in the moment, defer: \"We can talk after class. Right now the direction is X.\"",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=TtSKT8Ezb7M",
+    "videoTitle": "Teach Like a Champion Technique 38 - Strong Voice",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A high school teacher notices the class is still chattering when she's trying to start. She stops mid-sentence, closes her mouth, and waits — still, calm, facing them. In twelve seconds the room is silent. She says, \"Thank you. Open your books to page 92.\" She never raised her voice, and the room learned that her voice is worth quieting for.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is a teacher whose directions land in a quiet room without shouting or repetition.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 38
+  },
+  {
+    "id": "tlac-39-do-it-again",
+    "title": "Do It Again",
+    "description": "When a routine — a transition, an entry, a line-up — is done sloppily, have students do it again until it meets the standard.",
+    "howTo": "Set the standard once, calmly: \"That transition took 45 seconds and was loud. Back to your seats — we'll do it again.\" Don't moralize or lecture; just re-run the routine. The second attempt is almost always sharp. Praise it briefly and move on.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Attention & Focus"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=RHg_-W6oHwA",
+    "videoTitle": "Veritas College Prep - Lemov Taxonomy Technique 39: Do It Again",
+    "videoChannel": "yungwax23",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "A 5th-grade class comes back from lunch loud and slow. The teacher says, \"Everyone back into the hallway. We're going to walk in the way we practiced.\" They line up, walk in quietly, and are in their seats in 40 seconds instead of two minutes. \"Thank you — that's how we do it.\" She doesn't revisit the incident.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is routines re-run to standard without lecturing or shaming.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 39
+  },
+  {
+    "id": "tlac-40-sweat-the-details",
+    "title": "Sweat the Details",
+    "description": "Hold the line on small standards — heading on the paper, tucked-in shirt, pencils in the tray — because letting the small things slip erodes the big ones.",
+    "howTo": "Pick a small set of details that matter to you (proper heading, materials returned, uniform code, silence during a quiz) and enforce them consistently. Address slippage the moment you see it, briefly and warmly. Don't wait until it accumulates.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=GS6DX7zeQo0",
+    "videoTitle": "Teach Like a Champion Technique #40 - Sweat the Details",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 6th-grade class where every paper needs name, date, and period in the top right, the teacher spots a paper without a heading during collection. Rather than accept it, she hands it back with a smile: \"Heading, please.\" Ten seconds later it's complete. Two weeks in, unheaded papers have disappeared without a lecture.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is small classroom standards being met consistently across the week.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 40
+  },
+  {
+    "id": "tlac-41-threshold",
+    "title": "Threshold",
+    "description": "Stand at the door and greet students as they cross the threshold — a handshake, a name, brief eye contact — every day.",
+    "howTo": "Position yourself at the door for the passing period. Greet each student by name; add a specific comment when you can (\"good game last night\", \"nice work on yesterday's quiz\"). If a student is off-track, address it here, quietly, before they enter — so the classroom stays a clean space.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Relationships & Climate",
+      "Behavior & Self-Regulation"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=ctd8UsbZ7Hc",
+    "videoTitle": "TLAC: Technique 47: Threshold and Strong Start",
+    "videoChannel": "Curriculum Bytes",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "At the door of a 10th-grade English classroom, the teacher stands with her hand out for a fist bump. \"Morning, Marcus — how'd that essay come out?\" \"Kelly, glad you're back.\" She catches Jayden with his hood up: \"Hood down before you come in, please. Thanks.\" By the time students sit down, they've been named and seen. Class starts warm.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is every student greeted by name at the door at the start of every period.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 41
+  },
+  {
+    "id": "tlac-42-no-warnings",
+    "title": "No Warnings",
+    "description": "Don't issue warnings that pile up before a consequence — a small consequence early is fairer and calmer than an escalating chain of threats.",
+    "howTo": "Decide in advance on a scale of small, quick consequences (a private word, a written reflection, a call home) and use the smallest one at the first infraction rather than warning-warning-warning-explosion. The consequence is small on purpose — its job is to reset behavior, not to punish.",
+    "category": "Relationships, Behavior & Climate",
+    "subjects": [
+      "All Subjects"
+    ],
+    "grades": [
+      "All Grades"
+    ],
+    "needs": [
+      "Behavior & Self-Regulation",
+      "Relationships & Climate"
+    ],
+    "sourceName": "Lemov, Teach Like a Champion (2010)",
+    "sourceUrl": "https://teachlikeachampion.org",
+    "videoUrl": "https://www.youtube.com/watch?v=edtmVNNisDU",
+    "videoTitle": "Teach Like a Champion Technique #42 - No Warnings",
+    "videoChannel": "Bryan’s English Club",
+    "buildingFocus": [],
+    "telStage": "Engagement",
+    "indicators": [],
+    "evidenceType": "practitioner",
+    "effectSize": null,
+    "effectSizeLabel": null,
+    "evidenceSourceUrl": "https://teachlikeachampion.org",
+    "example": "In a 7th-grade class, a student is talking during independent work. Instead of \"third warning — one more time and…\" the teacher walks over and says quietly, \"That's a two-minute stay after the bell to reset.\" The student nods. The behavior stops. The class doesn't witness an escalating fight, and the consequence was smaller than the one a warning-chain would have ended in.",
+    "exampleIsFromBook": false,
+    "weeklyProduct": "No written artifact — the visible result is behavior addressed early with small consequences rather than escalating warnings.",
+    "prepTime": "quick",
+    "isCustom": false,
+    "createdBy": null,
+    "createdAt": "2026-09-08T15:56:00.000Z",
+    "source": "Teach Like a Champion",
+    "tlacNumber": 42
   }
 ]
