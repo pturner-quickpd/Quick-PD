@@ -3,6 +3,11 @@
 (function () {
   "use strict";
 
+  var AP_WORLD_APP = {
+    url: "https://turnerstyleapworld.pplx.app/",
+    label: "Turner AP World History"
+  };
+
   function esc(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -288,6 +293,11 @@
       '<p>The Engagement Cycle opens with Notice, and some research supports letting students struggle with a problem before instruction. Manu Kapur\'s <em>productive failure</em> work is the strongest example. The condition is that explicit instruction follows and builds on what students tried.</p>' +
       '<p>So a short Notice hook before teaching is defensible. A Notice → Read → Talk sequence with no teaching until Defend is not — at least for students who are behind in reading. The expertise reversal effect gives the rule: heavy guidance for novices, fading as students gain expertise. Delivery should look different in AP U.S. History than in English I.</p></div>' +
 
+      '<h2 class="section-title">See it applied in an AP course</h2>' +
+      '<div class="callout">' +
+      '<p>The <a href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">' + esc(AP_WORLD_APP.label) + ' app ↗</a> is a working example of these delivery moves in an AP classroom — where the expertise-reversal note in the tension callout matters most. Worked examples appear earlier and fade faster; guided practice runs closer to the AP task itself; retrieval openers are built around released items rather than generic recall. Use it as a live reference for what "delivery in an AP course" looks like when the ladder starts further down.</p>' +
+      '</div>' +
+
       '<h2 class="section-title">What to look for in the room</h2>' +
       '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
   }
@@ -385,6 +395,11 @@
       '<div class="callout">' +
       '<p>Clarity, Delivery, and the Engagement Cycle are three moves in one lesson, not three separate lessons. Clarity sets the destination. Delivery gets students onto the road. The Engagement Cycle is what they do on the road — Notice, Read, Talk, Solve, Defend, Revise — with the target and criteria in view the whole way. A clear target with weak delivery still fails. Strong delivery toward a fuzzy target still fails. The three move together.</p>' +
       '<p style="margin:8px 0 0;"><a href="#/delivery">Open the Instructional Delivery page →</a></p>' +
+      '</div>' +
+
+      '<h2 class="section-title">See it applied in an AP course</h2>' +
+      '<div class="callout">' +
+      '<p>The <a href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">' + esc(AP_WORLD_APP.label) + ' app ↗</a> is a live example of clarity in an AP classroom. Each unit is framed around a clear historical-thinking target, success criteria are visible before students start work, and exemplars of strong short-answer and DBQ responses are annotated so students can see what quality looks like before they attempt it. Use it as a reference for what clarity sounds like when the target is a discipline-specific reasoning move, not a topic.</p>' +
       '</div>' +
 
       '<h2 class="section-title">What to look for in the room</h2>' +
