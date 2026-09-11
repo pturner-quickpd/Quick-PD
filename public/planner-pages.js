@@ -643,6 +643,38 @@
     frag.appendChild(el("p", { class: "page-lede" },
       "A single-day gradual-release plan — Do Now, I Do, We Do, You Do, Closure, and Exit Ticket. Fill it in, walk through step by step, then download as a Word file."));
 
+    // Cross-links to the teacher guides + library
+    var xlinks = el("div", { class: "callout", style: "background:#F6F1E4;border-left:4px solid #0A2540;" });
+    xlinks.innerHTML = '<h3 style="margin-top:0;">Where each part comes from</h3>' +
+      '<p style="margin-bottom:8px;"><strong>Clarity</strong> shapes the objective and success criteria at the top. <strong>Delivery</strong> shapes I Do, We Do, and You Do. Every strategy you pull below is a card in the Strategy Library.</p>' +
+      '<p style="margin-bottom:0;">' +
+      '<a href="#/clarity" class="btn btn-ghost" style="margin-right:8px;">Open Clarity guide</a>' +
+      '<a href="#/delivery" class="btn btn-ghost" style="margin-right:8px;">Open Delivery guide</a>' +
+      '<a href="#/strategies" class="btn btn-ghost" style="margin-right:8px;">Open Strategy Library</a>' +
+      '<a href="#/pick-for-me" class="btn btn-ghost">Pick for Me</a>' +
+      '</p>';
+    frag.appendChild(xlinks);
+
+    // Sequence mapping table — same lesson, two vocabularies. Matches Delivery page.
+    var mapDiv = el("div", { class: "callout", style: "background:#FFFFFF;border:1px solid #e5e7eb;" });
+    mapDiv.innerHTML =
+      '<h3 style="margin-top:0;">Same lesson, two vocabularies</h3>' +
+      '<p>The block names below match the <a href="#/delivery">Instructional Delivery page</a>. Do Now is a retrieval opener; I Do is your model; We Do is guided practice to ≈80% success; You Do is release into the Engagement Cycle; Closure is the handoff; Exit Ticket is the exit check.</p>' +
+      '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.95em;margin-top:8px;">' +
+      '<thead><tr>' +
+      '<th style="text-align:left;padding:6px;border-bottom:2px solid #D4A537;">Daily Plan block</th>' +
+      '<th style="text-align:left;padding:6px;border-bottom:2px solid #D4A537;">Delivery page name</th>' +
+      '<th style="text-align:left;padding:6px;border-bottom:2px solid #D4A537;">Purpose</th>' +
+      '</tr></thead><tbody>' +
+      '<tr><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Do Now</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Retrieval opener</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;">Every student answers 3–5 questions on yesterday’s target without notes.</td></tr>' +
+      '<tr><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">I Do</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Chunk + think-aloud</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;">Small pieces of new material; narrate the decisions, not just the answer.</td></tr>' +
+      '<tr><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">We Do</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Guided practice to ≈80%</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;">Practice together; do not release until a spot-check shows most students correct (Rosenshine’s 80% bar).</td></tr>' +
+      '<tr><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">You Do</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Release into the Engagement Cycle</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;">Notice, Read, Talk, Solve, Defend, Revise live here, on the ground you just prepared.</td></tr>' +
+      '<tr><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Closure</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;white-space:nowrap;">Handoff cue</td><td style="padding:6px;border-bottom:1px solid #e5e7eb;">Name the target once more; state what students will self-check against.</td></tr>' +
+      '<tr><td style="padding:6px;">Exit Ticket</td><td style="padding:6px;">Exit check</td><td style="padding:6px;">One target-aligned question every student answers; sort tonight and feed tomorrow’s Do Now.</td></tr>' +
+      '</tbody></table></div>';
+    frag.appendChild(mapDiv);
+
     var form = el("form", { class: "planner-form", onsubmit: function (e) { e.preventDefault(); } });
 
     var header = el("div", { class: "form-grid form-grid-3", id: "dp-header" }, [
@@ -680,7 +712,7 @@
     var blocks = [
       { id: "dp-donow",    title: "Do Now / Warm-up",                lede: "3–5 minutes. Silent, individual, based on yesterday's exit ticket data.",             fields: [["min", "Minutes", "5", "number"], ["desc", "What students do", ""]] },
       { id: "dp-ido",      title: "I Do (Model)",                    lede: "Explicit modeling. You do the thinking out loud. 8–12 minutes.",                      fields: [["min", "Minutes", "10", "number"], ["desc", "Exact model, key language, worked example", ""]] },
-      { id: "dp-wedo",     title: "We Do (Guided practice)",         lede: "Whole-class or small groups. High success rate, high response rate. 8–12 minutes.",   fields: [["min", "Minutes", "12", "number"], ["desc", "Prompts, checks for understanding, response protocol", ""]] },
+      { id: "dp-wedo",     title: "We Do (Guided practice)",         lede: "Whole-class or small groups. Do not release to You Do until a quick spot-check shows most students correct (Rosenshine’s ≈80% release bar). 8–12 minutes.", fields: [["min", "Minutes", "12", "number"], ["desc", "Prompts, checks for understanding, response protocol, and the 80% spot-check you’ll run before releasing", ""]] },
       { id: "dp-youdo",    title: "You Do (Independent practice)",   lede: "Every student working on the same objective. You circulate and coach. 10–15 minutes.", fields: [["min", "Minutes", "15", "number"], ["desc", "The task and how you'll spot who's stuck", ""]] },
       { id: "dp-closure",  title: "Closure",                         lede: "Bring it back to the objective. Name what was learned. 3–5 minutes.",                fields: [["min", "Minutes", "5", "number"], ["desc", "How you'll close — a summary, a share, a question", ""]] },
       { id: "dp-exit",     title: "Exit Ticket",                     lede: "One question that tells you who got it. Used to plan tomorrow's Do Now.",              fields: [["min", "Minutes", "3", "number"], ["desc", "The exact prompt", ""]] },
@@ -716,7 +748,7 @@
       { id: "dp-obj",    title: "Standard, objective, and success criteria", body: "Pull the exact Oklahoma standard so the posted code matches the state PDF. Then translate it into an \"I can\" objective and 2–3 success criteria." },
       { id: "dp-donow",  title: "Do Now", body: "Silent, individual, tied to yesterday's exit ticket data. Buys you a moment to greet students and take attendance." },
       { id: "dp-ido",    title: "I Do (Model)", body: "Explicit modeling. Say what you're doing while you do it. Anticipate the misconception you know they'll bring." },
-      { id: "dp-wedo",   title: "We Do (Guided practice)", body: "Every student responding — cold call, whiteboards, choral response, structured turn-and-talk. High success rate here." },
+      { id: "dp-wedo",   title: "We Do (Guided practice)", body: "Every student responding — cold call, whiteboards, choral response, structured turn-and-talk. Do not release to You Do until a quick spot-check shows most students producing correct work; if not, run another guided round. This is Rosenshine’s 80% release check." },
       { id: "dp-youdo",  title: "You Do (Independent practice)", body: "Same objective, every student. You circulate with a data collection tool — clipboard, sticker chart, seating chart." },
       { id: "dp-closure",title: "Closure", body: "Bring it back to the objective. Ask one student to state what they can now do that they couldn't at bell." },
       { id: "dp-exit",   title: "Exit Ticket", body: "One question that tells you who got it. Grade tonight. Use it to write tomorrow's Do Now." },

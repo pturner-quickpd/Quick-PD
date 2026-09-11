@@ -78,6 +78,18 @@
       lede: "Writing is how students clarify and defend thinking in every course. Build from quick, low-risk writing toward evidence-based explanation, argument, feedback, and revision.",
       source: { label: "Evidence library", title: "IES What Works Clearinghouse Practice Guides", url: "https://ies.ed.gov/ncee/wwc/practiceguides" },
       ids: ["tg-quickwrite", "sentence-combining", "tg-sentence-and-paragraph-frames", "tg-three-pass-peer-review", "tg-the-quote-sandwich", "tg-counterclaim-rebuttal"]
+    },
+    science: {
+      title: "Secondary Science (6–12)",
+      lede: "Students learn science by explaining phenomena, reasoning from data, and defending claims with evidence. Explicit instruction sets up the reasoning; discourse and writing consolidate it.",
+      source: { label: "IES Practice Guide", title: "Teaching Academic Content and Literacy to English Learners in Elementary and Middle School", url: "https://ies.ed.gov/ncee/wwc/practiceguide/19" },
+      ids: ["3094110f-91e7-4f98-894e-7b9f0a0893c0", "tg-claim-evidence-reasoning", "tg-notice-and-wonder", "tg-anchor-chart-for-vocabulary", "active-reading-annotation", "tg-exit-ticket-with-quoted-evidence"]
+    },
+    social: {
+      title: "Secondary Social Studies (6–12)",
+      lede: "Students think historically by sourcing documents, corroborating across sources, and defending arguments with evidence. Modeling the questions matters as much as modeling the answers.",
+      source: { label: "Stanford History Education Group", title: "Reading Like a Historian curriculum", url: "https://sheg.stanford.edu/history-lessons" },
+      ids: ["b0d1b183-06cc-4a46-9e05-bf3ea7f54e37", "tg-synthesis-across-multiple-sources", "tg-socratic-seminar", "active-reading-annotation", "tg-counterclaim-rebuttal", "tg-exit-ticket-with-quoted-evidence"]
     }
   };
 
@@ -188,7 +200,9 @@
       '<a class="hub-card" href="#/secondary-reading"><div class="hub-card-title">Secondary Reading</div><div class="hub-card-desc">Complex text, annotation, vocabulary, discussion, and evidence across every subject.</div><div class="hub-card-cta">Open ↗</div></a>' +
       '<a class="hub-card" href="#/secondary-math"><div class="hub-card-title">Secondary Math</div><div class="hub-card-desc">Represent, solve, explain, compare methods, defend, and revise.</div><div class="hub-card-cta">Open ↗</div></a>' +
       '<a class="hub-card" href="#/secondary-writing"><div class="hub-card-title">Secondary Writing</div><div class="hub-card-desc">Frequent low-stakes writing through evidence-based explanation and argument.</div><div class="hub-card-cta">Open ↗</div></a>' +
-      '<a class="hub-card" href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener"><div class="hub-card-title">' + esc(AP_WORLD_APP.label) + '</div><div class="hub-card-desc">Live example app — unit targets, success criteria, annotated SAQ/DBQ exemplars, and released-item retrieval in a working AP course.</div><div class="hub-card-cta">Open live app ↗</div></a></div>';
+      '<a class="hub-card" href="#/secondary-science"><div class="hub-card-title">Secondary Science</div><div class="hub-card-desc">Explain phenomena, reason from data, and defend claims with evidence.</div><div class="hub-card-cta">Open ↗</div></a>' +
+      '<a class="hub-card" href="#/secondary-social"><div class="hub-card-title">Secondary Social Studies</div><div class="hub-card-desc">Source documents, corroborate across sources, and defend arguments with evidence.</div><div class="hub-card-cta">Open ↗</div></a>' +
+      '<a class="hub-card" href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener"><div class="hub-card-title">' + esc(AP_WORLD_APP.label) + '</div><div class="hub-card-desc">Student study app built on the same principles — unit targets, success criteria, and annotated SAQ/LEQ/DBQ exemplars for AP World History.</div><div class="hub-card-cta">Open live app ↗</div></a></div>';
   }
 
   function renderSecondary(view, key, strategies) {
@@ -285,14 +299,20 @@
           { url: "https://www.youtube.com/watch?v=PxEcB11doaA", title: "250: Nine Easy Ways to Add Retrieval to Your Lessons", channel: "Cult of Pedagogy" },
           { url: "https://www.youtube.com/watch?v=ZO8abw3DHxs", title: "What is retrieval practice?", channel: "Pooja K. Agarwal, Ph.D." }
         ] },
-      { title: "Chunk + model with a think-aloud", band: "Delivery · New material", why: "Working memory is small; novices learn more from watching expert thinking than from being handed a finished product.", moves: ["Break new content into pieces that fit in one whiteboard or one screen.", "Narrate the decisions out loud — 'I'm skipping this quote because it doesn't prove my claim.'", "After each chunk, check before moving on. Never string two new pieces together without a check in between."], evidence: "Students can restate the reasoning, not just the answer. The board or slide shows the process, not only the product.",
+      { title: "Chunk + model with a think-aloud", band: "Delivery · New material", why: "Working memory is small; novices learn more from watching expert thinking than from being handed a finished product. The 9–12 modeled-writing videos below are the most direct examples of this move for our building focus — a teacher writing an evidence paragraph in front of students, out loud.", moves: ["Break new content into pieces that fit in one whiteboard or one screen.", "Narrate the decisions out loud — 'I'm skipping this quote because it doesn't prove my claim.'", "After each chunk, check before moving on. Never string two new pieces together without a check in between."], evidence: "Students can restate the reasoning, not just the answer. The board or slide shows the process, not only the product.",
         videos: [
+          { url: "https://www.youtube.com/watch?v=wbZ2k5j8MFk", title: "9–12: Writing a paragraph with high school ELLs", channel: "Colórin Colorado", note: "HS teacher moves students from a brainstorm to a paragraph on screen, naming the moves." },
+          { url: "https://www.youtube.com/watch?v=LDOEjAxSqTc", title: "9–12: How to write a basic history paragraph", channel: "James Couture (West Seattle HS)", note: "HS history teacher walks through the anatomy of an evidence-based paragraph and models one." },
+          { url: "https://www.youtube.com/watch?v=hpHKvir4S9U", title: "9–12: High School Social Studies DBQ", channel: "JCPS Digital Learning Channel", note: "HS DBQ lesson: subclaim + evidence as the shape of a body paragraph." },
+          { url: "https://www.youtube.com/watch?v=Lw1uLeDLN8g", title: "9–12: Argument Writing — Body Paragraph Format for High School", channel: "Catlin Tucker", note: "Narrated annotation of a high-school argument body paragraph — claim, data, warrant, counterclaim, rebuttal." },
+          { url: "https://www.youtube.com/watch?v=qWHt_oyI5Vg", title: "9–12: A Formula for How to Write a LEQ (AP World, APUSH, AP Euro)", channel: "Heimler's History", note: "AP history teacher models the body-paragraph decision sequence: topic sentence, specific evidence, analysis." },
+          { url: "https://www.youtube.com/watch?v=BRklGBRU0Vc", title: "9–12: Embed quotes to improve writing flow and voice", channel: "Laura Randazzo", note: "High-school English teacher demonstrates a specific evidence-integration move — the embedded quote." },
+          { url: "https://www.youtube.com/watch?v=13Xtw6fYDEg", title: "9–12: DBQ — Building Paragraphs for the DBQ", channel: "History Haven", note: "AP-level DBQ paragraph modeling with documents-as-evidence tied to claims, sourcing, and outside information." },
           { url: "https://www.youtube.com/watch?v=G0ZHimY5YZo", title: "Think Alouds: Modeling Ways to Think About Text", channel: "The Balanced Literacy Diet" },
           { url: "https://www.youtube.com/watch?v=msWdR2nMAg4", title: "Modeling vs. Think Alouds: What's the Difference?", channel: "Smekens Education" },
-          { url: "https://www.youtube.com/watch?v=YWqjRoLD2zI", title: "Thinking Aloud in a Fluency Lesson", channel: "Reading Universe" },
           { url: "https://www.youtube.com/watch?v=crNzCafZ5E4", title: "Think Aloud | Teaching Tip", channel: "Kyle Thain" },
           { url: "https://www.youtube.com/watch?v=UmhLgsBD1-I", title: "Go beyond a model; reveal a Think Aloud", channel: "Smekens Education" },
-          { url: "https://www.youtube.com/watch?v=qg9zpI0RDFM", title: "Use explicit instruction for novice learners - Tips for Teachers", channel: "Tips for Teachers" }
+          { url: "https://www.youtube.com/watch?v=qg9zpI0RDFM", title: "Use explicit instruction for novice learners — Tips for Teachers", channel: "Tips for Teachers" }
         ] },
       { title: "Every-student checks for understanding", band: "Delivery · Checking", why: "'Any questions?' and 'Does that make sense?' hear from three confident kids. Whole-class checks hear from everyone.", moves: ["Mini whiteboards, cold call, quick written response, or a signal — the format is less important than 'everyone answers'.", "Look at the data before you decide the next move. Wrong-answer patterns tell you what to reteach.", "Ask questions that expose reasoning, not recognition — 'Why did you pick that?' beats 'Is this right?'"], evidence: "Within a 10-minute segment you have visible responses from every student, and your next move responds to what you saw.",
         videos: [
@@ -334,24 +354,42 @@
     ],
     conceptVideo: { url: "https://www.youtube.com/watch?v=C-dfYyCRJ5E", title: "Explicit Vocabulary Instruction with Anita Archer", channel: "Good to Great Schools Australia", note: "Archer herself modeling explicit instruction with a class — the difference between explicit teaching and lecture is visible from the first minute." },
     conceptVideos: [
-          { url: "https://www.youtube.com/watch?v=C-dfYyCRJ5E", title: "Explicit Vocabulary Instruction with Anita Archer", channel: "Good to Great Schools Australia", note: "Archer herself modeling explicit instruction with a class — the difference between explicit teaching and lecture is visible from the first minute." },
           { url: "https://www.youtube.com/watch?v=cjURdvzty4c", title: "Gradual Release of Responsibility", channel: "Fisher and Frey" },
           { url: "https://www.youtube.com/watch?v=uPHDJI17sH4", title: "Rosenshine Masterclass I Intro and Research", channel: "Tom Sherrington" },
           { url: "https://www.youtube.com/watch?v=cp1juLTIdlM", title: "What is Explicit Teaching and Practice in the Gradual Release Model", channel: "The Simple Teachers" },
           { url: "https://www.youtube.com/watch?v=T-e6uHBDdNk", title: "A Gradual Release of Responsibility", channel: "Institute of Education Sciences" }
         ],
     breakdowns: [
-      { title: "Skipping 'we do'", body: "The teacher models one problem and assigns twenty. This is the most common failure. It produces a lot of what gets called engagement or behavior problems, because a student who cannot do the work finds something else to do." },
-      { title: "Modeling the answer instead of the thinking", body: "Showing a finished paragraph with evidence teaches almost nothing. Narrating the decisions — 'I'm skipping this quote because it doesn't prove my claim' — is what students can copy." },
+      { title: "Skipping 'we do'", body: "You model one problem and assign twenty. This is the most common failure. It shows up as behavior — a student who cannot do the work will find something else to do — but it started in delivery." },
+      { title: "Modeling the answer instead of the thinking", body: "Showing a finished paragraph with evidence teaches almost nothing. Narrating the decisions out loud — 'I'm skipping this quote because it doesn't prove my claim' — is what students can copy." },
       { title: "Checking with volunteers", body: "'Any questions?' and 'Does that make sense?' hear from three confident kids. Mini whiteboards, cold call, or a quick written response hear from everyone." },
       { title: "Talking over text-heavy slides", body: "Students cannot read and listen at the same time, so they do neither well. Pare slides to one image or a few words while you talk." },
-      { title: "Packets standing in for teaching", body: "In buildings with emergency-certified staff, delivery quietly becomes a video plus a worksheet. That is not delivery; it is delegation." }
+      { title: "Video plus worksheet standing in for teaching", body: "When the day gets away from you, delivery quietly turns into a video plus a worksheet. That is not delivery — it is holding the room. Every teacher does it once in a while; the trap is when it becomes the pattern." }
     ],
     bySubject: [
-      { subject: "Math", body: "Worked examples followed by partially completed ones. Show the decision points, then hand students problems where the hard step is blanked out." },
-      { subject: "Science", body: "Modeling claim–evidence–reasoning from actual data. Think aloud through which data point supports which claim and why the counter-data doesn't disqualify it." },
+      { subject: "Math", body: "Worked examples followed by partially completed ones. Show the decision points out loud, then hand students problems where the hard step is blanked out." },
+      { subject: "Science", body: "Model claim–evidence–reasoning from actual data. Think aloud through which data point supports which claim and why the counter-data doesn't disqualify it." },
       { subject: "ELA", body: "Think-aloud through a passage. Show what a strong reader does at a hard sentence, an unfamiliar word, or a paragraph break — not just what they concluded." },
-      { subject: "Social studies", body: "Sourcing a document out loud: who wrote this, when, and why should I believe it? Model the questions before the interpretation." }
+      { subject: "Social studies", body: "Source a document out loud: who wrote this, when, and why should I believe it? Model the questions before the interpretation." }
+    ],
+    cteRoutine: {
+      title: "The demonstration routine — the CTE and electives version of gradual release",
+      lede: "Shop, kitchen, studio, gym, and lab classrooms have their own name for the same move. The demonstration routine is I show you → you echo the steps → you do one with a check → you do the rest with me circulating. It is gradual release in a room where the wrong step burns, breaks, spoils, or gets someone hurt.",
+      steps: [
+        { label: "I show you (full run)", body: "Do the whole procedure at pace once so students see the finished thing. Do not talk over the safety-critical steps — just do them." },
+        { label: "I show you again (slowed + narrated)", body: "Repeat the same procedure slowly, narrating the decision at every step. Name the trap — the step people skip, the step that ruins the piece, the step that gets someone hurt." },
+        { label: "You echo the steps", body: "Students name the steps back in order before they touch a tool. Cold call the safety-critical ones. If they can't name it, they can't run it yet." },
+        { label: "You do one with me watching", body: "Every student does the procedure once while you watch — one at a time in a shop, in pairs in a studio, in a rotation in a kitchen or gym. Correct in the moment, not after." },
+        { label: "You do the rest — I circulate", body: "Independent work with the model still visible. Circulate with a spot-check list. First bad rep gets a stop-and-reset, not a mark on a rubric." }
+      ]
+    },
+    cteApplications: [
+      { subject: "Ag Mechanics / Welding", body: "Demonstrate the weld once cold-metal to show the motion, once at heat to show the bead, then have students strike a single practice bead on scrap while you watch. Never release to independent runs until the practice bead passes a visual check." },
+      { subject: "Culinary", body: "Full demo of the technique — knife cut, sauce, sear — at speed first, then slowed with the trap named ('this is where the fond burns'). Students echo the sequence, run one portion under your eye, then run the batch while you circulate with a taste-and-adjust check." },
+      { subject: "Aviation", body: "Ground demonstration of the checklist item at pace, then slowed with each callout narrated. Students verbalize the checklist back before touching the panel. First simulator run is under direct observation; independent practice only after a clean run." },
+      { subject: "Art", body: "Show the technique on your own surface — brush loading, glaze, joinery, layout — at speed, then again with the decisions narrated ('I'm lifting here because a heavier line would flatten the shape'). Students try the move on scrap first, then in the piece." },
+      { subject: "PE / Athletics", body: "Demonstrate the skill at full speed, then a slow-motion breakdown with the cues named. Every student walks through the pattern once under your eye before live reps. The check for release is the skill executed correctly under low pressure, not the clock." },
+      { subject: "Any lab science with equipment", body: "Same routine — full demo, slowed demo with the trap named, echo of the steps, one supervised run, then release. The equipment doesn't care about the pacing guide." }
     ],
     lookFors: [
       "The teacher models thinking, not just answers — students can hear the decisions being made.",
@@ -382,10 +420,47 @@
       '<p>' + esc(s.body) + '</p></article>';
   }
 
+  function cteStepCard(step, i) {
+    return '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+      '<div class="card-meta">Step ' + (i + 1) + '</div>' +
+      '<h3 class="card-title">' + esc(step.label) + '</h3>' +
+      '<p>' + esc(step.body) + '</p></article>';
+  }
+
+  // Mapping table — reconciles the Daily Plan lesson names (Do Now / I Do / We Do / You Do / Closure / Exit Ticket)
+  // with the Delivery page's evidence-based labels. Same lesson, two vocabularies.
+  function lessonMapTable() {
+    var rows = [
+      ["Do Now / Warm-up", "Retrieval on prior learning", "~5 min", "3–5 questions on yesterday's target, answered without notes. Every student responds."],
+      ["State the target", "State the target", "~1 min", "One sentence a student can restate. Refer back at every transition."],
+      ["I Do (Model)", "New material in small pieces + think-aloud", "~10 min", "Chunk the content. Narrate the decisions, not just the answer. Check before moving on."],
+      ["We Do (Guided practice)", "Guided practice to ~80% success", "~10–15 min", "Practice together until most students are getting it right. Do not release on the clock — release on the data. Rosenshine's 80% bar lives here."],
+      ["You Do (Independent practice)", "Release into the Engagement Cycle", "~10–15 min", "Independent work happens here — this is where Notice, Read, Talk, Solve, Defend, Revise live, on the ground you just prepared."],
+      ["Closure", "Handoff cue", "~2–3 min", "Name the target once more. State the success criteria students will self-check against."],
+      ["Exit Ticket", "Exit check", "~3–5 min", "One target-aligned question every student answers. Sort tonight into got-it / partial / not-yet. Uses tomorrow's Do Now."]
+    ];
+    var head = '<tr><th style="text-align:left;padding:8px;border-bottom:2px solid #D4A537;">Daily Plan name</th>' +
+               '<th style="text-align:left;padding:8px;border-bottom:2px solid #D4A537;">Delivery page name</th>' +
+               '<th style="text-align:left;padding:8px;border-bottom:2px solid #D4A537;">Time</th>' +
+               '<th style="text-align:left;padding:8px;border-bottom:2px solid #D4A537;">What it means</th></tr>';
+    var body = rows.map(function (r) {
+      return '<tr>' + r.map(function (c, i) {
+        return '<td style="padding:8px;border-bottom:1px solid #e5e7eb;vertical-align:top;' +
+          (i < 3 ? 'white-space:nowrap;' : '') + '">' + esc(c) + '</td>';
+      }).join("") + '</tr>';
+    }).join("");
+    return '<div class="card" style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.95em;">' +
+      '<thead>' + head + '</thead><tbody>' + body + '</tbody></table></div>';
+  }
+
   function renderInstructionalDelivery(view) {
     var page = DELIVERY;
     view.innerHTML = '<h1 class="page-title">' + esc(page.title) + '</h1>' +
       '<p class="page-lede">' + esc(page.lede) + '</p>' +
+
+      '<div class="callout" style="background:#F6F1E4;border-left:4px solid #0A2540;"><h3>Where this fits in your plan</h3>' +
+      '<p>This page is the teacher guide behind the <a href="#/daily-plan">Daily Plan template</a>. Every move you fill in on I Do, We Do, or You Do has an evidence base and a routine here. Pair it with the <a href="#/clarity">Clarity page</a> — clarity sets where the lesson is going; delivery is how you get students there. When you need a specific move, search the <a href="#/strategies">Strategy Library</a> or hit <a href="#/pick-for-me">Pick for Me</a>.</p>' +
+      '</div>' +
 
       '<div class="callout"><h3>Explicit instruction is not lecture</h3>' +
       '<p>Lecture delivers content and hopes it sticks. Explicit instruction comes in short chunks, with frequent checks where every student responds, and it keeps adjusting based on what those checks show.</p>' +
@@ -400,28 +475,41 @@
       '<p>In 50 minutes (45 on Mondays), a strong delivery sequence maps cleanly onto Teaching → Engagement → Learning without changing the framework.</p>' +
       '<div class="card-grid">' + page.sequence.map(stepCard).join("") + '</div>' +
 
+      '<h2 class="section-title">Same lesson, two vocabularies</h2>' +
+      '<p>The <a href="#/daily-plan">Daily Plan template</a> uses gradual-release names (Do Now, I Do, We Do, You Do, Closure, Exit Ticket) because those are the names on your walkthrough form and the ones staff learned first. This page uses evidence-based names (retrieval opener, model, guided practice, release into the Engagement Cycle, handoff, exit check) because they name the move, not the slot. They are the same lesson.</p>' +
+      lessonMapTable() +
+      '<p style="margin-top:12px;font-size:0.95em;color:#4a4a4a;">The 80% release check lives in <strong>We Do / Guided practice</strong>. Do not release to You Do until a quick spot-check shows most students producing correct work — not because 20 minutes have passed.</p>' +
+
       '<h2 class="section-title">Core delivery moves</h2>' +
+      '<p style="margin-top:0;">Each move below has a matching entry you can pull into a plan. Open the <a href="#/strategy/modeling">Modeling (I Do) library entry</a> or the <a href="#/strategy/tlac30-14-show-call">Show Call entry</a> for a printable version of the routine.</p>' +
       page.practices.map(practiceCard).join("") +
 
       '<h2 class="section-title">Where delivery breaks down</h2>' +
-      '<p>These are the patterns you will likely see on walkthroughs.</p>' +
+      '<p>Read these as self-checks. If one sounds familiar in your own room this week, that is not a judgment — it is data. The move to fix it is on this page.</p>' +
       '<div class="card-grid">' + page.breakdowns.map(breakdownCard).join("") + '</div>' +
 
-      '<div class="callout" style="border-left:4px solid #D4A537;"><h3>The best walkthrough diagnostic</h3>' +
-      '<p>Watch the first three minutes of independent work. If more than a handful of students are stuck or haven\'t started, the problem happened upstream in delivery, not in engagement. You can see this in ten minutes, it is fair to the teacher, and it points straight to a next step.</p></div>' +
+      '<div class="callout" style="border-left:4px solid #D4A537;"><h3>A five-minute self-check</h3>' +
+      '<p>Watch your own first three minutes of independent work. If more than a handful of students are stuck or haven\'t started, the problem happened upstream in delivery, not in engagement. You can see it in ten minutes and it points straight to a next move — usually going back to We Do for another round before releasing.</p></div>' +
 
-      '<h2 class="section-title">Delivery by subject</h2>' +
+      '<h2 class="section-title">Delivery by subject — core academics</h2>' +
       '<p>The move is the same; the content is different. The literacy focus runs through all four, because modeling how to write with evidence is itself a delivery move.</p>' +
       '<div class="card-grid">' + page.bySubject.map(subjectCard).join("") + '</div>' +
 
-      '<h2 class="section-title">The tension with the Engagement Cycle</h2>' +
+      '<h2 class="section-title">Delivery in electives and CTE</h2>' +
+      '<div class="callout" style="background:#F6F1E4;"><h3>' + esc(page.cteRoutine.title) + '</h3>' +
+      '<p>' + esc(page.cteRoutine.lede) + '</p></div>' +
+      '<div class="card-grid">' + page.cteRoutine.steps.map(cteStepCard).join("") + '</div>' +
+      '<h3 class="section-title" style="font-size:1.1em;margin-top:24px;">How the routine looks in each discipline</h3>' +
+      '<div class="card-grid">' + page.cteApplications.map(subjectCard).join("") + '</div>' +
+
+      '<h2 class="section-title">The sequencing rule for the Engagement Cycle</h2>' +
       '<div class="callout">' +
-      '<p>The Engagement Cycle opens with Notice, and some research supports letting students struggle with a problem before instruction. Manu Kapur\'s <em>productive failure</em> work is the strongest example. The condition is that explicit instruction follows and builds on what students tried.</p>' +
-      '<p>So a short Notice hook before teaching is defensible. A Notice → Read → Talk sequence with no teaching until Defend is not — at least for students who are behind in reading. The expertise reversal effect gives the rule: heavy guidance for novices, fading as students gain expertise. Delivery should look different in AP U.S. History than in English I.</p></div>' +
+      '<p>The Engagement Cycle — Notice, Read, Talk, Solve, Defend, Revise — is what students do on the ground your delivery prepared. It is not a replacement for teaching new material.</p>' +
+      '<p>The rule is simple: <strong>teach before Defend.</strong> A short Notice hook before teaching is defensible — productive failure research (Kapur) shows it can help, as long as explicit instruction follows and builds on what students tried. A full Notice → Read → Talk sequence with no teaching until Defend is not, at least for students who are still building the reading or the background knowledge to make it through. Heavy guidance for novices, fading as students gain expertise. Advanced classes can start further down the ladder; on-level and behind classes cannot.</p></div>' +
 
       '<h2 class="section-title">See it applied in an AP course</h2>' +
       '<div class="callout">' +
-      '<p>The <a href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">' + esc(AP_WORLD_APP.label) + ' app ↗</a> is a working example of these delivery moves in an AP classroom — where the expertise-reversal note in the tension callout matters most. Worked examples appear earlier and fade faster; guided practice runs closer to the AP task itself; retrieval openers are built around released items rather than generic recall. Use it as a live reference for what "delivery in an AP course" looks like when the ladder starts further down.</p>' +
+      '<p>The <a href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">' + esc(AP_WORLD_APP.label) + ' app ↗</a> is a student study app built on the same principles as this page. Unit lessons are framed around a clear historical-thinking target; annotated SAQ, LEQ, and DBQ exemplars show what mastery looks like before students attempt it; released items anchor spaced retrieval. Use it as a reference for what these delivery principles sound like when the discipline is AP World History. (The classroom-facing guided-practice and retrieval-opener features described on this page are being added to the app; the exemplar and target work is already live.)</p>' +
       '</div>' +
 
       '<h2 class="section-title">What to look for in the room</h2>' +
@@ -442,7 +530,6 @@
     ],
     conceptVideo: { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms", note: "A short primer on why students need to see where the lesson is going before they start it." },
     conceptVideos: [
-          { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms", note: "A short primer on why students need to see where the lesson is going before they start it." },
           { url: "https://www.youtube.com/watch?v=zZL6Zf5lMVw", title: "An introduction to formative assessment", channel: "Dylan Wiliam" },
           { url: "https://www.youtube.com/watch?v=fC29IyqPVr0", title: "Strategy 1: Clarifying, Sharing, and Understanding Learning Intentions", channel: "LSI: Learning Sciences International" },
           { url: "https://www.youtube.com/watch?v=dvzeou_u2hM", title: "John Hattie Learning Intentions & Success Criteria", channel: "Lori Loehr" },
@@ -459,7 +546,6 @@
     practices: [
       { title: "Share the learning target in student language", band: "Clarity · Aim", why: "When students can say what they are learning and why, they orient the rest of the lesson around it. When they cannot, activities feel random and effort drifts.", moves: ["Write the target on the board in one sentence, in language a student can restate.", "Say it, point to it, and have two students paraphrase it before the first activity.", "Refer back to it at each transition and at the exit check."], evidence: "A random student, cold-called, can restate the target in their own words at the middle and end of the lesson.",
         videos: [
-          { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms" },
           { url: "https://www.youtube.com/watch?v=k-8037IMQNQ", title: "PLPs \u2013 Establishing Learning Targets", channel: "SREBvideo" },
           { url: "https://www.youtube.com/watch?v=sLzAaYJkwQU", title: "TELL Project: Developing Learning Targets", channel: "TELL Project" },
           { url: "https://www.youtube.com/watch?v=luEhXBpOuQY", title: "Teacher Clarity: Learning Intentions", channel: "We Are Weiser" },
@@ -479,8 +565,7 @@
           { url: "https://www.youtube.com/watch?v=oXjA60zLmZI", title: "Inspiring Excellence: Using Models and Critique to Create Works of Quality", channel: "EL Education" },
           { url: "https://www.youtube.com/watch?v=E_6PskE3zfQ", title: "Austin's Butterfly: Models, Critique, and Descriptive Feedback", channel: "EL Education" },
           { url: "https://www.youtube.com/watch?v=KFzfSuvzm9g", title: "Critique and Feedback: Management in the Active Classroom", channel: "EL Education" },
-          { url: "https://www.youtube.com/watch?v=AmnyqtO3ZE8", title: "Improving Writing Skills Through Exemplar Work Analysis", channel: "Nathan De Groot" },
-          { url: "https://www.youtube.com/watch?v=q8DaMpJ6xoQ", title: "Ten Minute Team Tip:  Using Exemplars to Help Students Spot Success Criteria", channel: "Ten Minute Team Tips with Bill Ferriter" }
+          { url: "https://www.youtube.com/watch?v=AmnyqtO3ZE8", title: "Improving Writing Skills Through Exemplar Work Analysis", channel: "Nathan De Groot" }
         ] },
       { title: "Make the why visible", band: "Clarity · Relevance", why: "'Why are we learning this?' deserves a real answer. When students can name a reason that holds up, effort and persistence rise. When they cannot, compliance replaces learning.", moves: ["Prepare a one-sentence 'why this matters' that is honest — to the discipline, to the world, to the next unit — not just 'it's on the test.'", "Connect the target to something students already care about, know, or will use.", "Come back to the 'why' at closure, not just at the launch."], evidence: "Students, asked why the lesson matters, give a specific answer that is not 'because it's on the test' or 'because you said so.'",
         videos: [
@@ -581,6 +666,8 @@
     renderSecondaryReading: function (view, strategies) { renderSecondary(view, "reading", strategies); },
     renderSecondaryMath: function (view, strategies) { renderSecondary(view, "math", strategies); },
     renderSecondaryWriting: function (view, strategies) { renderSecondary(view, "writing", strategies); },
+    renderSecondaryScience: function (view, strategies) { renderSecondary(view, "science", strategies); },
+    renderSecondarySocial: function (view, strategies) { renderSecondary(view, "social", strategies); },
     renderStudentVoice: renderStudentVoice,
     renderLearnerSupports: renderLearnerSupports,
     renderInstructionalDelivery: renderInstructionalDelivery,
