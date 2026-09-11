@@ -292,6 +292,105 @@
       '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
   }
 
+  // -------------------- Clarity --------------------
+  var CLARITY = {
+    title: "Clarity",
+    lede: "Clarity is where the lesson is going and how students will know they got there. It is the destination made visible. Delivery is how students get the learning; engagement is what they do with it; clarity is the reason the whole trip has a point. When clarity is missing, everything downstream — pacing, checks, feedback, grading — gets harder for no good reason.",
+    sources: [
+      { label: "Visible Learning", title: "Hattie — teacher clarity as one of the highest-leverage practices", url: "https://visible-learning.org/hattie-ranking-influences-effect-sizes-learning-achievement/" },
+      { label: "Formative assessment", title: "Wiliam — Embedded Formative Assessment (learning intentions & success criteria)", url: "https://www.dylanwiliamcenter.com/" },
+      { label: "Teacher Clarity Playbook", title: "Fisher, Frey, Amador & Assof — The Teacher Clarity Playbook", url: "https://us.corwin.com/books/teacher-clarity-playbook-9781544369518" },
+      { label: "Learning targets", title: "Moss & Brookhart — Learning Targets: Helping Students Aim for Understanding", url: "https://www.ascd.org/books/learning-targets" }
+    ],
+    conceptVideo: { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms", note: "A short primer on why students need to see where the lesson is going before they start it." },
+    principles: [
+      { title: "Aim, not activity", body: "A clear target names what students will know or be able to do, not what they will do to get there. 'Analyze the causes of the French Revolution' is a target. 'Read the packet and answer the questions' is an activity." },
+      { title: "Visible from the start", body: "If students cannot say what they are learning and how they will know, the target is not clear yet. Post it, restate it, and refer back to it during the lesson." },
+      { title: "Success criteria beat rubrics on the day", body: "A rubric grades the finished product. Success criteria describe what a strong response looks like while students are still making it. Both have a place; only success criteria change the work in progress." },
+      { title: "Model the finish line", body: "Students do better work when they have seen strong work of the same kind. One annotated exemplar is worth more than three paragraphs of directions." }
+    ],
+    practices: [
+      { title: "Share the learning target in student language", band: "Clarity · Aim", why: "When students can say what they are learning and why, they orient the rest of the lesson around it. When they cannot, activities feel random and effort drifts.", moves: ["Write the target on the board in one sentence, in language a student can restate.", "Say it, point to it, and have two students paraphrase it before the first activity.", "Refer back to it at each transition and at the exit check."], evidence: "A random student, cold-called, can restate the target in their own words at the middle and end of the lesson.",
+        video: { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms" } },
+      { title: "Co-construct success criteria", band: "Clarity · How they'll know", why: "Success criteria turn a target into checkable behavior. Wiliam's work shows that when students build them with the teacher, they use them — to self-check, to peer-check, and to revise.", moves: ["Show two responses — one strong, one weak — and ask students what makes the strong one work.", "Capture the criteria on the board in student language. Keep to three or four.", "Have students self-check against the criteria before they hand work in."], evidence: "Students name the criteria without prompting; work quality visibly rises against those criteria over the week.",
+        video: { url: "https://www.youtube.com/watch?v=YcJdZGz6ifY", title: "Dylan Wiliam: Assessment strategies", channel: "Education Scotland" } },
+      { title: "Show a model of quality work", band: "Clarity · What good looks like", why: "Directions describe the task. A model shows the finish line. Students who have seen an exemplar produce stronger drafts and revise more sharply.", moves: ["Bring a real student exemplar (name removed) that shows what mastery looks like for this task.", "Annotate it live — label the moves that make it strong.", "Also show a not-yet exemplar and ask students what would move it up. This makes the criteria concrete."], evidence: "Students can point to features of the exemplar that match the success criteria; drafts start closer to the target than a no-model baseline.",
+        video: { url: "https://www.youtube.com/watch?v=oXjA60zLmZI", title: "Inspiring Excellence: Using Models and Critique to Create Works of Quality", channel: "EL Education" } },
+      { title: "Make the why visible", band: "Clarity · Relevance", why: "'Why are we learning this?' deserves a real answer. When students can name a reason that holds up, effort and persistence rise. When they cannot, compliance replaces learning.", moves: ["Prepare a one-sentence 'why this matters' that is honest — to the discipline, to the world, to the next unit — not just 'it's on the test.'", "Connect the target to something students already care about, know, or will use.", "Come back to the 'why' at closure, not just at the launch."], evidence: "Students, asked why the lesson matters, give a specific answer that is not 'because it's on the test' or 'because you said so.'",
+        video: { url: "https://www.youtube.com/watch?v=9oEW0gP3wLY", title: "4 Ways I Connect My Classroom to the Real World", channel: "Teach Your Class Off" } },
+      { title: "End-of-lesson clarity check", band: "Clarity · Close the loop", why: "Closure is where clarity is confirmed or exposed. If most students cannot answer a target-aligned check at the end of the lesson, the lesson did not land — regardless of how it felt.", moves: ["Ask a target-aligned exit question every student answers in writing.", "Sort responses into 'got it', 'partial', 'not yet' before you leave the room.", "Name tomorrow's re-teach based on what you saw, not on the pacing guide."], evidence: "An exit sort exists for the lesson; the next day's opening reflects what the sort revealed.",
+        video: { url: "https://www.youtube.com/watch?v=Woro-dWwfHo", title: "8 Closing Activities to Wrap Up a Lesson", channel: "Edutopia" } }
+    ],
+    breakdowns: [
+      { title: "Confusing activity with target", body: "'Today we will finish the packet' is not a target. It is a task. If a substitute could read it and know what students should learn, it is not a target either — it is a plan." },
+      { title: "Posted and forgotten", body: "Writing the objective on the board at the start of class and never mentioning it again does nothing. Reference it three times: launch, transition, close." },
+      { title: "Standards language dumped on students", body: "State standards are written for adults. Translate the target into student language before you post it. If you would not say it out loud that way, do not write it that way." },
+      { title: "Criteria known only to the teacher", body: "If only the teacher knows what a strong response looks like, students are guessing. Make success criteria visible before students start work — not after they turn it in." },
+      { title: "No closure", body: "Lessons that end with the bell, with no target-aligned check, leave the teacher without data and students without a sense of where they landed." }
+    ],
+    walkthroughDiagnostic: "Stop three random students during the last third of class and ask, 'What are you learning right now and how will you know you got it?' If most cannot answer both parts, the lesson had a clarity problem — not an engagement problem.",
+    bySubject: [
+      { subject: "Math", body: "Target names the concept or skill, not the page. Success criteria describe what a correct explanation or annotated solution shows." },
+      { subject: "Science", body: "Target names the phenomenon or reasoning move. Success criteria describe what a defensible claim looks like given the data students have." },
+      { subject: "ELA", body: "Target names the thinking (analyze a shift in tone; support a claim with evidence) rather than the passage. Exemplars show strong reasoning against a shared text." },
+      { subject: "Social studies", body: "Target names the historical thinking (sourcing, corroboration, causation) rather than the topic. Exemplars show a claim that survives the counter-evidence." }
+    ],
+    lookFors: [
+      "Students can restate today's learning target in their own words when asked.",
+      "Success criteria are visible before students start independent work — not after.",
+      "At least one exemplar of the kind of work students are producing is visible in the room.",
+      "The teacher refers back to the target at least twice during the lesson, including at closure.",
+      "A target-aligned check happens before students leave, and the teacher acts on what it showed."
+    ]
+  };
+
+  function principleCard(p) {
+    return '<article class="card">' +
+      '<h3 class="card-title">' + esc(p.title) + '</h3>' +
+      '<p>' + esc(p.body) + '</p></article>';
+  }
+
+  function renderClarity(view) {
+    var page = CLARITY;
+    view.innerHTML = '<h1 class="page-title">' + esc(page.title) + '</h1>' +
+      '<p class="page-lede">' + esc(page.lede) + '</p>' +
+
+      '<div class="callout"><h3>The two-part test</h3>' +
+      '<p>Clarity is present when a random student, at any point in the lesson, can answer two questions: <em>What are you learning right now?</em> and <em>How will you know you got it?</em> If most students cannot answer both, the lesson has a clarity problem — no matter how engaged the room looks.</p>' +
+      (page.conceptVideo ? '<p style="margin:8px 0 0;"><strong>See it:</strong> <a href="' + esc(page.conceptVideo.url) + '" target="_blank" rel="noopener">' + esc(page.conceptVideo.title) + ' ↗</a> <span style="color:#6b6b6b;font-size:0.9em;">· ' + esc(page.conceptVideo.channel) + '</span></p>' + (page.conceptVideo.note ? '<p style="margin:6px 0 0;color:#4a4a4a;font-size:0.95em;"><em>' + esc(page.conceptVideo.note) + '</em></p>' : '') : '') +
+      '</div>' +
+
+      '<h2 class="section-title">The evidence base</h2>' +
+      '<p>Clarity is one of the most consistently high-leverage practices in the research. Hattie ranks teacher clarity among the strongest general influences on achievement; Wiliam frames the daily version as learning intentions and success criteria; Fisher &amp; Frey turn it into a playbook; Moss &amp; Brookhart make the case for the daily learning target as the classroom unit.</p>' +
+      '<div class="guide-row">' + page.sources.map(sourceLink).join("") + '</div>' +
+
+      '<h2 class="section-title">Four principles</h2>' +
+      '<div class="card-grid">' + page.principles.map(principleCard).join("") + '</div>' +
+
+      '<h2 class="section-title">Core clarity moves</h2>' +
+      page.practices.map(practiceCard).join("") +
+
+      '<h2 class="section-title">Where clarity breaks down</h2>' +
+      '<p>These are the patterns you will likely see on walkthroughs.</p>' +
+      '<div class="card-grid">' + page.breakdowns.map(breakdownCard).join("") + '</div>' +
+
+      '<div class="callout" style="border-left:4px solid #D4A537;"><h3>The best walkthrough diagnostic</h3>' +
+      '<p>' + esc(page.walkthroughDiagnostic) + '</p></div>' +
+
+      '<h2 class="section-title">Clarity by subject</h2>' +
+      '<p>The principle is the same; what a good target sounds like changes with the discipline.</p>' +
+      '<div class="card-grid">' + page.bySubject.map(subjectCard).join("") + '</div>' +
+
+      '<h2 class="section-title">How clarity connects to Delivery and Engagement</h2>' +
+      '<div class="callout">' +
+      '<p>Clarity, Delivery, and the Engagement Cycle are three moves in one lesson, not three separate lessons. Clarity sets the destination. Delivery gets students onto the road. The Engagement Cycle is what they do on the road — Notice, Read, Talk, Solve, Defend, Revise — with the target and criteria in view the whole way. A clear target with weak delivery still fails. Strong delivery toward a fuzzy target still fails. The three move together.</p>' +
+      '<p style="margin:8px 0 0;"><a href="#/delivery">Open the Instructional Delivery page →</a></p>' +
+      '</div>' +
+
+      '<h2 class="section-title">What to look for in the room</h2>' +
+      '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
+  }
+
   window.ContentHubs = {
     renderK5Science: function (view) { renderK5(view, "science"); },
     renderK5Social: function (view) { renderK5(view, "social"); },
@@ -301,6 +400,7 @@
     renderSecondaryWriting: function (view, strategies) { renderSecondary(view, "writing", strategies); },
     renderStudentVoice: renderStudentVoice,
     renderLearnerSupports: renderLearnerSupports,
-    renderInstructionalDelivery: renderInstructionalDelivery
+    renderInstructionalDelivery: renderInstructionalDelivery,
+    renderClarity: renderClarity
   };
 })();

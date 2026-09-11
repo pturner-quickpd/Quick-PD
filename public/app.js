@@ -150,6 +150,7 @@ const ROUTE_LABELS = {
   "secondary-writing": "Secondary Writing (6–12)",
   "student-voice": "Student Voice & Engagement Evidence",
   "learner-supports": "Accessibility & Learner Supports",
+  "clarity": "Clarity",
   "delivery": "Instructional Delivery",
   "first-30-days": "First 30 Days",
   "about": "About the Toolkit",
@@ -251,6 +252,7 @@ const Routes = {
   "secondary-writing": (view) => window.ContentHubs.renderSecondaryWriting(view, Data.strategies),
   "student-voice": (view) => window.ContentHubs.renderStudentVoice(view),
   "learner-supports": (view) => window.ContentHubs.renderLearnerSupports(view),
+  "clarity": (view) => window.ContentHubs.renderClarity(view),
   "delivery": (view) => window.ContentHubs.renderInstructionalDelivery(view),
   // We-Town Toolkit parity routes — thin adapters into existing views.
   "today": (view) => renderStrategies(view, { mode: "today" }),
@@ -3583,6 +3585,7 @@ function _searchIndex() {
     { label: "Secondary Writing (6–12)", sub: "Foundations", href: "#/secondary-writing" },
     { label: "Student Voice & Engagement Evidence", sub: "Teacher tool", href: "#/student-voice" },
     { label: "Accessibility & Learner Supports", sub: "Teacher guide", href: "#/learner-supports" },
+    { label: "Clarity", sub: "Teacher guide", href: "#/clarity" },
     { label: "Instructional Delivery", sub: "Teacher guide", href: "#/delivery" },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
 
