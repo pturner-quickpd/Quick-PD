@@ -81,14 +81,89 @@
     }
   };
 
+  // Extract an 11-char YouTube video ID from any common YouTube URL shape.
+  function youtubeIdOf(url) {
+    if (!url) return null;
+    var m = String(url).match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  // Lazy-loaded YouTube embed (facade pattern):
+  // renders a thumbnail with a play overlay; the click handler in
+  // wireLazyYouTube() swaps it for a real iframe on first click.
+  // Prevents N YouTube players from loading on page open.
+  function youtubeEmbed(video) {
+    if (!video || !video.url) return "";
+    var id = youtubeIdOf(video.url);
+    if (!id) {
+      return '<p style="margin:0 0 8px;"><a href="' + esc(video.url) + '" target="_blank" rel="noopener">' + esc(video.title || video.url) + ' ↗</a></p>';
+    }
+    var thumb = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+    return '<div class="yt-facade" data-yt-id="' + esc(id) + '" data-yt-title="' + esc(video.title || "") + '" ' +
+      'style="position:relative;width:100%;padding-top:56.25%;background:#000;border-radius:6px;overflow:hidden;cursor:pointer;margin:0 0 6px;">' +
+      '<img src="' + thumb + '" alt="' + esc(video.title || "Video thumbnail") + '" loading="lazy" ' +
+      'style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;">' +
+      '<div aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;background:rgba(0,0,0,0.75);border-radius:12px;display:flex;align-items:center;justify-content:center;">' +
+      '<svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>' +
+      '</div></div>' +
+      '<p style="margin:0 0 10px;font-size:0.88em;color:#4a4a4a;line-height:1.35;">' +
+      esc(video.title || "YouTube video") +
+      (video.channel ? ' <span style="color:#6b6b6b;">· ' + esc(video.channel) + '</span>' : '') +
+      ' <a href="' + esc(video.url) + '" target="_blank" rel="noopener" style="margin-left:4px;">Open on YouTube ↗</a>' +
+      '</p>';
+  }
+
+  // Render an array of videos (from practice.videos or a hub's concept videos).
+  function youtubeEmbedList(videos) {
+    if (!Array.isArray(videos) || !videos.length) return "";
+    return videos.map(youtubeEmbed).join("");
+  }
+
+  // Concept-video block used at the top of Clarity and Delivery pages.
+  // Accepts either page.conceptVideos (array) or page.conceptVideo (single).
+  function conceptVideoBlock(page) {
+    var list = Array.isArray(page.conceptVideos) && page.conceptVideos.length
+      ? page.conceptVideos
+      : (page.conceptVideo ? [page.conceptVideo] : []);
+    if (!list.length) return "";
+    var note = page.conceptVideo && page.conceptVideo.note
+      ? '<p style="margin:6px 0 0;color:#4a4a4a;font-size:0.95em;"><em>' + esc(page.conceptVideo.note) + '</em></p>'
+      : "";
+    return '<p style="margin:8px 0 6px;"><strong>See it:</strong></p>' + youtubeEmbedList(list) + note;
+  }
+
+  // Attach a single delegated click handler that upgrades any .yt-facade
+  // to a real iframe on first click. Idempotent — attaches at most once.
+  function wireLazyYouTube() {
+    if (window.__ytFacadeWired) return;
+    window.__ytFacadeWired = true;
+    document.addEventListener("click", function (e) {
+      var facade = e.target.closest && e.target.closest(".yt-facade");
+      if (!facade) return;
+      var id = facade.getAttribute("data-yt-id");
+      var title = facade.getAttribute("data-yt-title") || "YouTube video";
+      if (!id) return;
+      e.preventDefault();
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+      iframe.title = title;
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.setAttribute("frameborder", "0");
+      iframe.style.cssText = "position:absolute;top:0;left:0;width:100%;height:100%;border:0;";
+      facade.innerHTML = "";
+      facade.style.cursor = "default";
+      facade.appendChild(iframe);
+    }, false);
+  }
+
   function practiceCard(p) {
     var videoBlock = "";
-    if (p.video && p.video.url) {
-      videoBlock = '<div class="resource-heading">See it in a classroom</div>' +
-        '<p style="margin:0 0 8px;"><a href="' + esc(p.video.url) + '" target="_blank" rel="noopener">' +
-        esc(p.video.title) + ' ↗</a>' +
-        (p.video.channel ? ' <span style="color:#6b6b6b;font-size:0.9em;">· ' + esc(p.video.channel) + '</span>' : '') +
-        '</p>';
+    // Prefer a videos array (embedded) over a single video (link only).
+    if (Array.isArray(p.videos) && p.videos.length) {
+      videoBlock = '<div class="resource-heading">See it in a classroom</div>' + youtubeEmbedList(p.videos);
+    } else if (p.video && p.video.url) {
+      videoBlock = '<div class="resource-heading">See it in a classroom</div>' + youtubeEmbed(p.video);
     }
     return '<article class="card strategy-card">' +
       '<div class="strategy-band">' + esc(p.band) + '</div>' +
@@ -202,19 +277,69 @@
     ],
     practices: [
       { title: "Retrieval-practice opener", band: "Delivery · Launch", why: "Pulling knowledge from memory strengthens it more than re-reading or re-explaining. It also tells you what students actually retained.", moves: ["Start with 3–5 questions on prior learning students must answer without notes.", "Use whiteboards, index cards, or a quick cold-call round so every student responds.", "Address the two or three items most students missed before moving on."], evidence: "Every student produces a written or spoken response; the teacher acts on what was missed.",
-        video: { url: "https://www.youtube.com/watch?v=vRyaWckh_x8", title: "Teach Like A Champion: Lemov's Do Now Technique", channel: "Curriculum Bytes" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=vRyaWckh_x8", title: "Teach Like A Champion: Lemov's Do Now Technique", channel: "Curriculum Bytes" },
+          { url: "https://www.youtube.com/watch?v=h2Z8WTWgPnw", title: "Daily Reviews", channel: "Mastery Learning Group" },
+          { url: "https://www.youtube.com/watch?v=96xBOchLlWk", title: "Making Retrieval Practice a Classroom Routine", channel: "Edutopia" },
+          { url: "https://www.youtube.com/watch?v=g7X7ekkuAQo", title: "Teachers Teach Teachers: Retrieval Practice", channel: "Science of Reading Classroom" },
+          { url: "https://www.youtube.com/watch?v=PxEcB11doaA", title: "250: Nine Easy Ways to Add Retrieval to Your Lessons", channel: "Cult of Pedagogy" },
+          { url: "https://www.youtube.com/watch?v=ZO8abw3DHxs", title: "What is retrieval practice?", channel: "Pooja K. Agarwal, Ph.D." }
+        ] },
       { title: "Chunk + model with a think-aloud", band: "Delivery · New material", why: "Working memory is small; novices learn more from watching expert thinking than from being handed a finished product.", moves: ["Break new content into pieces that fit in one whiteboard or one screen.", "Narrate the decisions out loud — 'I'm skipping this quote because it doesn't prove my claim.'", "After each chunk, check before moving on. Never string two new pieces together without a check in between."], evidence: "Students can restate the reasoning, not just the answer. The board or slide shows the process, not only the product.",
-        video: { url: "https://www.youtube.com/watch?v=G0ZHimY5YZo", title: "Think Alouds: Modeling Ways to Think About Text", channel: "The Balanced Literacy Diet" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=G0ZHimY5YZo", title: "Think Alouds: Modeling Ways to Think About Text", channel: "The Balanced Literacy Diet" },
+          { url: "https://www.youtube.com/watch?v=msWdR2nMAg4", title: "Modeling vs. Think Alouds: What's the Difference?", channel: "Smekens Education" },
+          { url: "https://www.youtube.com/watch?v=YWqjRoLD2zI", title: "Thinking Aloud in a Fluency Lesson", channel: "Reading Universe" },
+          { url: "https://www.youtube.com/watch?v=crNzCafZ5E4", title: "Think Aloud | Teaching Tip", channel: "Kyle Thain" },
+          { url: "https://www.youtube.com/watch?v=UmhLgsBD1-I", title: "Go beyond a model; reveal a Think Aloud", channel: "Smekens Education" },
+          { url: "https://www.youtube.com/watch?v=qg9zpI0RDFM", title: "Use explicit instruction for novice learners - Tips for Teachers", channel: "Tips for Teachers" }
+        ] },
       { title: "Every-student checks for understanding", band: "Delivery · Checking", why: "'Any questions?' and 'Does that make sense?' hear from three confident kids. Whole-class checks hear from everyone.", moves: ["Mini whiteboards, cold call, quick written response, or a signal — the format is less important than 'everyone answers'.", "Look at the data before you decide the next move. Wrong-answer patterns tell you what to reteach.", "Ask questions that expose reasoning, not recognition — 'Why did you pick that?' beats 'Is this right?'"], evidence: "Within a 10-minute segment you have visible responses from every student, and your next move responds to what you saw.",
-        video: { url: "https://www.youtube.com/watch?v=KJ1TAH50Coc", title: "Always check for understanding", channel: "Tips for Teachers" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=KJ1TAH50Coc", title: "Always check for understanding", channel: "Tips for Teachers" },
+          { url: "https://www.youtube.com/watch?v=xm0muw3GFtU", title: "Cold-Calling in a Warm Way | Teaching Unpacked with Doug Lemov", channel: "InnerDrive" },
+          { url: "https://www.youtube.com/watch?v=S23myw0scw0", title: "Positive and Inclusive Cold-Calling | Teaching Unpacked with Doug Lemov", channel: "InnerDrive" },
+          { url: "https://www.youtube.com/watch?v=Biiiey4exW8", title: "How To Use Mini Whiteboards To Check Student Understanding", channel: "InnerDrive" },
+          { url: "https://www.youtube.com/watch?v=PBayieSHaK4", title: "Mini-whiteboards - Tips for Teachers Top 5s", channel: "Tips for Teachers" },
+          { url: "https://www.youtube.com/watch?v=PRDuwKfmF-0", title: "Effective formative assessment: mini whiteboard routine", channel: "Dixons OpenSource" },
+          { url: "https://www.youtube.com/watch?v=2JDRXpvajJw", title: "Increasing Participation With Individual Whiteboards", channel: "Edutopia" }
+        ] },
       { title: "Guided practice to ~80% success", band: "Delivery · We do", why: "Independent practice on shaky ground produces the 'skipping we do' failure. Release when most students are getting it right, not when the clock says to.", moves: ["Work the first problem together, thinking aloud.", "Work the second one with students calling out each step.", "Have partners try one while you circulate. Do not release to independent work until you see success from most students."], evidence: "By release, a spot check shows the majority of students producing correct work with reasoning.",
-        video: { url: "https://www.youtube.com/watch?v=z2iNggN__QA", title: "Gradual Release of Responsibility", channel: "Fisher and Frey" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=z2iNggN__QA", title: "Gradual Release of Responsibility", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=EE5wvi-xQTM", title: "The power of explicit instruction with Anita Archer (Ep 57)", channel: "Chalk & Talk with Anna Stokke" },
+          { url: "https://www.youtube.com/watch?v=2qIQLHQTNSQ", title: "Aninta Archer   Explicit Instruction Overview 8/18/2021", channel: "Milton-Union Schools" },
+          { url: "https://www.youtube.com/watch?v=ZxUB25omadI", title: "Faded Guidance", channel: "Ochre Education" },
+          { url: "https://www.youtube.com/watch?v=35rTqpl9SWk", title: "Procedures and Routines: Prompting, Scaffolding, & Fading", channel: "Easterseals AR Outreach Program & Technology Svcs." },
+          { url: "https://www.youtube.com/watch?v=sdIeKv8YYcU", title: "HLP 15: Use Scaffolded Supports", channel: "Council for Exceptional Children" }
+        ] },
       { title: "Worked examples → completion problems → independent", band: "Delivery · Practice sequence", why: "Sweller: novices learn more from studying worked examples than from solving problems cold. Expertise reversal says fade the guidance as they gain skill.", moves: ["Show a fully worked example annotated with the thinking.", "Give a partially completed problem with the hard step blanked out.", "Only then move to full problems. In AP or advanced classes, start further down this ladder."], evidence: "The task sequence gets progressively less scaffolded across a lesson or unit; students name what the worked example taught them.",
-        video: { url: "https://www.youtube.com/watch?v=FdOuK1mN39I", title: "Worked Examples | CPD Grab Bag", channel: "Professional Development" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=FdOuK1mN39I", title: "Worked Examples | CPD Grab Bag", channel: "Professional Development" },
+          { url: "https://www.youtube.com/watch?v=YLza2mk3ZAk", title: "Worked Examples and Fading Scaffolds", channel: "iMediaGenius" },
+          { url: "https://www.youtube.com/watch?v=xEzt2926ViU", title: "Explanations in worked examples", channel: "Education Endowment Foundation" },
+          { url: "https://www.youtube.com/watch?v=xRM6mmze7Vw", title: "Using worked examples to support pupils' mathematical problem-solving", channel: "Education Endowment Foundation" },
+          { url: "https://www.youtube.com/watch?v=gTbgFy9cLis", title: "Worked Examples | A Simple Way To Accelerate Student Learning", channel: "Jared Cooney Horvath" },
+          { url: "https://www.youtube.com/watch?v=KwhGofOV5Hs", title: "Making Use of a Worked Example to Improve Learning", channel: "Edutopia" }
+        ] },
       { title: "Handoff to the Engagement Cycle", band: "Delivery · Release", why: "Delivery ends when students can carry the work themselves. The Engagement Cycle is where they Notice, Read, Talk, Solve, Defend, and Revise on the ground you just prepared.", moves: ["Name the target one more time before release.", "State the success criteria students will use to check their own work.", "Post the model or worked example so it stays visible during independent work."], evidence: "Independent work begins with more than a handful of students able to start without a second re-teach.",
-        video: { url: "https://www.youtube.com/watch?v=cEIS87uISvs", title: "Gradual Release of Responsibility — Fisher & Frey Interpretation", channel: "Fisher and Frey" } }
+        videos: [
+          { url: "https://www.youtube.com/watch?v=cEIS87uISvs", title: "Gradual Release of Responsibility — Fisher & Frey Interpretation", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=uE_KTMRwbJs", title: "Gradual Release (Modeled-Guided-Independent Practice)", channel: "CitizensAcademyCleve" },
+          { url: "https://www.youtube.com/watch?v=Xp4HN9bF3tM", title: "Gradual Release of Responsibility in Action: Classroom Video", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=T4BIu1Jw_1I", title: "Gradual Release of Responsibility: Collaborative Learning", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=KLdP2fzw5RQ", title: "From Guidance to Independence: Teaching Geometry with GRR", channel: "ASCD" },
+          { url: "https://www.youtube.com/watch?v=PTotDv1QN8Y", title: "Gradual Release Model for English classrooms sample lesson", channel: "McGraw Hill PreK-12" }
+        ] }
     ],
     conceptVideo: { url: "https://www.youtube.com/watch?v=C-dfYyCRJ5E", title: "Explicit Vocabulary Instruction with Anita Archer", channel: "Good to Great Schools Australia", note: "Archer herself modeling explicit instruction with a class — the difference between explicit teaching and lecture is visible from the first minute." },
+    conceptVideos: [
+          { url: "https://www.youtube.com/watch?v=C-dfYyCRJ5E", title: "Explicit Vocabulary Instruction with Anita Archer", channel: "Good to Great Schools Australia", note: "Archer herself modeling explicit instruction with a class — the difference between explicit teaching and lecture is visible from the first minute." },
+          { url: "https://www.youtube.com/watch?v=cjURdvzty4c", title: "Gradual Release of Responsibility", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=uPHDJI17sH4", title: "Rosenshine Masterclass I Intro and Research", channel: "Tom Sherrington" },
+          { url: "https://www.youtube.com/watch?v=cp1juLTIdlM", title: "What is Explicit Teaching and Practice in the Gradual Release Model", channel: "The Simple Teachers" },
+          { url: "https://www.youtube.com/watch?v=T-e6uHBDdNk", title: "A Gradual Release of Responsibility", channel: "Institute of Education Sciences" }
+        ],
     breakdowns: [
       { title: "Skipping 'we do'", body: "The teacher models one problem and assigns twenty. This is the most common failure. It produces a lot of what gets called engagement or behavior problems, because a student who cannot do the work finds something else to do." },
       { title: "Modeling the answer instead of the thinking", body: "Showing a finished paragraph with evidence teaches almost nothing. Narrating the decisions — 'I'm skipping this quote because it doesn't prove my claim' — is what students can copy." },
@@ -264,7 +389,7 @@
 
       '<div class="callout"><h3>Explicit instruction is not lecture</h3>' +
       '<p>Lecture delivers content and hopes it sticks. Explicit instruction comes in short chunks, with frequent checks where every student responds, and it keeps adjusting based on what those checks show.</p>' +
-      (page.conceptVideo ? '<p style="margin:8px 0 0;"><strong>See it:</strong> <a href="' + esc(page.conceptVideo.url) + '" target="_blank" rel="noopener">' + esc(page.conceptVideo.title) + ' ↗</a> <span style="color:#6b6b6b;font-size:0.9em;">· ' + esc(page.conceptVideo.channel) + '</span></p>' + (page.conceptVideo.note ? '<p style="margin:6px 0 0;color:#4a4a4a;font-size:0.95em;"><em>' + esc(page.conceptVideo.note) + '</em></p>' : '') : '') +
+      conceptVideoBlock(page) +
       '</div>' +
 
       '<h2 class="section-title">The evidence base</h2>' +
@@ -301,6 +426,8 @@
 
       '<h2 class="section-title">What to look for in the room</h2>' +
       '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
+
+    wireLazyYouTube();
   }
 
   // -------------------- Clarity --------------------
@@ -314,6 +441,15 @@
       { label: "Learning targets", title: "Moss & Brookhart — Learning Targets: Helping Students Aim for Understanding", url: "https://www.ascd.org/books/learning-targets" }
     ],
     conceptVideo: { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms", note: "A short primer on why students need to see where the lesson is going before they start it." },
+    conceptVideos: [
+          { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms", note: "A short primer on why students need to see where the lesson is going before they start it." },
+          { url: "https://www.youtube.com/watch?v=zZL6Zf5lMVw", title: "An introduction to formative assessment", channel: "Dylan Wiliam" },
+          { url: "https://www.youtube.com/watch?v=fC29IyqPVr0", title: "Strategy 1: Clarifying, Sharing, and Understanding Learning Intentions", channel: "LSI: Learning Sciences International" },
+          { url: "https://www.youtube.com/watch?v=dvzeou_u2hM", title: "John Hattie Learning Intentions & Success Criteria", channel: "Lori Loehr" },
+          { url: "https://www.youtube.com/watch?v=OGyvDvOegXE", title: "John Hattie Learning Intentions and Success Criteria", channel: "Lori Loehr" },
+          { url: "https://www.youtube.com/watch?v=xXd7KGKSaXg", title: "Teacher Clarity: Effective Teaching Using Learning Intentions, Success Criteria, and Self-Reflection", channel: "SBCUSD" },
+          { url: "https://www.youtube.com/watch?v=u6qCzBlJaYk", title: "Introduction to Teacher Clarity: Learning Intentions and Success Criteria", channel: "Corwin" }
+        ],
     principles: [
       { title: "Aim, not activity", body: "A clear target names what students will know or be able to do, not what they will do to get there. 'Analyze the causes of the French Revolution' is a target. 'Read the packet and answer the questions' is an activity." },
       { title: "Visible from the start", body: "If students cannot say what they are learning and how they will know, the target is not clear yet. Post it, restate it, and refer back to it during the lesson." },
@@ -322,15 +458,44 @@
     ],
     practices: [
       { title: "Share the learning target in student language", band: "Clarity · Aim", why: "When students can say what they are learning and why, they orient the rest of the lesson around it. When they cannot, activities feel random and effort drifts.", moves: ["Write the target on the board in one sentence, in language a student can restate.", "Say it, point to it, and have two students paraphrase it before the first activity.", "Refer back to it at each transition and at the exit check."], evidence: "A random student, cold-called, can restate the target in their own words at the middle and end of the lesson.",
-        video: { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=oEVQLZ6ZZHQ", title: "Learning Targets in a Thinking Classroom", channel: "Building Thinking Classrooms" },
+          { url: "https://www.youtube.com/watch?v=k-8037IMQNQ", title: "PLPs \u2013 Establishing Learning Targets", channel: "SREBvideo" },
+          { url: "https://www.youtube.com/watch?v=sLzAaYJkwQU", title: "TELL Project: Developing Learning Targets", channel: "TELL Project" },
+          { url: "https://www.youtube.com/watch?v=luEhXBpOuQY", title: "Teacher Clarity: Learning Intentions", channel: "We Are Weiser" },
+          { url: "https://www.youtube.com/watch?v=G4uM9K5uZXo", title: "Learning Targets and Essential Questions Training Video from Carson-Dellosa", channel: "Carson Dellosa Education" }
+        ] },
       { title: "Co-construct success criteria", band: "Clarity · How they'll know", why: "Success criteria turn a target into checkable behavior. Wiliam's work shows that when students build them with the teacher, they use them — to self-check, to peer-check, and to revise.", moves: ["Show two responses — one strong, one weak — and ask students what makes the strong one work.", "Capture the criteria on the board in student language. Keep to three or four.", "Have students self-check against the criteria before they hand work in."], evidence: "Students name the criteria without prompting; work quality visibly rises against those criteria over the week.",
-        video: { url: "https://www.youtube.com/watch?v=YcJdZGz6ifY", title: "Dylan Wiliam: Assessment strategies", channel: "Education Scotland" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=YcJdZGz6ifY", title: "Dylan Wiliam: Assessment strategies", channel: "Education Scotland" },
+          { url: "https://www.youtube.com/watch?v=4goerO8tp8U", title: "Co-Constructing Success Criteria  in an Elementary School Classroom", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=2poWb2Tm4UA", title: "What can co-constructing criteria look like in a classroom?", channel: "Tracy Rosen" },
+          { url: "https://www.youtube.com/watch?v=CM_HbQRUNnk", title: "Co-constructing Success Criteria with High School Students", channel: "Fisher and Frey" },
+          { url: "https://www.youtube.com/watch?v=FUZJ6Ce08Ks", title: "Success Criteria", channel: "Susan Elliott" },
+          { url: "https://www.youtube.com/watch?v=q8DaMpJ6xoQ", title: "Ten Minute Team Tip:  Using Exemplars to Help Students Spot Success Criteria", channel: "Ten Minute Team Tips with Bill Ferriter" }
+        ] },
       { title: "Show a model of quality work", band: "Clarity · What good looks like", why: "Directions describe the task. A model shows the finish line. Students who have seen an exemplar produce stronger drafts and revise more sharply.", moves: ["Bring a real student exemplar (name removed) that shows what mastery looks like for this task.", "Annotate it live — label the moves that make it strong.", "Also show a not-yet exemplar and ask students what would move it up. This makes the criteria concrete."], evidence: "Students can point to features of the exemplar that match the success criteria; drafts start closer to the target than a no-model baseline.",
-        video: { url: "https://www.youtube.com/watch?v=oXjA60zLmZI", title: "Inspiring Excellence: Using Models and Critique to Create Works of Quality", channel: "EL Education" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=oXjA60zLmZI", title: "Inspiring Excellence: Using Models and Critique to Create Works of Quality", channel: "EL Education" },
+          { url: "https://www.youtube.com/watch?v=E_6PskE3zfQ", title: "Austin's Butterfly: Models, Critique, and Descriptive Feedback", channel: "EL Education" },
+          { url: "https://www.youtube.com/watch?v=KFzfSuvzm9g", title: "Critique and Feedback: Management in the Active Classroom", channel: "EL Education" },
+          { url: "https://www.youtube.com/watch?v=AmnyqtO3ZE8", title: "Improving Writing Skills Through Exemplar Work Analysis", channel: "Nathan De Groot" },
+          { url: "https://www.youtube.com/watch?v=q8DaMpJ6xoQ", title: "Ten Minute Team Tip:  Using Exemplars to Help Students Spot Success Criteria", channel: "Ten Minute Team Tips with Bill Ferriter" }
+        ] },
       { title: "Make the why visible", band: "Clarity · Relevance", why: "'Why are we learning this?' deserves a real answer. When students can name a reason that holds up, effort and persistence rise. When they cannot, compliance replaces learning.", moves: ["Prepare a one-sentence 'why this matters' that is honest — to the discipline, to the world, to the next unit — not just 'it's on the test.'", "Connect the target to something students already care about, know, or will use.", "Come back to the 'why' at closure, not just at the launch."], evidence: "Students, asked why the lesson matters, give a specific answer that is not 'because it's on the test' or 'because you said so.'",
-        video: { url: "https://www.youtube.com/watch?v=9oEW0gP3wLY", title: "4 Ways I Connect My Classroom to the Real World", channel: "Teach Your Class Off" } },
+        videos: [
+          { url: "https://www.youtube.com/watch?v=9oEW0gP3wLY", title: "4 Ways I Connect My Classroom to the Real World", channel: "Teach Your Class Off" },
+          { url: "https://www.youtube.com/watch?v=4nllbi6Eqyc", title: "Ways to Create Authentic Experiences in the Classroom", channel: "SREBvideo" },
+          { url: "https://www.youtube.com/watch?v=M2BZ7GsEbPM", title: "HOW TO MAKE LEARNING RELEVANT TO YOUR STUDENTS (AND WHY IT\u2019S CRUCIAL TO THEIR SUCCESS)", channel: "Ruths Straight Talk" }
+        ] },
       { title: "End-of-lesson clarity check", band: "Clarity · Close the loop", why: "Closure is where clarity is confirmed or exposed. If most students cannot answer a target-aligned check at the end of the lesson, the lesson did not land — regardless of how it felt.", moves: ["Ask a target-aligned exit question every student answers in writing.", "Sort responses into 'got it', 'partial', 'not yet' before you leave the room.", "Name tomorrow's re-teach based on what you saw, not on the pacing guide."], evidence: "An exit sort exists for the lesson; the next day's opening reflects what the sort revealed.",
-        video: { url: "https://www.youtube.com/watch?v=Woro-dWwfHo", title: "8 Closing Activities to Wrap Up a Lesson", channel: "Edutopia" } }
+        videos: [
+          { url: "https://www.youtube.com/watch?v=Woro-dWwfHo", title: "8 Closing Activities to Wrap Up a Lesson", channel: "Edutopia" },
+          { url: "https://www.youtube.com/watch?v=IvQxrBlVtAE", title: "Teacher Toolkit: Exit Ticket", channel: "ESC Region 13" },
+          { url: "https://www.youtube.com/watch?v=gBTpojxwOgU", title: "Exit Tickets: Management in the Active Classroom", channel: "EL Education" },
+          { url: "https://www.youtube.com/watch?v=ehvVCkFdZUs", title: "Exit ticket | Guided + Timed | Classroom Activity (8 minutes total)", channel: "Active Learning Guides" },
+          { url: "https://www.youtube.com/watch?v=6Z1P2544iXE", title: "Exit Tickets | Retrieval & Assessment | Strategy Explainer", channel: "The Practitioner Playbook" }
+        ] }
     ],
     breakdowns: [
       { title: "Confusing activity with target", body: "'Today we will finish the packet' is not a target. It is a task. If a substitute could read it and know what students should learn, it is not a target either — it is a plan." },
@@ -368,7 +533,7 @@
 
       '<div class="callout"><h3>The two-part test</h3>' +
       '<p>Clarity is present when a random student, at any point in the lesson, can answer two questions: <em>What are you learning right now?</em> and <em>How will you know you got it?</em> If most students cannot answer both, the lesson has a clarity problem — no matter how engaged the room looks.</p>' +
-      (page.conceptVideo ? '<p style="margin:8px 0 0;"><strong>See it:</strong> <a href="' + esc(page.conceptVideo.url) + '" target="_blank" rel="noopener">' + esc(page.conceptVideo.title) + ' ↗</a> <span style="color:#6b6b6b;font-size:0.9em;">· ' + esc(page.conceptVideo.channel) + '</span></p>' + (page.conceptVideo.note ? '<p style="margin:6px 0 0;color:#4a4a4a;font-size:0.95em;"><em>' + esc(page.conceptVideo.note) + '</em></p>' : '') : '') +
+      conceptVideoBlock(page) +
       '</div>' +
 
       '<h2 class="section-title">The evidence base</h2>' +
@@ -405,6 +570,8 @@
 
       '<h2 class="section-title">What to look for in the room</h2>' +
       '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
+
+    wireLazyYouTube();
   }
 
   window.ContentHubs = {
