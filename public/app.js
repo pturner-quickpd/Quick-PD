@@ -150,6 +150,7 @@ const ROUTE_LABELS = {
   "secondary-writing": "Secondary Writing (6–12)",
   "student-voice": "Student Voice & Engagement Evidence",
   "learner-supports": "Accessibility & Learner Supports",
+  "delivery": "Instructional Delivery",
   "first-30-days": "First 30 Days",
   "about": "About the Toolkit",
   "strategy": "Strategy detail",
@@ -250,6 +251,7 @@ const Routes = {
   "secondary-writing": (view) => window.ContentHubs.renderSecondaryWriting(view, Data.strategies),
   "student-voice": (view) => window.ContentHubs.renderStudentVoice(view),
   "learner-supports": (view) => window.ContentHubs.renderLearnerSupports(view),
+  "delivery": (view) => window.ContentHubs.renderInstructionalDelivery(view),
   // We-Town Toolkit parity routes — thin adapters into existing views.
   "today": (view) => renderStrategies(view, { mode: "today" }),
   "pick-for-me": (view) => renderStrategies(view, { mode: "pick" }),
@@ -3581,6 +3583,7 @@ function _searchIndex() {
     { label: "Secondary Writing (6–12)", sub: "Foundations", href: "#/secondary-writing" },
     { label: "Student Voice & Engagement Evidence", sub: "Teacher tool", href: "#/student-voice" },
     { label: "Accessibility & Learner Supports", sub: "Teacher guide", href: "#/learner-supports" },
+    { label: "Instructional Delivery", sub: "Teacher guide", href: "#/delivery" },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
 
   // Strategies inside the K–5 domain pages + Feedback page (data lives in elementary.js)

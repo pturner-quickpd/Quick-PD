@@ -77,10 +77,19 @@
   };
 
   function practiceCard(p) {
+    var videoBlock = "";
+    if (p.video && p.video.url) {
+      videoBlock = '<div class="resource-heading">See it in a classroom</div>' +
+        '<p style="margin:0 0 8px;"><a href="' + esc(p.video.url) + '" target="_blank" rel="noopener">' +
+        esc(p.video.title) + ' ↗</a>' +
+        (p.video.channel ? ' <span style="color:#6b6b6b;font-size:0.9em;">· ' + esc(p.video.channel) + '</span>' : '') +
+        '</p>';
+    }
     return '<article class="card strategy-card">' +
       '<div class="strategy-band">' + esc(p.band) + '</div>' +
       '<h3 class="card-title">' + esc(p.title) + '</h3><p>' + esc(p.why) + '</p>' +
       '<div class="resource-heading">Teacher moves</div><ul class="check-list">' + p.moves.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join("") + '</ul>' +
+      videoBlock +
       '<div class="evidence-block"><div class="evidence-label">Evidence to collect</div><div class="evidence-body">' + esc(p.evidence) + '</div></div></article>';
   }
 
@@ -166,6 +175,123 @@
       '</div>';
   }
 
+  // -------------------- Instructional Delivery --------------------
+  var DELIVERY = {
+    title: "Instructional Delivery",
+    lede: "Delivery is how new knowledge and skill get from the teacher into students' long-term memory. It is the teacher-led part of the lesson: explaining, modeling, guided practice, and the handoff to independent work. Clarity is where the lesson is going. Engagement is what students do with the learning. Delivery is how they get the learning in the first place.",
+    sources: [
+      { label: "Cognitive load theory", title: "Sweller — Cognitive Load During Problem Solving", url: "https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1202_4" },
+      { label: "Guidance for novices", title: "Kirschner, Sweller & Clark (2006) — Why Minimal Guidance During Instruction Does Not Work", url: "https://www.tandfonline.com/doi/abs/10.1207/s15326985ep4102_1" },
+      { label: "Principles of Instruction", title: "Rosenshine (2012) — Research-Based Strategies That All Teachers Should Know", url: "https://www.aft.org/sites/default/files/Rosenshine.pdf" },
+      { label: "Explicit Instruction", title: "Archer & Hughes — Explicit Instruction: Effective and Efficient Teaching", url: "https://explicitinstruction.org/" },
+      { label: "Gradual release", title: "Fisher & Frey — Better Learning Through Structured Teaching (I do / We do / You do together / You do alone)", url: "https://www.ascd.org/books/better-learning-through-structured-teaching-second-edition" }
+    ],
+    sequence: [
+      { min: "~5 min", label: "Retrieval on prior learning", body: "Warm the brain and surface what students already have to build on." },
+      { min: "~1 min", label: "State the target", body: "One sentence: what students will know or be able to do by the end." },
+      { min: "~10 min", label: "New material in small pieces + think-aloud model", body: "Chunk the content. Model the thinking, not just the answer. Whole-class check every few minutes." },
+      { min: "~10-15 min", label: "Guided practice (we do)", body: "Practice together until most students are getting it right. Rosenshine put the bar around 80% success before releasing." },
+      { min: "~10-15 min", label: "Release into the Engagement Cycle", body: "Now students Notice, Read, Talk, Solve, Defend, Revise — with the delivery scaffolding in place." },
+      { min: "~5 min", label: "Exit check", body: "A quick written or verbal check that tells you who has it and who needs a re-teach tomorrow." }
+    ],
+    practices: [
+      { title: "Retrieval-practice opener", band: "Delivery · Launch", why: "Pulling knowledge from memory strengthens it more than re-reading or re-explaining. It also tells you what students actually retained.", moves: ["Start with 3–5 questions on prior learning students must answer without notes.", "Use whiteboards, index cards, or a quick cold-call round so every student responds.", "Address the two or three items most students missed before moving on."], evidence: "Every student produces a written or spoken response; the teacher acts on what was missed.",
+        video: { url: "https://www.youtube.com/watch?v=vRyaWckh_x8", title: "Teach Like A Champion: Lemov's Do Now Technique", channel: "Curriculum Bytes" } },
+      { title: "Chunk + model with a think-aloud", band: "Delivery · New material", why: "Working memory is small; novices learn more from watching expert thinking than from being handed a finished product.", moves: ["Break new content into pieces that fit in one whiteboard or one screen.", "Narrate the decisions out loud — 'I'm skipping this quote because it doesn't prove my claim.'", "After each chunk, check before moving on. Never string two new pieces together without a check in between."], evidence: "Students can restate the reasoning, not just the answer. The board or slide shows the process, not only the product.",
+        video: { url: "https://www.youtube.com/watch?v=G0ZHimY5YZo", title: "Think Alouds: Modeling Ways to Think About Text", channel: "The Balanced Literacy Diet" } },
+      { title: "Every-student checks for understanding", band: "Delivery · Checking", why: "'Any questions?' and 'Does that make sense?' hear from three confident kids. Whole-class checks hear from everyone.", moves: ["Mini whiteboards, cold call, quick written response, or a signal — the format is less important than 'everyone answers'.", "Look at the data before you decide the next move. Wrong-answer patterns tell you what to reteach.", "Ask questions that expose reasoning, not recognition — 'Why did you pick that?' beats 'Is this right?'"], evidence: "Within a 10-minute segment you have visible responses from every student, and your next move responds to what you saw.",
+        video: { url: "https://www.youtube.com/watch?v=KJ1TAH50Coc", title: "Always check for understanding", channel: "Tips for Teachers" } },
+      { title: "Guided practice to ~80% success", band: "Delivery · We do", why: "Independent practice on shaky ground produces the 'skipping we do' failure. Release when most students are getting it right, not when the clock says to.", moves: ["Work the first problem together, thinking aloud.", "Work the second one with students calling out each step.", "Have partners try one while you circulate. Do not release to independent work until you see success from most students."], evidence: "By release, a spot check shows the majority of students producing correct work with reasoning.",
+        video: { url: "https://www.youtube.com/watch?v=z2iNggN__QA", title: "Gradual Release of Responsibility", channel: "Fisher and Frey" } },
+      { title: "Worked examples → completion problems → independent", band: "Delivery · Practice sequence", why: "Sweller: novices learn more from studying worked examples than from solving problems cold. Expertise reversal says fade the guidance as they gain skill.", moves: ["Show a fully worked example annotated with the thinking.", "Give a partially completed problem with the hard step blanked out.", "Only then move to full problems. In AP or advanced classes, start further down this ladder."], evidence: "The task sequence gets progressively less scaffolded across a lesson or unit; students name what the worked example taught them.",
+        video: { url: "https://www.youtube.com/watch?v=FdOuK1mN39I", title: "Worked Examples | CPD Grab Bag", channel: "Professional Development" } },
+      { title: "Handoff to the Engagement Cycle", band: "Delivery · Release", why: "Delivery ends when students can carry the work themselves. The Engagement Cycle is where they Notice, Read, Talk, Solve, Defend, and Revise on the ground you just prepared.", moves: ["Name the target one more time before release.", "State the success criteria students will use to check their own work.", "Post the model or worked example so it stays visible during independent work."], evidence: "Independent work begins with more than a handful of students able to start without a second re-teach.",
+        video: { url: "https://www.youtube.com/watch?v=cEIS87uISvs", title: "Gradual Release of Responsibility — Fisher & Frey Interpretation", channel: "Fisher and Frey" } }
+    ],
+    conceptVideo: { url: "https://www.youtube.com/watch?v=C-dfYyCRJ5E", title: "Explicit Vocabulary Instruction with Anita Archer", channel: "Good to Great Schools Australia", note: "Archer herself modeling explicit instruction with a class — the difference between explicit teaching and lecture is visible from the first minute." },
+    breakdowns: [
+      { title: "Skipping 'we do'", body: "The teacher models one problem and assigns twenty. This is the most common failure. It produces a lot of what gets called engagement or behavior problems, because a student who cannot do the work finds something else to do." },
+      { title: "Modeling the answer instead of the thinking", body: "Showing a finished paragraph with evidence teaches almost nothing. Narrating the decisions — 'I'm skipping this quote because it doesn't prove my claim' — is what students can copy." },
+      { title: "Checking with volunteers", body: "'Any questions?' and 'Does that make sense?' hear from three confident kids. Mini whiteboards, cold call, or a quick written response hear from everyone." },
+      { title: "Talking over text-heavy slides", body: "Students cannot read and listen at the same time, so they do neither well. Pare slides to one image or a few words while you talk." },
+      { title: "Packets standing in for teaching", body: "In buildings with emergency-certified staff, delivery quietly becomes a video plus a worksheet. That is not delivery; it is delegation." }
+    ],
+    bySubject: [
+      { subject: "Math", body: "Worked examples followed by partially completed ones. Show the decision points, then hand students problems where the hard step is blanked out." },
+      { subject: "Science", body: "Modeling claim–evidence–reasoning from actual data. Think aloud through which data point supports which claim and why the counter-data doesn't disqualify it." },
+      { subject: "ELA", body: "Think-aloud through a passage. Show what a strong reader does at a hard sentence, an unfamiliar word, or a paragraph break — not just what they concluded." },
+      { subject: "Social studies", body: "Sourcing a document out loud: who wrote this, when, and why should I believe it? Model the questions before the interpretation." }
+    ],
+    lookFors: [
+      "The teacher models thinking, not just answers — students can hear the decisions being made.",
+      "Every student produces a response during at least one check for understanding.",
+      "Guided practice happens before independent work; students see 'we do' before they see 'you do'.",
+      "When independent work starts, the model or worked example is still visible.",
+      "In the first three minutes of independent work, most students are engaged and working — not stuck."
+    ]
+  };
+
+  function stepCard(step, i) {
+    return '<article class="card" style="border-left:4px solid #D4A537;padding-left:16px;">' +
+      '<div class="card-meta">Step ' + (i + 1) + ' · ' + esc(step.min) + '</div>' +
+      '<h3 class="card-title">' + esc(step.label) + '</h3>' +
+      '<p>' + esc(step.body) + '</p></article>';
+  }
+
+  function breakdownCard(b) {
+    return '<article class="card">' +
+      '<div class="card-meta" style="color:#B23A48;font-weight:600;">Common breakdown</div>' +
+      '<h3 class="card-title">' + esc(b.title) + '</h3>' +
+      '<p>' + esc(b.body) + '</p></article>';
+  }
+
+  function subjectCard(s) {
+    return '<article class="card">' +
+      '<h3 class="card-title">' + esc(s.subject) + '</h3>' +
+      '<p>' + esc(s.body) + '</p></article>';
+  }
+
+  function renderInstructionalDelivery(view) {
+    var page = DELIVERY;
+    view.innerHTML = '<h1 class="page-title">' + esc(page.title) + '</h1>' +
+      '<p class="page-lede">' + esc(page.lede) + '</p>' +
+
+      '<div class="callout"><h3>Explicit instruction is not lecture</h3>' +
+      '<p>Lecture delivers content and hopes it sticks. Explicit instruction comes in short chunks, with frequent checks where every student responds, and it keeps adjusting based on what those checks show.</p>' +
+      (page.conceptVideo ? '<p style="margin:8px 0 0;"><strong>See it:</strong> <a href="' + esc(page.conceptVideo.url) + '" target="_blank" rel="noopener">' + esc(page.conceptVideo.title) + ' ↗</a> <span style="color:#6b6b6b;font-size:0.9em;">· ' + esc(page.conceptVideo.channel) + '</span></p>' + (page.conceptVideo.note ? '<p style="margin:6px 0 0;color:#4a4a4a;font-size:0.95em;"><em>' + esc(page.conceptVideo.note) + '</em></p>' : '') : '') +
+      '</div>' +
+
+      '<h2 class="section-title">The evidence base</h2>' +
+      '<p>The research is unusually consistent. It comes from three directions that agree with each other: cognitive load theory, the Kirschner–Sweller–Clark critique of minimal guidance, and Rosenshine\'s Principles of Instruction. Archer &amp; Hughes and Fisher &amp; Frey turn that research into classroom routines.</p>' +
+      '<div class="guide-row">' + page.sources.map(sourceLink).join("") + '</div>' +
+
+      '<h2 class="section-title">A strong delivery sequence — 50-minute WHS period</h2>' +
+      '<p>In 50 minutes (45 on Mondays), a strong delivery sequence maps cleanly onto Teaching → Engagement → Learning without changing the framework.</p>' +
+      '<div class="card-grid">' + page.sequence.map(stepCard).join("") + '</div>' +
+
+      '<h2 class="section-title">Core delivery moves</h2>' +
+      page.practices.map(practiceCard).join("") +
+
+      '<h2 class="section-title">Where delivery breaks down</h2>' +
+      '<p>These are the patterns you will likely see on walkthroughs.</p>' +
+      '<div class="card-grid">' + page.breakdowns.map(breakdownCard).join("") + '</div>' +
+
+      '<div class="callout" style="border-left:4px solid #D4A537;"><h3>The best walkthrough diagnostic</h3>' +
+      '<p>Watch the first three minutes of independent work. If more than a handful of students are stuck or haven\'t started, the problem happened upstream in delivery, not in engagement. You can see this in ten minutes, it is fair to the teacher, and it points straight to a next step.</p></div>' +
+
+      '<h2 class="section-title">Delivery by subject</h2>' +
+      '<p>The move is the same; the content is different. The literacy focus runs through all four, because modeling how to write with evidence is itself a delivery move.</p>' +
+      '<div class="card-grid">' + page.bySubject.map(subjectCard).join("") + '</div>' +
+
+      '<h2 class="section-title">The tension with the Engagement Cycle</h2>' +
+      '<div class="callout">' +
+      '<p>The Engagement Cycle opens with Notice, and some research supports letting students struggle with a problem before instruction. Manu Kapur\'s <em>productive failure</em> work is the strongest example. The condition is that explicit instruction follows and builds on what students tried.</p>' +
+      '<p>So a short Notice hook before teaching is defensible. A Notice → Read → Talk sequence with no teaching until Defend is not — at least for students who are behind in reading. The expertise reversal effect gives the rule: heavy guidance for novices, fading as students gain expertise. Delivery should look different in AP U.S. History than in English I.</p></div>' +
+
+      '<h2 class="section-title">What to look for in the room</h2>' +
+      '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>';
+  }
+
   window.ContentHubs = {
     renderK5Science: function (view) { renderK5(view, "science"); },
     renderK5Social: function (view) { renderK5(view, "social"); },
@@ -174,6 +300,7 @@
     renderSecondaryMath: function (view, strategies) { renderSecondary(view, "math", strategies); },
     renderSecondaryWriting: function (view, strategies) { renderSecondary(view, "writing", strategies); },
     renderStudentVoice: renderStudentVoice,
-    renderLearnerSupports: renderLearnerSupports
+    renderLearnerSupports: renderLearnerSupports,
+    renderInstructionalDelivery: renderInstructionalDelivery
   };
 })();
