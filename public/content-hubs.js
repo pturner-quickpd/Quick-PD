@@ -112,7 +112,8 @@
       '<div class="hub-grid">' +
       '<a class="hub-card" href="#/secondary-reading"><div class="hub-card-title">Secondary Reading</div><div class="hub-card-desc">Complex text, annotation, vocabulary, discussion, and evidence across every subject.</div><div class="hub-card-cta">Open ↗</div></a>' +
       '<a class="hub-card" href="#/secondary-math"><div class="hub-card-title">Secondary Math</div><div class="hub-card-desc">Represent, solve, explain, compare methods, defend, and revise.</div><div class="hub-card-cta">Open ↗</div></a>' +
-      '<a class="hub-card" href="#/secondary-writing"><div class="hub-card-title">Secondary Writing</div><div class="hub-card-desc">Frequent low-stakes writing through evidence-based explanation and argument.</div><div class="hub-card-cta">Open ↗</div></a></div>';
+      '<a class="hub-card" href="#/secondary-writing"><div class="hub-card-title">Secondary Writing</div><div class="hub-card-desc">Frequent low-stakes writing through evidence-based explanation and argument.</div><div class="hub-card-cta">Open ↗</div></a>' +
+      '<a class="hub-card" href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener"><div class="hub-card-title">' + esc(AP_WORLD_APP.label) + '</div><div class="hub-card-desc">Live example app — unit targets, success criteria, annotated SAQ/DBQ exemplars, and released-item retrieval in a working AP course.</div><div class="hub-card-cta">Open live app ↗</div></a></div>';
   }
 
   function renderSecondary(view, key, strategies) {

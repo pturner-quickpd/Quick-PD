@@ -3587,6 +3587,7 @@ function _searchIndex() {
     { label: "Accessibility & Learner Supports", sub: "Teacher guide", href: "#/learner-supports" },
     { label: "Clarity", sub: "Teacher guide", href: "#/clarity" },
     { label: "Instructional Delivery", sub: "Teacher guide", href: "#/delivery" },
+    { label: "Turner AP World History (live app)", sub: "External live app", href: "https://turnerstyleapworld.pplx.app/", external: true },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
 
   // Strategies inside the K–5 domain pages + Feedback page (data lives in elementary.js)
@@ -3656,7 +3657,8 @@ function initGlobalSearch() {
       if (!byGroup[g]) return;
       html += `<div class="gsr-group-label">${escapeHtml(g)}</div>`;
       byGroup[g].forEach((h) => {
-        html += `<a class="gsr-item" data-idx="${i}" href="${h.href}">
+        const extAttrs = h.external ? ' target="_blank" rel="noopener"' : "";
+        html += `<a class="gsr-item" data-idx="${i}" href="${h.href}"${extAttrs}>
           <div class="gsr-title">${_highlight(h.label, q)}</div>
           <div class="gsr-sub">${escapeHtml(h.sub)}</div>
         </a>`;
@@ -3695,7 +3697,12 @@ function initGlobalSearch() {
     } else if (e.key === "Enter") {
       if (_searchActiveIdx >= 0 && _searchCurrentResults[_searchActiveIdx]) {
         e.preventDefault();
-        location.hash = _searchCurrentResults[_searchActiveIdx].href;
+        const hit = _searchCurrentResults[_searchActiveIdx];
+        if (hit.external) {
+          window.open(hit.href, "_blank", "noopener");
+        } else {
+          location.hash = hit.href;
+        }
         input.value = "";
         results.hidden = true;
         input.blur();
