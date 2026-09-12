@@ -154,6 +154,7 @@ const ROUTE_LABELS = {
   "learner-supports": "Accessibility & Learner Supports",
   "clarity": "Clarity",
   "delivery": "Instructional Delivery",
+  "engagement-vs-busywork": "Engagement vs. Busywork",
   "first-30-days": "First 30 Days",
   "about": "About the Toolkit",
   "strategy": "Strategy detail",
@@ -258,6 +259,7 @@ const Routes = {
   "learner-supports": (view) => window.ContentHubs.renderLearnerSupports(view),
   "clarity": (view) => window.ContentHubs.renderClarity(view),
   "delivery": (view) => window.ContentHubs.renderInstructionalDelivery(view),
+  "engagement-vs-busywork": (view) => window.ContentHubs.renderEngagementVsBusywork(view),
   // We-Town Toolkit parity routes — thin adapters into existing views.
   "today": (view) => renderStrategies(view, { mode: "today" }),
   "pick-for-me": (view) => renderStrategies(view, { mode: "pick" }),
@@ -3593,6 +3595,7 @@ function _searchIndex() {
     { label: "Accessibility & Learner Supports", sub: "Teacher guide", href: "#/learner-supports" },
     { label: "Clarity", sub: "Teacher guide", href: "#/clarity" },
     { label: "Instructional Delivery", sub: "Teacher guide", href: "#/delivery" },
+    { label: "Engagement vs. Busywork", sub: "Teacher guide", href: "#/engagement-vs-busywork" },
     { label: "Turner AP World History (live app)", sub: "External live app", href: "https://turnerstyleapworld.pplx.app/", external: true },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
 

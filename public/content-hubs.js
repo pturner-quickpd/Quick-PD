@@ -491,6 +491,10 @@
       '<div class="callout" style="border-left:4px solid #D4A537;"><h3>A five-minute self-check</h3>' +
       '<p>Watch your own first three minutes of independent work. If more than a handful of students are stuck or haven\'t started, the problem happened upstream in delivery, not in engagement. You can see it in ten minutes and it points straight to a next move — usually going back to We Do for another round before releasing.</p></div>' +
 
+      '<div class="callout" style="border-left:4px solid #B03A2E;"><h3>Delivery is not the same as engagement</h3>' +
+      '<p>Strong delivery gets students to a task worth doing. If the task itself is Level 1 recall, no amount of modeling will make the work matter. Before you plan the delivery moves for a lesson, run the two-minute check on the task itself — behavioral engagement without cognitive engagement is just orderly busywork.</p>' +
+      '<p style="margin-bottom:0;"><a href="#/engagement-vs-busywork">Open Engagement vs. Busywork — six red flags and the repair moves →</a></p></div>' +
+
       '<h2 class="section-title">Delivery by subject — core academics</h2>' +
       '<p>The move is the same; the content is different. The literacy focus runs through all four, because modeling how to write with evidence is itself a delivery move.</p>' +
       '<div class="card-grid">' + page.bySubject.map(subjectCard).join("") + '</div>' +
@@ -659,6 +663,140 @@
     wireLazyYouTube();
   }
 
+
+  // ---------------- Engagement vs. Busywork ----------------
+  function renderEngagementVsBusywork(view) {
+    var videos = [
+      { url: "https://www.youtube.com/watch?v=YqKK4vXIQpE",
+        title: "Is it Compliance or Engagement?",
+        channel: "Eric Sheninger" },
+      { url: "https://www.youtube.com/watch?v=AgPZOdsEgno",
+        title: "Kim Bearden: Engagement vs Compliance",
+        channel: "Innovative Schools Summit" },
+      { url: "https://www.youtube.com/watch?v=-R4YAaIIYN4",
+        title: "Cognitive Engagement",
+        channel: "Envision" },
+      { url: "https://www.youtube.com/watch?v=JRdw-mtNFZM",
+        title: "Costa's Levels of Thinking and Questioning",
+        channel: "LWashingtonHayfield" }
+    ];
+
+    var redFlags = [
+      {
+        flag: "High compliance, low thinking",
+        tell: "Every student is on task, quiet, moving pencils — but a stranger walking in could not name the learning target from what students are producing.",
+        repair: "Add a Costa Level 2/3 prompt that requires the task's content to answer. If the answer is a category, list, or one-word recall, the task is Level 1. Rewrite the prompt to compare, explain, justify, or apply."
+      },
+      {
+        flag: "No success criteria the student can use",
+        tell: "Students ask \"how many sentences?\" or \"is this enough?\" — they can't self-check because they don't know what a good answer looks like.",
+        repair: "Post 2–3 concrete criteria before students start (\"cites the source, explains cause and effect, uses two unit terms correctly\"). Have students self-mark against them mid-task and again at closure."
+      },
+      {
+        flag: "No student decision inside the task",
+        tell: "Every student's finished product looks identical — same order, same answers, same length. The task removed all choice.",
+        repair: "Give students a decision the content forces: which source to cite, which two examples to compare, which claim to defend. The decision is where the thinking lives."
+      },
+      {
+        flag: "Product weight beats process weight",
+        tell: "Colored borders, illustrations, cover pages, or formatting matter more to the grade than the reasoning does.",
+        repair: "Grade the reasoning move (evidence + explanation), not the decoration. If the product still needs a visual, make it summarize the reasoning — a labeled diagram, an annotated map, a cause-effect chain."
+      },
+      {
+        flag: "Repeats a Level 1 move students already own",
+        tell: "Students who already know the vocabulary or facts finish in three minutes; students who don't, still can't do the task.",
+        repair: "Move the Level 1 recall into a two-minute retrieval opener, then spend the block on a Level 2/3 task that requires those facts to be true. Now the recall serves the thinking instead of replacing it."
+      },
+      {
+        flag: "Talking looks like discussion, not thinking",
+        tell: "Table talk is polite and on-topic but students agree with each other's first answer and move on. No one is defending or revising a claim.",
+        repair: "Give the talk a job: \"Find one place your partner's answer needs more evidence.\" Or use a Notice → Talk → Defend structure where students have to name what changed their mind."
+      }
+    ];
+
+    var swaps = [
+      { busywork: "Copy the definitions of ten vocabulary words.",
+        engagement: "Use six of the ten terms to explain what is happening in this photograph, and mark two terms that did not fit and why." },
+      { busywork: "Color the countries on the map.",
+        engagement: "Annotate the map with three causes of the trade route's growth; cite one source for each cause." },
+      { busywork: "Answer questions 1–20 at the end of the chapter.",
+        engagement: "Pick the two questions you think are hardest. Answer them, and explain what a wrong answer would look like and why." },
+      { busywork: "Fill in the blank worksheet from the video.",
+        engagement: "Watch the video, then write the one sentence you would tell an absent student is the main idea. Cite one moment from the video that proves it." },
+      { busywork: "Complete 30 practice problems.",
+        engagement: "Do problems 1–5. Then write the rule you used and try one problem the rule should not work on. Explain why." },
+      { busywork: "Take notes on the lecture.",
+        engagement: "Take notes in two columns: what the teacher said on the left, your Level 2/3 question about it on the right. We open with three of your questions tomorrow." }
+    ];
+
+    function redFlagCard(rf) {
+      return '<div class="card" style="border-left:4px solid #B03A2E;">' +
+        '<div class="card-title" style="color:#B03A2E;">Red flag · ' + esc(rf.flag) + '</div>' +
+        '<p><strong>What you see:</strong> ' + esc(rf.tell) + '</p>' +
+        '<p style="margin-bottom:0;"><strong>Do this instead:</strong> ' + esc(rf.repair) + '</p>' +
+        '</div>';
+    }
+
+    function swapRow(s) {
+      return '<tr>' +
+        '<td style="padding:10px 12px;border-top:1px solid #e5e0d0;vertical-align:top;background:#FBF3E4;">' + esc(s.busywork) + '</td>' +
+        '<td style="padding:10px 12px;border-top:1px solid #e5e0d0;vertical-align:top;background:#F0F5EA;">' + esc(s.engagement) + '</td>' +
+        '</tr>';
+    }
+
+    view.innerHTML =
+      '<h1 class="page-title">Engagement vs. Busywork</h1>' +
+      '<p class="page-lede">If we are honest about it, a lot of what we call &ldquo;engagement&rdquo; is compliance. Students are moving pencils. Nothing is actually being thought. This page names the difference and gives you six ways to catch it in your own room this week.</p>' +
+
+      '<div class="callout" style="background:#F6F1E4;border-left:4px solid #0A2540;"><h3>The frame</h3>' +
+      '<p><strong>Behavioral engagement</strong> is what a walkthrough sees — students on task, hands moving, no one off-topic. It is necessary. It is not sufficient.</p>' +
+      '<p><strong>Cognitive engagement</strong> is what the student is doing with the content in their head — comparing, explaining, justifying, applying, revising. It is the thing you actually care about, and it is invisible unless the task makes it visible.</p>' +
+      '<p style="margin-bottom:0;">The operational test on this campus is <strong>Costa\'s Levels of Thinking</strong>. If the task can be finished at Level 1 — recall, define, identify — then behavioral engagement is all you are getting, no matter how orderly the room looks. If finishing the task <em>requires</em> a Level 2 or Level 3 move (compare, explain, justify, evaluate, apply, hypothesize), the compliance you see is also cognitive engagement. That is the bar.</p>' +
+      '</div>' +
+
+      '<p style="margin:16px 0 8px;"><strong>See it:</strong></p>' +
+      youtubeEmbedList(videos) +
+
+      '<h2 class="section-title">Six red flags for busywork</h2>' +
+      '<p>Read these as self-checks. If one sounds familiar, it is not a judgment — it is data. Each flag has a repair move you can use tomorrow.</p>' +
+      '<div class="card-grid">' + redFlags.map(redFlagCard).join("") + '</div>' +
+
+      '<h2 class="section-title">Same task, two versions</h2>' +
+      '<p>These pairs use the same content and roughly the same amount of student time. The left column stops at Level 1. The right column forces Level 2/3 to finish.</p>' +
+      '<div style="overflow-x:auto;">' +
+      '<table style="width:100%;border-collapse:collapse;margin-top:8px;">' +
+      '<thead><tr>' +
+      '<th style="text-align:left;padding:10px 12px;background:#B03A2E;color:#fff;width:50%;">Busywork (Level 1 only)</th>' +
+      '<th style="text-align:left;padding:10px 12px;background:#2E7D32;color:#fff;width:50%;">Engagement (requires Level 2/3)</th>' +
+      '</tr></thead>' +
+      '<tbody>' + swaps.map(swapRow).join("") + '</tbody>' +
+      '</table>' +
+      '</div>' +
+
+      '<h2 class="section-title">The two-minute check</h2>' +
+      '<div class="callout">' +
+      '<p>Before you hand out an assignment, ask the two questions in order:</p>' +
+      '<ol style="margin:8px 0 8px 20px;">' +
+      '<li><strong>What Costa level does finishing this task require?</strong> If the honest answer is Level 1, either move it to a warm-up (see the <a href="#/delivery">Delivery page</a>) or add a prompt that forces Level 2/3.</li>' +
+      '<li><strong>What decision does the student have to make?</strong> If there is no decision — no source to weigh, no example to pick, no claim to defend — the task is finishable without thinking. Add one.</li>' +
+      '</ol>' +
+      '<p style="margin-bottom:0;">If both answers are strong, the task is engagement. If either is weak, you have busywork with a nice cover page.</p>' +
+      '</div>' +
+
+      '<h2 class="section-title">Where this fits in the Toolkit</h2>' +
+      '<div class="callout" style="background:#F6F1E4;">' +
+      '<ul style="margin:0 0 0 20px;">' +
+      '<li><a href="#/clarity">Clarity</a> gives you the target and success criteria. If those are Level 1, no delivery move will save the task.</li>' +
+      '<li><a href="#/delivery">Instructional Delivery</a> is how you get students to a Level 2/3 task without leaving them stranded. Explicit instruction first, then release.</li>' +
+      '<li><a href="#/daily-plan">Daily Plan template</a> — plug the repair moves into We Do and You Do; use retrieval openers to move the Level 1 recall out of the main task.</li>' +
+      '<li><a href="#/rigor">Rigor &amp; Questioning</a> — Costa question stems for Level 2 and 3 you can drop into any subject.</li>' +
+      '</ul>' +
+      '</div>';
+
+    wireLazyYouTube();
+  }
+
+
   window.ContentHubs = {
     renderK5Science: function (view) { renderK5(view, "science"); },
     renderK5Social: function (view) { renderK5(view, "social"); },
@@ -671,6 +809,7 @@
     renderStudentVoice: renderStudentVoice,
     renderLearnerSupports: renderLearnerSupports,
     renderInstructionalDelivery: renderInstructionalDelivery,
-    renderClarity: renderClarity
+    renderClarity: renderClarity,
+    renderEngagementVsBusywork: renderEngagementVsBusywork
   };
 })();
