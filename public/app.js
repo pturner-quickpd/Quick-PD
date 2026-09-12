@@ -1814,77 +1814,124 @@ async function renderPLTool(view) {
 
   view.innerHTML = `
     <h1 class="page-title">Write My PL Goal</h1>
-    <p class="page-lede">Write a professional learning goal that holds up in an evaluation conversation. Four steps: pick a focus, pick the move, decide the measurement, and lock the timeline.</p>
+    <p class="page-lede">Build a professional learning goal that holds up in an evaluation conversation. Name a specific focus, the cadence you will hit, what students will produce, and the numbers you will move it from and to. The tool assembles it in the format below.</p>
+
+    <div class="card" style="background:#F6F1E4;border-left:4px solid #0A2540;">
+      <div class="card-meta">Example of the output this tool produces</div>
+      <p style="margin-bottom:0;font-size:0.92em;"><strong>Focus area:</strong> higher-level questioning that produces written, evidence-based student analysis.<br>
+      By the end of the second nine weeks, I will design and deliver at least one Level 2 or Level 3 question per week that students answer in writing with cited evidence from the text or source. I will increase the percentage of students producing a written response that cites evidence from ____% (baseline, collected the first two weeks) to ____%, measured by weekly collected student work samples and principal walkthrough data. To support this, I will plan questions in advance in my lesson plans rather than generating them in the moment, use a written-response protocol before discussion, and build wait time into each question.<br>
+      <strong>Rubric indicator:</strong> ____<br>
+      <strong>Resources:</strong> ____<br>
+      <strong>Check-ins:</strong> end of 1st nine weeks, end of 2nd nine weeks.</p>
+    </div>
 
     <div class="card">
       <form id="pl-form" class="form-grid">
+
         <div class="form-row">
-          <label>1. Focus area</label>
-          <select class="select" name="focus" required>
-            <option value="">Choose one…</option>
-            <option>Reading &amp; writing across the curriculum</option>
-            <option>Student discourse &amp; talk</option>
-            <option>Formative assessment &amp; feedback</option>
-            <option>Teacher–student feedback (Hattie, Wiliam, Shute)</option>
-            <option>Explicit modeling &amp; think-alouds</option>
-            <option>Classroom management &amp; culture</option>
-            <option>Cognitive rigor &amp; questioning</option>
-            <option>Differentiation &amp; small-group instruction</option>
-            <option>Early reading foundations (K–5)</option>
-            <option>Early math &amp; number sense (K–5)</option>
-            <option>Early writing &amp; composition (K–5)</option>
-            <option>Elementary science &amp; phenomena-based instruction (K–5)</option>
-            <option>Elementary social studies &amp; historical thinking (K–5)</option>
-            <option>Physical education, movement &amp; health-related fitness (K–5)</option>
-          </select>
+          <label>1. Focus area <span style="color:var(--muted);font-weight:normal;">(one sentence — what will improve and what students will produce)</span></label>
+          <textarea class="textarea" name="focus" required rows="2" placeholder="e.g. higher-level questioning that produces written, evidence-based student analysis"></textarea>
         </div>
+
         <div class="form-row">
-          <label>2. Specific move you will implement</label>
-          <input class="input" name="move" required placeholder="e.g. Add a 3-minute writing-to-learn stop in every class" />
-        </div>
-        <div class="form-row">
-          <label>3. How you will measure success</label>
-          <select class="select" name="measure" required>
-            <option value="">Choose one…</option>
-            <option>Student work samples across a unit</option>
-            <option>Weekly exit ticket data</option>
-            <option>Walk-through evidence from admin</option>
-            <option>Peer observation and feedback</option>
-            <option>Student survey (start vs. end)</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <label>4. Timeline</label>
+          <label>2. Timeline</label>
           <select class="select" name="timeline" required>
             <option value="">Choose one…</option>
-            <option>By the end of Q1</option>
-            <option>By the end of Q2</option>
-            <option>By the end of the semester</option>
-            <option>By the end of the year</option>
+            <option>the end of the first nine weeks</option>
+            <option>the end of the second nine weeks</option>
+            <option>the end of the third nine weeks</option>
+            <option>the end of the fourth nine weeks</option>
+            <option>the end of the first semester</option>
+            <option>the end of the second semester</option>
+            <option>the end of the school year</option>
           </select>
         </div>
+
         <div class="form-row">
-          <label>Anchor standards (optional)</label>
+          <label>3. The move — with cadence <span style="color:var(--muted);font-weight:normal;">(what you will design and deliver, and how often)</span></label>
+          <input class="input" name="move" required placeholder="e.g. design and deliver at least one Level 2 or Level 3 question per week" />
+        </div>
+
+        <div class="form-row">
+          <label>4a. What students will produce — noun phrase <span style="color:var(--muted);font-weight:normal;">(this becomes what you measure the % of)</span></label>
+          <input class="input" name="studentOutput" required placeholder="e.g. a written response that cites evidence from the text or source" />
+        </div>
+
+        <div class="form-row">
+          <label>4b. How they will answer — manner phrase <span style="color:var(--muted);font-weight:normal;">(follows &ldquo;that students answer&hellip;&rdquo;; leave blank to reuse 4a)</span></label>
+          <input class="input" name="studentAnswerManner" placeholder="e.g. in writing with cited evidence from the text or source" />
+        </div>
+
+        <div class="form-row">
+          <label>5. Baseline & target percentages</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <input class="input" name="baselinePct" placeholder="Baseline %  (e.g. 35 or ____)" />
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">Leave blank or use ____ if you'll collect it during the first two weeks.</div>
+            </div>
+            <div>
+              <input class="input" name="targetPct" placeholder="Target %  (e.g. 75 or ____)" />
+              <div style="font-size:12px;color:var(--muted);margin-top:2px;">Where you want it by the timeline above.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label>6. How baseline will be collected <span style="color:var(--muted);font-weight:normal;">(optional — appears in parentheses after the baseline %)</span></label>
+          <input class="input" name="baselineMethod" placeholder="e.g. baseline, collected the first two weeks" value="baseline, collected the first two weeks" />
+        </div>
+
+        <div class="form-row">
+          <label>7. How you will measure it <span style="color:var(--muted);font-weight:normal;">(pick one or more)</span></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:0.94em;">
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_samples" value="weekly collected student work samples"> weekly collected student work samples</label>
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_walkthroughs" value="principal walkthrough data"> principal walkthrough data</label>
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_exit" value="weekly exit ticket data"> weekly exit ticket data</label>
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_common" value="common formative assessment results"> common formative assessment results</label>
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_peer" value="peer observation notes"> peer observation notes</label>
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_survey" value="student survey results (start vs. end)"> student survey results (start vs. end)</label>
+          </div>
+          <input class="input" name="measureCustom" placeholder="Or add your own measure(s), comma-separated" style="margin-top:8px;" />
+        </div>
+
+        <div class="form-row">
+          <label>8. Supporting practices <span style="color:var(--muted);font-weight:normal;">(what you will do to make the move happen — 2 to 4)</span></label>
+          <input class="input" name="support1" placeholder="Supporting practice 1 (e.g. plan questions in advance in my lesson plans rather than generating them in the moment)" />
+          <input class="input" name="support2" placeholder="Supporting practice 2 (e.g. use a written-response protocol before discussion)" style="margin-top:8px;" />
+          <input class="input" name="support3" placeholder="Supporting practice 3 (e.g. build wait time into each question)" style="margin-top:8px;" />
+          <input class="input" name="support4" placeholder="Supporting practice 4 (optional)" style="margin-top:8px;" />
+        </div>
+
+        <div class="form-row">
+          <label>9. Rubric indicator <span style="color:var(--muted);font-weight:normal;">(optional — Marzano / Danielson / Marshall element this maps to)</span></label>
+          <input class="input" name="rubricIndicator" placeholder="e.g. Marzano DQ2 / Danielson 3b: Questioning & Discussion" />
+        </div>
+
+        <div class="form-row">
+          <label>10. Resources <span style="color:var(--muted);font-weight:normal;">(optional — Toolkit pages, books, PD, coach)</span></label>
+          <input class="input" name="resources" placeholder="e.g. Rigor & Questioning page; Costa's Levels handout; instructional coach" />
+        </div>
+
+        <div class="form-row">
+          <label>11. Check-ins</label>
+          <input class="input" name="checkins" placeholder="e.g. end of 1st nine weeks, end of 2nd nine weeks" value="end of 1st nine weeks, end of 2nd nine weeks" />
+        </div>
+
+        <div class="form-row">
+          <label>Anchor standards <span style="color:var(--muted);font-weight:normal;">(optional)</span></label>
           <input class="input" id="pl-std-code" name="anchorStandards" placeholder="e.g. 11.3.R.3, B.LS1.1 (comma-separated)" />
           <div id="pl-std-picker"></div>
           <div style="font-size:12px;color:var(--muted);margin-top:2px;">Tie this goal to the OAS standards it will show up in.</div>
         </div>
-        <div class="form-row">
-          <label>Baseline (where you are today)</label>
-          <textarea class="textarea" name="baseline" placeholder="Describe what's happening in your classroom right now."></textarea>
-        </div>
-        <div class="form-row">
-          <label>Target (where you want to be)</label>
-          <textarea class="textarea" name="target" placeholder="Describe the observable difference at the end of the timeline."></textarea>
-        </div>
+
         <button type="submit" class="btn primary" style="justify-self:start;">Save PL goal</button>
       </form>
     </div>
 
     <div class="card" id="preview-card" style="display:none;">
-      <div class="card-meta">Preview</div>
+      <div class="card-meta">Preview — this is exactly what saves</div>
       <div class="card-title">Your PL goal</div>
-      <p id="preview-text"></p>
+      <div id="preview-text" style="white-space:pre-wrap;"></div>
     </div>
 
     <h2 class="section-title">Your saved PL goals &amp; progress</h2>
@@ -1909,25 +1956,110 @@ async function renderPLTool(view) {
   const form = $("#pl-form");
   const preview = $("#preview-card");
   const previewText = $("#preview-text");
+
+  // Turn a list into a natural English series: ["a","b","c"] -> "a, b, and c"
+  function joinAnd(items) {
+    const xs = items.map(s => (s || "").trim()).filter(Boolean);
+    if (xs.length === 0) return "";
+    if (xs.length === 1) return xs[0];
+    if (xs.length === 2) return xs[0] + " and " + xs[1];
+    return xs.slice(0, -1).join(", ") + ", and " + xs[xs.length - 1];
+  }
+
+  function collectMeasures(form) {
+    const boxes = form.querySelectorAll('input[type="checkbox"][name^="measure_"]');
+    const picked = Array.from(boxes).filter(b => b.checked).map(b => b.value);
+    const customRaw = form.querySelector('input[name="measureCustom"]');
+    const custom = customRaw ? customRaw.value.split(",").map(s => s.trim()).filter(Boolean) : [];
+    return picked.concat(custom);
+  }
+
+  function assemblePLGoal(data) {
+    const focusRaw = (data.focus || "").trim().replace(/\.$/, "");
+    const timeline = (data.timeline || "").trim();
+    const move = (data.move || "").trim().replace(/\.$/, "");
+    const studentOutput = (data.studentOutput || "").trim().replace(/\.$/, "");
+    const studentAnswerManner = ((data.studentAnswerManner || "").trim().replace(/\.$/, "")) || studentOutput;
+    const baselinePct = (data.baselinePct || "").trim() || "____";
+    const targetPct = (data.targetPct || "").trim() || "____";
+    const baselineMethod = (data.baselineMethod || "").trim();
+    const measures = joinAnd(data.__measures || []);
+    const supports = joinAnd([data.support1, data.support2, data.support3, data.support4]);
+    const rubric = (data.rubricIndicator || "").trim() || "____";
+    const resources = (data.resources || "").trim() || "____";
+    const checkins = (data.checkins || "").trim();
+
+    // Percentages: bare number gets a % suffix; blank / underscores render as "____%".
+    const fmtPct = (v) => {
+      const s = String(v || "").trim();
+      if (/^\d+(\.\d+)?$/.test(s)) return s + "%";
+      if (!s || /^_+$/.test(s)) return "____%";
+      return s;
+    };
+    const bPct = fmtPct(baselinePct);
+    const tPct = fmtPct(targetPct);
+    const bMethodClause = baselineMethod ? ` (${baselineMethod})` : "";
+
+    const lines = [];
+    if (focusRaw) lines.push(`Focus area: ${focusRaw}.`);
+
+    if (timeline && move) {
+      // Sentence 1: cadence sentence
+      let s1 = `By ${timeline}, I will ${move}`;
+      if (studentAnswerManner) s1 += ` that students answer ${studentAnswerManner}`;
+      s1 += ".";
+      lines.push(s1);
+
+      // Sentence 2: baseline -> target with measures
+      if (studentOutput || baselinePct !== "____" || targetPct !== "____" || measures) {
+        let s2 = `I will increase the percentage of students producing ${studentOutput || "the target behavior"} from ${bPct}${bMethodClause} to ${tPct}`;
+        if (measures) s2 += `, measured by ${measures}`;
+        s2 += ".";
+        lines.push(s2);
+      }
+
+      // Sentence 3: supporting practices
+      if (supports) lines.push(`To support this, I will ${supports}.`);
+    }
+
+    lines.push(`Rubric indicator: ${rubric}`);
+    lines.push(`Resources: ${resources}`);
+    if (checkins) lines.push(`Check-ins: ${checkins}.`);
+
+    return lines.join("\n");
+  }
+
   const updatePreview = () => {
     const fd = new FormData(form);
-    const focus = fd.get("focus"), move = fd.get("move"), measure = fd.get("measure"), timeline = fd.get("timeline");
-    if (focus && move && measure && timeline) {
-      const tl = timeline.replace(/^By\s+/i, '');
-      previewText.textContent = `By ${tl.toLowerCase()}, I will strengthen ${focus.toLowerCase()} in my classroom by ${move.trim().replace(/\.$/, '')}. I will measure success through ${measure.toLowerCase()}.`;
+    const data = Object.fromEntries(fd.entries());
+    data.__measures = collectMeasures(form);
+    const focus = (data.focus || "").trim();
+    const move = (data.move || "").trim();
+    const timeline = (data.timeline || "").trim();
+    const studentOutput = (data.studentOutput || "").trim();
+    // Show preview as soon as the four core fields are filled
+    if (focus && move && timeline && studentOutput) {
+      previewText.textContent = assemblePLGoal(data);
       preview.style.display = "block";
     } else {
       preview.style.display = "none";
     }
   };
   form.addEventListener("input", updatePreview);
+  form.addEventListener("change", updatePreview);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const t = TeacherStore.get();
     if (!t) { window.requireTeacher(); return; }
     const fd = new FormData(form);
     const data = Object.fromEntries(fd.entries());
-    data.assembled = previewText.textContent;
+    data.measures = collectMeasures(form);
+    // Preserve the measure_* checkbox state as a saved array; drop the individual keys.
+    Object.keys(data).forEach(k => { if (k.indexOf("measure_") === 0) delete data[k]; });
+    data.__measures = data.measures;
+    data.assembled = assemblePLGoal(data);
+    delete data.__measures;
     try {
       await fetchJSON("/api/pl-goals", { method: "POST", body: JSON.stringify({ teacher: t, data }) });
       toast("PL goal saved");
@@ -1938,15 +2070,15 @@ async function renderPLTool(view) {
 
 function plCard(p) {
   const d = p.data || {};
+  const measuresList = Array.isArray(d.measures) ? d.measures.join(", ") : "—";
+  const cardTitle = (d.focus || "PL goal").split("\n")[0].slice(0, 140);
   return `
     <div class="card">
       <div class="card-meta">${escapeHtml(p.updatedAt || "")}</div>
-      <div class="card-title">${escapeHtml(d.focus || "PL goal")}</div>
-      ${d.assembled ? `<p><strong>${escapeHtml(d.assembled)}</strong></p>` : ""}
-      ${d.baseline ? `<h3 class="subsection-title">Baseline</h3><p>${nl2br(d.baseline)}</p>` : ""}
-      ${d.target ? `<h3 class="subsection-title">Target</h3><p>${nl2br(d.target)}</p>` : ""}
+      <div class="card-title">${escapeHtml(cardTitle)}</div>
+      ${d.assembled ? `<div style="white-space:pre-wrap;">${escapeHtml(d.assembled)}</div>` : ""}
       ${d.anchorStandards ? `<div style="margin-top:10px;font-size:12px;"><strong style="color:var(--navy);">Anchor standards:</strong> ${escapeHtml(d.anchorStandards)}</div>` : ""}
-      <div style="margin-top:12px;font-size:12px;color:var(--muted);">Timeline: ${escapeHtml(d.timeline || "—")} · Measure: ${escapeHtml(d.measure || "—")}</div>
+      <div style="margin-top:12px;font-size:12px;color:var(--muted);">Timeline: ${escapeHtml(d.timeline || "—")} · Measures: ${escapeHtml(measuresList)}</div>
       <div class="button-row" style="margin-top:12px;">
         <button type="button" class="btn btn-primary btn-sm pl-docx-btn" data-pl-id="${escapeHtml(String(p.id || ""))}">⭳ Download as Word (.docx)</button>
       </div>
@@ -1963,13 +2095,29 @@ function plGoalDocxBlocks(p) {
     { p: (teacher ? teacher + " · " : "") + "Wewoka High School · " + new Date().toLocaleDateString() },
     { hr: true },
   ];
-  if (d.assembled) blocks.push({ h2: "Goal statement" }, { p: d.assembled });
+  // Full assembled statement first — this is the polished goal that lands on paper.
+  if (d.assembled) {
+    blocks.push({ h2: "Goal statement" });
+    String(d.assembled).split(/\n+/).forEach(line => { if (line.trim()) blocks.push({ p: line.trim() }); });
+  }
+  blocks.push({ hr: true }, { h2: "Working detail" });
   if (d.focus) blocks.push({ label: "Focus area", value: d.focus });
-  if (d.baseline) blocks.push({ h2: "Baseline (where students are now)" }, { p: d.baseline });
-  if (d.target) blocks.push({ h2: "Target (where they will be)" }, { p: d.target });
-  if (d.move) blocks.push({ h2: "Instructional move" }, { p: d.move });
-  if (d.measure) blocks.push({ label: "How I will measure it", value: d.measure });
-  if (d.timeline) blocks.push({ label: "Timeline", value: d.timeline });
+  if (d.timeline) blocks.push({ label: "Timeline", value: "By " + d.timeline });
+  if (d.move) blocks.push({ label: "The move", value: d.move });
+  if (d.studentOutput) blocks.push({ label: "What students produce", value: d.studentOutput });
+  if (d.baselinePct || d.targetPct) {
+    blocks.push({ label: "Baseline → target", value: (d.baselinePct || "____") + " → " + (d.targetPct || "____") + (d.baselineMethod ? "  (" + d.baselineMethod + ")" : "") });
+  }
+  const measuresList = Array.isArray(d.measures) ? d.measures : [];
+  if (measuresList.length) blocks.push({ label: "Measures", value: measuresList.join("; ") });
+  const supports = [d.support1, d.support2, d.support3, d.support4].filter(s => s && String(s).trim());
+  if (supports.length) {
+    blocks.push({ h2: "Supporting practices" });
+    supports.forEach(s => blocks.push({ p: "• " + s }));
+  }
+  if (d.rubricIndicator) blocks.push({ label: "Rubric indicator", value: d.rubricIndicator });
+  if (d.resources) blocks.push({ label: "Resources", value: d.resources });
+  if (d.checkins) blocks.push({ label: "Check-ins", value: d.checkins });
   if (d.anchorStandards) blocks.push({ label: "Anchor standards", value: d.anchorStandards });
   blocks.push({ hr: true }, { h2: "Progress notes" }, { p: "Check-in 1:  ________________________________" }, { p: "Check-in 2:  ________________________________" }, { p: "End of cycle: ________________________________" });
   return blocks;
