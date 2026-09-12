@@ -744,6 +744,74 @@
         '</tr>';
     }
 
+    var subjectSwaps = [
+      {
+        subject: "ELA",
+        busywork: "Look up the definitions of 15 vocabulary words and write them out.",
+        engagement: "Read the passage. Rank the 15 vocabulary words by how much the author needed them to make her argument \u2014 top 5, middle 5, bottom 5. Defend your top 5 with a line from the text.",
+        why: "Ranking with textual evidence forces reading the passage, weighing importance, and citing \u2014 all Level 2/3. Definitions are still learned along the way."
+      },
+      {
+        subject: "Math",
+        busywork: "Complete 30 factoring problems from the textbook.",
+        engagement: "Do problems 1\u20135. Write the rule you used. Design one problem that looks like it should factor by that rule but doesn't \u2014 and explain the trap.",
+        why: "Making a non-example requires understanding the rule's boundary conditions. 5 problems + a trap teaches more than 30 blind reps."
+      },
+      {
+        subject: "Science",
+        busywork: "Fill in the parts of the cell on a diagram.",
+        engagement: "Given three cells (plant, animal, bacteria), predict which one survives each of three environments and why. Use organelle functions to defend each prediction.",
+        why: "Applying organelle function to a novel scenario is Level 3; students still learn the parts, but the parts have a job to do."
+      },
+      {
+        subject: "Social Studies",
+        busywork: "Take Cornell notes on the Industrial Revolution chapter.",
+        engagement: "As you read, pick the ONE invention you would keep if you had to erase the other four from history. Cite two effects from the chapter to defend your choice, and name one effect that argues against you.",
+        why: "Weighing evidence for and against a claim is the historian's move (HIPP, sourcing). Notes still happen; they have a purpose."
+      },
+      {
+        subject: "CTE (Ag/Welding, Culinary, Aviation, etc.)",
+        busywork: "Copy the safety checklist for the equipment.",
+        engagement: "Given three photos of setups that violate the checklist in different ways, identify each violation, rank them by risk, and write the one sentence you would say to the operator first.",
+        why: "Ranking by risk requires understanding <em>why</em> each rule exists, not just what it says. Matches the demonstration routine on the Delivery page."
+      },
+      {
+        subject: "PE",
+        busywork: "Run laps until the bell.",
+        engagement: "Do the workout of the day. Track heart rate at three points. Compare today's recovery time to last week's and explain what changed \u2014 sleep, nutrition, effort, or fitness gain.",
+        why: "Applying knowledge of the FITT principle to their own body data is Level 3. Physical work still happens; students own why they're doing it."
+      },
+      {
+        subject: "Art",
+        busywork: "Color inside the lines of the printed template.",
+        engagement: "Choose one of three color palettes for this composition. Justify the choice with a principle we studied (complementary, analogous, monochromatic) and explain what mood it creates.",
+        why: "Choice + defense with vocabulary is Level 2/3. Craft still matters; students learn to talk about it like artists."
+      },
+      {
+        subject: "Music",
+        busywork: "Copy the note names onto the staff worksheet.",
+        engagement: "Listen to two performances of the same piece. Notate the two places they interpret differently, and explain which version serves the composer's intent better and why.",
+        why: "Comparing interpretations against composer intent is Level 3 analysis. Notation is a tool; the comparison is the point."
+      }
+    ];
+
+    function subjectCard(s) {
+      return '<div class="card" style="border-left:4px solid #0A2540;">' +
+        '<div class="card-title" style="color:#0A2540;">' + esc(s.subject) + '</div>' +
+        '<p style="margin:6px 0;"><span style="color:#B03A2E;font-weight:600;">Busywork:</span> ' + esc(s.busywork) + '</p>' +
+        '<p style="margin:6px 0;"><span style="color:#2E7D32;font-weight:600;">Engagement:</span> ' + esc(s.engagement) + '</p>' +
+        '<p style="margin:8px 0 0;font-size:0.9em;color:#4a4a4a;"><em>Why it works:</em> ' + s.why + '</p>' +
+        '</div>';
+    }
+
+    function subjectRow(s) {
+      return '<tr>' +
+        '<td style="padding:8px 10px;border-top:1px solid #e5e0d0;vertical-align:top;font-weight:600;width:18%;">' + esc(s.subject) + '</td>' +
+        '<td style="padding:8px 10px;border-top:1px solid #e5e0d0;vertical-align:top;background:#FBF3E4;width:41%;">' + esc(s.busywork) + '</td>' +
+        '<td style="padding:8px 10px;border-top:1px solid #e5e0d0;vertical-align:top;background:#F0F5EA;width:41%;">' + esc(s.engagement) + '</td>' +
+        '</tr>';
+    }
+
     view.innerHTML =
       '<h1 class="page-title">Engagement vs. Busywork</h1>' +
       '<p class="page-lede">If we are honest about it, a lot of what we call &ldquo;engagement&rdquo; is compliance. Students are moving pencils. Nothing is actually being thought. This page names the difference and gives you six ways to catch it in your own room this week.</p>' +
@@ -770,6 +838,22 @@
       '<th style="text-align:left;padding:10px 12px;background:#2E7D32;color:#fff;width:50%;">Engagement (requires Level 2/3)</th>' +
       '</tr></thead>' +
       '<tbody>' + swaps.map(swapRow).join("") + '</tbody>' +
+      '</table>' +
+      '</div>' +
+
+      '<h2 class="section-title">Subject-specific swaps</h2>' +
+      '<p>The move is the same across subjects — add a decision, force Costa Level 2/3 to finish. Here is what that looks like in your discipline.</p>' +
+      '<div class="card-grid">' + subjectSwaps.map(subjectCard).join("") + '</div>' +
+
+      '<h3 class="section-title" style="font-size:1.1em;margin-top:20px;">Quick reference — all subjects at a glance</h3>' +
+      '<div style="overflow-x:auto;">' +
+      '<table style="width:100%;border-collapse:collapse;margin-top:8px;font-size:0.92em;">' +
+      '<thead><tr>' +
+      '<th style="text-align:left;padding:8px 10px;background:#0A2540;color:#fff;width:18%;">Subject</th>' +
+      '<th style="text-align:left;padding:8px 10px;background:#B03A2E;color:#fff;width:41%;">Busywork</th>' +
+      '<th style="text-align:left;padding:8px 10px;background:#2E7D32;color:#fff;width:41%;">Engagement</th>' +
+      '</tr></thead>' +
+      '<tbody>' + subjectSwaps.map(subjectRow).join("") + '</tbody>' +
       '</table>' +
       '</div>' +
 
