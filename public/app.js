@@ -157,6 +157,7 @@ const ROUTE_LABELS = {
   "delivery": "Instructional Delivery",
   "engagement-vs-busywork": "Engagement vs. Busywork",
   "primary-sources": "Teaching with Primary Sources",
+  "social-studies": "Social Studies (6–12)",
   "first-30-days": "First 30 Days",
   "about": "About the Toolkit",
   "strategy": "Strategy detail",
@@ -293,6 +294,7 @@ const Routes = {
   "delivery": (view) => window.ContentHubs.renderInstructionalDelivery(view),
   "engagement-vs-busywork": (view) => window.ContentHubs.renderEngagementVsBusywork(view),
   "primary-sources": (view) => window.ContentHubs.renderPrimarySources(view),
+  "social-studies": (view) => window.ContentHubs.renderSocialStudiesHub(view),
   // We-Town Toolkit parity routes — thin adapters into existing views.
   "today": (view) => renderStrategies(view, { mode: "today" }),
   "pick-for-me": (view) => renderStrategies(view, { mode: "pick" }),
@@ -3772,14 +3774,15 @@ function _searchIndex() {
     { label: "Secondary Math (6–12)", sub: "Foundations", href: "#/secondary-math" },
     { label: "Secondary Writing (6–12)", sub: "Foundations", href: "#/secondary-writing" },
     { label: "Secondary Science (6–12)", sub: "Foundations", href: "#/secondary-science" },
-    { label: "Secondary Social Studies (6–12)", sub: "Foundations", href: "#/secondary-social" },
+    { label: "Social Studies (6–12)", sub: "Social Studies hub", href: "#/social-studies" },
+    { label: "Secondary Social Studies (6–12)", sub: "Social Studies · Foundations", href: "#/secondary-social" },
     { label: "Student Voice & Engagement Evidence", sub: "Teacher tool", href: "#/student-voice" },
     { label: "Accessibility & Learner Supports", sub: "Teacher guide", href: "#/learner-supports" },
     { label: "Clarity", sub: "Teacher guide", href: "#/clarity" },
     { label: "Instructional Delivery", sub: "Teacher guide", href: "#/delivery" },
     { label: "Engagement vs. Busywork", sub: "Teacher guide", href: "#/engagement-vs-busywork" },
-    { label: "Teaching with Primary Sources", sub: "Social Studies guide", href: "#/primary-sources" },
-    { label: "Turner AP World History (live app)", sub: "External live app", href: "https://turnerstyleapworld.pplx.app/", external: true },
+    { label: "Teaching with Primary Sources", sub: "Social Studies · Guide", href: "#/primary-sources" },
+    { label: "Turner AP World History (live app)", sub: "Social Studies · External live app", href: "https://turnerstyleapworld.pplx.app/", external: true },
   ].forEach((p) => idx.push({ ...p, group: "Pages", hay: p.label.toLowerCase() }));
 
   // Strategies inside the K–5 domain pages + Feedback page (data lives in elementary.js)

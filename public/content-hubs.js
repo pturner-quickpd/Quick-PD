@@ -201,8 +201,32 @@
       '<a class="hub-card" href="#/secondary-math"><div class="hub-card-title">Secondary Math</div><div class="hub-card-desc">Represent, solve, explain, compare methods, defend, and revise.</div><div class="hub-card-cta">Open ↗</div></a>' +
       '<a class="hub-card" href="#/secondary-writing"><div class="hub-card-title">Secondary Writing</div><div class="hub-card-desc">Frequent low-stakes writing through evidence-based explanation and argument.</div><div class="hub-card-cta">Open ↗</div></a>' +
       '<a class="hub-card" href="#/secondary-science"><div class="hub-card-title">Secondary Science</div><div class="hub-card-desc">Explain phenomena, reason from data, and defend claims with evidence.</div><div class="hub-card-cta">Open ↗</div></a>' +
-      '<a class="hub-card" href="#/secondary-social"><div class="hub-card-title">Secondary Social Studies</div><div class="hub-card-desc">Source documents, corroborate across sources, and defend arguments with evidence.</div><div class="hub-card-cta">Open ↗</div></a>' +
-      '<a class="hub-card" href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener"><div class="hub-card-title">' + esc(AP_WORLD_APP.label) + '</div><div class="hub-card-desc">Student study app built on the same principles — unit targets, success criteria, and annotated SAQ/LEQ/DBQ exemplars for AP World History.</div><div class="hub-card-cta">Open live app ↗</div></a></div>';
+      '<a class="hub-card" href="#/social-studies"><div class="hub-card-title">Social Studies (6–12)</div><div class="hub-card-desc">Foundations, Teaching with Primary Sources, and the Turner AP World History student app — grouped together.</div><div class="hub-card-cta">Open ↗</div></a></div>';
+  }
+
+  // Social Studies sub-hub — groups the three SS resources so they live together
+  // instead of scattered across the Secondary Foundations grid.
+  function renderSocialStudiesHub(view) {
+    view.innerHTML = '<a class="detail-back" href="#/secondary">← Secondary Foundations</a>' +
+      '<h1 class="page-title">Social Studies (6–12)</h1>' +
+      '<p class="page-lede">Three resources for secondary Social Studies teachers, grouped so you can find them in one place. Start with Foundations if you are building your daily practice, Primary Sources when you are ready to build a document-based lesson, and the AP World app when you are teaching AP or want to see the principles in a live student study tool.</p>' +
+      '<div class="hub-grid">' +
+      '<a class="hub-card" href="#/secondary-social">' +
+        '<div class="hub-card-title">Secondary Social Studies Foundations</div>' +
+        '<div class="hub-card-desc">The six core practices for daily Social Studies instruction \u2014 sourcing, corroborating across sources, discussion, annotation, counterclaim, and quoted-evidence exit tickets.</div>' +
+        '<div class="hub-card-cta">Open ↗</div></a>' +
+      '<a class="hub-card" href="#/primary-sources">' +
+        '<div class="hub-card-title">Teaching with Primary Sources</div>' +
+        '<div class="hub-card-desc">The full framework \u2014 sourcing, contextualization, close reading, corroboration \u2014 with a verified overview video, the LOC Primary Source Analysis Tool, eight vetted source repositories, five classroom moves, and honest failure modes.</div>' +
+        '<div class="hub-card-cta">Open ↗</div></a>' +
+      '<a class="hub-card" href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">' +
+        '<div class="hub-card-title">' + esc(AP_WORLD_APP.label) + '</div>' +
+        '<div class="hub-card-desc">Student study app built on the same principles \u2014 unit targets, success criteria, and annotated SAQ / LEQ / DBQ exemplars for AP World History.</div>' +
+        '<div class="hub-card-cta">Open live app ↗</div></a>' +
+      '</div>' +
+      '<div class="callout" style="margin-top:20px;"><h3>How these three fit together</h3>' +
+      '<p><strong>Foundations</strong> is what every Social Studies teacher does daily \u2014 the strategies that show up in every class period across the department. <strong>Teaching with Primary Sources</strong> is the discipline\u2019s highest-leverage move: how to build lessons around real documents that make students think historically instead of memorize. <strong>Turner AP World History</strong> is the live student study app that puts both into practice for one specific course \u2014 unit targets students can see, annotated exemplars they can study, and released-item practice for spaced retrieval. Foundations for the daily work, Primary Sources for the discipline\u2019s core move, AP World for what it looks like in a real course.</p>' +
+      '</div>';
   }
 
   function renderSecondary(view, key, strategies) {
@@ -1204,6 +1228,7 @@
     renderK5Science: function (view) { renderK5(view, "science"); },
     renderK5Social: function (view) { renderK5(view, "social"); },
     renderSecondaryHub: renderSecondaryHub,
+    renderSocialStudiesHub: renderSocialStudiesHub,
     renderSecondaryReading: function (view, strategies) { renderSecondary(view, "reading", strategies); },
     renderSecondaryMath: function (view, strategies) { renderSecondary(view, "math", strategies); },
     renderSecondaryWriting: function (view, strategies) { renderSecondary(view, "writing", strategies); },
