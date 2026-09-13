@@ -421,6 +421,49 @@
       { subject: "PE / Athletics", body: "Demonstrate the skill at full speed, then a slow-motion breakdown with the cues named. Every student walks through the pattern once under your eye before live reps. The check for release is the skill executed correctly under low pressure, not the clock." },
       { subject: "Any lab science with equipment", body: "Same routine — full demo, slowed demo with the trap named, echo of the steps, one supervised run, then release. The equipment doesn't care about the pacing guide." }
     ],
+    businessPathwayLede: "The Business Pathway courses (Marketing, Entrepreneurship, Personal Finance, Management) don't run on power tools or heat — the room does not enforce the discipline the way a shop does. That means the teaching move has to. The demonstration routine still applies, but the 'thing being modeled' is a decision under real constraints: how to price this product, how to build this pitch, how to read this pay stub, how to lead this team through a change. The good business classroom looks like a live case: teacher models the decision with the reasoning narrated, students echo the reasoning back, then students run their own case with the model still visible while the teacher circulates. What looks like discussion should have documented evidence — a pitch deck, a pro-forma, a budget, an org chart — not just talk.",
+    businessPathway: [
+      {
+        subject: "Marketing",
+        body: "Model a real marketing decision out loud — segmentation, positioning, promotion mix — using a live case (a local business, a school problem, or a DECA case study). Show the four-Ps analysis at pace with your reasoning narrated ('I'm choosing this channel because our audience is here'), then slowed with the trap named ('this is where teams pick the tactic before defining the target'). Students run one case in pairs while you circulate; independent role-plays only after the pair case passes a check. Every unit ends with student-produced marketing evidence — a positioning statement, a campaign brief, a pitch — not just a multiple-choice test.",
+        video: { url: "https://www.youtube.com/watch?v=wvph6lpfmQo", title: "NC DECA Toolbox Series — Mock Roleplay / Case Study", channel: "NC DECA · Andrew Voelsing (former ICDC champion) walks the full roleplay routine with commentary" },
+        resources: [
+          { label: "DECA Marketing Career Cluster — free curriculum tools", url: "https://www.deca.org/career-clusters/marketing" },
+          { label: "DECA Compete — role-plays and case studies", url: "https://www.deca.org/compete" },
+          { label: "MBA Research LAP Modules — free classroom-ready lesson plans (marketing / promotion / selling / pricing)", url: "https://www.mbaresearch.org/local-educators/teaching-resources/lesson-modules/" }
+        ]
+      },
+      {
+        subject: "Entrepreneurship",
+        body: "The failure mode is the 'business plan project' students complete once and never revisit. Real entrepreneurship teaching is iterative: model a customer-discovery interview, name the trap ('this is where founders pitch instead of listen'), have students echo the question set, then send them out to run one interview under your eye before the full round. The model of a good pitch stays visible while students build theirs. Grade the reasoning — did the pivot follow from the evidence? — not the polish of the deck. VentureLab and NFTE both organize around the entrepreneurial mindset, not the finished plan.",
+        video: { url: "https://www.youtube.com/watch?v=Gp5XpYcTvk4", title: "Mindset Makers Series: Establishing an Entrepreneurial Culture in Your Classroom", channel: "NFTE · Free monthly educator PD webinar, October 2025 (~1 hr)" },
+        resources: [
+          { label: "NFTE — Entrepreneurship Education & Entrepreneurial Mindset resources", url: "https://www.nfte.com/entrepreneurship-education/" },
+          { label: "VentureLab — Topics in Entrepreneurship Part 1 (free curriculum, grades 6–12)", url: "https://venturelab.org/curriculum/" },
+          { label: "Junior Achievement — JA Company Program (students launch a real business)", url: "https://jausa.ja.org/programs/ja-company-program" }
+        ]
+      },
+      {
+        subject: "Personal Finance",
+        body: "The failure mode is teaching personal finance as vocabulary and worksheets. What good looks like is the teacher deciding a real financial decision in front of students — filling out a real W-4, opening a real (or realistic) savings account, comparing two actual credit-card offers — with the reasoning narrated. Students then run one decision under your eye using a live source (a real pay stub, a real lease, a real loan disclosure) before the assignment. Assessment produces a decision with a defended reason, not a matching-terms quiz. NGPF has done the curriculum work; the teacher move is to keep the decisions real.",
+        video: { url: "https://www.youtube.com/watch?v=yawJVu_L2uM", title: "Teacher Tip — INTERACTIVE: How Much Will Your College Actually Cost?", channel: "Next Gen Personal Finance · NGPF Fellow Amanda Volz shows how she runs the resource in her classroom" },
+        resources: [
+          { label: "NGPF Semester Course — full free personal finance curriculum", url: "https://www.ngpf.org/courses/semester-course/" },
+          { label: "NGPF Video Library — hundreds of classroom-ready, vetted videos", url: "https://www.ngpf.org/video-library/" },
+          { label: "EconEdLink (Council for Economic Education) — free personal finance lessons", url: "https://econedlink.org/" }
+        ]
+      },
+      {
+        subject: "Management",
+        body: "Management is where the demonstration routine is most likely to be skipped — the temptation is to lecture the four functions (plan, organize, lead, control) and move on. What good looks like is the teacher walking through a real management decision (scheduling a shift, coaching an underperformer, running a stand-up, delegating a task) with the reasoning narrated, then students echoing the framework back, then running their own decision in a role-play or case with the model still visible. Assessment is a defended management decision — an org chart with reasoning, a coaching script, a delegation memo — not the definition of 'span of control.' Anchor the course to the National Business Education Standards so students see the discipline, not just the buzzwords.",
+        video: { url: "https://www.youtube.com/watch?v=oxt9Lz79he8", title: "Learn High School Principles of Business: Functions and Responsibilities of Management", channel: "LEARN SKN · Kyle Flanders — walks the four functions of management at a high-school level" },
+        resources: [
+          { label: "MBA Research LAP Modules — management, business admin, ethical leadership", url: "https://www.mbaresearch.org/local-educators/teaching-resources/lesson-modules/" },
+          { label: "NBEA — National Business Education Curriculum Standards", url: "https://www.nbea.org/business-education-curriculum-standards" },
+          { label: "Junior Achievement — JA Company Program (students run and manage a real venture)", url: "https://jausa.ja.org/programs/ja-company-program" }
+        ]
+      }
+    ],
     lookFors: [
       "The teacher models thinking, not just answers — students can hear the decisions being made.",
       "Every student produces a response during at least one check for understanding.",
@@ -455,6 +498,27 @@
       '<div class="card-meta">Step ' + (i + 1) + '</div>' +
       '<h3 class="card-title">' + esc(step.label) + '</h3>' +
       '<p>' + esc(step.body) + '</p></article>';
+  }
+
+  // Business-pathway card — richer than a subject card: what-good-looks-like body,
+  // one lazy-loaded verified video, and a list of authoritative resource links.
+  function businessCourseCard(c) {
+    var resourcesHtml = "";
+    if (Array.isArray(c.resources) && c.resources.length) {
+      resourcesHtml = '<div style="margin-top:10px;">' +
+        '<div style="font-weight:600;font-size:0.88em;color:#0A2540;margin-bottom:6px;">Anchor resources</div>' +
+        '<ul style="margin:0;padding-left:18px;font-size:0.92em;line-height:1.5;">' +
+        c.resources.map(function (r) {
+          return '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.label) + ' ↗</a></li>';
+        }).join("") + '</ul></div>';
+    }
+    return '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+      '<div class="card-meta">Business Pathway</div>' +
+      '<h3 class="card-title">' + esc(c.subject) + '</h3>' +
+      '<p>' + esc(c.body) + '</p>' +
+      (c.video ? youtubeEmbed(c.video) : "") +
+      resourcesHtml +
+      '</article>';
   }
 
   // Mapping table — reconciles the Daily Plan lesson names (Do Now / I Do / We Do / You Do / Closure / Exit Ticket)
@@ -535,6 +599,10 @@
       '<div class="card-grid">' + page.cteRoutine.steps.map(cteStepCard).join("") + '</div>' +
       '<h3 class="section-title" style="font-size:1.1em;margin-top:24px;">How the routine looks in each discipline</h3>' +
       '<div class="card-grid">' + page.cteApplications.map(subjectCard).join("") + '</div>' +
+
+      '<h2 class="section-title">Business Pathway (CTE) — what good teaching looks like</h2>' +
+      '<div class="callout" style="background:#F6F1E4;"><p>' + esc(page.businessPathwayLede) + '</p></div>' +
+      '<div class="card-grid">' + page.businessPathway.map(businessCourseCard).join("") + '</div>' +
 
       '<h2 class="section-title">The sequencing rule for the Engagement Cycle</h2>' +
       '<div class="callout">' +
