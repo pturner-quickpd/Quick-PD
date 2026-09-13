@@ -216,8 +216,14 @@
         '<div class="evidence-line"><strong>Evidence:</strong> ' + esc(evidence) + (s.sourceName ? ' · ' + esc(s.sourceName) : '') + '</div>' +
         '<a class="strategy-open-link" href="#/strategy/' + encodeURIComponent(s.id) + '">Open full strategy →</a></article>';
     }).join("");
+    var primarySourcesCallout = (key === "social")
+      ? '<div class="callout" style="border-left-color:#8a6a1f;background:#fdf6e3;"><h3>New: Teaching with Primary Sources</h3>' +
+        '<p>The full framework \u2014 sourcing, contextualization, close reading, corroboration \u2014 with a verified overview video, the Library of Congress analysis tool, eight vetted source repositories (LOC, DocsTeach, DPLA, Eisenhower, Gilder Lehrman, and more), and honest failure modes. Built for U.S. History, World / AP World, Government, and Oklahoma History.</p>' +
+        '<p style="margin-top:8px;"><a class="btn primary" href="#/primary-sources">Open the Primary Sources guide \u2192</a></p></div>'
+      : "";
     view.innerHTML = '<a class="detail-back" href="#/secondary">← Secondary Foundations</a><h1 class="page-title">' + esc(page.title) + '</h1>' +
       '<p class="page-lede">' + esc(page.lede) + '</p><div class="guide-row">' + sourceLink(page.source) + '</div>' +
+      primarySourcesCallout +
       '<h2 class="section-title">Start with these six</h2><div class="card-grid">' + cards + '</div>' +
       '<div class="callout"><h3>Plan the full cycle</h3><p>Notice → Read → Talk → Solve → Defend → Revise. Use the strategy page to copy a direct link for coaching, then pull the move into your daily, weekly, or unit plan.</p></div>';
   }
@@ -1022,6 +1028,178 @@
   }
 
 
+  // -------------------- Teaching with Primary Sources --------------------
+  // Content-first page like Clarity / Delivery. Framework + one real overview
+  // video (National History Day / Library of Congress, 2025) + a real reading
+  // (LOC's official Primary Source Analysis Tool + Getting Started guide) +
+  // a curated set of source repositories with verified URLs.
+  var PRIMARY_SOURCES = {
+    title: "Teaching with Primary Sources",
+    lede: "A primary source is a piece of evidence created at the time under study \u2014 a photograph, a letter, a treaty, a diary page, a political cartoon, a piece of legislation, a home movie. Teaching with primary sources is not \"add a document to the packet.\" It is teaching students how historians actually work: source it, put it in context, read it closely, and check it against other sources. That set of moves is what the field calls historical thinking, and it is teachable.",
+    sources: [
+      { label: "Library of Congress", title: "Getting Started with Primary Sources \u2014 Teachers portal", url: "https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/" },
+      { label: "Library of Congress", title: "Primary Source Analysis Tool (PDF)", url: "https://www.loc.gov/static/programs/teachers/getting-started-with-primary-sources/documents/Primary_Source_Analysis_Tool_LOC.pdf" },
+      { label: "Digital Inquiry Group (Stanford)", title: "Historical Thinking Chart \u2014 sourcing, contextualization, corroboration, close reading", url: "https://www.inquirygroup.org/history-lessons/historical-thinking-chart" },
+      { label: "National Archives", title: "DocsTeach \u2014 primary sources and analysis activities from NARA", url: "https://www.docsteach.org/" },
+      { label: "Sam Wineburg", title: "Historical Thinking and Other Unnatural Acts \u2014 the foundational argument for teaching sourcing", url: "https://tupress.temple.edu/books/historical-thinking-and-other-unnatural-acts" }
+    ],
+    conceptVideo: {
+      url: "https://www.youtube.com/watch?v=PBZEqq4ftJY",
+      title: "Using Library of Congress Resources to Build a Historical Argument \u2014 Webinar 1: Historical Thinking",
+      channel: "National History Day",
+      note: "National History Day and the Library of Congress, January 2025. About 87 minutes \u2014 sit down with it once as PD. Walks the four historical thinking moves (sourcing, contextualization, close reading, corroboration) using the Boston Massacre engraving, the Constitution, and Civil Rights\u2013era images. This is the single best free overview a teacher can watch before teaching with documents."
+    },
+    principles: [
+      { title: "Source before you read", body: "The first question is never \"what does this say?\" It is \"who made this, when, for whom, and why?\" A photograph, a speech, and a textbook paragraph about the same event carry different weight depending on that answer. Sourcing is the habit that separates historical thinking from just reading old stuff." },
+      { title: "Context is not decoration", body: "A document without context is a puzzle piece with no picture. Students need enough background \u2014 the year, the tensions, the audience, the medium \u2014 to hear the document the way its first readers heard it. Skip context and students project the present onto the past." },
+      { title: "Corroborate across sources, not inside one", body: "One document is a claim. Two documents in agreement is stronger. Two documents in disagreement is the actual work of history. Build lessons around at least two sources on the same event so students have to weigh them, not just summarize the one you handed out." },
+      { title: "Excerpt honestly, cite fully", body: "Most classroom-length primary sources are excerpts. Cut for length, never for meaning \u2014 and tell students you cut it. Show the full citation (creator, date, repository, URL) every time. Students learn from your citation habits as much as from the document." }
+    ],
+    practices: [
+      { title: "Teach a repeatable analysis routine", band: "Primary sources \u00b7 Framework",
+        why: "Students need a set of moves they run on every document, not a new worksheet for every unit. The Library of Congress \"Observe \u2014 Reflect \u2014 Question\" routine and the SHEG four moves (sourcing, contextualization, close reading, corroboration) are the two most widely used. Pick one, use it every time, and students internalize it by mid-year.",
+        moves: [
+          "Post the routine where students can see it. Use the same three or four prompts every time you hand out a document.",
+          "Model the routine out loud on the first two documents of the year \u2014 what you notice, what you wonder, what you would need to know to trust it.",
+          "Move students to doing it in pairs, then independently, over the first quarter. The goal is a habit, not a worksheet score."
+        ],
+        evidence: "Cold-called mid-lesson, a student can name the routine and where they are in it \u2014 not just what the document says."
+      },
+      { title: "Pair two sources on the same event", band: "Primary sources \u00b7 Corroboration",
+        why: "One document does not teach corroboration \u2014 by definition. When students see two accounts of the same event that do not fully agree, they have to make a defensible judgment about which is more trustworthy and why. That is the move AP history exams score and it is the move real historians make.",
+        moves: [
+          "Choose two short sources on the same event that disagree or emphasize different facts. Two paragraphs each is enough.",
+          "Have students annotate each source separately using the routine, then complete a two-column comparison before you discuss.",
+          "Ask the corroboration question directly: 'Where do these agree, where do they conflict, and which do you trust more \u2014 and why?'"
+        ],
+        evidence: "Student written responses reference both sources by name and explain which they weight more heavily \u2014 not just summaries side by side."
+      },
+      { title: "Use images and objects, not only text", band: "Primary sources \u00b7 Access",
+        why: "Photographs, political cartoons, propaganda posters, maps, and artifacts open the door for students who struggle with archaic prose. They are not remedial \u2014 they are legitimate primary sources with their own analytical demands (composition, symbolism, audience, medium). Use them early in the year to teach the routine before you add hard text.",
+        moves: [
+          "Start units with an image or object whenever possible. Run the same analysis routine you use for text.",
+          "Teach students to read composition and symbolism: who is centered, who is small, what is exaggerated, what is left out.",
+          "Only after students can source and analyze the image do you hand them the paired document. The image builds the schema the text needs."
+        ],
+        evidence: "Students write about images with the same specificity they use for text \u2014 naming the creator, the year, and at least two specific choices the creator made."
+      },
+      { title: "Excerpt to about 200\u2013400 words, keep the citation whole", band: "Primary sources \u00b7 Access",
+        why: "Length is the most common reason document lessons collapse. A one-page excerpt with clear paragraph breaks, defined vocabulary in brackets, and a complete citation gives students something they can actually read closely in a class period. Long excerpts turn into skim jobs.",
+        moves: [
+          "Aim for 200\u2013400 words per document for a class-period lesson; shorter for middle school and struggling readers.",
+          "Mark ellipses honestly where you cut. Define hard words in brackets in-line rather than in a glossary they will not check.",
+          "Print the full citation on the handout: creator, title, date, repository, URL. Students learn what a real citation looks like from seeing yours."
+        ],
+        evidence: "Students can quote a specific line and cite it correctly. Reading behavior on the document looks like reading, not skimming."
+      },
+      { title: "Write from the evidence, not around it", band: "Primary sources \u00b7 Argument",
+        why: "The reason to run these lessons is not the document itself \u2014 it is the argument students build from it. Every primary-source lesson should end in writing that quotes at least one source and defends a claim. That is the same move AP DBQ and OAS argument writing require, at every grade level.",
+        moves: [
+          "End the lesson with a short written response: one paragraph, one claim, at least one quoted line of evidence, one sentence of reasoning.",
+          "Score against a criterion the students saw before they wrote: 'claim + quoted evidence + one sentence explaining why the evidence supports the claim.'",
+          "Read three responses out loud (with permission) the next day \u2014 a strong one, a partial one, and a not-yet one \u2014 and name what moves each one up."
+        ],
+        evidence: "Written responses cite specific evidence from the source, not general summaries. Quality visibly rises against the criterion over the semester."
+      }
+    ],
+    repositories: [
+      { name: "Library of Congress \u2014 Teachers", url: "https://www.loc.gov/programs/teachers/",
+        what: "The biggest free primary-source library in the U.S., with teacher-built classroom materials, primary-source sets by topic, and the official Primary Source Analysis Tool.",
+        good_for: "American history, immigration, civil rights, WWI/WWII posters, presidential papers, maps, photographs. Start here." },
+      { name: "DocsTeach \u2014 National Archives", url: "https://www.docsteach.org/",
+        what: "NARA's free platform: thousands of federal records tagged by era and topic, plus ready-to-run analysis activities you can assign to students.",
+        good_for: "U.S. government, treaties, court cases, military records, immigration files, WPA records \u2014 the actual paper trail of the federal government." },
+      { name: "Digital Inquiry Group (formerly SHEG)", url: "https://www.inquirygroup.org/history-lessons",
+        what: "Reading Like a Historian lesson library: over 100 free document-based lessons for U.S. and world history, each built around a compelling central question and 2\u20135 primary sources.",
+        good_for: "Ready-to-teach lessons when you do not have time to build one from scratch. Free with a teacher account." },
+      { name: "Digital Public Library of America \u2014 Primary Source Sets", url: "https://dp.la/primary-source-sets",
+        what: "Curated sets of 10\u201315 primary sources on a single topic, with a teacher guide and student discussion questions for each set.",
+        good_for: "Cross-repository topical sets \u2014 e.g. Dust Bowl migration, the Harlem Renaissance, women\u2019s suffrage \u2014 that pull from many archives at once." },
+      { name: "Eisenhower Presidential Library \u2014 Education", url: "https://www.eisenhowerlibrary.gov/education",
+        what: "Classroom materials, document sets, and virtual programs (IKE Online) built from the Eisenhower archive: WWII, D-Day, the Cold War, civil rights, the interstate system.",
+        good_for: "Kansas connection, WWII and Cold War units, presidential decision-making case studies. Live virtual programs for K\u201312 classes." },
+      { name: "National Museum of African American History and Culture \u2014 Learning Lab", url: "https://learninglab.si.edu/org/nmaahc",
+        what: "Smithsonian primary-source collections and teacher-built learning lab activities focused on African American history and culture.",
+        good_for: "Reconstruction, Jim Crow, Great Migration, civil rights movement, contemporary Black history. Sources you will not find in a standard textbook." },
+      { name: "Gilder Lehrman Institute \u2014 Primary Source Collection", url: "https://www.gilderlehrman.org/history-resources/primary-sources",
+        what: "Over 85,000 primary sources on American history from the Gilder Lehrman Collection, with essays and lesson plans by leading historians.",
+        good_for: "American history from the founding through the twentieth century \u2014 letters, manuscripts, pamphlets, and photographs, many with expert commentary." },
+      { name: "World Digital Library / UNESCO", url: "https://www.wdl.org/",
+        what: "Global primary sources hosted by the Library of Congress and UNESCO: manuscripts, maps, films, and photographs from partner libraries worldwide.",
+        good_for: "World history and AP World \u2014 non-U.S. sources on the Silk Road, colonization, world religions, and modern global history." }
+    ],
+    breakdowns: [
+      { title: "The document as decoration", body: "Handing out a primary source and asking students to \"read it and answer the questions\" is not teaching with primary sources. If the questions could be answered from a textbook paragraph, the source is decoration. The routine \u2014 source, contextualize, close read, corroborate \u2014 is the lesson." },
+      { title: "One source, no argument", body: "A single document teaches summary, not history. Without at least a second source to weigh it against, students cannot corroborate, and corroboration is where historical thinking lives. Pair sources whenever possible." },
+      { title: "Too much text, too fast", body: "Handing eighth graders a full page of eighteenth-century prose is not rigor \u2014 it is a reading assignment they will skim. Excerpt honestly, define hard words in brackets, and shorten the passage so close reading is actually possible in the time you have." },
+      { title: "Analysis without writing", body: "If the lesson ends at discussion, most students will not have to defend a claim from the evidence. End every primary-source lesson in short writing \u2014 one paragraph, one quoted line, one sentence of reasoning \u2014 or you are teaching appreciation, not argument." },
+      { title: "Sanitized sources", body: "Documents from slavery, colonization, Jim Crow, the Holocaust, and Indigenous removal include language and images that are painful and, for many students, personal. Choosing not to use those sources is a real choice \u2014 but replacing hard sources with easy ones teaches a false history. Frame the source, name what students will encounter, and give them the analytical language to work with it." }
+    ],
+    walkthroughDiagnostic: "Pick up a student's document handout mid-lesson. Ask them: 'Who made this, when, and for whom \u2014 and why should we trust it?' If they can only answer 'what it says,' the lesson is about the content of the document, not about historical thinking. That is the diagnostic.",
+    bySubject: [
+      { subject: "U.S. History", body: "Pair a founding-era text (Declaration, Federalist, a state ratification debate) with a competing voice from the same moment (Anti-Federalist, an enslaved person's petition, a Loyalist pamphlet). The disagreement is the lesson." },
+      { subject: "World History / AP World", body: "Use the World Digital Library and DPLA sets to teach non-U.S. sources at every unit. A Ming-dynasty edict, a Mughal miniature, and a European traveler's account of the same court is a corroboration lesson students remember." },
+      { subject: "Government / Civics", body: "DocsTeach carries the actual federal record \u2014 laws, executive orders, Supreme Court briefs, congressional hearings. Use the real document, not a textbook paraphrase, whenever the standard names a specific case or law." },
+      { subject: "Oklahoma History", body: "The Oklahoma Historical Society's Gateway to Oklahoma History carries the state's newspapers, land-run records, tribal records, and Dust Bowl photographs. Local sources land harder than national sources for many students \u2014 use them." }
+    ],
+    lookFors: [
+      "A visible analysis routine (LOC 'Observe / Reflect / Question' or SHEG 'source / contextualize / close read / corroborate') is posted and referenced.",
+      "Students name the creator, date, and purpose of the source before they discuss its content.",
+      "At least two sources on the same event or question are in play so corroboration is possible.",
+      "Excerpts are readable in the time available; hard vocabulary is defined; full citation is visible.",
+      "The lesson ends in short writing that quotes at least one source and defends a claim."
+    ]
+  };
+
+  function repositoryCard(r) {
+    return '<article class="card">' +
+      '<h3 class="card-title">' + esc(r.name) + '</h3>' +
+      '<p>' + esc(r.what) + '</p>' +
+      '<p style="margin:6px 0 8px;"><strong>Good for:</strong> ' + esc(r.good_for) + '</p>' +
+      '<p style="margin:0;"><a href="' + esc(r.url) + '" target="_blank" rel="noopener">Open ' + esc(r.name) + ' \u2197</a></p>' +
+      '</article>';
+  }
+
+  function renderPrimarySources(view) {
+    var page = PRIMARY_SOURCES;
+    view.innerHTML = '<h1 class="page-title">' + esc(page.title) + '</h1>' +
+      '<p class="page-lede">' + esc(page.lede) + '</p>' +
+
+      '<div class="callout"><h3>The diagnostic</h3>' +
+      '<p>' + esc(page.walkthroughDiagnostic) + '</p>' +
+      conceptVideoBlock(page) +
+      '</div>' +
+
+      '<h2 class="section-title">The evidence base and the framework</h2>' +
+      '<p>The Library of Congress\u2019s teachers portal and its Primary Source Analysis Tool are the closest thing the field has to a national standard for classroom-level primary-source work. The Stanford History Education Group (now the Digital Inquiry Group) built the four historical thinking moves \u2014 sourcing, contextualization, close reading, corroboration \u2014 that most secondary curricula now teach. Sam Wineburg\u2019s <em>Historical Thinking and Other Unnatural Acts</em> is the foundational argument for why this work matters. Read one primer, use one routine, and be consistent.</p>' +
+      '<div class="guide-row">' + page.sources.map(sourceLink).join("") + '</div>' +
+
+      '<h2 class="section-title">Four principles that make document lessons work</h2>' +
+      '<div class="card-grid">' + page.principles.map(principleCard).join("") + '</div>' +
+
+      '<h2 class="section-title">Core moves</h2>' +
+      page.practices.map(practiceCard).join("") +
+
+      '<h2 class="section-title">Where to find real primary sources</h2>' +
+      '<p>Every repository below is free, teacher-facing, and has been verified. Start with the first two \u2014 the Library of Congress and DocsTeach \u2014 for anything U.S. history. Use DPLA and the World Digital Library for topical and non-U.S. sets. Use the Digital Inquiry Group when you need a ready-to-teach lesson rather than raw sources.</p>' +
+      '<div class="card-grid">' + page.repositories.map(repositoryCard).join("") + '</div>' +
+
+      '<h2 class="section-title">Where these lessons break down</h2>' +
+      '<div class="card-grid">' + page.breakdowns.map(principleCard).join("") + '</div>' +
+
+      '<h2 class="section-title">By subject inside the department</h2>' +
+      '<div class="card-grid">' + page.bySubject.map(function (s) {
+        return '<article class="card"><h3 class="card-title">' + esc(s.subject) + '</h3><p>' + esc(s.body) + '</p></article>';
+      }).join("") + '</div>' +
+
+      '<h2 class="section-title">What to look for in the room</h2>' +
+      '<div class="card"><ul class="check-list">' + page.lookFors.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></div>' +
+
+      '<p style="margin-top:24px;font-size:0.9em;color:#666;"><em>Every video, reading, and repository on this page has been verified to be live and on-topic as of publication. Report a broken link through the feedback link in the footer.</em></p>';
+
+    wireLazyYouTube();
+  }
+
   window.ContentHubs = {
     renderK5Science: function (view) { renderK5(view, "science"); },
     renderK5Social: function (view) { renderK5(view, "social"); },
@@ -1036,6 +1214,7 @@
     renderInstructionalDelivery: renderInstructionalDelivery,
     renderClarity: renderClarity,
     renderWhyBackwardPlanning: renderWhyBackwardPlanning,
-    renderEngagementVsBusywork: renderEngagementVsBusywork
+    renderEngagementVsBusywork: renderEngagementVsBusywork,
+    renderPrimarySources: renderPrimarySources
   };
 })();
