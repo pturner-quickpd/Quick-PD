@@ -207,9 +207,10 @@
   // Social Studies sub-hub — groups the three SS resources so they live together
   // instead of scattered across the Secondary Foundations grid.
   function renderSocialStudiesHub(view) {
+    var ssLitVideo = { url: "https://www.youtube.com/watch?v=CnWnLNSZTAg", title: "Stanford History Education Group: Reading Like a Historian", channel: "Digital Inquiry Group (formerly SHEG) · Overview of the framework and 150+ free lessons" };
     view.innerHTML = '<a class="detail-back" href="#/secondary">← Secondary Foundations</a>' +
       '<h1 class="page-title">Social Studies (6–12)</h1>' +
-      '<p class="page-lede">Three resources for secondary Social Studies teachers, grouped so you can find them in one place. Start with Foundations if you are building your daily practice, Primary Sources when you are ready to build a document-based lesson, and the AP World app when you are teaching AP or want to see the principles in a live student study tool.</p>' +
+      '<p class="page-lede">Resources for secondary Social Studies teachers, grouped so you can find them in one place. Start with Foundations if you are building your daily practice, Primary Sources when you are ready to build a document-based lesson, Reading &amp; Writing in Social Studies for the disciplinary literacy playbook, and the AP World app when you are teaching AP or want to see the principles in a live student study tool.</p>' +
       '<div class="hub-grid">' +
       '<a class="hub-card" href="#/secondary-social">' +
         '<div class="hub-card-title">Secondary Social Studies Foundations</div>' +
@@ -219,14 +220,183 @@
         '<div class="hub-card-title">Teaching with Primary Sources</div>' +
         '<div class="hub-card-desc">The full framework \u2014 sourcing, contextualization, close reading, corroboration \u2014 with a verified overview video, the LOC Primary Source Analysis Tool, eight vetted source repositories, five classroom moves, and honest failure modes.</div>' +
         '<div class="hub-card-cta">Open ↗</div></a>' +
+      '<a class="hub-card" href="#ss-literacy">' +
+        '<div class="hub-card-title">Reading &amp; Writing in Social Studies</div>' +
+        '<div class="hub-card-desc">The full disciplinary literacy playbook \u2014 how historians read, how to run a close reading of a primary source, sourcing / contextualization / corroboration routines, DBQ writing, CER paragraphs, Civic Online Reasoning, and Oklahoma standards alignment.</div>' +
+        '<div class="hub-card-cta">Jump to playbook ↗</div></a>' +
       '<a class="hub-card" href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">' +
         '<div class="hub-card-title">' + esc(AP_WORLD_APP.label) + '</div>' +
         '<div class="hub-card-desc">Student study app built on the same principles \u2014 unit targets, success criteria, and annotated SAQ / LEQ / DBQ exemplars for AP World History.</div>' +
         '<div class="hub-card-cta">Open live app ↗</div></a>' +
       '</div>' +
-      '<div class="callout" style="margin-top:20px;"><h3>How these three fit together</h3>' +
-      '<p><strong>Foundations</strong> is what every Social Studies teacher does daily \u2014 the strategies that show up in every class period across the department. <strong>Teaching with Primary Sources</strong> is the discipline\u2019s highest-leverage move: how to build lessons around real documents that make students think historically instead of memorize. <strong>Turner AP World History</strong> is the live student study app that puts both into practice for one specific course \u2014 unit targets students can see, annotated exemplars they can study, and released-item practice for spaced retrieval. Foundations for the daily work, Primary Sources for the discipline\u2019s core move, AP World for what it looks like in a real course.</p>' +
-      '</div>';
+      '<div class="callout" style="margin-top:20px;"><h3>How these fit together</h3>' +
+      '<p><strong>Foundations</strong> is what every Social Studies teacher does daily \u2014 the strategies that show up in every class period across the department. <strong>Teaching with Primary Sources</strong> is the discipline\u2019s highest-leverage move: how to build lessons around real documents that make students think historically instead of memorize. <strong>Reading &amp; Writing in Social Studies</strong> is the full disciplinary literacy playbook \u2014 the routines that turn a Social Studies room into a place where students actually read complex text and write evidence-based arguments. <strong>Turner AP World History</strong> is the live student study app that puts it all into practice for one specific course.</p>' +
+      '</div>' +
+
+      // ---------------- READING & WRITING IN SOCIAL STUDIES (full playbook) ----------------
+      '<h2 class="section-title" id="ss-literacy" style="margin-top:36px;">Reading &amp; Writing in Social Studies — the full playbook</h2>' +
+      '<p class="page-lede">Social Studies is a literacy course. Students read primary and secondary sources every day and produce evidence-based writing that defends a claim. If they are not doing both, they are memorizing content and calling it history. This playbook is how to actually teach the reading and the writing \u2014 grounded in the discipline, aligned to Oklahoma standards, and pragmatic enough for a 50-minute period.</p>' +
+
+      '<div class="callout" style="background:#F6F1E4;border-left:4px solid #0A2540;"><h3>The one idea that changes everything</h3>' +
+      '<p>Literacy is not generic. Historians do not read the way scientists read, and scientists do not read the way literary critics read. Timothy Shanahan and Cynthia Shanahan called this <strong>disciplinary literacy</strong> \u2014 the higher-level reading and writing habits that are specific to each field. A historian reads a document by first asking who wrote it and why (sourcing), then reads it inside its own moment (contextualization), then checks it against other accounts (corroboration). That is the reading students should be doing in your room. Then they write an evidence-based argument about what the sources show. This is what \u201creading and writing in Social Studies\u201d actually means \u2014 not vocabulary worksheets and five-paragraph essays.</p>' +
+      youtubeEmbed(ssLitVideo) +
+      '</div>' +
+
+      // The evidence base
+      '<h3 class="section-title" style="font-size:1.15em;margin-top:28px;">The evidence base</h3>' +
+      '<p>The research on how historians read and how to teach students to do it is unusually specific. It converges from three directions: cognitive studies of expert historians (Wineburg), disciplinary literacy research (Shanahan &amp; Shanahan), and civic-reasoning research on online sources (Wineburg &amp; Caulfield).</p>' +
+      '<div class="card-grid">' +
+      '<article class="card"><h3 class="card-title">Sam Wineburg — sourcing, contextualization, corroboration</h3>' +
+        '<p>Wineburg\u2019s foundational work compared how PhD historians and high-achieving high-school seniors read the same set of documents. The historians did three things the students did not: they looked at the source line before the text, they asked what else was happening at that moment, and they cross-checked accounts against each other. Those three moves \u2014 <strong>sourcing, contextualization, corroboration</strong> \u2014 are the heuristics all subsequent history-literacy work is built on.</p>' +
+        '<div class="evidence-line"><strong>Anchor:</strong> Wineburg, <em>Historical Thinking and Other Unnatural Acts</em> (Temple University Press, 2001) · co-founder of the Stanford History Education Group (now the <a href="https://inquirygroup.org/" target="_blank" rel="noopener">Digital Inquiry Group</a>).</div></article>' +
+      '<article class="card"><h3 class="card-title">Shanahan &amp; Shanahan — disciplinary literacy</h3>' +
+        '<p>The Shanahans\u2019 research showed that the higher up a student goes, the less generic reading strategies work \u2014 and the more the strategies of the specific discipline matter. Historians\u2019 reading is source-driven, skeptical, and time-aware in ways that a generic \u201cmain idea\u201d strategy will not surface. This is why a Social Studies teacher, not a reading teacher, has to teach how to read history.</p>' +
+        '<div class="evidence-line"><strong>Anchor:</strong> Shanahan &amp; Shanahan, <em>Teaching Disciplinary Literacy to Adolescents: Rethinking Content-Area Literacy</em> (<a href="https://www.gse.harvard.edu/news/uk/09/01/harvard-educational-review-teaching-disciplinary-literacy-adolescents-rethinking-content" target="_blank" rel="noopener">Harvard Educational Review, 2008</a>).</div></article>' +
+      '<article class="card"><h3 class="card-title">Civic Online Reasoning (SIFT)</h3>' +
+        '<p>Wineburg\u2019s later work with Mike Caulfield extended the same sceptical stance to the internet. The <strong>SIFT method</strong> \u2014 Stop, Investigate the source, Find better coverage, Trace claims to the original \u2014 gives students a real-time routine for evaluating online sources. Their book <em>Verified</em> (2023) is the readable overview. This is where sourcing meets civics, and it is essential for any Government, Oklahoma History, or current-events unit.</p>' +
+        '<div class="evidence-line"><strong>Anchor:</strong> <a href="https://cor.stanford.edu/" target="_blank" rel="noopener">Civic Online Reasoning curriculum (free, Digital Inquiry Group)</a> · Wineburg &amp; Caulfield, <em>Verified</em> (University of Chicago Press, 2023).</div></article>' +
+      '<article class="card"><h3 class="card-title">C3 Framework — the inquiry arc</h3>' +
+        '<p>NCSS\u2019s <strong>College, Career, and Civic Life (C3) Framework</strong> organizes Social Studies around a four-step inquiry arc: developing questions, applying disciplinary tools, evaluating sources, and communicating conclusions. Oklahoma\u2019s own Social Studies Practices (see the standards block below) map directly onto it. This is the shape a unit or a lesson wants to have.</p>' +
+        '<div class="evidence-line"><strong>Anchor:</strong> <a href="https://www.socialstudies.org/standards/c3" target="_blank" rel="noopener">NCSS C3 Framework (2013, Bulletin 113)</a>.</div></article>' +
+      '</div>' +
+
+      // Core teaching moves
+      '<h3 class="section-title" style="font-size:1.15em;margin-top:28px;">The core teaching moves — what good looks like</h3>' +
+      '<p>These six moves are the daily work of teaching literacy in Social Studies. Each has an anchor routine, a clear teacher-model step, and an authoritative resource you can pull from tonight.</p>' +
+
+      renderSSLiteracyMoves() +
+
+      // Writing progression
+      '<h3 class="section-title" style="font-size:1.15em;margin-top:28px;">The writing progression — sentence to DBQ</h3>' +
+      '<p>The failure mode in Social Studies writing is jumping from single-sentence answers straight to full essays and wondering why the essays are bad. The writing progresses through predictable stages, each of which has to be explicitly taught.</p>' +
+      '<div class="card-grid">' +
+      '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+        '<div class="card-meta">Stage 1</div><h3 class="card-title">Sentence-level evidence use</h3>' +
+        '<p>Students write one sentence that embeds a quoted phrase from a source and cites it. Model the sentence stem: <em>According to [author, year], “___,” which shows that ___.</em> Do a live example, name the trap (“this is where students paraphrase away the source’s voice”), then have every student produce one on the same source before moving on.</p>' +
+        '<p style="font-size:0.9em;color:#4a4a4a;"><strong>Grade band:</strong> 6–9 as a daily move; 10–12 as a warm-up when introducing a new document.</p></article>' +
+      '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+        '<div class="card-meta">Stage 2</div><h3 class="card-title">Claim → Evidence → Reasoning (CER paragraph)</h3>' +
+        '<p>One claim, two pieces of quoted evidence from different sources, one sentence of reasoning that explains how the evidence supports the claim. This is where sourcing shows up: strong reasoning notes <em>who</em> wrote each source and why that matters, not just what it said. Grade the reasoning sentence hardest \u2014 that is where thinking lives.</p>' +
+        '<p style="font-size:0.9em;color:#4a4a4a;"><strong>Grade band:</strong> 7–12. This is the workhorse paragraph for Oklahoma History, Government, US History, and World.</p></article>' +
+      '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+        '<div class="card-meta">Stage 3</div><h3 class="card-title">DBQ / document-based essay</h3>' +
+        '<p>Multi-paragraph argument that answers a historical question using a document set. Teach it in pieces: a strong thesis (takes a defensible position, previews the argument), body paragraphs that group documents by claim not by document number, sourcing at least three of the docs (HAPP or HIPP \u2014 Historical situation, Audience, Purpose, Point of view), and outside evidence students knew before they read the docs. The <a href="https://www.dbqproject.com/" target="_blank" rel="noopener">DBQ Project</a> is the paid gold standard; the AP framework rubric is free.</p>' +
+        '<p style="font-size:0.9em;color:#4a4a4a;"><strong>Grade band:</strong> 9–12, with mini-DBQs (3 docs, one paragraph each) as scaffolds starting in 7–8.</p></article>' +
+      '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+        '<div class="card-meta">Stage 4</div><h3 class="card-title">Sustained research / inquiry writing</h3>' +
+        '<p>Student-generated compelling question, self-assembled source set, evidence-based written product for a real audience. This is the C3 inquiry arc\u2019s \u201ccommunicating conclusions\u201d stage and Oklahoma Practice 5.B verbatim. Reserve for end-of-unit and end-of-course; it does not need to happen weekly.</p>' +
+        '<p style="font-size:0.9em;color:#4a4a4a;"><strong>Grade band:</strong> 10–12, especially Government and capstone Oklahoma History units.</p></article>' +
+      '</div>' +
+
+      // Where it breaks down
+      '<h3 class="section-title" style="font-size:1.15em;margin-top:28px;">Where reading and writing in Social Studies breaks down</h3>' +
+      '<p>Read these as self-checks, not judgment. If one sounds familiar in your own room this week, the fix is a specific move above.</p>' +
+      '<div class="card-grid">' +
+      '<article class="card" style="border-left:4px solid #B03A2E;padding-left:16px;">' +
+        '<h3 class="card-title">“Summarize this document”</h3>' +
+        '<p>Summary is a comprehension move, not a historical move. If the only thing students do with a source is summarize it, they are treating it as fact, not as evidence produced by a person for a reason. Fix: add a sourcing question and a corroboration question every time.</p></article>' +
+      '<article class="card" style="border-left:4px solid #B03A2E;padding-left:16px;">' +
+        '<h3 class="card-title">Documents modernized, sanitized, or excerpted to nothing</h3>' +
+        '<p>Excerpting a primary source down to two sentences with the archaic language cleaned up strips out what makes it a primary source. Students cannot practice sourcing on text that has been laundered. Fix: keep a substantial excerpt (a paragraph or more) with the original voice intact; scaffold with a glossary, not a rewrite.</p></article>' +
+      '<article class="card" style="border-left:4px solid #B03A2E;padding-left:16px;">' +
+        '<h3 class="card-title">Full essay with no scaffolding progression</h3>' +
+        '<p>Assigning a DBQ before students can write a sourced CER paragraph produces bad essays and confirms the teacher\u2019s suspicion that \u201cthey can\u2019t write.\u201d Fix: run the writing progression (sentence → CER → mini-DBQ → full DBQ) explicitly, and grade the sub-parts before the whole.</p></article>' +
+      '<article class="card" style="border-left:4px solid #B03A2E;padding-left:16px;">' +
+        '<h3 class="card-title">Discussion with no text in front of them</h3>' +
+        '<p>\u201cWhat do you think about …\u201d without a shared document produces opinion. Add the source and the discussion becomes evidence-based. Fix: every discussion protocol should require students to quote or point to something in the text.</p></article>' +
+      '<article class="card" style="border-left:4px solid #B03A2E;padding-left:16px;">' +
+        '<h3 class="card-title">Grading writing on length or polish</h3>' +
+        '<p>If the rubric rewards word count and grammar over sourced reasoning, students will pad and polish instead of think. Fix: weight the reasoning and sourcing rows highest on any Social Studies writing rubric.</p></article>' +
+      '<article class="card" style="border-left:4px solid #B03A2E;padding-left:16px;">' +
+        '<h3 class="card-title">Current events without lateral reading</h3>' +
+        '<p>Assigning \u201cread this article and summarize\u201d in Government or current-events lessons trains passive consumption. Fix: teach the SIFT routine and require students to open a second tab to check any claim before they write about it.</p></article>' +
+      '</div>' +
+
+      // Oklahoma standards alignment
+      '<h3 class="section-title" style="font-size:1.15em;margin-top:28px;">Oklahoma Social Studies standards alignment</h3>' +
+      '<div class="card" style="border-left:4px solid #D4A537;padding:20px 24px;">' +
+        '<div style="font-size:0.88em;color:#4a4a4a;margin-bottom:10px;"><em>Oklahoma State Department of Education · <a href="https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/social-studies/Oklahoma-Academic-Standards-for-Social-Studies.pdf" target="_blank" rel="noopener">Oklahoma Academic Standards for Social Studies</a> · PK–12 Social Studies Practices</em></div>' +
+        '<p style="margin-bottom:12px;">Oklahoma\u2019s Social Studies Practices are not add-ons \u2014 they run through every grade PK–12, alongside the content standards. Three of the five practices are literacy practices. This playbook exists to make them teachable.</p>' +
+        '<ul style="margin:0;padding-left:20px;line-height:1.6;">' +
+        '<li><strong>Practice 3 — Acquire, Apply, and Evaluate Evidence.</strong> Standard 3.A: \u201cStudents will develop skills and practices which demonstrate an understanding that historical inquiry is based on the analysis and evaluation of evidence and its credibility.\u201d This is sourcing, contextualization, corroboration — the six moves above hit it directly.</li>' +
+        '<li><strong>Practice 4 — Read Critically and Interpret Informational Sources.</strong> Anchor: \u201cStudents will engage in critical, active reading of grade-level appropriate primary and secondary sources related to key social studies concepts.\u201d Standard 4.A (comprehend, evaluate, synthesize textual sources) and 4.B (critical reading and thinking from historical, ethnic, and global perspectives) live in the close-reading and sourcing routines.</li>' +
+        '<li><strong>Practice 5 — Engage in Evidence-Based Writing.</strong> Anchor: \u201cStudents will apply effective communication skills by developing a variety of evidence-based written products.\u201d Standard 5.A (summarize, paraphrase, integrate evidence, cite sources) is the CER paragraph. Standard 5.B (authentic inquiry, written presentations) is the DBQ and sustained-research stages.</li>' +
+        '<li><strong>Practice 2 — Analyze and Address Authentic Civic Issues.</strong> Standard 2.B (\u201cinvestigate problems taking into consideration multiple points of view\u201d) is Civic Online Reasoning and the corroboration routine.</li>' +
+        '</ul>' +
+        '<p style="margin:12px 0 0;font-size:0.92em;color:#4a4a4a;">Full framework document: <a href="https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/social-studies/Oklahoma-Academic-Standards-for-Social-Studies.pdf" target="_blank" rel="noopener">Oklahoma Academic Standards for Social Studies (PDF, OSDE) ↗</a></p>' +
+      '</div>' +
+
+      // Grade-band notes
+      '<h3 class="section-title" style="font-size:1.15em;margin-top:28px;">Where these moves land in a WHS Social Studies sequence</h3>' +
+      '<div class="card-grid">' +
+      '<article class="card">' +
+        '<h3 class="card-title">Middle-school Social Studies (6–8)</h3>' +
+        '<p>Sourcing and close reading as daily routines. Focus on the sourcing questions and the CER paragraph. Documents should be genuinely primary but generously scaffolded — a paragraph excerpt, a glossary of two or three terms, and a visible sourcing prompt on the page. Discussion protocols always require quoting the text. Introduce mini-DBQs (three documents, one paragraph) by 8th grade.</p></article>' +
+      '<article class="card">' +
+        '<h3 class="card-title">Oklahoma History &amp; Government</h3>' +
+        '<p>Perfect course for Civic Online Reasoning — real Oklahoma sources, real ballot measures, real news coverage students can lateral-read. Also the natural home for authentic inquiry writing (Practice 5.B) since the state produces primary sources students can actually visit.</p></article>' +
+      '<article class="card">' +
+        '<h3 class="card-title">US History &amp; World History (9–10)</h3>' +
+        '<p>Full sourcing / contextualization / corroboration routines with unedited primary sources. Every unit ends with a CER paragraph as an exit; every quarter includes at least one mini-DBQ; every semester includes one full DBQ. Reading load ramps to 400–800 word source excerpts by end of year.</p></article>' +
+      '<article class="card">' +
+        '<h3 class="card-title">AP World History &amp; AP Government</h3>' +
+        '<p>DBQ writing weekly. HAPP or HIPP sourcing built into every document. Cross-links directly to the <a href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">Turner AP World History app</a> where the exemplars and released-item practice live. Civic Online Reasoning belongs in AP Gov current-events work.</p></article>' +
+      '</div>' +
+
+      '<div class="callout" style="margin-top:24px;border-left:4px solid #D4A537;"><h3>The five-minute self-check</h3>' +
+      '<p>Pick one class period this week. Ask three questions: (1) Did students read at least one primary source? (2) Did they have to source it or corroborate it, not just summarize it? (3) Did they produce writing that quotes or cites the source? If any of the three is a no, that is not a judgment \u2014 it is data, and the fix is a specific move above.</p></div>';
+  }
+
+  // Six core reading/writing teaching moves as cards. Kept as its own function
+  // so the businessCourseCard renderer pattern (card + video + resources) stays reusable.
+  function renderSSLiteracyMoves() {
+    var moves = [
+      {
+        title: "1. Teacher-modeled sourcing",
+        body: "Before students read a word of the body of a document, they read the source line \u2014 who wrote it, when, for whom, why. You model the sourcing move first: put the source line on the screen and think aloud (\u201cThis is a general\u2019s after-action report from three days after the battle. He wants to explain what went wrong without taking the blame. That tells me to expect …\u201d). Then students do the same sourcing on a second document under your eye before you release them. Sourcing questions are the price of admission to every document in your room.",
+        anchor: "Digital Inquiry Group (formerly SHEG) — Sourcing Poster and Historical Thinking Chart",
+        anchorUrl: "https://inquirygroup.org/rlh"
+      },
+      {
+        title: "2. Contextualization — \u2018read it in its own time\u2019",
+        body: "After sourcing, before analyzing, ask: what else was going on when this was written? Students who read a 1955 letter through 2026 assumptions will misread it. Model with a timeline sketch or a two-line \u201cwhat you need to know from that year\u201d block. This is where content knowledge earns its keep \u2014 the more students know about the period, the sharper their sourcing gets. Make contextualization visible on the annotation itself, not just in discussion.",
+        anchor: "Digital Inquiry Group — Contextualization Classroom Poster",
+        anchorUrl: "https://inquirygroup.org/rlh"
+      },
+      {
+        title: "3. Corroboration across sources",
+        body: "Never rest a claim on a single document. The move: two or three sources on the same event that partly agree and partly disagree, with students identifying the overlap and the divergence in writing. Wineburg\u2019s <em>Lunchroom Fight</em> lesson (free at DIG) is the canonical entry point \u2014 accessible enough for middle school and rigorous enough for high school. Students learn that history is not \u201cwhat happened\u201d in the singular; it is the account we can defend from the sources.",
+        anchor: "Digital Inquiry Group — Lunchroom Fight I &amp; II lessons",
+        anchorUrl: "https://inquirygroup.org/history-lessons"
+      },
+      {
+        title: "4. Close reading of a primary source",
+        body: "After sourcing and contextualization, a slow, annotated read \u2014 not a summary. Students mark: what the source claims, what evidence it uses, what words carry weight (loaded language, hedges, silences), and one question the source raises. Model the annotations live on a projected copy. The <a href=\"https://www.loc.gov/programs/teachers/getting-started-with-primary-sources/guides/\" target=\"_blank\" rel=\"noopener\">Library of Congress Primary Source Analysis Tool</a> gives you a free scaffold that works across document types (text, photo, map, cartoon).",
+        anchor: "Library of Congress — Primary Source Analysis Tool",
+        anchorUrl: "https://www.loc.gov/static/programs/teachers/getting-started-with-primary-sources/documents/Primary_Source_Analysis_Tool_LOC.pdf"
+      },
+      {
+        title: "5. Evidence-based paragraph — CER with sourcing",
+        body: "Claim → Evidence → Reasoning. The Social Studies version is stricter than the generic CER: at least one quoted phrase from a source (not a paraphrase), the source cited with author and date, and the reasoning sentence has to explain how the source\u2019s author or context shapes what it means \u2014 not just what the words say. Grade the reasoning sentence hardest. Model one, then students write one on the same document under your eye, then release. Every Social Studies unit should end with a CER; most weeks should have at least one as a warm-up or exit.",
+        anchor: "CER writing framework (widely adopted; strong classroom exemplars at Achieve the Core)",
+        anchorUrl: "https://achievethecore.org/category/932/social-studies-history-lessons"
+      },
+      {
+        title: "6. Civic Online Reasoning — SIFT before you cite",
+        body: "When the source is a website, tweet, or article \u2014 Government, current events, Oklahoma History research \u2014 sourcing means <strong>SIFT</strong>: Stop, Investigate the source (open a new tab, look them up), Find better coverage (do reputable outlets agree?), Trace claims to the original (where did this statistic come from?). Model SIFT live on a real Oklahoma news story or a real social-media claim, then students practice on a second one under your eye. Wineburg &amp; Caulfield\u2019s free Civic Online Reasoning curriculum has ready-made lessons.",
+        anchor: "Digital Inquiry Group — Civic Online Reasoning (free curriculum)",
+        anchorUrl: "https://cor.stanford.edu/curriculum"
+      }
+    ];
+    return '<div class="card-grid">' + moves.map(function (m) {
+      return '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
+        '<h3 class="card-title">' + m.title + '</h3>' +
+        '<p>' + m.body + '</p>' +
+        '<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #d4a537;font-size:0.9em;">' +
+          '<strong>Anchor resource:</strong> <a href="' + esc(m.anchorUrl) + '" target="_blank" rel="noopener">' + m.anchor + ' ↗</a>' +
+        '</div>' +
+      '</article>';
+    }).join("") + '</div>';
   }
 
   function renderSecondary(view, key, strategies) {
