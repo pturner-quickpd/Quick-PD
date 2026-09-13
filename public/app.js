@@ -613,12 +613,6 @@ async function renderStartHere(view) {
       <p>First-year teachers finding their footing · veteran teachers adding fresh strategies · career changers and alternatively certified teachers learning on the job · paraprofessionals stepping into a lead role · anyone who wants to keep growing.</p>
     </div>
 
-    <a class="dash-jump-card" href="#/first-ten-weeks" style="border-left:4px solid var(--navy); padding:20px 22px; margin-bottom:14px; background:linear-gradient(180deg,#fbf9f4,#ffffff);">
-      <div class="jump-meta">Named track · pilot</div>
-      <div style="font-family:var(--font-serif); font-size:22px; color:var(--navy); margin-bottom:4px;">First Ten Weeks — one thing per week, in order →</div>
-      <div style="font-size:14px; color:var(--muted); font-weight:400;">A ten-week track built for teachers who are learning the craft on the job. Mapped onto the WHS Teaching → Learning → Engagement PD cycle. Ends with a printable ten-week record.</div>
-    </a>
-
     <a class="dash-jump-card" href="#/first-30-days" style="border-left:4px solid var(--gold); padding:20px 22px; margin-bottom:22px;">
       <div class="jump-meta">New here?</div>
       <div style="font-family:var(--font-serif); font-size:22px; color:var(--navy); margin-bottom:4px;">Start with the first 30 days →</div>
