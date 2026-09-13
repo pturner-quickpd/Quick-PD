@@ -427,6 +427,21 @@
         subject: "Marketing",
         body: "Model a real marketing decision out loud — segmentation, positioning, promotion mix — using a live case (a local business, a school problem, or a DECA case study). Show the four-Ps analysis at pace with your reasoning narrated ('I'm choosing this channel because our audience is here'), then slowed with the trap named ('this is where teams pick the tactic before defining the target'). Students run one case in pairs while you circulate; independent role-plays only after the pair case passes a check. Every unit ends with student-produced marketing evidence — a positioning statement, a campaign brief, a pitch — not just a multiple-choice test.",
         video: { url: "https://www.youtube.com/watch?v=wvph6lpfmQo", title: "NC DECA Toolbox Series — Mock Roleplay / Case Study", channel: "NC DECA · Andrew Voelsing (former ICDC champion) walks the full roleplay routine with commentary" },
+        okStandards: {
+          division: "Oklahoma CareerTech · Marketing Education (ME) · Teacher certification 7501",
+          courses: [
+            { code: "8602", title: "Marketing Fundamentals" },
+            { code: "8607", title: "Sales and Sales Promotion" },
+            { code: "8610", title: "Sports and Entertainment Marketing" },
+            { code: "8612", title: "Advertising Strategies" },
+            { code: "8613", title: "Marketing Research" },
+            { code: "8628", title: "Digital Marketing (BITE, ME)" },
+            { code: "8614", title: "Intro to Business/Marketing" }
+          ],
+          framework: "CareerTech Testing Center — Marketing Management standards (Product/Service Creation, Marketing-Information Management, Promotion, Pricing, Selling). The unit-ending student evidence above (positioning statement, campaign brief, pitch) is what these standards actually ask students to do.",
+          frameworkUrl: "https://oklahoma.gov/careertech/educators/business-marketing-and-it-education.html",
+          coursesUrl: "https://oklahoma.gov/content/dam/ok/en/careertech/educators/business-marketing-and-it-education/program-information/bmite-k12-course-descriptions.pdf"
+        },
         resources: [
           { label: "DECA Marketing Career Cluster — free curriculum tools", url: "https://www.deca.org/career-clusters/marketing" },
           { label: "DECA Compete — role-plays and case studies", url: "https://www.deca.org/compete" },
@@ -437,6 +452,19 @@
         subject: "Entrepreneurship",
         body: "The failure mode is the 'business plan project' students complete once and never revisit. Real entrepreneurship teaching is iterative: model a customer-discovery interview, name the trap ('this is where founders pitch instead of listen'), have students echo the question set, then send them out to run one interview under your eye before the full round. The model of a good pitch stays visible while students build theirs. Grade the reasoning — did the pivot follow from the evidence? — not the polish of the deck. VentureLab and NFTE both organize around the entrepreneurial mindset, not the finished plan.",
         video: { url: "https://www.youtube.com/watch?v=Gp5XpYcTvk4", title: "Mindset Makers Series: Establishing an Entrepreneurial Culture in Your Classroom", channel: "NFTE · Free monthly educator PD webinar, October 2025 (~1 hr)" },
+        okStandards: {
+          division: "Oklahoma CareerTech · BITE and Marketing Education (ME)",
+          courses: [
+            { code: "8179", title: "Intro to Entrepreneurship (BITE)" },
+            { code: "8616", title: "Entrepreneurship (ME)" },
+            { code: "8617", title: "Advanced Entrepreneurship (BITE, ME)" },
+            { code: "8620", title: "Entrepreneurship Awareness (ME)" },
+            { code: "0911", title: "Entrepreneur end-of-program assessment" }
+          ],
+          framework: "National Content Standards for Entrepreneurship Education, used by the CareerTech 0911 Entrepreneur end-of-program assessment. Domains: Entrepreneurial Processes (Discovery / Concept Development / Resourcing / Actualization / Harvesting), Entrepreneurial Traits/Behaviors, Business Foundations, plus functional areas (Marketing, Financial, HR, Information, Operations, Risk, Strategic Management). Customer-discovery-first teaching above targets the Discovery and Concept Development standards directly.",
+          frameworkUrl: "https://oklahoma.gov/content/dam/ok/en/careertech/testing-centers/testing/study-guides/entrepreneur-sg.pdf",
+          coursesUrl: "https://oklahoma.gov/content/dam/ok/en/careertech/educators/business-marketing-and-it-education/program-information/bmite-k12-course-descriptions.pdf"
+        },
         resources: [
           { label: "NFTE — Entrepreneurship Education & Entrepreneurial Mindset resources", url: "https://www.nfte.com/entrepreneurship-education/" },
           { label: "VentureLab — Topics in Entrepreneurship Part 1 (free curriculum, grades 6–12)", url: "https://venturelab.org/curriculum/" },
@@ -447,16 +475,42 @@
         subject: "Personal Finance",
         body: "The failure mode is teaching personal finance as vocabulary and worksheets. What good looks like is the teacher deciding a real financial decision in front of students — filling out a real W-4, opening a real (or realistic) savings account, comparing two actual credit-card offers — with the reasoning narrated. Students then run one decision under your eye using a live source (a real pay stub, a real lease, a real loan disclosure) before the assignment. Assessment produces a decision with a defended reason, not a matching-terms quiz. NGPF has done the curriculum work; the teacher move is to keep the decisions real.",
         video: { url: "https://www.youtube.com/watch?v=yawJVu_L2uM", title: "Teacher Tip — INTERACTIVE: How Much Will Your College Actually Cost?", channel: "Next Gen Personal Finance · NGPF Fellow Amanda Volz shows how she runs the resource in her classroom" },
+        okStandards: {
+          division: "Oklahoma State Department of Education · Passport to Financial Literacy Act of 2007 (70 O.S. § 11-103.6h) · Graduation requirement, grades 7–12",
+          courses: [
+            { code: "8178", title: "Personal Finance (BITE) — explicitly aligned to the Passport standards" },
+            { code: "8118", title: "Business & Personal Finance (BITE)" },
+            { code: "8120", title: "Banking & Financial Services (BITE)" },
+            { code: "8180", title: "Math of Finance (BITE)" }
+          ],
+          framework: "PASS — 14 Areas of Instruction: 1) Earning an Income · 2) State/Federal Taxes · 3) Banking & Financial Services · 4) Balancing a Checkbook · 5) Saving & Investing · 6) Planning for Retirement · 7) Loans & Borrowing (incl. predatory lending) · 8) Interest, Credit Cards & Online Commerce · 9) Identity Fraud & Theft · 10) Renting vs. Buying a Home · 11) Insurance · 12) Financial Impact of Gambling · 13) Bankruptcy · 14) Charitable Giving. Every student must satisfactorily demonstrate all 14 to graduate. The 'real decision' teaching above targets Standards 1, 4, 5, 7, 8, and 10 directly — the ones students hit within a year of graduation.",
+          frameworkUrl: "https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/personal-financial-literacy/Introduction%20Guide%20to%20the%20Curriculum.pdf",
+          coursesUrl: "https://oklahoma.gov/content/dam/ok/en/careertech/educators/business-marketing-and-it-education/program-information/bmite-k12-course-descriptions.pdf"
+        },
         resources: [
           { label: "NGPF Semester Course — full free personal finance curriculum", url: "https://www.ngpf.org/courses/semester-course/" },
           { label: "NGPF Video Library — hundreds of classroom-ready, vetted videos", url: "https://www.ngpf.org/video-library/" },
-          { label: "EconEdLink (Council for Economic Education) — free personal finance lessons", url: "https://econedlink.org/" }
+          { label: "EconEdLink (Council for Economic Education) — free personal finance lessons", url: "https://econedlink.org/" },
+          { label: "Oklahoma PASSport to Personal Financial Literacy Curriculum — free state-aligned lessons for all 14 standards", url: "https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/personal-financial-literacy/Introduction%20Guide%20to%20the%20Curriculum.pdf" }
         ]
       },
       {
         subject: "Management",
         body: "Management is where the demonstration routine is most likely to be skipped — the temptation is to lecture the four functions (plan, organize, lead, control) and move on. What good looks like is the teacher walking through a real management decision (scheduling a shift, coaching an underperformer, running a stand-up, delegating a task) with the reasoning narrated, then students echoing the framework back, then running their own decision in a role-play or case with the model still visible. Assessment is a defended management decision — an org chart with reasoning, a coaching script, a delegation memo — not the definition of 'span of control.' Anchor the course to the National Business Education Standards so students see the discipline, not just the buzzwords.",
         video: { url: "https://www.youtube.com/watch?v=oxt9Lz79he8", title: "Learn High School Principles of Business: Functions and Responsibilities of Management", channel: "LEARN SKN · Kyle Flanders — walks the four functions of management at a high-school level" },
+        okStandards: {
+          division: "Oklahoma CareerTech · Business Management and Administration Career Cluster · BITE and ME programs",
+          courses: [
+            { code: "8606", title: "Business Management and Supervision (ME)" },
+            { code: "8105", title: "Office Administration & Management (BITE)" },
+            { code: "8254", title: "Business Foundations (BITE) — introduces the Business Management & Administration cluster" },
+            { code: "8629", title: "Ethical Leadership (BITE, ME)" },
+            { code: "8177", title: "Business Communications (BITE)" }
+          ],
+          framework: "CareerTech Testing Center — Business Foundations standards (role of business, ethical practices, management concepts, functional-area overview) and Human Resource Management standards (Organizing, Staffing, Training/Development, Morale/Motivation, Assessment). The 'defended management decision' teaching above targets HR Management standards J1–J26 (delegate responsibility, coach employees, exhibit leadership, encourage team building, assess employee performance) directly instead of leaving them as vocabulary.",
+          frameworkUrl: "https://oklahoma.gov/careertech/educators/career-clusters/bus-mgmt-admin.html",
+          coursesUrl: "https://oklahoma.gov/content/dam/ok/en/careertech/educators/business-marketing-and-it-education/program-information/bmite-k12-course-descriptions.pdf"
+        },
         resources: [
           { label: "MBA Research LAP Modules — management, business admin, ethical leadership", url: "https://www.mbaresearch.org/local-educators/teaching-resources/lesson-modules/" },
           { label: "NBEA — National Business Education Curriculum Standards", url: "https://www.nbea.org/business-education-curriculum-standards" },
@@ -512,12 +566,30 @@
           return '<li><a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.label) + ' ↗</a></li>';
         }).join("") + '</ul></div>';
     }
+    var okHtml = "";
+    if (c.okStandards) {
+      var s = c.okStandards;
+      var coursesLi = (s.courses || []).map(function (co) {
+        return '<li><strong>OCAS ' + esc(co.code) + '</strong> — ' + esc(co.title) + '</li>';
+      }).join("");
+      var links = [];
+      if (s.frameworkUrl) links.push('<a href="' + esc(s.frameworkUrl) + '" target="_blank" rel="noopener">Framework source ↗</a>');
+      if (s.coursesUrl) links.push('<a href="' + esc(s.coursesUrl) + '" target="_blank" rel="noopener">BMITE course descriptions ↗</a>');
+      okHtml = '<div style="margin-top:14px;padding-top:12px;border-top:1px dashed #d4a537;">' +
+        '<div style="font-weight:600;font-size:0.88em;color:#0A2540;margin-bottom:6px;">Oklahoma standards alignment</div>' +
+        '<div style="font-size:0.88em;color:#4a4a4a;margin-bottom:6px;"><em>' + esc(s.division) + '</em></div>' +
+        (coursesLi ? '<ul style="margin:0 0 8px;padding-left:18px;font-size:0.9em;line-height:1.5;">' + coursesLi + '</ul>' : "") +
+        (s.framework ? '<p style="margin:0 0 6px;font-size:0.9em;line-height:1.5;color:#333;">' + esc(s.framework) + '</p>' : "") +
+        (links.length ? '<div style="font-size:0.85em;">' + links.join(' · ') + '</div>' : "") +
+        '</div>';
+    }
     return '<article class="card" style="border-left:4px solid #0A2540;padding-left:16px;">' +
       '<div class="card-meta">Business Pathway</div>' +
       '<h3 class="card-title">' + esc(c.subject) + '</h3>' +
       '<p>' + esc(c.body) + '</p>' +
       (c.video ? youtubeEmbed(c.video) : "") +
       resourcesHtml +
+      okHtml +
       '</article>';
   }
 
@@ -539,11 +611,10 @@
                '<th style="text-align:left;padding:8px;border-bottom:2px solid #D4A537;">What it means</th></tr>';
     var body = rows.map(function (r) {
       return '<tr>' + r.map(function (c, i) {
-        return '<td style="padding:8px;border-bottom:1px solid #e5e7eb;vertical-align:top;' +
-          (i < 3 ? 'white-space:nowrap;' : '') + '">' + esc(c) + '</td>';
+        return '<td style="padding:8px;border-bottom:1px solid #e5e7eb;vertical-align:top;">' + esc(c) + '</td>';
       }).join("") + '</tr>';
     }).join("");
-    return '<div class="card" style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.95em;">' +
+    return '<div class="card" style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table style="width:100%;min-width:640px;border-collapse:collapse;font-size:0.95em;">' +
       '<thead>' + head + '</thead><tbody>' + body + '</tbody></table></div>';
   }
 
