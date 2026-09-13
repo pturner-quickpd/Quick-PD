@@ -62,9 +62,19 @@
   // never drifts from what teachers see in Word.
   function blocksToText(title, blocks) {
     var lines = [];
-    if (title) { lines.push("# " + title); lines.push(""); }
+    // If a `title` was passed AND the first block is the same H1, drop one of them
+    // (the docx builder passes both). Prefer the block form so it stays in doc order.
+    var titleUsed = false;
+    if (title && (!blocks.length || !blocks[0] || blocks[0].h1 !== title)) {
+      lines.push("# " + title);
+      lines.push("");
+      titleUsed = true;
+    }
     blocks.forEach(function (b) {
-      if (b.h1) { lines.push("# " + b.h1); lines.push(""); return; }
+      if (b.h1) {
+        if (titleUsed && b.h1 === title) return; // already emitted above
+        lines.push("# " + b.h1); lines.push(""); return;
+      }
       if (b.h2) { lines.push(""); lines.push("## " + b.h2); lines.push(""); return; }
       if (b.h3) { lines.push("### " + b.h3); return; }
       if (b.hr) { lines.push(""); lines.push("---"); lines.push(""); return; }
