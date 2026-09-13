@@ -664,6 +664,147 @@
   }
 
 
+  // ---------------- Why backward planning ----------------
+  function renderWhyBackwardPlanning(view) {
+    var primaryVideo = {
+      url: "https://www.youtube.com/watch?v=6Cagh0H7PPA",
+      title: "Understanding by Design with Grant Wiggins (4 min overview)",
+      channel: "Avenues The World School"
+    };
+    var deeperVideos = [
+      { url: "https://www.youtube.com/watch?v=4isSHf3SBuQ",
+        title: "Grant Wiggins — Understanding by Design (1 of 2)",
+        channel: "Avenues The World School" },
+      { url: "https://www.youtube.com/watch?v=vgNODvvsgxM",
+        title: "Grant Wiggins — Understanding by Design (2 of 2)",
+        channel: "Avenues The World School" },
+      { url: "https://www.youtube.com/watch?v=Hv138l0HqTA",
+        title: "Understanding by Design with Jay McTighe (SYS Presents)",
+        channel: "SYS Education" }
+    ];
+
+    var stageWhy = [
+      { stage: "Stage 1 · Standards",
+        why: "Everything downstream — assessments, daily work, evidence — has to point back to a standard. Skip this and the unit becomes activities in search of a purpose." },
+      { stage: "Stage 2 · Assessment Design",
+        why: "The assessment is the evidence you'll accept that the standard was met. Design it now so your daily lessons rehearse the thinking it demands — not surprise students with it in Week 4." },
+      { stage: "Stage 3 · Daily Engagement",
+        why: "Only now, with the target and the evidence in view, do we choose daily moves. Every strategy on this page should be one a student would use on the Stage 2 assessment." },
+      { stage: "Stage 4 · Visible Evidence",
+        why: "Daily moves have to leave a trail you can see mid-unit. If you can't name what proficiency looks like in student work and student talk now, you won't recognize it in time to adjust." },
+      { stage: "Stage 5 · Instructional Response",
+        why: "Collecting evidence without a response plan is just data. Decide now what you'll do when the evidence says students are stuck, ahead, or split — so the response is fast, not improvised." },
+      { stage: "Stage 6 · Student Achievement",
+        why: "The whole point of backward planning is a defensible answer to 'did they get there?' Name the bar now, then use the after-unit reflection to sharpen the next round." }
+    ];
+
+    var forwardVsBackward = [
+      { move: "Where you start",
+        forward: "Open the textbook, pick a chapter or a favorite activity.",
+        backward: "Open the Oklahoma standard and read what students must know, do, and transfer." },
+      { move: "When you design the assessment",
+        forward: "Write the test the weekend before it's given.",
+        backward: "Draft the summative first, then work back to the daily work that rehearses it." },
+      { move: "What daily lessons are for",
+        forward: "Cover the material.",
+        backward: "Rehearse the exact thinking the assessment will require." },
+      { move: "What 'evidence' means",
+        forward: "The grade at the end.",
+        backward: "Student work, student talk, and check-ins during the unit — with a planned response." },
+      { move: "How you know it worked",
+        forward: "Kids seemed engaged; most passed.",
+        backward: "A named proficiency bar was hit, on the assessment you designed to prove it." }
+    ];
+
+    var failureModes = [
+      { title: "Activities in search of a purpose",
+        body: "A rich task, a great video, a fun project — with no line back to what students are being asked to know or do on the standard. Fun does not equal learning." },
+      { title: "Surprise summative",
+        body: "The test asks students to analyze, compare, or defend — but daily work only asked them to recall and label. The gap between daily thinking and assessed thinking is where scores drop." },
+      { title: "Evidence you can't see until it's over",
+        body: "No mid-unit check that would have told you the reteach was needed. The first time you know most students missed it is when you're grading." },
+      { title: "Data with no response",
+        body: "Exit tickets collected, patterns visible — and tomorrow's lesson looks exactly like it would have anyway. Backward design demands the response is built into the plan." }
+    ];
+
+    view.innerHTML =
+      '<h1 class="page-title">Why backward planning</h1>' +
+      '<p class="page-lede">The Unit Planner walks you through six stages in a specific order. That order isn\'t arbitrary — it\'s the backward-design logic Grant Wiggins and Jay McTighe laid out in <em>Understanding by Design</em>. This page is the short version of why the order matters, with a 4-minute Wiggins video that says it in his own words.</p>' +
+
+      '<div class="callout"><h3>Backward, in one sentence</h3>' +
+      '<p>Decide what proficient looks like <strong>first</strong>. Design the evidence you\'ll accept <strong>second</strong>. Only then plan the daily lessons — so every day is rehearsal for what the assessment will demand.</p>' +
+      '<p style="margin:8px 0 0;color:#4a4a4a;font-size:0.95em;"><em>Or, in Wiggins\'s framing: identify desired results → determine acceptable evidence → plan learning experiences and instruction.</em></p>' +
+      '</div>' +
+
+      '<h2 class="section-title">Wiggins in 4 minutes</h2>' +
+      '<p>The clearest short version of backward design, from Grant Wiggins himself:</p>' +
+      '<div style="max-width:720px;">' + youtubeEmbed(primaryVideo) + '</div>' +
+
+      '<h2 class="section-title">Why the order matters, stage by stage</h2>' +
+      '<p>The Unit Planner\'s six stages are backward design applied to daily practice. Here\'s the one-line case for why each stage sits where it sits:</p>' +
+      '<div class="card-grid">' +
+      stageWhy.map(function (s) {
+        return '<div class="card"><h3 class="subsection-title" style="margin-top:0;color:#BC9124;">' + esc(s.stage) + '</h3>' +
+               '<p>' + esc(s.why) + '</p></div>';
+      }).join("") +
+      '</div>' +
+
+      '<h2 class="section-title">Forward planning vs. backward planning</h2>' +
+      '<p>The difference isn\'t abstract. It shows up in every planning decision you make:</p>' +
+      '<div class="card" style="padding:0;overflow:hidden;">' +
+      '<table style="width:100%;border-collapse:collapse;font-size:0.94em;">' +
+      '<thead><tr style="background:#FBF8EE;">' +
+      '<th style="text-align:left;padding:10px 12px;border-bottom:2px solid #E9DFC4;width:22%;">Move</th>' +
+      '<th style="text-align:left;padding:10px 12px;border-bottom:2px solid #E9DFC4;width:39%;">Forward planning</th>' +
+      '<th style="text-align:left;padding:10px 12px;border-bottom:2px solid #E9DFC4;width:39%;color:#BC9124;">Backward planning</th>' +
+      '</tr></thead><tbody>' +
+      forwardVsBackward.map(function (r) {
+        return '<tr>' +
+               '<td style="padding:10px 12px;border-bottom:1px solid #EFEADB;vertical-align:top;font-weight:600;">' + esc(r.move) + '</td>' +
+               '<td style="padding:10px 12px;border-bottom:1px solid #EFEADB;vertical-align:top;color:#6b6555;">' + esc(r.forward) + '</td>' +
+               '<td style="padding:10px 12px;border-bottom:1px solid #EFEADB;vertical-align:top;">' + esc(r.backward) + '</td>' +
+               '</tr>';
+      }).join("") +
+      '</tbody></table></div>' +
+
+      '<h2 class="section-title">What goes wrong when you plan forward</h2>' +
+      '<p>These are the four patterns walkthroughs catch again and again. If any sound familiar, the fix is upstream — in the planning order, not in the lesson delivery.</p>' +
+      '<div class="card-grid">' +
+      failureModes.map(function (f) {
+        return '<div class="card"><h3 class="subsection-title" style="margin-top:0;">' + esc(f.title) + '</h3>' +
+               '<p>' + esc(f.body) + '</p></div>';
+      }).join("") +
+      '</div>' +
+
+      '<h2 class="section-title">The three-question audit</h2>' +
+      '<p>Before a unit goes live, run it against these three questions. If any answer is no, back up one stage.</p>' +
+      '<div class="card"><ol style="margin:0;padding-left:20px;line-height:1.7;">' +
+      '<li><strong>Does the assessment actually require the verb in the standard?</strong> If the standard says <em>analyze</em> and the summative is multiple-choice recall, the assessment doesn\'t match the target.</li>' +
+      '<li><strong>Would the daily work rehearse the thinking the assessment demands?</strong> If daily work is Costa Level 1 and the assessment is Level 2/3, students will walk into it cold.</li>' +
+      '<li><strong>Is there a planned response when evidence shows students aren\'t there yet?</strong> Named students, named piece, named time, named recheck — not "review as needed."</li>' +
+      '</ol></div>' +
+
+      '<h2 class="section-title">Go deeper</h2>' +
+      '<p>If the 4-minute video sold you and you want the full Wiggins workshop, or McTighe\'s framing of the three stages, these are the primary sources:</p>' +
+      '<div style="max-width:720px;">' + youtubeEmbedList(deeperVideos) + '</div>' +
+
+      '<h2 class="section-title">Sources</h2>' +
+      '<div class="card"><ul style="margin:0;padding-left:20px;line-height:1.7;">' +
+      '<li>Wiggins, G. &amp; McTighe, J. (2005). <em>Understanding by Design</em> (2nd ed.). ASCD. — the foundational text for the three-stage backward design framework.</li>' +
+      '<li>McTighe, J. &amp; Wiggins, G. (2012). <a href="https://files.ascd.org/staticfiles/ascd/pdf/siteASCD/publications/UbD_WhitePaper0312.pdf" target="_blank" rel="noopener">Understanding by Design® Framework (ASCD White Paper) ↗</a>.</li>' +
+      '<li>Wiggins, G. (2012). <a href="https://www.youtube.com/watch?v=4isSHf3SBuQ" target="_blank" rel="noopener">Understanding by Design workshop (Part 1) ↗</a>. Avenues The World School.</li>' +
+      '<li>Wiggins, G. (2013). <a href="https://www.youtube.com/watch?v=vgNODvvsgxM" target="_blank" rel="noopener">Understanding by Design workshop (Part 2) ↗</a>. Avenues The World School.</li>' +
+      '<li>McTighe, J. (2023). <a href="https://www.youtube.com/watch?v=Hv138l0HqTA" target="_blank" rel="noopener">Understanding by Design with Jay McTighe ↗</a>. SYS Presents: Adventures in Online Education.</li>' +
+      '</ul></div>' +
+
+      '<div class="callout" style="border-left:4px solid #D4A537;margin-top:24px;">' +
+      '<p style="margin:0;"><strong>Ready to plan a unit?</strong> Open the <a href="#/unit-plan">Unit Planner</a> and work through the six stages in order. It auto-saves as you type and exports to Word for your PLC binder.</p>' +
+      '</div>';
+
+    wireLazyYouTube();
+  }
+
+
   // ---------------- Engagement vs. Busywork ----------------
   function renderEngagementVsBusywork(view) {
     var videos = [
@@ -894,6 +1035,7 @@
     renderLearnerSupports: renderLearnerSupports,
     renderInstructionalDelivery: renderInstructionalDelivery,
     renderClarity: renderClarity,
+    renderWhyBackwardPlanning: renderWhyBackwardPlanning,
     renderEngagementVsBusywork: renderEngagementVsBusywork
   };
 })();

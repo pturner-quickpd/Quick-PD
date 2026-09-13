@@ -362,8 +362,10 @@
     var frag = document.createDocumentFragment();
     
     frag.appendChild(el("h1", { class: "page-title" }, "Unit Plan"));
-    frag.appendChild(el("p", { class: "page-lede" },
-      "The WHS unit-planning flow — Standards → Assessment Design → Daily Engagement → Visible Evidence → Instructional Response → Student Achievement. Fill each stage in order, walk through it step by step, then download as a Word file for your PLC binder."));
+    frag.appendChild(el("p", { class: "page-lede" }, [
+      "The WHS unit-planning flow — Standards → Assessment Design → Daily Engagement → Visible Evidence → Instructional Response → Student Achievement. Fill each stage in order, walk through it step by step, then download as a Word file for your PLC binder. ",
+      el("a", { href: "#/why-backward-planning", style: "font-weight:600;" }, "Why this order matters →")
+    ]));
 
     var form = el("form", { class: "planner-form", onsubmit: function (e) { e.preventDefault(); } });
 
@@ -382,6 +384,7 @@
     var stdList = PC.standardsList("up-standards", []);
     var stage1 = el("section", { class: "form-section form-section-stage", id: "up-standards-sec" }, [
       el("div", { class: "stage-badge" }, "Stage 1 · Standards"),
+      el("p", { class: "stage-why" }, "Why this stage first: everything downstream — assessments, daily work, evidence — has to point back to a standard. Skip this and the unit becomes activities in search of a purpose."),
       el("h2", { class: "section-title" }, "Which Oklahoma standards anchor this unit?"),
       el("p", { class: "section-lede" }, "Add every Oklahoma standard the unit will teach, in the order you plan to teach them. Then translate them into a student-facing purpose — what students will know, do, and transfer."),
       PC.field("up-standards-wrap", "Prioritized standards", "Search a subject and grade, then click Add.", stdList.el),
@@ -404,6 +407,7 @@
     // Stage 2 — ASSESSMENT DESIGN
     var stage2 = el("section", { class: "form-section form-section-stage", id: "up-assessment" }, [
       el("div", { class: "stage-badge" }, "Stage 2 · Assessment Design"),
+      el("p", { class: "stage-why" }, "Why this stage second (not last): the assessment is the evidence you'll accept that the standard was met. Design it now so your daily lessons rehearse the thinking it demands — not surprise students with it in Week 4."),
       el("h2", { class: "section-title" }, "How will you know students met the standards?"),
       el("p", { class: "section-lede" }, "Design the assessments before you design the lessons. Start with the summative that proves proficiency, then work back to the formative checks that get students ready."),
       PC.field("up-summ-task", "Summative assessment task",
@@ -425,6 +429,7 @@
     var upStrats = PC.strategyList("up-strategies", []);
     var stage3 = el("section", { class: "form-section form-section-stage", id: "up-engagement" }, [
       el("div", { class: "stage-badge" }, "Stage 3 · Daily Engagement"),
+      el("p", { class: "stage-why" }, "Why this stage third: only now, with the target and the evidence in view, do we choose daily moves. Every strategy on this page should be one a student would use on the Stage 2 assessment."),
       el("h2", { class: "section-title" }, "How will students engage with the content every day?"),
       el("p", { class: "section-lede" }, "The core instructional moves that carry the unit day to day — the strategies, texts, and tasks students will meet in every class."),
       PC.field("up-strategies-wrap", "Tier 1 strategies pulled into this unit",
@@ -449,6 +454,7 @@
     // Stage 4 — VISIBLE EVIDENCE
     var stage4 = el("section", { class: "form-section form-section-stage", id: "up-evidence" }, [
       el("div", { class: "stage-badge" }, "Stage 4 · Visible Evidence"),
+      el("p", { class: "stage-why" }, "Why this stage fourth: the daily moves have to leave a trail you can see mid-unit. If you can't name what proficiency looks like in student work and student talk now, you won't recognize it in time to adjust."),
       el("h2", { class: "section-title" }, "What will you and students see along the way?"),
       el("p", { class: "section-lede" }, "The observable signs that students are learning — in student work, in student talk, in the room. Data you can look at during the unit, not just at the end."),
       PC.field("up-evidence-work", "Evidence in student work",
@@ -469,6 +475,7 @@
     // Stage 5 — INSTRUCTIONAL RESPONSE
     var stage5 = el("section", { class: "form-section form-section-stage", id: "up-response" }, [
       el("div", { class: "stage-badge" }, "Stage 5 · Instructional Response"),
+      el("p", { class: "stage-why" }, "Why this stage fifth: collecting evidence without a response plan is just data. Decide now what you'll do when the evidence says students are stuck, ahead, or split — so the response is fast, not improvised."),
       el("h2", { class: "section-title" }, "What will you do when the evidence changes?"),
       el("p", { class: "section-lede" }, "How you'll respond to what the evidence tells you — for students who are stuck, for students who already have it, and for the whole class when the whole class needs it."),
       PC.field("up-response-stuck", "If most students are stuck",
@@ -489,6 +496,7 @@
     // Stage 6 — STUDENT ACHIEVEMENT
     var stage6 = el("section", { class: "form-section form-section-stage", id: "up-achievement" }, [
       el("div", { class: "stage-badge" }, "Stage 6 · Student Achievement"),
+      el("p", { class: "stage-why" }, "Why this stage last: the whole point of backward planning is a defensible answer to 'did they get there?' Name the bar now, then use the after-unit reflection to sharpen the next round."),
       el("h2", { class: "section-title" }, "What does proficiency look like at the end?"),
       el("p", { class: "section-lede" }, "The results you're accountable for — what proficient student work looks like, how you'll report it, and what you'll take into next year."),
       PC.field("up-achievement-target", "Target proficiency",

@@ -130,6 +130,7 @@ const ROUTE_LABELS = {
   "lesson-plans": "Lesson Plan Templates",
   "weekly-plan": "Weekly Plan",
   "unit-plan": "Unit Planner",
+  "why-backward-planning": "Why Backward Planning",
   "daily-plan": "Daily Plan",
   "pl-tool": "Write My PL Goal",
   "add": "Add a Strategy",
@@ -235,6 +236,7 @@ const Routes = {
   "strategy": renderStrategyDetail, // #/strategy/:id
   "classroom": renderClassroom,
   "unit-plan": renderPlannerPage("renderUnitPlan"),
+  "why-backward-planning": (view) => window.ContentHubs.renderWhyBackwardPlanning(view),
   "weekly-plan": renderPlannerPage("renderWeeklyPlan"),
   "daily-plan": renderPlannerPage("renderDailyPlan"),
   "pl-tool": renderPLTool,
@@ -1661,7 +1663,7 @@ async function renderUnitPlan(view) {
     <div id="std-results"></div>
 
     <h2 class="section-title">Your saved unit plans</h2>
-    <div id="saved-units">${saved.length ? saved.map((p) => unitPlanCard(p)).join("") : '<div class="empty">No saved unit plans yet.</div>'}</div>
+    <div id="saved-units">${saved.length ? saved.map((p) => `<div class="card"><div class="card-meta">${escapeHtml(p.updatedAt || "")}</div><div class="card-title">${escapeHtml(p.title || "Untitled")}</div><pre style="white-space:pre-wrap;background:#f9f6ec;padding:12px;border-radius:6px;font-family:inherit;font-size:13px;">${escapeHtml(JSON.stringify(p.data, null, 2))}</pre></div>`).join("") : '<div class="empty">No saved unit plans yet.</div>'}</div>
   `;
 
   attachStandardsPicker({ mount: "#unit-std-picker", codeInput: "#unit-std-code", textOutput: "#unit-std-text" });
@@ -1691,8 +1693,6 @@ async function renderUnitPlan(view) {
   stdSearch.addEventListener("input", runSearch);
   runSearch();
 
-  wireUnitPlanExportButtons(view, saved);
-
   $("#unit-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const t = TeacherStore.get();
@@ -1716,139 +1716,6 @@ async function renderUnitPlan(view) {
       toast("Unit plan saved");
       router();
     } catch (err) { toast("Save failed: " + err.message); }
-  });
-}
-
-// -------- Unit plan card + export helpers --------
-function unitPlanCard(p) {
-  const d = p.data || {};
-  const stdLine = [d.standardCode, d.standardText].filter(Boolean).join(" \u2014 ");
-  const section = (label, value) => value ? `<h3 class="subsection-title">${escapeHtml(label)}</h3><p style="white-space:pre-wrap;">${escapeHtml(value)}</p>` : "";
-  return `
-    <div class="card" data-unit-id="${escapeHtml(String(p.id || ""))}">
-      <div class="card-meta">${escapeHtml(p.updatedAt || "")}</div>
-      <div class="card-title">${escapeHtml(p.title || "Untitled unit")}</div>
-      ${stdLine ? `<p style="font-size:13px;color:var(--muted);margin-top:-4px;"><strong>Standard:</strong> ${escapeHtml(stdLine)}</p>` : ""}
-      ${section("Big idea / essential question", d.bigIdea)}
-      ${section("Weekly arc", d.arc)}
-      ${section("Formative check-ins", d.formatives)}
-      ${section("Summative assessment", d.summative)}
-      ${section("Reading & writing across this unit", d.literacy)}
-      <div class="button-row" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;">
-        <button type="button" class="btn btn-primary btn-sm unit-copy-btn" data-unit-id="${escapeHtml(String(p.id || ""))}">⎘ Copy as text (paste in email)</button>
-        <button type="button" class="btn ghost btn-sm unit-docx-btn" data-unit-id="${escapeHtml(String(p.id || ""))}">⭳ Word (.docx)</button>
-        <button type="button" class="btn ghost btn-sm unit-json-btn" data-unit-id="${escapeHtml(String(p.id || ""))}">⭳ JSON (for admin audit)</button>
-      </div>
-      <p style="margin-top:10px;font-size:12px;color:var(--muted);">Your plans stay in your browser. Use these buttons to share one with a coach, principal, or peer — nothing leaves this device until you send it.</p>
-    </div>
-  `;
-}
-
-function unitPlanAsText(p) {
-  const d = p.data || {};
-  const teacher = (TeacherStore.get && TeacherStore.get()) || "";
-  const stdLine = [d.standardCode, d.standardText].filter(Boolean).join(" \u2014 ");
-  const parts = [];
-  parts.push(p.title || "Untitled unit");
-  parts.push("=".repeat((p.title || "Untitled unit").length));
-  if (teacher) parts.push(`Teacher: ${teacher}`);
-  parts.push("School: Wewoka High School");
-  if (p.updatedAt) parts.push(`Last updated: ${p.updatedAt}`);
-  parts.push("");
-  if (stdLine) { parts.push("STANDARD"); parts.push(stdLine); parts.push(""); }
-  const addBlock = (label, val) => { if (val) { parts.push(label.toUpperCase()); parts.push(String(val)); parts.push(""); } };
-  addBlock("Big idea / essential question", d.bigIdea);
-  addBlock("Weekly arc", d.arc);
-  addBlock("Formative check-ins", d.formatives);
-  addBlock("Summative assessment", d.summative);
-  addBlock("Reading & writing across this unit", d.literacy);
-  parts.push("\u2014 Built with the Turner Instructional Toolkit");
-  return parts.join("\n");
-}
-
-function unitPlanDocxBlocks(p) {
-  const d = p.data || {};
-  const teacher = (TeacherStore.get && TeacherStore.get()) || "";
-  const stdLine = [d.standardCode, d.standardText].filter(Boolean).join(" \u2014 ");
-  const blocks = [
-    { h1: p.title || "Unit Plan" },
-    { p: (teacher ? teacher + " · " : "") + "Wewoka High School · " + new Date().toLocaleDateString() },
-    { hr: true },
-  ];
-  if (stdLine) blocks.push({ label: "Standard", value: stdLine });
-  if (d.bigIdea) blocks.push({ h2: "Big idea / essential question" }, { p: d.bigIdea });
-  if (d.arc) blocks.push({ h2: "Weekly arc" }, { p: d.arc });
-  if (d.formatives) blocks.push({ h2: "Formative check-ins" }, { p: d.formatives });
-  if (d.summative) blocks.push({ h2: "Summative assessment" }, { p: d.summative });
-  if (d.literacy) blocks.push({ h2: "Reading & writing across this unit" }, { p: d.literacy });
-  return blocks;
-}
-
-function wireUnitPlanExportButtons(view, saved) {
-  const slug = (s) => String(s || "unit-plan").replace(/[^a-z0-9]+/gi, "-").replace(/^-+|-+$/g, "").toLowerCase().slice(0, 60) || "unit-plan";
-  const findPlan = (btn) => saved.find((x) => String(x.id) === btn.dataset.unitId);
-
-  view.querySelectorAll(".unit-copy-btn").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const p = findPlan(btn); if (!p) return;
-      const text = unitPlanAsText(p);
-      try {
-        await navigator.clipboard.writeText(text);
-        toast("Copied — paste into an email or Google Doc");
-      } catch (err) {
-        // Fallback: open a modal-style textarea so the teacher can select-all + copy manually.
-        const w = window.open("", "_blank", "width=760,height=640");
-        if (w) {
-          w.document.write("<title>Copy this plan</title><body style='font-family:system-ui;padding:16px;'><h3>Select all and copy</h3><textarea style='width:100%;height:85vh;font-family:ui-monospace,monospace;font-size:13px;'></textarea></body>");
-          w.document.querySelector("textarea").value = text;
-          w.document.querySelector("textarea").focus();
-          w.document.querySelector("textarea").select();
-        } else {
-          toast("Copy failed — allow clipboard access and try again");
-        }
-      }
-    });
-  });
-
-  view.querySelectorAll(".unit-docx-btn").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const p = findPlan(btn); if (!p || !window.PlannerCore) return;
-      const orig = btn.textContent; btn.disabled = true; btn.textContent = "Preparing\u2026";
-      try {
-        const blob = await window.PlannerCore.buildDocx(p.title || "Unit Plan", unitPlanDocxBlocks(p));
-        window.PlannerCore.downloadBlob(blob, "Unit-Plan-" + slug(p.title) + ".docx");
-      } catch (err) {
-        toast("Word export failed: " + err.message);
-      } finally { btn.disabled = false; btn.textContent = orig; }
-    });
-  });
-
-  view.querySelectorAll(".unit-json-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const p = findPlan(btn); if (!p) return;
-      const teacher = (TeacherStore.get && TeacherStore.get()) || "";
-      const payload = {
-        exportedAt: new Date().toISOString(),
-        teacher: teacher,
-        school: "Wewoka High School",
-        source: "Turner Instructional Toolkit — Unit Planner",
-        plan: {
-          id: p.id, title: p.title, updatedAt: p.updatedAt,
-          data: p.data || {},
-        },
-      };
-      const json = JSON.stringify(payload, null, 2);
-      if (window.PlannerCore && window.PlannerCore.downloadBlob) {
-        const blob = new Blob([json], { type: "application/json" });
-        window.PlannerCore.downloadBlob(blob, "Unit-Plan-" + slug(p.title) + ".json");
-      } else {
-        // Minimal fallback
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(new Blob([json], { type: "application/json" }));
-        a.download = "Unit-Plan-" + slug(p.title) + ".json";
-        document.body.appendChild(a); a.click(); a.remove();
-      }
-    });
   });
 }
 
@@ -3855,6 +3722,7 @@ function _searchIndex() {
     { label: "First 30 Days", sub: "Onboarding path", href: "#/first-30-days" },
     { label: "Write My PL Goal", sub: "Tool", href: "#/pl-tool" },
     { label: "Unit Planner", sub: "Tool", href: "#/unit-plan" },
+    { label: "Why Backward Planning", sub: "Teacher guide", href: "#/why-backward-planning" },
     { label: "Weekly Plan", sub: "Tool", href: "#/weekly-plan" },
     { label: "Lesson Plan Templates", sub: "Templates", href: "#/lesson-plans" },
     { label: "Toolkit Examples", sub: "Examples", href: "#/toolkit-examples" },
