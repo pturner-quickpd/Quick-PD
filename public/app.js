@@ -159,6 +159,7 @@ const ROUTE_LABELS = {
   "primary-sources": "Teaching with Primary Sources",
   "social-studies": "Social Studies (6–12)",
   "first-30-days": "First 30 Days",
+  "first-ten-weeks": "First Ten Weeks",
   "about": "About the Toolkit",
   "strategy": "Strategy detail",
 };
@@ -313,6 +314,7 @@ const Routes = {
   "toolkit-examples": renderToolkitExamples,
   "stats": renderStats,
   "first-30-days": renderFirst30Days,
+  "first-ten-weeks": renderFirstTenWeeks,
   "about": renderAbout,
 };
 
@@ -610,6 +612,12 @@ async function renderStartHere(view) {
       <h3>Built for teachers like you.</h3>
       <p>First-year teachers finding their footing · veteran teachers adding fresh strategies · career changers and alternatively certified teachers learning on the job · paraprofessionals stepping into a lead role · anyone who wants to keep growing.</p>
     </div>
+
+    <a class="dash-jump-card" href="#/first-ten-weeks" style="border-left:4px solid var(--navy); padding:20px 22px; margin-bottom:14px; background:linear-gradient(180deg,#fbf9f4,#ffffff);">
+      <div class="jump-meta">Named track · pilot</div>
+      <div style="font-family:var(--font-serif); font-size:22px; color:var(--navy); margin-bottom:4px;">First Ten Weeks — one thing per week, in order →</div>
+      <div style="font-size:14px; color:var(--muted); font-weight:400;">A ten-week track built for teachers who are learning the craft on the job. Mapped onto the WHS Teaching → Learning → Engagement PD cycle. Ends with a printable ten-week record.</div>
+    </a>
 
     <a class="dash-jump-card" href="#/first-30-days" style="border-left:4px solid var(--gold); padding:20px 22px; margin-bottom:22px;">
       <div class="jump-meta">New here?</div>
@@ -3662,6 +3670,377 @@ async function renderFirst30Days(view) {
 }
 
 // ============================================================
+// FIRST TEN WEEKS — named track, one thing per week, in order.
+// Ten weeks mapped onto the WHS PD cycle (Teaching → Learning →
+// Engagement). Each week links to a page that already lives in the
+// Toolkit — no new content, just a spine. A reflection box saves
+// browser-local per week; a print button emits a ten-week record.
+// ============================================================
+const FIRST_TEN_WEEKS = [
+  // ---- WEEKS 1–3 : THE ROOM RUNS (cycle: Teaching) ------------
+  {
+    id: "wk1",
+    band: "Weeks 1–3 — The room runs",
+    bandTint: "navy",
+    cycle: "WHS PD cycle: Teaching",
+    title: "One entry routine — same thing every day from the bell",
+    why: "Not management theory. One routine, taught explicitly, run identically for five days. Kids know exactly what to do the second they walk in, and you do not have to earn their attention with volume.",
+    thePage: { label: "Classroom Systems — open the entry routines section", route: "#/classroom" },
+    tryThis: "Pick one Do Now format (a warm-up prompt, a retrieval question, or a silent-write). Write it on the board before students arrive every day this week. Do not change it, do not add to it, do not skip a day. If a student walks in and asks what to do, you are not done teaching it yet.",
+    successLook: "By Friday, at least 80% of students start the Do Now within 60 seconds of the bell, without being told.",
+    coachingWatch: "Coach watches the first five minutes of one class this week and reports back on one thing: what percent of students started within 60 seconds.",
+  },
+  {
+    id: "wk2",
+    band: "Weeks 1–3 — The room runs",
+    bandTint: "navy",
+    cycle: "WHS PD cycle: Teaching",
+    title: "A learning target students can read — and restate",
+    why: "Posting the target is not the skill. Getting a kid to say it back in their own words is. If they cannot restate it, they cannot self-check against it, and the whole rest of the lesson is guessing.",
+    thePage: { label: "Clarity — how to write a target students can read", route: "#/clarity" },
+    tryThis: "Rewrite each day's learning target so it starts with a verb a student would actually use. Post it. At two points in the lesson, cold-call one student and ask them to say the target back in their own words. If they cannot, you have your reteach for tomorrow.",
+    successLook: "By Friday, three cold-called students can restate the target in their own words without looking at the board.",
+    coachingWatch: "Coach walks the room mid-lesson and asks two students what they are learning today. Reports back: did the answer match the posted target.",
+  },
+  {
+    id: "wk3",
+    band: "Weeks 1–3 — The room runs",
+    bandTint: "navy",
+    cycle: "WHS PD cycle: Teaching",
+    title: "Directions and transitions — two-step, followed, without escalating",
+    why: "Most classroom-management collapses happen at transitions. Give a two-step direction, wait for compliance, do not repeat, do not raise your voice. If a routine is stable, transitions get shorter every day; if it is not, they get longer.",
+    thePage: { label: "Instructional Delivery — giving directions that get followed", route: "#/delivery" },
+    tryThis: "For every transition this week, do the exact same three moves: (1) name the destination and the deadline (\"papers in the tray, back in your seat, 30 seconds\"), (2) count down out loud, (3) narrate one thing a student is already doing right. Do not repeat directions. If a student does not comply, address it privately after.",
+    successLook: "By Friday, transitions between activities take under 60 seconds without you raising your voice.",
+    coachingWatch: "Coach times three transitions in one class. Reports back the average.",
+  },
+
+  // ---- WEEKS 4–6 : DO THEY ACTUALLY GET IT (cycle: Learning) ---
+  {
+    id: "wk4",
+    band: "Weeks 4–6 — Do they actually get it",
+    bandTint: "gold",
+    cycle: "WHS PD cycle: Learning",
+    title: "One formative check per lesson — three questions, that is it",
+    why: "You cannot respond to what you did not check. An exit ticket with three questions tied to the target is the smallest complete formative check. If a lesson does not end with one, you are guessing about tomorrow.",
+    thePage: { label: "Formative assessment strategies — in the Strategy Library", route: "#/strategies" },
+    tryThis: "Every day this week, end class with a three-question exit ticket that asks students to do the target (not describe it, do it). Question 1 is the floor of the target, question 2 is the target itself, question 3 is one step past. Collect them. Do not grade them.",
+    successLook: "By Friday, you have five exit-ticket stacks on your desk, one per day.",
+    coachingWatch: "Coach reads one day's stack with you and picks the one question that told you the most about what students learned.",
+  },
+  {
+    id: "wk5",
+    band: "Weeks 4–6 — Do they actually get it",
+    bandTint: "gold",
+    cycle: "WHS PD cycle: Learning",
+    title: "Reading what the check told you — sort into got it / partly / not yet",
+    why: "Most teachers collect exit tickets and never look at them diagnostically. Sorting a stack into three piles takes six minutes and tells you exactly what to open tomorrow's lesson with.",
+    thePage: { label: "Instructional Delivery — the check-for-understanding section", route: "#/delivery" },
+    tryThis: "Take one day's exit-ticket stack this week and sort it into three piles: got it, partly, not yet. Count each pile. Write on the top of the stack: what percent got it, and the single most common wrong answer. That is your data. That is what your Wednesday plan opens with.",
+    successLook: "By Friday, you have sorted at least three days' stacks and can name the most common wrong answer for each.",
+    coachingWatch: "Coach sits with you for the sort on one day. Ten minutes. That is the whole visit.",
+  },
+  {
+    id: "wk6",
+    band: "Weeks 4–6 — Do they actually get it",
+    bandTint: "gold",
+    cycle: "WHS PD cycle: Learning",
+    title: "Responding to what you found — reteach, pull, or extend",
+    why: "Sorting the stack is only useful if the next lesson changes because of it. Three responses cover almost every case: reteach the whole class if the got-it pile is thin, pull a small group if it is a few kids, extend the got-it group if it is most.",
+    thePage: { label: "Unit Planner — Stage 5 walks through response moves", route: "#/unit-plan" },
+    tryThis: "After each sort this week, write one sentence on your plan for the next day: \"Open with a reteach of ___,\" or \"Small group of ___ during independent work,\" or \"Extension for the got-it pile: ___.\" Then do the thing you wrote.",
+    successLook: "By Friday, every day's plan opens with a move that came out of the previous day's exit-ticket sort.",
+    coachingWatch: "Coach reads Monday's plan and Friday's plan. Reports back: did the moves get more specific across the week.",
+  },
+
+  // ---- WEEKS 7–8 : EVERY STUDENT THINKS (cycle: Engagement) ---
+  {
+    id: "wk7",
+    band: "Weeks 7–8 — Every student thinks",
+    bandTint: "orange",
+    cycle: "WHS PD cycle: Engagement",
+    title: "Total participation — off hands-up-only, where four kids carry the room",
+    why: "In a hands-up-only classroom, four kids do the thinking and everyone else waits it out. Total participation techniques force every student to commit to an answer at the same moment — whiteboards, turn-and-talk, cold call after wait time, ABCD cards.",
+    thePage: { label: "Engagement vs. Busywork — already the text for this", route: "#/engagement-vs-busywork" },
+    tryThis: "Pick one total-participation move (whiteboards, cold call with wait time, or turn-and-talk with sentence stems). Use it at least three times per lesson this week. Track for one day: what percent of students spoke or wrote at least once. If it is under 80%, run it more.",
+    successLook: "By Friday, on one tracked day, at least 80% of students spoke or wrote during instruction — not just the same four hands.",
+    coachingWatch: "Coach tally-marks who speaks or writes in one 15-minute segment. Reports back the count.",
+  },
+  {
+    id: "wk8",
+    band: "Weeks 7–8 — Every student thinks",
+    bandTint: "orange",
+    cycle: "WHS PD cycle: Engagement",
+    title: "The building focus — one Level 2 or 3 question, written response, evidence cited",
+    why: "This is the WHS building focus for the year. By week 8 you have the routines (weeks 1–3) and the checking (weeks 4–6) that make it survivable. Now every lesson ends with a written response to a Costa Level 2 or 3 question, with evidence students had to go find.",
+    thePage: { label: "Clarity + Instructional Delivery — pair these two guides", route: "#/clarity" },
+    tryThis: "Every day this week, plan one Costa Level 2 or 3 question tied to the target. Students write their response in three sentences: claim, evidence (with a source), reasoning. This can be the exit ticket. Do not accept \"I think so because I think so.\"",
+    successLook: "By Friday, every student has produced five written CER responses to a Level 2 or 3 question, one per day.",
+    coachingWatch: "Coach reads three student responses from one day — top, middle, bottom pile — and reports back on what the evidence sentence looked like.",
+  },
+
+  // ---- WEEKS 9–10 : PUT IT TOGETHER (cycle: all three) -------
+  {
+    id: "wk9",
+    band: "Weeks 9–10 — Put it together",
+    bandTint: "red",
+    cycle: "WHS PD cycle: Teaching → Learning → Engagement together",
+    title: "The follow-up question — what to say after a wrong answer",
+    why: "Hardest skill on the list, which is why it is late. When a student is wrong or partial, the reflex is to move to the next kid. The move is to stay with the same kid: ask a follow-up that gets them one step closer, or route the question to a peer and come back. Nobody escapes thinking.",
+    thePage: { label: "Instructional Delivery — questioning, wait time, follow-ups", route: "#/delivery" },
+    tryThis: "For one day this week, script five follow-up moves and keep them on an index card. Suggestions: \"Say more about that.\" \"What made you say ___?\" \"Who can build on what ___ said?\" \"Let's come back to you — [name], what do you think?\" \"Try again with the sentence stem 'The evidence for ___ is ___.'\" Use them. Notice how often you catch yourself moving on instead.",
+    successLook: "By Friday, on one tracked day, you stayed with a wrong-or-partial answer at least ten times instead of moving on.",
+    coachingWatch: "Coach tally-marks moving-on versus staying-with in one 15-minute segment. Reports back the ratio.",
+  },
+  {
+    id: "wk10",
+    band: "Weeks 9–10 — Put it together",
+    bandTint: "red",
+    cycle: "WHS PD cycle: Teaching → Learning → Engagement together",
+    title: "Plan one full unit — using everything above",
+    why: "Everything through week 9 has been at the lesson grain. Week 10 zooms out. Plan one full unit in the Unit Planner and require yourself to put in an entry routine (week 1), a target students can restate (week 2), a formative check every day (week 4), a response move for each check (weeks 5–6), a total-participation move (week 7), a CER question (week 8), and follow-ups (week 9). That is the whole track, in one artifact.",
+    thePage: { label: "Unit Planner — open a new unit", route: "#/unit-plan" },
+    tryThis: "Pick the next unit you have to teach. Open the Unit Planner. Walk all five stages. Do not skip a stage. When you finish, the unit contains one of every move from weeks 1–9 above. Print the unit and hand it to your coach.",
+    successLook: "By Friday, one full unit plan exists with an entry routine, restatable target, daily check, response move, total-participation move, CER question, and scripted follow-ups.",
+    coachingWatch: "Coach reads the unit plan. Reports back on which of the ten weeks shows up strongest, which is thinnest, and what to work on next semester.",
+  },
+];
+
+// Storage: mirror the First-30-Days pattern (cookie-backed, so it
+// survives browser restarts and is per-teacher-per-device).
+function _firstTenGet() {
+  const v = _CookieStore.get("qpd_first_ten");
+  return (v && typeof v === "object") ? v : {};
+}
+function _firstTenSet(state) {
+  _CookieStore.set("qpd_first_ten", state || {});
+}
+
+async function renderFirstTenWeeks(view) {
+  const state = _firstTenGet();
+  const teacher = TeacherStore.get();
+
+  // Progress: a week is "done" if the checkbox is checked.
+  const doneCount = FIRST_TEN_WEEKS.filter((w) => state[`${w.id}:done`]).length;
+  const pct = Math.round((doneCount / FIRST_TEN_WEEKS.length) * 100);
+
+  // Band tint → CSS var
+  const tint = { navy: "var(--navy)", gold: "var(--gold)", orange: "var(--orange)", red: "#a12a2a" };
+
+  view.innerHTML = `
+    <section class="hero hero-compact">
+      <div class="hero-media" style="background-image:url('./img/heroes/start-here.jpg');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <div class="eyebrow on-dark">Named track · Pilot</div>
+        <h1 class="hero-title">First Ten Weeks</h1>
+        <p class="hero-lede">One thing per week, in order. Ten weeks. Built for teachers learning the craft on the job — emergency-certified, alt-cert, first-year, or anyone who wants a spine to work through. Each week names one move, links to the page that teaches it, and gives you a box to write what happened.</p>
+      </div>
+    </section>
+
+    <div class="card" style="border-left:4px solid var(--gold); margin-bottom:16px;">
+      <div class="card-meta">A note on how to use this</div>
+      <div class="card-title">This is a pilot. Two or three teachers this semester.</div>
+      <p style="margin-top:6px;">The WHS PD cycle is already running Teaching → Learning → Engagement this fall. This track maps onto that cycle rather than competing with it: <strong>weeks 1–3 = Teaching</strong>, <strong>weeks 4–6 = Learning</strong>, <strong>weeks 7–8 = Engagement</strong>, and <strong>weeks 9–10 put them together</strong>. The rule for the pilot is <strong>one thing per week, and it is genuinely one</strong>. The instinct will be to add a second. Do not. A teacher who nails ten things by May is transformed.</p>
+      <p style="margin-top:6px;">The part the app cannot do: <strong>someone watches for five minutes each week</strong>, looking only for that week's move. Not an evaluation, no form. Late Start Monday models that week's move live; the app holds the resource and the reflection box. Tool and coaching, pointing at the same thing on the same week.</p>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+        <span style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);font-weight:700;">Your progress</span>
+        <span style="font-size:14px;color:var(--navy);font-weight:700;">${doneCount} / ${FIRST_TEN_WEEKS.length} weeks · ${pct}%</span>
+      </div>
+      <div class="thirty-progress"><div class="thirty-progress-bar" style="width:${pct}%;"></div></div>
+      ${!teacher ? `<p style="font-size:13px;color:var(--muted);margin-top:8px;"><em>Sign in with your name in the sidebar so what you type here saves to your browser.</em></p>` : ""}
+    </div>
+
+    ${(() => {
+      // Render weeks, grouping by band with a band header before each new band.
+      let lastBand = null;
+      return FIRST_TEN_WEEKS.map((w) => {
+        const key = w.id;
+        const doneKey = `${key}:done`;
+        const noteKey = `${key}:notes`;
+        const done = !!state[doneKey];
+        const notes = state[noteKey] || "";
+        const bandColor = tint[w.bandTint] || "var(--navy)";
+        const showBandHeader = w.band !== lastBand;
+        lastBand = w.band;
+        const pageLabel = escapeHtml(w.thePage.label);
+        const pageRoute = w.thePage.route;
+
+        return `
+          ${showBandHeader ? `
+            <div class="ftw-band-header" style="border-left:5px solid ${bandColor}; padding:12px 14px; background:#fbf9f4; margin:22px 0 10px 0;">
+              <div style="font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:800;">${escapeHtml(w.band)}</div>
+            </div>
+          ` : ""}
+          <div class="ftw-week" id="ftw-${escapeHtml(w.id)}" style="border:1px solid #e6dfd0; border-left:5px solid ${bandColor}; border-radius:6px; padding:18px 20px; margin-bottom:14px; background:#fff;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:6px;">
+              <div>
+                <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:800;">${escapeHtml(w.id.replace("wk", "Week "))} · ${escapeHtml(w.cycle)}</div>
+                <h3 style="font-family:var(--font-serif); font-size:22px; color:var(--navy); margin:4px 0 0 0;">${escapeHtml(w.title)}</h3>
+              </div>
+              <label style="display:flex; align-items:center; gap:6px; font-size:14px; color:var(--navy); font-weight:700; cursor:pointer; white-space:nowrap;">
+                <input type="checkbox" data-ftw-done="${escapeHtml(doneKey)}" ${done ? "checked" : ""} aria-label="Mark ${escapeHtml(w.id)} complete"/>
+                Week complete
+              </label>
+            </div>
+
+            <p style="margin:8px 0 12px 0;">${escapeHtml(w.why)}</p>
+
+            <div style="background:#f9f5eb; border-left:3px solid var(--gold); padding:10px 14px; margin:10px 0;">
+              <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:800;">The page</div>
+              <div style="margin-top:4px;"><a href="${pageRoute}">${pageLabel} →</a></div>
+            </div>
+
+            <div style="margin:10px 0;">
+              <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:800;">Try this, this week</div>
+              <p style="margin-top:4px;">${escapeHtml(w.tryThis)}</p>
+            </div>
+
+            <div style="margin:10px 0;">
+              <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:800;">Success looks like</div>
+              <p style="margin-top:4px;">${escapeHtml(w.successLook)}</p>
+            </div>
+
+            <div style="background:#eef3f8; border-left:3px solid var(--navy); padding:10px 14px; margin:10px 0;">
+              <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-weight:800;">Five-minute coaching watch</div>
+              <p style="margin-top:4px; margin-bottom:0;">${escapeHtml(w.coachingWatch)}</p>
+            </div>
+
+            <div style="margin-top:14px;">
+              <label for="ftw-notes-${escapeHtml(w.id)}" style="display:block; font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);font-weight:800; margin-bottom:4px;">What happened this week</label>
+              <textarea id="ftw-notes-${escapeHtml(w.id)}" data-ftw-notes="${escapeHtml(noteKey)}" rows="3" placeholder="One or two sentences. What did you try, and what did you notice." style="width:100%; padding:8px 10px; border:1px solid #d8cfba; border-radius:4px; font-family:inherit; font-size:14px;">${escapeHtml(notes)}</textarea>
+              <div style="font-size:12px; color:var(--muted); margin-top:4px;"><span data-ftw-saved="${escapeHtml(w.id)}"></span></div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    })()}
+
+    <div class="callout" style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
+      <div style="flex:1; min-width:220px;">
+        <h3 style="margin:0;">Print your ten weeks</h3>
+        <p style="margin:4px 0 0 0; font-size:14px; color:var(--muted);">Prints the full track with everything you wrote in the reflection boxes. Hand it to your coach at the end of the pilot.</p>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button id="ftw-print" class="btn primary">Print my ten weeks</button>
+        <button id="ftw-clear" class="btn" style="background:#fff; border:1px solid #d8cfba;">Clear my notes</button>
+      </div>
+    </div>
+  `;
+
+  // Wire done checkboxes
+  $$(".ftw-week input[type=checkbox][data-ftw-done]").forEach((cb) => {
+    cb.addEventListener("change", () => {
+      const st = _firstTenGet();
+      st[cb.dataset.ftwDone] = cb.checked;
+      _firstTenSet(st);
+      // Update progress
+      const total = FIRST_TEN_WEEKS.length;
+      const done = FIRST_TEN_WEEKS.filter((w) => st[`${w.id}:done`]).length;
+      const p = Math.round((done / total) * 100);
+      const bar = $(".thirty-progress-bar");
+      if (bar) bar.style.width = `${p}%`;
+    });
+  });
+
+  // Wire notes textareas — debounced save + subtle "Saved" indicator
+  $$(".ftw-week textarea[data-ftw-notes]").forEach((ta) => {
+    let t = null;
+    const weekId = ta.id.replace("ftw-notes-", "");
+    const savedSpan = document.querySelector(`[data-ftw-saved="${weekId}"]`);
+    ta.addEventListener("input", () => {
+      if (savedSpan) savedSpan.textContent = "Saving…";
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const st = _firstTenGet();
+        st[ta.dataset.ftwNotes] = ta.value;
+        _firstTenSet(st);
+        if (savedSpan) {
+          savedSpan.textContent = "Saved to this browser.";
+          setTimeout(() => { if (savedSpan) savedSpan.textContent = ""; }, 2500);
+        }
+      }, 400);
+    });
+  });
+
+  // Wire clear button (confirm)
+  const clearBtn = document.getElementById("ftw-clear");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (!confirm("Clear all your First Ten Weeks notes and checkmarks? This cannot be undone.")) return;
+      _firstTenSet({});
+      renderFirstTenWeeks(view);
+    });
+  }
+
+  // Wire print button — open a clean, self-contained printable window
+  const printBtn = document.getElementById("ftw-print");
+  if (printBtn) {
+    printBtn.addEventListener("click", () => {
+      const st = _firstTenGet();
+      const teacherName = teacher ? teacher : "";
+      const today = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+      const doneN = FIRST_TEN_WEEKS.filter((w) => st[`${w.id}:done`]).length;
+
+      const rows = FIRST_TEN_WEEKS.map((w) => {
+        const done = !!st[`${w.id}:done`];
+        const notes = (st[`${w.id}:notes`] || "").trim();
+        return `
+          <section class="ftw-print-week">
+            <div class="ftw-print-band">${escapeHtml(w.band)} · ${escapeHtml(w.cycle)}</div>
+            <h2>${escapeHtml(w.id.replace("wk", "Week "))}: ${escapeHtml(w.title)} ${done ? '<span class="ftw-print-done">✓ done</span>' : ""}</h2>
+            <p class="ftw-print-why"><strong>Why:</strong> ${escapeHtml(w.why)}</p>
+            <p><strong>Try this:</strong> ${escapeHtml(w.tryThis)}</p>
+            <p><strong>Success looks like:</strong> ${escapeHtml(w.successLook)}</p>
+            <p><strong>Coaching watch:</strong> ${escapeHtml(w.coachingWatch)}</p>
+            <div class="ftw-print-notes">
+              <div class="ftw-print-notes-label">What happened this week</div>
+              <div class="ftw-print-notes-body">${notes ? escapeHtml(notes).replace(/\n/g, "<br>") : '<em style="color:#888;">No notes.</em>'}</div>
+            </div>
+          </section>
+        `;
+      }).join("");
+
+      const doc = `<!doctype html><html><head><meta charset="utf-8"><title>First Ten Weeks — ${escapeHtml(teacherName || "Teacher")}</title>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; color: #1a1a1a; max-width: 720px; margin: 40px auto; padding: 0 24px; line-height: 1.5; }
+  h1 { font-size: 26px; margin: 0 0 4px 0; color: #14284b; }
+  .ftw-print-meta { color: #555; font-size: 13px; margin-bottom: 24px; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+  .ftw-print-week { margin-bottom: 28px; page-break-inside: avoid; }
+  .ftw-print-band { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666; font-weight: 700; margin-bottom: 4px; }
+  h2 { font-size: 17px; margin: 0 0 10px 0; color: #14284b; }
+  .ftw-print-done { color: #226622; font-weight: 700; font-size: 13px; margin-left: 6px; }
+  p { margin: 6px 0; font-size: 14px; }
+  .ftw-print-why { border-left: 3px solid #b8912b; padding-left: 10px; color: #333; }
+  .ftw-print-notes { margin-top: 10px; border: 1px solid #ccc; padding: 10px 12px; border-radius: 4px; background: #fafaf5; }
+  .ftw-print-notes-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666; font-weight: 700; margin-bottom: 4px; }
+  .ftw-print-notes-body { font-size: 14px; }
+  @media print { body { margin: 0; max-width: none; } }
+</style></head><body>
+  <h1>First Ten Weeks — named track record</h1>
+  <div class="ftw-print-meta">
+    ${teacherName ? escapeHtml(teacherName) + " · " : ""}${escapeHtml(today)} · ${doneN} of ${FIRST_TEN_WEEKS.length} weeks marked complete
+    <br>The Turner Instructional Toolkit · Wewoka High School
+  </div>
+  ${rows}
+  <p style="margin-top:24px; font-size:11px; color:#888; border-top:1px solid #ccc; padding-top:8px;">Printed from the Turner Instructional Toolkit. Notes are saved to your browser only.</p>
+</body></html>`;
+
+      const w = window.open("", "_blank", "noopener,width=900,height=800");
+      if (!w) { alert("Please allow pop-ups for this site so the printable record can open in a new tab."); return; }
+      w.document.open();
+      w.document.write(doc);
+      w.document.close();
+      // Give the new window a beat to parse before triggering print.
+      setTimeout(() => { try { w.focus(); w.print(); } catch (e) {} }, 350);
+    });
+  }
+}
+
+// ============================================================
 // ABOUT
 // ============================================================
 async function renderAbout(view) {
@@ -3753,6 +4132,7 @@ function _searchIndex() {
   [
     { label: "Start Here", sub: "Dashboard", href: "#/start-here" },
     { label: "First 30 Days", sub: "Onboarding path", href: "#/first-30-days" },
+    { label: "First Ten Weeks", sub: "Named ten-week track · one thing per week", href: "#/first-ten-weeks" },
     { label: "Write My PL Goal", sub: "Tool", href: "#/pl-tool" },
     { label: "Unit Planner", sub: "Tool", href: "#/unit-plan" },
     { label: "Why Backward Planning", sub: "Teacher guide", href: "#/why-backward-planning" },
