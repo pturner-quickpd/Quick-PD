@@ -156,7 +156,7 @@
     return wrap;
   }
 
-  // ---------- Strategy picker (all 192 Tier 1 strategies from data.js) ----------
+  // ---------- Strategy picker (all Tier 1 strategies, grouped by category) ----------
   function allStrategies() {
     var data = (window.QPD_DATA && window.QPD_DATA.strategies) || null;
     if (!data || !Array.isArray(data.groups)) return [];
@@ -195,7 +195,9 @@
     function render() {
       wrap.innerHTML = "";
       if (!items.length) {
-        wrap.appendChild(el("div", { class: "std-list-empty" }, "No strategies pulled in yet. Use the picker below to browse all 192 Tier 1 strategies."));
+        var totalN = allStrategies().length;
+        var totalTxt = totalN ? ("all " + totalN + " Tier 1 strategies") : "the Tier 1 strategy library";
+        wrap.appendChild(el("div", { class: "std-list-empty" }, "No strategies pulled in yet. Use the picker below to browse " + totalTxt + "."));
       } else {
         items.forEach(function (s, i) {
           var chip = el("div", { class: "std-list-chip strat-list-chip" }, [

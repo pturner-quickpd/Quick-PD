@@ -179,9 +179,38 @@ const Data = {
     if (!this.seating) this.seating = await fetchJSON("/api/seating-guides");
     if (!this.standards) this.standards = await fetchJSON("/api/standards-guides");
     if (!this.qpd) this.qpd = await fetchJSON("/api/qpd-content");
+    this._publishQpdData();
   },
   async reloadStrategies() {
     this.strategies = this._withElementaryRows(await fetchJSON("/api/strategies"));
+    this._publishQpdData();
+  },
+  // Expose the flat strategies list to planner-core.js in the shape it expects:
+  // window.QPD_DATA.strategies = { groups: [{label, items: [...]}, ...] }
+  // Grouped by .category so the picker's "Group" dropdown shows the 7 real
+  // Tier 1 categories with real counts. Without this, planner-core reads an
+  // empty QPD_DATA and every Stage 3 picker renders "All groups (0)".
+  _publishQpdData() {
+    var list = Array.isArray(this.strategies) ? this.strategies : [];
+    var byGroup = {};
+    var order = [];
+    for (var i = 0; i < list.length; i++) {
+      var s = list[i];
+      if (!s || !s.title) continue;
+      var g = (s.category || "Other").trim() || "Other";
+      if (!byGroup[g]) { byGroup[g] = []; order.push(g); }
+      byGroup[g].push({
+        id: s.id,
+        title: s.title,
+        description: s.description || "",
+        subjects: s.subjects || [],
+        grades: s.grades || [],
+        toolkitUrl: s.sourceUrl || s.evidenceSourceUrl || "",
+      });
+    }
+    var groups = order.map(function (label) { return { label: label, items: byGroup[label] }; });
+    window.QPD_DATA = window.QPD_DATA || {};
+    window.QPD_DATA.strategies = { groups: groups };
   },
   // Merge the K–5 / Feedback strategy cards (defined in elementary.js as
   // window.ElementaryLibraryRows) into the main library so subject/grade

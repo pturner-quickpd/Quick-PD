@@ -209,7 +209,7 @@
       PC.field("wp-lit-text",   "Text students will read", "Title, source, and rough length.", PC.textArea("wp-lit-text", "", "", 2)),
       PC.field("wp-lit-prompt", "Writing prompt",           "The evidence-based response you're asking for.", PC.textArea("wp-lit-prompt", "", "", 2)),
       PC.field("wp-strategies-wrap", "Tier 1 strategies pulled into this week",
-        "Pull any of the 192 Tier 1 strategies from the library below — name, description, and Toolkit link travel with the plan.",
+        "Pull any of the " + (PC.allStrategies().length || "400+") + " Tier 1 strategies from the library below \u2014 name, description, and Toolkit link travel with the plan.",
         wpStrats.el),
       PC.strategyPicker({ insertLabel: "Pull into plan", onInsert: wpStrats.add }),
     ]);
@@ -258,7 +258,14 @@
           location.reload();
         }
       } }, "Clear draft"),
-      el("div", { class: "planner-actions-note" }, "This plan auto-saves to your browser as you type. Use \"Download as Word\" to keep a permanent copy for your PLC binder."),
+      el("div", { class: "planner-actions-note planner-actions-warn" }, [
+        el("strong", {}, "Heads up: "),
+        "this saves to ",
+        el("strong", {}, "this browser only"),
+        ". If you clear cookies, switch devices, or use a different browser, this draft is gone. ",
+        el("strong", {}, "Download as Word"),
+        " before you close the tab \u2014 that\u2019s your real copy.",
+      ]),
     ]));
 
     // Restore draft & wire auto-save
@@ -433,7 +440,7 @@
       el("h2", { class: "section-title" }, "How will students engage with the content every day?"),
       el("p", { class: "section-lede" }, "The core instructional moves that carry the unit day to day — the strategies, texts, and tasks students will meet in every class."),
       PC.field("up-strategies-wrap", "Tier 1 strategies pulled into this unit",
-        "Pull any of the 192 Tier 1 strategies from the library below — name, description, and Toolkit link travel with the plan and export in the Word file.",
+        "Pull any of the " + (PC.allStrategies().length || "400+") + " Tier 1 strategies from the library below \u2014 name, description, and Toolkit link travel with the plan and export in the Word file.",
         upStrats.el),
       PC.strategyPicker({ insertLabel: "Pull into unit", onInsert: upStrats.add }),
       PC.field("up-tier1-strats", "Notes on how strategies will be sequenced",
@@ -545,7 +552,14 @@
           location.reload();
         }
       } }, "Clear draft"),
-      el("div", { class: "planner-actions-note" }, "This plan auto-saves to your browser as you type."),
+      el("div", { class: "planner-actions-note planner-actions-warn" }, [
+        el("strong", {}, "Heads up: "),
+        "this saves to ",
+        el("strong", {}, "this browser only"),
+        ". Different device or cleared cookies = gone. ",
+        el("strong", {}, "Download as Word"),
+        " before you close the tab.",
+      ]),
     ]));
 
     var saved = PC.loadDraft(DRAFT_KEY);
@@ -710,7 +724,7 @@
     var dpStrats = PC.strategyList("dp-strategies", []);
     var stratSec = el("section", { class: "form-section", id: "dp-strategies-sec" }, [
       el("h2", { class: "section-title" }, "Tier 1 strategies in play today"),
-      el("p", { class: "section-lede" }, "Pull the exact strategies you'll run today from all 192 in the library. Each one carries its name, its summary, and a link back to the live Toolkit page — all of it prints on the Word file."),
+      el("p", { class: "section-lede" }, "Pull the exact strategies you'll run today from all " + (PC.allStrategies().length || "400+") + " in the library. Each one carries its name, its summary, and a link back to the live Toolkit page \u2014 all of it prints on the Word file."),
       PC.field("dp-strategies-wrap", "Strategies for today's lesson", null, dpStrats.el),
       PC.strategyPicker({ insertLabel: "Pull into lesson", onInsert: dpStrats.add }),
     ]);
@@ -778,7 +792,14 @@
           location.reload();
         }
       } }, "Clear draft"),
-      el("div", { class: "planner-actions-note" }, "This plan auto-saves to your browser as you type."),
+      el("div", { class: "planner-actions-note planner-actions-warn" }, [
+        el("strong", {}, "Heads up: "),
+        "this saves to ",
+        el("strong", {}, "this browser only"),
+        ". Different device or cleared cookies = gone. ",
+        el("strong", {}, "Download as Word"),
+        " before you close the tab.",
+      ]),
     ]));
 
     var saved = PC.loadDraft(DRAFT_KEY);

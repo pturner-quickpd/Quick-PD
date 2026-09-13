@@ -294,15 +294,27 @@ p { margin: 0 0 12px; color: var(--ink-2); overflow-wrap: anywhere; }
   .sidebar-scrim { display: none; }
   .sidebar.open ~ .sidebar-scrim,
   .sidebar-scrim.open { display: block; }
-  .content { padding: 72px 20px 60px; }
+  /* Push content below the fixed Menu button so page titles and stage badges
+     aren't overlapped when the user is at the top of the page. Button sits
+     at banner-h(34) + 8 top and is ~40px tall = ~82px, so give the content
+     top padding of 92px plus a little breathing room. */
+  .content { padding: 96px 20px 60px; }
   .page-title { font-size: 26px; }
   .compare { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .content { padding: 68px 16px 48px; }
+  .content { padding: 92px 16px 48px; }
   .card { padding: 18px; }
   .search-input { min-width: 100%; }
   .week-grid { grid-template-columns: 1fr; }
+  /* Shrink the fixed Menu button on phones so it doesn't blanket page content
+     as the user scrolls. Icon-only, label hidden. */
+  .sidebar-toggle {
+    padding: 9px 11px;
+    gap: 0;
+  }
+  .sidebar-toggle span { display: none; }
+  .sidebar-toggle svg { width: 22px; height: 22px; display: block; }
 }
 
 /* ============================================================
@@ -1007,6 +1019,17 @@ mark {
   border-bottom: 1px solid #F3F4F6;
   align-items: start;
 }
+/* On phones the 3-column grid squeezes standard text into a narrow strip and
+   clips the Add button. Stack: code on line 1, text on line 2, button full-width
+   line 3 — so the whole standard is readable and the Add tap target is honest. */
+@media (max-width: 600px) {
+  .std-picker-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 12px;
+  }
+  .std-picker-row .btn { width: 100%; margin-top: 4px; }
+}
 .std-picker-row:last-child { border-bottom: none; }
 .std-picker-row:hover { background: #FAFAFA; }
 .std-picker-row-code {
@@ -1245,6 +1268,20 @@ mark {
   order: 99;
   padding-top: 4px;
 }
+/* Louder variant: draws the eye so the browser-only save caveat isn't
+   invisible next to the shipped-looking action buttons. */
+.planner-actions-warn {
+  color: #7A2E0E;
+  background: #FFF7ED;
+  border-left: 3px solid #D4A537;
+  padding: 8px 12px;
+  font-style: normal;
+  font-size: 13px;
+  border-radius: 4px;
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.planner-actions-warn strong { color: #5A2109; }
 .walk-launcher {
   display: flex;
   justify-content: center;
