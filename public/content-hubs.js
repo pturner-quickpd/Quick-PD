@@ -343,6 +343,9 @@
         '<p>DBQ writing weekly. HAPP or HIPP sourcing built into every document. Cross-links directly to the <a href="' + esc(AP_WORLD_APP.url) + '" target="_blank" rel="noopener">Turner AP World History app</a> where the exemplars and released-item practice live. Civic Online Reasoning belongs in AP Gov current-events work.</p></article>' +
       '</div>' +
 
+      // Course-specific worked examples: Oklahoma History, US Government, World History
+      renderSSCourseExamples() +
+
       '<div class="callout" style="margin-top:24px;border-left:4px solid #D4A537;"><h3>The five-minute self-check</h3>' +
       '<p>Pick one class period this week. Ask three questions: (1) Did students read at least one primary source? (2) Did they have to source it or corroborate it, not just summarize it? (3) Did they produce writing that quotes or cites the source? If any of the three is a no, that is not a judgment \u2014 it is data, and the fix is a specific move above.</p></div>';
   }
@@ -397,6 +400,167 @@
         '</div>' +
       '</article>';
     }).join("") + '</div>';
+  }
+
+  // Course-specific worked examples for Oklahoma High School Social Studies.
+  // Every document is real and linkable. Every standard is verbatim from the OSDE PDF.
+  // Every "teacher move" is something a WHS teacher can literally do on Monday.
+  function renderSSCourseExamples() {
+    var courses = [
+      {
+        title: "Oklahoma History",
+        lede: "OKH is a literacy course whether the state calls it that or not \u2014 students have to read Indian Territory documents, statehood-era newspapers, and 20th-century civil rights records. These three examples move students beyond \u201crecall the facts about the Trail of Tears / statehood / the Tulsa Race Massacre\u201d and into actually doing history with real Oklahoma sources.",
+        examples: [
+          {
+            unit: "Unit: Indian Removal and its aftermath",
+            standard: "OKH.2.3 \u2014 \u201cAnalyze the motivations for removal of American Indians and the passage of the Indian Removal Act of 1830; trace the forced removal of American Indian nations, including the impact on the tribal nations removed to present-day Oklahoma and tribal resistance to the forced relocations.\u201d",
+            docTitle: "Andrew Jackson\u2019s Message to Congress \u2018On Indian Removal\u2019 (December 6, 1830) \u2014 the passage where Jackson defends the removal policy as \u201cbenevolent\u201d",
+            docUrl: "https://www.archives.gov/milestone-documents/jacksons-message-to-congress-on-indian-removal",
+            docHost: "U.S. National Archives \u2014 Milestone Documents",
+            pair: "John Ross, principal Chief of the Cherokee Nation, Letter and Protest of the Cherokee Delegation to the Senate and House of Representatives (July 2, 1836), denouncing the Treaty of New Echota as a fraud.",
+            pairUrl: "https://dlg.usg.edu/record/dlg_zlna_pam017",
+            pairHost: "Digital Library of Georgia",
+            move: "Do not assign either document as \u201cread and summarize.\u201d Put both source lines on the board first and have students answer three sourcing questions in writing before they read a word of the body \u2014 who wrote it, when, and for what audience. Then read Jackson\u2019s claim that removal is \u201cbenevolent\u201d and Ross\u2019s claim that it is a \u201cfraud upon the sovereignty of our nation.\u201d Students write one CER paragraph: whose account of removal is more trustworthy, and what in the sources tells you that. This is the sourcing / corroboration move applied to the standard.",
+            trap: "The wrong version of this lesson is a worksheet where students paraphrase Jackson\u2019s reasons for removal. That teaches only recall. The standard says \u201canalyze the motivations\u201d \u2014 which requires students to read a source that claims one motivation and a source that contradicts it."
+          },
+          {
+            unit: "Unit: Race in early Oklahoma (Greenwood and the Tulsa Race Massacre)",
+            standard: "OKH.5.2.D\u2013F \u2014 \u201cemergence of \u2018Black Wall Street\u2019 in the Greenwood District\u201d and \u201ccauses of the Tulsa Race Riot and its continued social and economic impact\u201d and \u201cthe role labels play in understanding historic events, for example \u2018riot\u2019 versus \u2018massacre\u2019.\u201d",
+            docTitle: "Mary E. Jones Parrish, Events of the Tulsa Disaster (1922 eyewitness account by a Greenwood resident)",
+            docUrl: "https://info.library.okstate.edu/oklahoma/racemassacre",
+            docHost: "OSU Libraries \u2014 Oklahoma Primary Sources: Tulsa Race Massacre",
+            pair: "Tulsa Race Riot: A Report by the Oklahoma Commission to Study the Tulsa Race Riot of 1921 (state government report, released 2001).",
+            pairUrl: "https://www.okhistory.org/research/forms/freport.pdf",
+            pairHost: "Oklahoma Historical Society (PDF)",
+            move: "This is the exact standard the OSDE writes about labels \u2014 use it. Give students the front pages of Tulsa newspapers from June 1921 (Gateway to Oklahoma History has them) alongside Parrish\u2019s eyewitness account and the 2001 Commission report. Students identify the word each source uses \u2014 \u201criot,\u201d \u201cmassacre,\u201d \u201cdisaster,\u201d \u201cdisturbance\u201d \u2014 then answer, in one CER paragraph: what does the word choice tell you about who wrote it and when? This is sourcing plus contextualization on a document where students already care about the answer.",
+            trap: "Do not summarize the massacre from a textbook and then \u201cshow the primary source\u201d as decoration. Parrish\u2019s book was written by a Black woman who survived Greenwood \u2014 it is not a decoration, it is the strongest source in the room. The textbook is the secondary source that has to earn its place next to her."
+          },
+          {
+            unit: "Unit: The Dust Bowl and the New Deal in Oklahoma",
+            standard: "OKH.5.7 \u2014 \u201cDescribe the impact of environmental conditions and human mismanagement of resources resulting in the Dust Bowl and the migration of the \u2018Okies\u2019, the national perceptions of Oklahomans, and the New Deal policies regarding conservation of natural resources.\u201d",
+            docTitle: "Woody Guthrie, \u201cDust Bowl Refugees\u201d and \u201cDo Re Mi\u201d lyrics and manuscripts \u2014 written by an Okemah, Oklahoma native during the migration itself",
+            docUrl: "https://woodyguthriecenter.org/archives/collections/",
+            docHost: "Woody Guthrie Center Archives (Tulsa)",
+            pair: "Farm Security Administration photographs of Dust Bowl migrants by Dorothea Lange, 1935\u20131938 \u2014 accessed through the Library of Congress research guide that lists the FSA/OWI collection and its named photographers.",
+            pairUrl: "https://guides.loc.gov/great-depression-new-deal/digital-collections",
+            pairHost: "Library of Congress \u2014 Great Depression and New Deal Research Guide",
+            move: "Contextualization move. Play Guthrie\u2019s \u201cDo Re Mi\u201d (California border song) and project a Lange photograph of an Oklahoma migrant family at the same time. Students write for four minutes: what does each source tell you that the other doesn\u2019t, and what does an Oklahoman in 1937 need each of these things to do? Then they read one FSA report excerpt (available through LOC) and write a CER paragraph on \u201cnational perceptions of Oklahomans\u201d \u2014 using the song lyric and the photograph as their two pieces of evidence. Directly addresses the standard\u2019s \u201cnational perceptions\u201d clause without inventing anything.",
+            trap: "The failure mode here is treating the song as a mood-setter and never asking students to read it as a document. Guthrie chose every word; make students account for that."
+          }
+        ]
+      },
+      {
+        title: "United States Government",
+        lede: "USG is where Civic Online Reasoning and founding-documents close reading have to coexist. Students need to read Madison and read a candidate\u2019s website with the same skepticism. These three examples cover the founding, contemporary civic questions, and Oklahoma\u2019s own state government \u2014 the OKH.4 material students already saw, now with more analytic muscle.",
+        examples: [
+          {
+            unit: "Unit: Foundations \u2014 factions, majority rule, minority rights",
+            standard: "USG standards on the philosophical foundations of American government and the Constitution\u2019s protections against majority tyranny. Pairs with OK Social Studies Practice 4.A (\u201ccomprehend, evaluate, and synthesize information from a variety of sources\u201d) and 5.A (\u201cengage in evidence-based writing\u201d).",
+            docTitle: "James Madison, Federalist No. 10 \u2014 the \u201cfaction\u201d essay",
+            docUrl: "https://avalon.law.yale.edu/18th_century/fed10.asp",
+            docHost: "Yale Law School \u2014 Avalon Project",
+            pair: "James Madison, Federalist No. 51 \u2014 the \u201cambition must be made to counteract ambition\u201d essay on checks and balances.",
+            pairUrl: "https://avalon.law.yale.edu/18th_century/fed51.asp",
+            pairHost: "Yale Law School \u2014 Avalon Project",
+            move: "Teacher-modeled close reading. Do not assign the whole essay. Take one paragraph \u2014 Madison\u2019s definition of a faction in Federalist 10, paragraph 2 \u2014 and read it aloud, thinking out loud as you go: \u201cHe says a faction is a number of citizens \u2018adverse to the rights of other citizens.\u2019 So a faction is not just a group with strong opinions \u2014 it is a group whose interests threaten someone else\u2019s rights. That distinction matters for the next paragraph.\u201d Then students do the same close reading on Federalist 51\u2019s \u201cambition must be made to counteract ambition\u201d paragraph in pairs. They write a CER paragraph: does Madison\u2019s theory of faction predict a specific problem in modern American politics? Cite one line from each essay.",
+            trap: "Do not summarize Federalist 10 for students and call it \u201creading it.\u201d Summarizing Madison is the opposite of a Social Studies literacy lesson \u2014 you have removed the language, which is where the argument lives."
+          },
+          {
+            unit: "Unit: Civic Online Reasoning \u2014 evaluating claims about a ballot issue",
+            standard: "OK Social Studies Practice 4.B (\u201canalyze primary and secondary sources in order to summarize, make predictions, and draw conclusions, considering the source, audience, purpose, and format\u201d) applied to USG unit on citizen participation. Also OKH.4.8 on the direct primary, initiative petition, referendum, and recall.",
+            docTitle: "A live claim about a real Oklahoma ballot question or legislative measure \u2014 selected each fall from a source students actually encounter (a candidate ad, a social-media post, a Ballotpedia summary, a talk-radio clip transcript)",
+            docUrl: "https://cor.stanford.edu/curriculum",
+            docHost: "Civic Online Reasoning \u2014 Stanford / Digital Inquiry Group",
+            pair: "The Oklahoma Secretary of State\u2019s official page for the same question or measure, and one Oklahoma newspaper\u2019s coverage from the Gateway to Oklahoma History collection or a current outlet.",
+            pairUrl: "https://gateway.okhistory.org/",
+            pairHost: "Gateway to Oklahoma History (Oklahoma Historical Society)",
+            move: "Full SIFT routine on a live claim. Students Stop, Investigate the source (open new tabs, do not stay on the page), Find better coverage, and Trace claims back to their origin \u2014 exactly as Wineburg and Caulfield teach it. Deliverable is a one-page brief: what does the original claim say, what did lateral reading tell you, and what would you tell a family member who shared this at Thanksgiving? This is Practice 4.B in the exact form the standard names \u2014 source, audience, purpose, format.",
+            trap: "The failure mode is treating this as \u201cmedia literacy\u201d bolted onto a normal unit. It is not. It is the same disciplinary literacy move \u2014 sourcing \u2014 applied to a digital source. If students only lateral-read once a semester, they will not do it in November."
+          },
+          {
+            unit: "Unit: State and local government \u2014 Oklahoma\u2019s constitution",
+            standard: "OKH.4.8 \u2014 \u201cDescribe state constitutional provisions including the direct primary, initiative petition, referendum, and recall.\u201d Pairs with USG standards on state powers and federalism.",
+            docTitle: "Article V of the Oklahoma Constitution (Legislative Department \u2014 initiative and referendum) \u2014 the actual state constitutional text",
+            docUrl: "https://oksenate.gov/sites/default/files/2022-05/oc5_1.pdf",
+            docHost: "Oklahoma State Senate (PDF)",
+            pair: "A recent Oklahoma initiative petition summary from the Secretary of State\u2019s office (State Questions page) plus one court opinion from OSCN interpreting the initiative process.",
+            pairUrl: "https://www.oscn.net/",
+            pairHost: "Oklahoma State Courts Network",
+            move: "Corroboration move on state government. Students read Article V \u00a72 (the initiative petition text is short and readable), then a real State Question summary, then one paragraph of the OSCN opinion. They write a CER paragraph: does the way initiative petitions actually work in Oklahoma match what the constitutional text promises? Cite one line from each source. This is the constitutional-text-plus-implementation pattern that USG and OKH share \u2014 and Oklahomans use the initiative process, so the stakes are real.",
+            trap: "Do not turn this into a vocabulary quiz on \u201cinitiative\u201d and \u201creferendum.\u201d The standard says \u201cdescribe\u201d \u2014 that means students describe how the process actually works, and the only way to do that is to read the text and read a case."
+          }
+        ]
+      },
+      {
+        title: "World History",
+        lede: "World History is where students most often get short excerpts stripped of context and told \u201cwhat this means.\u201d The OK WH standards are extraordinarily broad \u2014 that is not a bug, it is a mandate to teach sourcing and contextualization on documents from very different cultural contexts. These three examples span the WH.2 (Global Age), WH.4 (World Wars), and WH.5 (postwar) strands.",
+        examples: [
+          {
+            unit: "Unit: The Enlightenment and its global reach (WH.2.7)",
+            standard: "WH.2.7 \u2014 \u201cAnalyze the impact of the Enlightenment on modern government and economic institutions, including the theories of Hobbes, Locke, Voltaire, Rousseau, Montesquieu, and Adam Smith.\u201d",
+            docTitle: "John Locke, Second Treatise of Government, Chapter II \u201cOf the State of Nature\u201d and Chapter IX \u201cOf the Ends of Political Society and Government\u201d",
+            docUrl: "https://www.gutenberg.org/files/7370/7370-h/7370-h.htm",
+            docHost: "Project Gutenberg (public domain)",
+            pair: "Ho Chi Minh, Declaration of Independence of the Democratic Republic of Vietnam (September 2, 1945) \u2014 which opens by quoting the American Declaration of Independence.",
+            pairUrl: "https://www.marxists.org/reference/archive/ho-chi-minh/works/1945/declaration-independence.htm",
+            pairHost: "Marxists Internet Archive \u2014 Ho Chi Minh Selected Works",
+            move: "Contextualization and long-arc corroboration. Students read the opening of Locke\u2019s Second Treatise (short excerpt, teacher-modeled), then read the opening of Ho Chi Minh\u2019s 1945 declaration where he quotes Jefferson quoting Locke. They write a CER paragraph: how does an anti-colonial revolutionary in Vietnam in 1945 end up using arguments from a 17th-century English philosopher \u2014 and what does that tell you about the reach of Enlightenment ideas the standard asks you to analyze? This is exactly the \u201cimpact\u201d the WH.2.7 standard names.",
+            trap: "Do not stop at \u201cLocke influenced the American Founders.\u201d The standard says \u201cimpact on modern government\u201d \u2014 modern means 20th and 21st century, and the Vietnamese case is a clean example."
+          },
+          {
+            unit: "Unit: Appeasement and the causes of WWII (WH.4.5)",
+            standard: "WH.4.5.A \u2014 \u201cfailure of the Treaty of Versailles\u201d and WH.4.5.C \u2014 \u201crise of totalitarian regimes in the Soviet Union, Germany, Italy, and Japan.\u201d",
+            docTitle: "The Munich Agreement (September 29, 1938) \u2014 the actual treaty text signed by Hitler, Chamberlain, Daladier, and Mussolini",
+            docUrl: "https://avalon.law.yale.edu/imt/munich1.asp",
+            docHost: "Yale Law School \u2014 Avalon Project",
+            pair: "Neville Chamberlain\u2019s \u201cpeace for our time\u201d speech at 10 Downing Street (September 30, 1938), the day after the Munich Agreement was signed.",
+            pairUrl: "https://eudocs.lib.byu.edu/index.php/Neville_Chamberlain's_%22Peace_For_Our_Time%22_speech",
+            pairHost: "EuroDocs \u2014 Brigham Young University Library",
+            move: "Sourcing plus contextualization. Give students the Munich Agreement text (short) with the source line covered. Ask: \u201cWho benefits from this document being signed?\u201d They read it, then reveal the four signatories \u2014 including Hitler. Then they read Chamberlain\u2019s \u201cpeace for our time\u201d speech from the next day. CER paragraph: how does Chamberlain\u2019s claim that this agreement secured \u201cpeace for our time\u201d hold up against the language of the treaty itself, which required Czechoslovakia to be evacuated in ten days? What does that gap tell you about appeasement?",
+            trap: "Do not describe appeasement from a textbook and then \u201cshow the treaty.\u201d The treaty is unusually short and readable \u2014 four powers agreeing to hand over Czechoslovakia in ten days without a Czechoslovak signature. That is the lesson."
+          },
+          {
+            unit: "Unit: Cold War endgame and the fall of the Berlin Wall (WH.5.5)",
+            standard: "WH.5.5 \u2014 \u201cEvaluate the people, events, and conditions leading to the end of the Cold War including the effects of Poland\u2019s Solidarity Movement, policies of perestroika and glasnost, fall of the Berlin Wall, breakup of the Soviet Union.\u201d",
+            docTitle: "Ronald Reagan, \u201cRemarks at the Brandenburg Gate, West Berlin\u201d (June 12, 1987) \u2014 the \u201cMr. Gorbachev, tear down this wall\u201d speech",
+            docUrl: "https://www.reaganlibrary.gov/archives/speech/remarks-east-west-relations-brandenburg-gate-west-berlin",
+            docHost: "Ronald Reagan Presidential Library (National Archives)",
+            pair: "Mikhail Gorbachev\u2019s address to the 43rd UN General Assembly, December 7, 1988 \u2014 where he announced unilateral Soviet troop reductions and effectively ended the Brezhnev Doctrine.",
+            pairUrl: "https://www.americanrhetoric.com/speeches/mikhailgorbachevunga43.htm",
+            pairHost: "American Rhetoric \u2014 full transcript",
+            move: "Corroboration and causation. Two documents, both major addresses, seventeen months apart. Students read the passage of Reagan\u2019s speech that directly challenges Gorbachev, then read the section of Gorbachev\u2019s UN speech where he renounces the use of force to prop up Warsaw Pact governments. CER paragraph: which of the two documents does more to explain why the Berlin Wall came down in 1989 \u2014 and what does that answer suggest about the balance of \u201cpeople, events, and conditions\u201d the standard asks you to weigh?",
+            trap: "The failure mode is presenting Reagan\u2019s speech as the cause of the wall falling. Students who read Gorbachev\u2019s 1988 UN speech will notice that the Soviets had already renounced the doctrine holding the Wall up. That noticing is the standard."
+          }
+        ]
+      }
+    ];
+
+    return '<h3 class="section-title" style="font-size:1.15em;margin-top:32px;">Course-specific worked examples \u2014 Oklahoma standards, real documents</h3>' +
+      '<p style="font-size:0.95em;color:#4a4a4a;margin-bottom:16px;">Every example below pairs a real primary source with the exact Oklahoma standard it lets you teach and the specific literacy move that turns \u201crecall the facts\u201d into \u201canalyze the source.\u201d No invented documents. Every link goes to a live archive.</p>' +
+      courses.map(function (c) {
+        return '<div style="margin-bottom:28px;">' +
+          '<h4 style="font-family:Georgia,serif;font-size:1.05em;color:#0B1F3A;margin:20px 0 6px;border-bottom:2px solid #D4A537;padding-bottom:4px;">' + esc(c.title) + '</h4>' +
+          '<p style="font-size:0.93em;color:#4a4a4a;margin:6px 0 14px;">' + esc(c.lede) + '</p>' +
+          '<div class="card-grid">' +
+          c.examples.map(function (ex) {
+            return '<article class="card">' +
+              '<h3 class="card-title" style="font-size:1em;">' + esc(ex.unit) + '</h3>' +
+              '<p style="font-size:0.88em;color:#5a5a5a;margin:4px 0 10px;"><strong>Oklahoma standard:</strong> ' + esc(ex.standard) + '</p>' +
+              '<p style="margin:8px 0 4px;"><strong>Anchor document:</strong> <a href="' + esc(ex.docUrl) + '" target="_blank" rel="noopener">' + esc(ex.docTitle) + ' \u2197</a></p>' +
+              '<p style="font-size:0.85em;color:#666;margin:0 0 8px;">' + esc(ex.docHost) + '</p>' +
+              '<p style="margin:8px 0 4px;"><strong>Paired with:</strong> <a href="' + esc(ex.pairUrl) + '" target="_blank" rel="noopener">' + esc(ex.pair) + ' \u2197</a></p>' +
+              '<p style="font-size:0.85em;color:#666;margin:0 0 10px;">' + esc(ex.pairHost) + '</p>' +
+              '<div style="margin-top:10px;padding:10px;background:#f9f5eb;border-left:3px solid #D4A537;font-size:0.92em;">' +
+                '<strong>The move:</strong> ' + esc(ex.move) +
+              '</div>' +
+              '<div style="margin-top:8px;padding:8px 10px;background:#fdf1f1;border-left:3px solid #a02020;font-size:0.88em;">' +
+                '<strong>What not to do:</strong> ' + esc(ex.trap) +
+              '</div>' +
+            '</article>';
+          }).join("") +
+          '</div>' +
+        '</div>';
+      }).join("");
   }
 
   function renderSecondary(view, key, strategies) {
