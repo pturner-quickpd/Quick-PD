@@ -49,6 +49,137 @@
     return el("button", { type: "button", class: "btn", onclick: function () { window.print(); } }, label || "Print");
   }
 
+  // Small helper: brief button-label feedback (e.g. "Copied" then reverts)
+  function briefLabel(btn, tempText, ms) {
+    var original = btn.textContent;
+    btn.textContent = tempText;
+    btn.disabled = true;
+    setTimeout(function () { btn.textContent = original; btn.disabled = false; }, ms || 1600);
+  }
+
+  // Convert a docx block list (from the buildXDocx functions) to plain markdown-ish
+  // text. Reuses the same structure the Word file uses, so the copy output
+  // never drifts from what teachers see in Word.
+  function blocksToText(title, blocks) {
+    var lines = [];
+    if (title) { lines.push("# " + title); lines.push(""); }
+    blocks.forEach(function (b) {
+      if (b.h1) { lines.push("# " + b.h1); lines.push(""); return; }
+      if (b.h2) { lines.push(""); lines.push("## " + b.h2); lines.push(""); return; }
+      if (b.h3) { lines.push("### " + b.h3); return; }
+      if (b.hr) { lines.push(""); lines.push("---"); lines.push(""); return; }
+      if (b.italic) { lines.push(b.italic); lines.push(""); return; }
+      if (b.p) { lines.push(b.p); lines.push(""); return; }
+      if (b.label) {
+        var val = (b.value == null || b.value === "") ? "\u2014" : String(b.value);
+        // Multi-line values indent under the label so they read as a block
+        if (val.indexOf("\n") !== -1) {
+          lines.push(b.label + ":");
+          val.split("\n").forEach(function (ln) { lines.push("  " + ln); });
+        } else {
+          lines.push(b.label + ": " + val);
+        }
+        lines.push("");
+        return;
+      }
+      if (b.standard) {
+        var s = b.standard;
+        lines.push("- " + (s.code || "") + (s.text ? " \u2014 " + s.text : ""));
+        return;
+      }
+      if (b.strategy) {
+        var st = b.strategy;
+        var line = "- " + (st.title || "");
+        if (st.group) line += " (" + st.group + ")";
+        if (st.description) line += " \u2014 " + st.description;
+        lines.push(line);
+        if (st.toolkitUrl) lines.push("  Toolkit: " + st.toolkitUrl);
+        return;
+      }
+    });
+    // Collapse runs of blank lines
+    var out = [];
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i] === "" && out[out.length - 1] === "") continue;
+      out.push(lines[i]);
+    }
+    return out.join("\n").trim() + "\n";
+  }
+
+  // Copy the built plan to the clipboard as plain text.
+  function copyTextBtn(label, buildFn) {
+    return el("button", {
+      type: "button", class: "btn",
+      onclick: function (ev) {
+        var btn = ev.currentTarget;
+        try {
+          var result = buildFn();
+          var text = blocksToText(result.title, result.blocks);
+          var writer = (navigator.clipboard && navigator.clipboard.writeText)
+            ? navigator.clipboard.writeText(text)
+            : Promise.reject(new Error("Clipboard API unavailable"));
+          writer.then(function () { briefLabel(btn, "\u2713 Copied"); })
+                .catch(function () {
+                  // Fallback: legacy execCommand path through a hidden textarea
+                  try {
+                    var ta = document.createElement("textarea");
+                    ta.value = text;
+                    ta.style.position = "fixed"; ta.style.opacity = "0";
+                    document.body.appendChild(ta);
+                    ta.select();
+                    var ok = document.execCommand("copy");
+                    document.body.removeChild(ta);
+                    briefLabel(btn, ok ? "\u2713 Copied" : "Copy failed");
+                  } catch (e) { briefLabel(btn, "Copy failed"); }
+                });
+        } catch (e) {
+          console.error(e);
+          briefLabel(btn, "Copy failed");
+        }
+      },
+    }, label || "\u29C9 Copy as text");
+  }
+
+  // Download the raw field values as JSON \u2014 useful for admin audit, sharing
+  // between devices, or backing up a plan alongside the Word file.
+  function saveJsonBtn(label, planType, filenameFn, buildFn) {
+    return el("button", {
+      type: "button", class: "btn",
+      onclick: function (ev) {
+        var btn = ev.currentTarget;
+        try {
+          var payload = buildFn(); // { fields: {...}, teacher: "..." }
+          var doc = {
+            _meta: {
+              app: "Turner Instructional Toolkit",
+              plan_type: planType,
+              schema_version: 1,
+              saved_at: new Date().toISOString(),
+              teacher: payload.teacher || "",
+              source_url: location.href,
+            },
+            fields: payload.fields || {},
+          };
+          var blob = new Blob([JSON.stringify(doc, null, 2)], { type: "application/json" });
+          PC.downloadBlob(blob, filenameFn());
+          briefLabel(btn, "\u2713 Saved");
+        } catch (e) {
+          console.error(e);
+          briefLabel(btn, "Save failed");
+        }
+      },
+    }, label || "\u2B07 Save as JSON");
+  }
+
+  // Read teacher name for JSON meta \u2014 reads the same qpd_teacher cookie
+  // that app.js\u2019s TeacherStore writes when the user signs in.
+  function currentTeacher() {
+    try {
+      var m = document.cookie.match(/(?:^|;\s*)qpd_teacher=([^;]+)/);
+      return m ? decodeURIComponent(m[1]) : "";
+    } catch (e) { return ""; }
+  }
+
   // ---------- OAS STANDARDS PAGE ----------
   function renderStandards() {
     var frag = document.createDocumentFragment();
@@ -251,6 +382,17 @@
         var wkPart = wk ? "-week-of-" + wk : "";
         return "WHS-Weekly-Plan-" + slug(teacher) + "-" + slug(course) + wkPart + ".docx";
       }, function () { return buildWeeklyDocx(form); }),
+      copyTextBtn("⧉ Copy as text", function () { return buildWeeklyDocx(form); }),
+      saveJsonBtn("⬇ Save as JSON", "weekly", function () {
+        var st = PC.collectFields(form);
+        var teacher = st["wp-teacher"] || "Teacher";
+        var course = st["wp-course"] || "Course";
+        var wk = st["wp-weekof"] || "";
+        var wkPart = wk ? "-week-of-" + wk : "";
+        return "WHS-Weekly-Plan-" + slug(teacher) + "-" + slug(course) + wkPart + ".json";
+      }, function () {
+        return { fields: PC.collectFields(form), teacher: currentTeacher() };
+      }),
       printBtn("Print this plan"),
       el("button", { type: "button", class: "btn btn-ghost", onclick: function () {
         if (confirm("Clear this weekly plan? Your saved draft will be erased.")) {
@@ -545,6 +687,13 @@
         var st = PC.collectFields(form);
         return "Unit-Plan-" + slug(st["up-course"] || "course") + "-" + slug(st["up-unitname"] || "unit") + ".docx";
       }, function () { return buildUnitDocx(form); }),
+      copyTextBtn("⧉ Copy as text", function () { return buildUnitDocx(form); }),
+      saveJsonBtn("⬇ Save as JSON", "unit", function () {
+        var st = PC.collectFields(form);
+        return "Unit-Plan-" + slug(st["up-course"] || "course") + "-" + slug(st["up-unitname"] || "unit") + ".json";
+      }, function () {
+        return { fields: PC.collectFields(form), teacher: currentTeacher() };
+      }),
       printBtn("Print this plan"),
       el("button", { type: "button", class: "btn btn-ghost", onclick: function () {
         if (confirm("Clear this unit plan? Your saved draft will be erased.")) {
@@ -785,6 +934,14 @@
         var d = st["dp-date"] || "";
         return "Daily-Plan-" + slug(st["dp-course"] || "course") + (d ? "-" + d : "") + ".docx";
       }, function () { return buildDailyDocx(form); }),
+      copyTextBtn("⧉ Copy as text", function () { return buildDailyDocx(form); }),
+      saveJsonBtn("⬇ Save as JSON", "daily", function () {
+        var st = PC.collectFields(form);
+        var d = st["dp-date"] || "";
+        return "Daily-Plan-" + slug(st["dp-course"] || "course") + (d ? "-" + d : "") + ".json";
+      }, function () {
+        return { fields: PC.collectFields(form), teacher: currentTeacher() };
+      }),
       printBtn("Print this plan"),
       el("button", { type: "button", class: "btn btn-ghost", onclick: function () {
         if (confirm("Clear this daily plan? Your saved draft will be erased.")) {
