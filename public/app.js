@@ -4511,7 +4511,7 @@ const QUALITY_FRAMEWORKS = [
       "Coteaching — students lead segments in their register, not the teacher's",
       "Cosmopolitanism — every kid has a role that makes them responsible for someone else",
       "Context and content — the neighborhood is a text, not a distraction from the text",
-      "Curation — bringing hip-hop, call-and-response, and student cultural forms into instruction on purpose"
+      "Competition and curation — bringing hip-hop, call-and-response, and student cultural forms into instruction on purpose (added in his 7 Cs update)"
     ],
     strength: "Names something the other five step around: the classroom is a cultural space before it's an instructional one, and 'high expectations' land differently depending on whether the kid feels seen. Practical, not abstract — every C has a move.",
     limit: "Written mostly from urban secondary contexts. The stance transfers anywhere kids feel invisible; some specific moves (call-and-response, hip-hop curation) need translation for other rooms.",
@@ -4538,6 +4538,18 @@ const QUALITY_VIDEOS = [
     who: "Doug Lemov · KPH Wien / Krems, May 2023 · YouTube",
     why: "Long, but this is the whole toolkit in one sitting: wait time, cold call, turn-and-talk, habits of discussion — each shown as real classroom footage, then unpacked. Watch Maggie's six-second wait time near the start. That is the single cheapest teaching upgrade in existence.",
     url: "https://www.youtube.com/watch?v=uXtxxuXlN5o"
+  },
+  {
+    title: "Teach teachers how to create magic — TED talk (6:40)",
+    who: "Christopher Emdin · TED@NYC, October 2013 · 2.8M views",
+    why: "Emdin's argument in six minutes: the reason a rap show, a barbershop, and a Sunday service can hold a room is a specific set of moves — and we don't teach those moves to teachers. Watch it before you read the book. Then ask which of your classes runs on those moves and which doesn't.",
+    url: "https://www.ted.com/talks/christopher_emdin_teach_teachers_how_to_create_magic"
+  },
+  {
+    title: "Reality Pedagogy — the 7 Cs walked through (Learning Forward 2023 keynote excerpt)",
+    who: "Christopher Emdin · Learning Forward Annual Conference, 2023 · YouTube",
+    why: "If the TED talk is the pitch, this is the how-to. Emdin walks through each of the seven Cs — cogenerative dialogues, coteaching, cosmopolitanism, context, content, competition, curation — with what each looks like in a real room. Watch this after reading the framework card above.",
+    url: "https://www.youtube.com/watch?v=eA8ueNld0TE"
   }
 ];
 
