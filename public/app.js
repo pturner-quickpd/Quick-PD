@@ -161,6 +161,7 @@ const ROUTE_LABELS = {
   "first-30-days": "First 30 Days",
   "first-ten-weeks": "First Ten Weeks",
   "off-the-plateau": "Off the Plateau",
+  "quality-educators": "What Quality Educators Do",
   "about": "About the Toolkit",
   "strategy": "Strategy detail",
 };
@@ -317,6 +318,7 @@ const Routes = {
   "first-30-days": renderFirst30Days,
   "first-ten-weeks": renderFirstTenWeeks,
   "off-the-plateau": renderOffThePlateau,
+  "quality-educators": renderQualityEducators,
   "about": renderAbout,
 };
 
@@ -4302,6 +4304,304 @@ async function renderOffThePlateau(view) {
 }
 
 // ============================================================
+// QUALITY EDUCATORS — research-based portrait of great teaching
+// ============================================================
+// Sources (verified): Danielson FFT 2022 (Danielson Group), Marzano Art &
+// Science of Teaching (ASCD 2007), Hattie Visible Learning (Routledge 2009),
+// Rosenshine Principles of Instruction (American Educator, Spring 2012),
+// Whitaker What Great Teachers Do Differently 3rd ed. (Routledge 2020).
+// Videos are real classroom footage from EL Education (Ron Berger),
+// Uncommon Schools / TLAC, and Doug Lemov's KPH Wien workshop.
+const QUALITY_MOVES = [
+  {
+    n: 1,
+    title: "They plan backward from what students should be able to do.",
+    body: "Not backward from the standard as a sentence — backward from the specific thing you want to see kids do or produce by Friday. If you can't name it, the lesson is a hope, not a plan.",
+    sources: [
+      { cite: "Wiggins & McTighe, Understanding by Design, 2nd ed. (ASCD, 2005)", url: "https://www.ascd.org/books/understanding-by-design-expanded-2nd-edition" },
+      { cite: "Danielson FFT 2022 — Domain 1c Setting Instructional Outcomes", url: "https://danielsongroup.org/wp-content/uploads/2022/06/2022-Framework-for-Teaching_Draft_June-28-2022-.pdf" }
+    ]
+  },
+  {
+    n: 2,
+    title: "They make the learning target public — and refer back to it.",
+    body: "Not just posted on a board because the walkthrough form asks for it. Said out loud at the start, pointed to mid-lesson, checked against at the exit. If a kid can't tell you what they were supposed to learn, you didn't teach it — you covered it.",
+    sources: [
+      { cite: "Hattie, Visible Learning (Routledge, 2009) — teacher clarity, d ≈ 0.75", url: "https://visible-learning.org/hattie-ranking-influences-effect-sizes-learning-achievement/" },
+      { cite: "Marzano, The Art and Science of Teaching (ASCD, 2007) — Ch. 1 Learning Goals & Feedback", url: "https://www.ascd.org/books/the-art-and-science-of-teaching" }
+    ]
+  },
+  {
+    n: 3,
+    title: "They check for understanding on the whole class, not on volunteers.",
+    body: "Cold call, mini-whiteboards, exit tickets, everybody-writes-then-share. Hands-up is a false-positive machine. The kids raising their hands already know it; the kids you needed to hear from just watched.",
+    sources: [
+      { cite: "Rosenshine, Principles of Instruction (American Educator, Spring 2012) — Principle 6", url: "https://www.aft.org/sites/default/files/Rosenshine.pdf" },
+      { cite: "Lemov, Teach Like a Champion 3.0 (Jossey-Bass, 2021) — Cold Call, Check for Understanding", url: "https://teachlikeachampion.org/books/teach-like-a-champion-3-0/" }
+    ]
+  },
+  {
+    n: 4,
+    title: "They give feedback that changes the next attempt — not the last grade.",
+    body: "A number at the top of a paper the kid throws away is not feedback, it's a receipt. Feedback that works arrives while there's still time to fix something and tells the kid exactly what to do next.",
+    sources: [
+      { cite: "Wiliam, Embedded Formative Assessment (Solution Tree, 2011)", url: "https://www.solutiontree.com/embedded-formative-assessment.html" },
+      { cite: "Hattie & Timperley, The Power of Feedback (Review of Educational Research, 2007)", url: "https://journals.sagepub.com/doi/10.3102/003465430298487" }
+    ]
+  },
+  {
+    n: 5,
+    title: "They over-teach the routines so the content can breathe.",
+    body: "Entry, transitions, materials, discussion protocol, exit — practiced until they run without narration. Every second you spend redirecting is a second not spent thinking about the content.",
+    sources: [
+      { cite: "Lemov, Teach Like a Champion 3.0 (Jossey-Bass, 2021) — Entry Routine, Tight Transitions, Do Now, Threshold", url: "https://teachlikeachampion.org/books/teach-like-a-champion-3-0/" },
+      { cite: "Danielson FFT 2022 — Domain 2c Managing Classroom Procedures", url: "https://danielsongroup.org/wp-content/uploads/2022/06/2022-Framework-for-Teaching_Draft_June-28-2022-.pdf" }
+    ]
+  },
+  {
+    n: 6,
+    title: "They manage cognitive load — they don't just cover material.",
+    body: "Working memory is small. Great teachers chunk, model, and give worked examples before independent practice; they don't hand a novice the same problem set they'd give an expert.",
+    sources: [
+      { cite: "NSW CESE, Cognitive Load Theory in Practice (2017)", url: "https://education.nsw.gov.au/content/dam/main-education/about-us/educational-data/cese/2017-cognitive-load-theory.pdf" },
+      { cite: "Rosenshine, Principles of Instruction (American Educator, Spring 2012) — Principles 4, 5", url: "https://www.aft.org/sites/default/files/Rosenshine.pdf" }
+    ]
+  },
+  {
+    n: 7,
+    title: "They pull knowledge back on purpose — retrieval, not just review.",
+    body: "Every unit revisits earlier content in low-stakes, quick, mixed forms. Cramming looks like learning. Retrieval practice is learning.",
+    sources: [
+      { cite: "Roediger & Karpicke, Test-Enhanced Learning (Psychological Science, 2006)", url: "https://journals.sagepub.com/doi/10.1111/j.1467-9280.2006.01693.x" },
+      { cite: "Agarwal & Bain, Powerful Teaching: Unleash the Science of Learning (Jossey-Bass, 2019)", url: "https://www.wiley.com/en-us/Powerful+Teaching%3A+Unleash+the+Science+of+Learning-p-9781119521846" }
+    ]
+  },
+  {
+    n: 8,
+    title: "They know the content deeply enough to answer the second question.",
+    body: "Anyone can read the slide. Great teachers can explain the why behind the standard, connect it to what students learned last unit, and hear the misconception under a wrong answer. Pedagogy without content is theater.",
+    sources: [
+      { cite: "Shulman, Those Who Understand: Knowledge Growth in Teaching (Educational Researcher, 1986)", url: "https://journals.sagepub.com/doi/10.3102/0013189X015002004" },
+      { cite: "Danielson FFT 2022 — Domain 1a Applying Knowledge of Content and Pedagogy", url: "https://danielsongroup.org/wp-content/uploads/2022/06/2022-Framework-for-Teaching_Draft_June-28-2022-.pdf" }
+    ]
+  },
+  {
+    n: 9,
+    title: "They hold high expectations for every kid — and mean it.",
+    body: "Not a poster. High expectations show up in what you accept as a finished answer, who you call on, and whether you tell a struggling kid the truth or a comfortable lie. The kids know which one you're doing.",
+    sources: [
+      { cite: "Whitaker, What Great Teachers Do Differently, 3rd ed. (Routledge/Eye On Education, 2020) — Ch. 3 The Power of Expectations", url: "https://www.routledge.com/What-Great-Teachers-Do-Differently-Nineteen-Things-That-Matter-Most/Whitaker/p/book/9780367344641" },
+      { cite: "Jussim & Harber, Teacher Expectations and Self-Fulfilling Prophecies (Personality and Social Psychology Review, 2005)", url: "https://journals.sagepub.com/doi/10.1207/s15327957pspr0902_3" }
+    ]
+  },
+  {
+    n: 10,
+    title: "They are the variable — and they own it.",
+    body: "Same kids, same schedule, same curriculum, one teacher's room hums and the room next door doesn't. Great teachers stop blaming the roster and start asking what they need to change. That is the whole game.",
+    sources: [
+      { cite: "Whitaker, What Great Teachers Do Differently, 3rd ed. (Routledge/Eye On Education, 2020) — Ch. 9 Who Is the Variable?", url: "https://www.routledge.com/What-Great-Teachers-Do-Differently-Nineteen-Things-That-Matter-Most/Whitaker/p/book/9780367344641" },
+      { cite: "Hattie, Visible Learning (Routledge, 2009) — collective teacher efficacy (subsequent updates d > 1.0)", url: "https://visible-learning.org/hattie-ranking-influences-effect-sizes-learning-achievement/" }
+    ]
+  },
+  {
+    n: 11,
+    title: "They build the relationship on purpose — and use it as leverage for rigor.",
+    body: "Relationships are not the goal; they are how you earn the right to push. A kid who trusts you will attempt hard work. A kid who does not will protect themselves. If your room is warm but no one is doing the hardest thinking they're capable of, you stopped halfway.",
+    sources: [
+      { cite: "Whitaker, What Great Teachers Do Differently, 3rd ed. (Routledge/Eye On Education, 2020) — Ch. 6 It Is More Than Relationships", url: "https://www.routledge.com/What-Great-Teachers-Do-Differently-Nineteen-Things-That-Matter-Most/Whitaker/p/book/9780367344641" },
+      { cite: "Hamre & Pianta, Can Instructional and Emotional Support in the First-Grade Classroom Make a Difference for Children at Risk of School Failure? (Child Development, 2005)", url: "https://srcd.onlinelibrary.wiley.com/doi/10.1111/j.1467-8624.2005.00889.x" }
+    ]
+  },
+  {
+    n: 12,
+    title: "They reflect — and change something because of what they saw.",
+    body: "Reflection that stays a feeling is a diary entry. Reflection that changes tomorrow's lesson is professional practice. The mark of a growing teacher is not how they teach in September; it's whether October looks different.",
+    sources: [
+      { cite: "Danielson FFT 2022 — Domain 4a Engaging in Reflective Practice", url: "https://danielsongroup.org/wp-content/uploads/2022/06/2022-Framework-for-Teaching_Draft_June-28-2022-.pdf" },
+      { cite: "Schön, The Reflective Practitioner (Basic Books, 1983)", url: "https://www.basicbooks.com/titles/donald-a-schon/the-reflective-practitioner/9780465068784/" }
+    ]
+  }
+];
+
+// Frameworks compared side-by-side. All entries drawn from the primary
+// publisher pages verified above. No effect sizes are invented — the two
+// figures cited (0.75 teacher clarity; 0.70 feedback) come from Hattie's
+// public rankings on visible-learning.org.
+const QUALITY_FRAMEWORKS = [
+  {
+    name: "Danielson — Framework for Teaching (2022)",
+    author: "Charlotte Danielson · The Danielson Group",
+    what: "Evaluation and self-assessment framework. Four domains, 22 components, 76 elements. Used for teacher observation in 49 states.",
+    domains: [
+      "Domain 1 — Planning and Preparation",
+      "Domain 2 — Learning Environments",
+      "Domain 3 — Learning Experiences",
+      "Domain 4 — Principled Teaching"
+    ],
+    strength: "Comprehensive, publicly available, structured for observation and coaching conversations.",
+    limit: "Big. Trying to hit all 22 components in one lesson turns a classroom into a checklist.",
+    url: "https://danielsongroup.org/framework/"
+  },
+  {
+    name: "Marzano — The Art and Science of Teaching (2007)",
+    author: "Robert Marzano · ASCD",
+    what: "Ten design questions the teacher asks about a unit. Turns effective practice into instructional design choices, not a scoring rubric.",
+    domains: [
+      "Learning goals & feedback",
+      "New knowledge (chunking, elaboration)",
+      "Practice & deepening",
+      "Hypothesis generation & testing",
+      "Engagement, rules, relationships, high expectations"
+    ],
+    strength: "Practical, unit-level. Written as questions a teacher can actually ask themselves while planning.",
+    limit: "Some later Marzano evaluation instruments got heavier and more prescriptive than the book itself.",
+    url: "https://www.ascd.org/books/the-art-and-science-of-teaching"
+  },
+  {
+    name: "Hattie — Visible Learning (2009)",
+    author: "John Hattie · Routledge",
+    what: "Synthesis of 800+ meta-analyses ranking influences on student achievement by effect size (Cohen's d). Argues teaching is 'visible' when both teacher and student can see the learning.",
+    domains: [
+      "Highest-impact practices include teacher clarity (~d 0.75)",
+      "Feedback (~d 0.70)",
+      "Formative evaluation, reciprocal teaching, direct instruction",
+      "Collective teacher efficacy (added in later updates, very large effect)"
+    ],
+    strength: "Forces the conversation off preference and onto evidence. Gives a common vocabulary for what actually moves achievement.",
+    limit: "Effect-size rankings get quoted out of context. Ignore the individual d values in isolation — read what Hattie says around them.",
+    url: "https://visible-learning.org/hattie-ranking-influences-effect-sizes-learning-achievement/"
+  },
+  {
+    name: "Rosenshine — Principles of Instruction (2012)",
+    author: "Barak Rosenshine · American Educator (AFT)",
+    what: "Ten research-based principles drawn from cognitive science, classroom-practice studies, and cognitive-support research. Short. Free.",
+    domains: [
+      "Daily review · Present new material in small steps",
+      "Ask many questions · Provide models",
+      "Guide student practice · Check for understanding",
+      "Obtain high success rate · Provide scaffolds for difficult tasks",
+      "Independent practice · Weekly & monthly review"
+    ],
+    strength: "The tightest, most usable summary of what direct-instruction research says works. If you read one thing on this page, read this.",
+    limit: "Aimed at explicit-instruction moves; less to say about inquiry, discussion protocols, or authentic tasks.",
+    url: "https://www.aft.org/sites/default/files/Rosenshine.pdf"
+  },
+  {
+    name: "Whitaker — What Great Teachers Do Differently, 3rd ed. (2020)",
+    author: "Todd Whitaker · Routledge / Eye On Education",
+    what: "Nineteen beliefs and behaviors that separate great teachers from the rest. Not a rubric — a portrait. Written for teachers to read on their own.",
+    domains: [
+      "It's people, not programs",
+      "Power of expectations · If you say something, mean it",
+      "Who is the variable? (You are.)",
+      "Be the filter · Don't need to repair — always do repair",
+      "The ability to ignore · Intentionalness · Make it cool to care"
+    ],
+    strength: "Blunt, personal, and readable in a weekend. Points at what great teachers actually think, not just what they do.",
+    limit: "Light on instructional technique. Pair it with one of the four above — Whitaker on stance, Rosenshine or Marzano on moves.",
+    url: "https://www.routledge.com/What-Great-Teachers-Do-Differently-Nineteen-Things-That-Matter-Most/Whitaker/p/book/9780367344641"
+  }
+];
+
+// Real classroom footage — verified links to primary hosts.
+const QUALITY_VIDEOS = [
+  {
+    title: "Austin's Butterfly — critique, feedback, and multiple drafts",
+    who: "Ron Berger · EL Education · ~6 min",
+    why: "A first-grade class takes another first-grader's butterfly drawing through six drafts using kind, specific, helpful critique. If you have ever wondered what feedback that actually changes the next draft looks like — this is it. Show it to your students, then show it to yourself.",
+    url: "https://modelsofexcellence.eleducation.org/resources/austins-butterfly"
+  },
+  {
+    title: "No Opt Out + Stretch It — real classroom clip",
+    who: "Sarah Salazar, Aspire Public Schools · via Teach Like a Champion blog",
+    why: "After a student can't answer, the teacher doesn't move on. She gets the correct answer, comes back to the same student, and hands them another question so they can show they've got it. This is the difference between 'checking' understanding and building it.",
+    url: "https://teachlikeachampion.org/blog/tlac-2-0-adding-stretch-it-to-no-opt-out/"
+  },
+  {
+    title: "Full workshop with embedded classroom clips (2½ hrs)",
+    who: "Doug Lemov · KPH Wien / Krems, May 2023 · YouTube",
+    why: "Long, but this is the whole toolkit in one sitting: wait time, cold call, turn-and-talk, habits of discussion — each shown as real classroom footage, then unpacked. Watch Maggie's six-second wait time near the start. That is the single cheapest teaching upgrade in existence.",
+    url: "https://www.youtube.com/watch?v=uXtxxuXlN5o"
+  }
+];
+
+async function renderQualityEducators(view) {
+  view.innerHTML = `
+    <section class="panel" style="padding:22px 22px 18px;margin-bottom:14px;">
+      <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+        <h1 style="margin:0;font-size:26px;color:var(--navy);">What Quality Educators Do</h1>
+        <span style="color:var(--muted);font-size:14px;">Research-based · blunt · citation-verified</span>
+      </div>
+      <p style="margin:10px 0 0;color:#334;max-width:78ch;line-height:1.55;">
+        There is no gene for great teaching. There is a set of things great teachers actually do — the same things show up in Danielson, Marzano, Hattie, Rosenshine, and Whitaker, written in different words. Below is the plain-English list, then a side-by-side of the five frameworks, then a small library of real classroom footage. If a claim isn't cited to a real source, it doesn't belong here.
+      </p>
+    </section>
+
+    <section class="panel" style="padding:18px 20px;margin-bottom:18px;">
+      <div style="font-weight:700;color:var(--navy);letter-spacing:.05em;font-size:13px;margin-bottom:12px;">THE LIST — TWELVE THINGS QUALITY TEACHERS DO</div>
+      ${QUALITY_MOVES.map((m) => `
+        <div style="padding:14px 0;border-bottom:1px solid #eef2f8;">
+          <div style="display:flex;gap:12px;align-items:baseline;">
+            <div style="flex:0 0 30px;font-weight:800;color:var(--gold);font-size:20px;line-height:1;">${m.n}</div>
+            <div style="flex:1;">
+              <div style="font-weight:700;color:var(--navy);font-size:16.5px;line-height:1.35;margin-bottom:6px;">${escapeHtml(m.title)}</div>
+              <div style="color:#334;line-height:1.55;margin-bottom:8px;">${escapeHtml(m.body)}</div>
+              <div style="color:#556;font-size:13.5px;line-height:1.5;">
+                ${m.sources.map((s) => `<div style="margin-top:2px;">→ <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">${escapeHtml(s.cite)}</a></div>`).join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join("")}
+    </section>
+
+    <section class="panel" style="padding:18px 20px;margin-bottom:18px;">
+      <div style="font-weight:700;color:var(--navy);letter-spacing:.05em;font-size:13px;margin-bottom:6px;">THE FRAMEWORKS — SIDE BY SIDE</div>
+      <p style="color:#556;font-size:14px;line-height:1.55;margin:0 0 14px;">Five different research traditions describing effective teaching. They overlap more than they disagree. Reading two of them well beats skimming all five.</p>
+      ${QUALITY_FRAMEWORKS.map((f) => `
+        <article style="border:1px solid #e3e8f0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-weight:700;color:var(--navy);font-size:16px;line-height:1.35;">
+            <a href="${escapeHtml(f.url)}" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">${escapeHtml(f.name)}</a>
+          </div>
+          <div style="color:#556;font-size:13px;margin-top:2px;margin-bottom:8px;">${escapeHtml(f.author)}</div>
+          <div style="color:#334;line-height:1.55;font-size:14.5px;margin-bottom:8px;">${escapeHtml(f.what)}</div>
+          <div style="background:#f5f7fb;padding:8px 12px;border-radius:6px;margin-bottom:8px;">
+            ${f.domains.map((d) => `<div style="color:#334;font-size:14px;line-height:1.5;">• ${escapeHtml(d)}</div>`).join("")}
+          </div>
+          <div style="display:grid;grid-template-columns:1fr;gap:6px;font-size:13.5px;line-height:1.5;">
+            <div><span style="font-weight:700;color:#166534;">Strength: </span><span style="color:#334;">${escapeHtml(f.strength)}</span></div>
+            <div><span style="font-weight:700;color:#7c2d12;">Limit: </span><span style="color:#334;">${escapeHtml(f.limit)}</span></div>
+          </div>
+        </article>
+      `).join("")}
+    </section>
+
+    <section class="panel" style="padding:18px 20px;margin-bottom:18px;">
+      <div style="font-weight:700;color:var(--navy);letter-spacing:.05em;font-size:13px;margin-bottom:6px;">SEE IT — REAL CLASSROOM VIDEO</div>
+      <p style="color:#556;font-size:14px;line-height:1.55;margin:0 0 12px;">No motivational speeches. No stock footage. Just teachers, in real rooms, doing the things above.</p>
+      ${QUALITY_VIDEOS.map((v) => `
+        <article style="border-left:4px solid var(--gold);background:#fffdf5;padding:12px 14px;border-radius:6px;margin-bottom:10px;">
+          <div style="font-weight:700;color:var(--navy);font-size:15.5px;line-height:1.35;">
+            <a href="${escapeHtml(v.url)}" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">${escapeHtml(v.title)} ↗</a>
+          </div>
+          <div style="color:#556;font-size:13px;margin:2px 0 6px;">${escapeHtml(v.who)}</div>
+          <div style="color:#334;line-height:1.55;font-size:14px;">${escapeHtml(v.why)}</div>
+        </article>
+      `).join("")}
+    </section>
+
+    <section class="panel" style="padding:18px 20px;background:#f5f7fb;border-left:4px solid var(--navy);">
+      <div style="font-weight:700;color:var(--navy);letter-spacing:.05em;font-size:13px;margin-bottom:6px;">MY SYNTHESIS</div>
+      <div style="color:#334;line-height:1.6;font-size:14.5px;">
+        If you strip the vocabulary off all five frameworks, three things remain. <strong>One:</strong> great teachers know the content well enough to teach it a second way when the first way misses. <strong>Two:</strong> they design the lesson so <em>every</em> student is thinking, not just the ones with their hands up — and they check whether the thinking landed before the bell rings. <strong>Three:</strong> they act like the variable, because they are. Everything else — cold calls, exit tickets, rubrics, workshop models, chunking, feedback — is a way to get those three things to happen in a room full of teenagers on a Tuesday afternoon.
+        <br><br>
+        Read Rosenshine for the clearest ten-page summary. Read Whitaker for the stance. Use Danielson for the observation vocabulary you already have to speak. Marzano and Hattie are worth returning to when a specific move stops working and you need to know why.
+      </div>
+    </section>
+  `;
+}
+
+// ============================================================
 // ABOUT
 // ============================================================
 async function renderAbout(view) {
@@ -4395,6 +4695,7 @@ function _searchIndex() {
     { label: "First 30 Days", sub: "Onboarding path", href: "#/first-30-days" },
     { label: "First Ten Weeks", sub: "Named ten-week track · one thing per week", href: "#/first-ten-weeks" },
     { label: "Off the Plateau", sub: "Five months for teachers stuck at good", href: "#/off-the-plateau" },
+    { label: "What Quality Educators Do", sub: "Research-based portrait · Danielson, Marzano, Hattie, Rosenshine, Whitaker", href: "#/quality-educators" },
     { label: "Write My PL Goal", sub: "Tool", href: "#/pl-tool" },
     { label: "Unit Planner", sub: "Tool", href: "#/unit-plan" },
     { label: "Why Backward Planning", sub: "Teacher guide", href: "#/why-backward-planning" },
