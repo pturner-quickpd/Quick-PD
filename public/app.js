@@ -133,6 +133,7 @@ const ROUTE_LABELS = {
   "why-backward-planning": "Why Backward Planning",
   "daily-plan": "Daily Plan",
   "pl-tool": "Write My PL Goal",
+  "pl-role-prefills": "PL Goal — Role Prefills",
   "add": "Add a Strategy",
   "stats": "Usage Stats",
   "elementary": "Elementary Foundations",
@@ -274,6 +275,7 @@ const Routes = {
   "weekly-plan": renderPlannerPage("renderWeeklyPlan"),
   "daily-plan": renderPlannerPage("renderDailyPlan"),
   "pl-tool": renderPLTool,
+  "pl-role-prefills": renderPLRolePrefills,
   "elementary": renderModulePage("Elementary","renderHub"),
   "early-reading": renderModulePage("Elementary","renderReading"),
   "early-math": renderModulePage("Elementary","renderMath"),
@@ -1848,6 +1850,198 @@ function weekCard(p, days) {
   `;
 }
 
+// ------------------ PL Role Prefills ------------------
+// Non-classroom staff (counselors, librarian, coach) and CTE/SPED still
+// have to write a PL goal against the same rubric — and the direction is
+// the same building focus (Reading and Writing Across the Curriculum).
+// Only the rubric indicator and the artifacts change. Everything else in
+// the goal is the same shape as a classroom teacher's. These prefills
+// drop starter values into the PL Goal writer so nobody has to figure
+// out from scratch how a counselor writes a literacy-aligned PL goal.
+//
+// NOTE: Numbers (baseline %, target %) are deliberately left blank —
+// baseline must be collected in the first two weeks. The prefill fills
+// in the parts that are structural (focus area, artifacts, supports,
+// rubric indicator, resources), not the parts that are their real data.
+const PL_ROLE_PREFILLS = {
+  counselor: {
+    label: "School Counselor",
+    role_note: "Individual and small-group counseling connect to Reading and Writing Across the Curriculum through student self-monitoring in writing, written goal-setting, and written reflection in session logs.",
+    focus: "students writing evidence-based reflections on their own academic and social-emotional goals in individual and small-group counseling sessions",
+    timeline: "the end of the first nine weeks",
+    move: "have every student on my counseling caseload complete at least one written goal-and-evidence reflection per session (individual) or per group meeting (small group)",
+    evidenceArtifacts: "session log entries, individual student goal folders, and small-group written exit reflections",
+    studentOutput: "a written reflection that names one goal, one piece of evidence of progress or barrier from the last week, and one next step",
+    baselinePct: "",
+    targetPct: "",
+    baselineMethod: "baseline, collected the first two weeks",
+    measures: ["measure_samples"],
+    measureCustom: "weekly session log entries reviewed against the written-reflection expectation, small-group exit reflection samples",
+    support1: "open every individual session with a two-minute written goal-and-evidence check-in",
+    support2: "close every small-group meeting with a written exit reflection scored against a posted three-line expectation (goal, evidence, next step)",
+    support3: "pull the reflection artifacts weekly into each student's counseling folder so the writing across sessions is visible",
+    support4: "",
+    rubricIndicator: "Tulsa Model TLE (non-classroom variant) — Counseling Effectiveness (40%), Indicator 3 Monitors Student Progress and Indicator 5 Consultation and Collaboration; also Interpersonal Skills (20%), Indicator 9 Effective Interactions/Communications with Stakeholders. Aligned to building focus: Reading and Writing Across the Curriculum.",
+    resources: "principal check-in on goal folder samples, one peer observation of a small-group session already using written reflections, ASCA National Model reference for the reflection protocol",
+    checkins: "end of 1st nine weeks, end of 2nd nine weeks",
+  },
+  librarian: {
+    label: "Library Media Specialist / Librarian",
+    role_note: "The library is where reading volume and writing about reading become visible school-wide. This goal turns book check-outs and research support into a measurable Reading and Writing Across the Curriculum contribution.",
+    focus: "students producing a short written reader response or research-source note for every fiction check-out and every research visit",
+    timeline: "the end of the first nine weeks",
+    move: "have every student who checks out a fiction title or uses the library for research turn in one written reader response or one written source note per visit",
+    evidenceArtifacts: "reader-response cards in a per-class bin, research-visit source notes in the student's class research folder, and the library's monthly reading-and-writing bulletin board",
+    studentOutput: "a written reader response (claim about the text + one piece of text evidence) or a written source note (source, one fact, one next question)",
+    baselinePct: "",
+    targetPct: "",
+    baselineMethod: "baseline, collected the first two weeks",
+    measures: ["measure_samples"],
+    measureCustom: "weekly count of returned reader-response cards vs. check-outs, weekly count of research-visit source notes vs. research visits",
+    support1: "post the two written expectations (reader response, research source note) at check-out and at every research-visit table",
+    support2: "hand every fiction check-out a reader-response card at the desk and every research visit a source-note template at the table",
+    support3: "pull one anonymized strong example per week onto the bulletin board so students see what the expectation looks like in student handwriting",
+    support4: "give classroom teachers a weekly one-line email of their class's return rate so the writing is jointly owned",
+    rubricIndicator: "Tulsa Model TLE (evaluated under the classroom teacher rubric, as OSDE does not publish a separate LMS rubric) — Instructional Effectiveness (50%), Indicator 7 Literacy and Indicator 9 Involves All Learners; also Interpersonal Skills (5%), Indicator 19 Effective Interactions/Communications with Stakeholders (classroom-teacher partnerships). Aligned to building focus: Reading and Writing Across the Curriculum.",
+    resources: "principal support on the shared expectation with classroom teachers, printed reader-response cards and source-note templates, bulletin board space near the circulation desk",
+    checkins: "end of 1st nine weeks, end of 2nd nine weeks",
+  },
+  coach: {
+    label: "Instructional Coach",
+    role_note: "An instructional coach's PL goal has to be about teacher practice moving, not students in one classroom. The measure is coached teachers implementing the shared writing expectation, verified in their student artifacts and walkthrough data.",
+    focus: "coached teachers implementing the building's shared claim-plus-evidence writing expectation in at least one lesson per week across content areas",
+    timeline: "the end of the first nine weeks",
+    move: "have every teacher I coach plan and deliver at least one lesson per week that ends in a written claim-plus-evidence response from every student",
+    evidenceArtifacts: "weekly coaching cycle notes, sampled student writing pulled from coached teachers' classrooms, and principal walkthrough data on the writing expectation",
+    studentOutput: "a coached teacher who runs at least one weekly lesson that produces a student written response scoring at claim-plus-evidence against the shared expectation",
+    baselinePct: "",
+    targetPct: "",
+    baselineMethod: "baseline, collected the first two weeks",
+    measures: ["measure_walkthroughs", "measure_samples", "measure_peer"],
+    measureCustom: "weekly coaching-cycle notes, principal walkthrough data on the shared writing expectation, sampled student work from coached classrooms",
+    support1: "run a weekly 25-minute coaching cycle with each coached teacher focused on one upcoming lesson's written response",
+    support2: "model the written-response protocol in every coached teacher's room at least once during the semester",
+    support3: "walk coached classrooms twice a week during the shared writing lesson and drop a one-line evidence note in the coaching log",
+    support4: "pull student writing samples every Friday and score against the shared expectation with the teacher",
+    rubricIndicator: "Tulsa Model TLE — Instructional Effectiveness (50%), Indicator 7 Literacy and Indicator 13 Monitors, applied to coaching cycles and coached-teacher practice; also Professional Growth (10%), Indicator 17 Uses Professional Growth as an Important Strategy. Aligned to building focus: Reading and Writing Across the Curriculum.",
+    resources: "principal-protected weekly coaching time on the master schedule, one release day per nine weeks for classroom modeling, shared drive for coaching-cycle notes",
+    checkins: "end of 1st nine weeks, end of 2nd nine weeks",
+  },
+  cte: {
+    label: "CTE Teacher",
+    role_note: "CTE is where writing becomes real — lab reports, work orders, project write-ups, industry-format documentation. The goal points at the building focus using the writing CTE already does, not a bolt-on English assignment.",
+    focus: "students writing evidence-based technical responses (work-order justifications, project write-ups, or lab conclusions) in the industry format used in this pathway",
+    timeline: "the end of the first nine weeks",
+    move: "have every student produce at least one written technical response per week in the pathway's industry format — claim, cited evidence from the project or manual, and next step",
+    evidenceArtifacts: "weekly project logs, industry-format work orders or lab conclusions, and end-of-unit project write-ups scored against the pathway's rubric",
+    studentOutput: "a written technical response that states a claim, cites at least one piece of evidence from the project data, manual, or spec, and names a next step",
+    baselinePct: "",
+    targetPct: "",
+    baselineMethod: "baseline, collected the first two weeks",
+    measures: ["measure_samples", "measure_exit"],
+    measureCustom: "weekly scored project logs, end-of-unit write-ups scored against the pathway rubric",
+    support1: "post the industry-format writing expectation at every workstation",
+    support2: "close every project day with a written technical response in the log, not a verbal check-out",
+    support3: "score one written response per student per week against the pathway rubric and hand it back the next class",
+    support4: "align the writing expectation with the industry credential's documentation standard so students see it as real work",
+    rubricIndicator: "Tulsa Model TLE — Instructional Effectiveness (50%), Indicator 7 Literacy and Indicator 10 Explains Content, applied to technical writing in the CTE pathway; also mapped to the pathway's industry credential documentation standard. Aligned to building focus: Reading and Writing Across the Curriculum.",
+    resources: "principal support on the shared writing expectation across pathways, printed pathway rubric at each workstation, one peer observation in another CTE pathway already scoring project writing",
+    checkins: "end of 1st nine weeks, end of 2nd nine weeks",
+  },
+  sped: {
+    label: "Special Education Teacher",
+    role_note: "Special education writing goals still point at the building focus — the accommodation is in how the response is produced (dictated, sentence-frame supported, chunked), not in whether the student writes evidence-based responses at all.",
+    focus: "IEP-served students producing evidence-based written responses to grade-level questions using appropriate accommodations (sentence frames, dictation, chunked prompts) in resource and inclusion settings",
+    timeline: "the end of the first nine weeks",
+    move: "have every IEP-served student on my caseload produce at least one accommodated evidence-based written response per week aligned to the general education standard being taught",
+    evidenceArtifacts: "weekly work samples in each student's IEP folder, co-teach lesson exit tickets from inclusion classrooms, and progress-monitoring writing probes for students with a writing IEP goal",
+    studentOutput: "an accommodated written response (typed, dictated, or sentence-frame supported) that states a claim and cites at least one piece of text or data evidence at the accommodation level named in the IEP",
+    baselinePct: "",
+    targetPct: "",
+    baselineMethod: "baseline, collected the first two weeks using each student's IEP-accommodated response format",
+    measures: ["measure_samples", "measure_common"],
+    measureCustom: "weekly IEP folder work samples, progress-monitoring writing probes, co-teach classroom exit tickets scored against the shared claim-plus-evidence expectation with accommodations applied",
+    support1: "pre-teach the week's sentence frames and prompt vocabulary in resource on Monday for every student who will produce the response in a co-taught class later that week",
+    support2: "provide the accommodation named in the IEP (dictation, sentence frame, chunked prompt) at the moment of the response, not after the response fails",
+    support3: "pull one written response per student per week into the IEP folder to keep progress visible for IEP meetings",
+    support4: "co-plan the week's shared writing expectation with each general education partner so the accommodation lines up with the assignment",
+    rubricIndicator: "Tulsa Model TLE — Instructional Effectiveness (50%), Indicator 7 Literacy and Indicator 9 Involves All Learners, applied to IEP-served students with accommodations documented; also Classroom Management (30%), Indicator 5 Assessment Practices for the accommodated response format. Also documented in each student's IEP progress reporting.",
+    resources: "principal-protected co-plan time with each inclusion partner, printed accommodation cards (sentence frames, chunked prompts) for every co-taught class, dictation device or Chromebook access for students with a dictation accommodation",
+    checkins: "end of 1st nine weeks, end of 2nd nine weeks",
+  },
+};
+
+async function renderPLRolePrefills(view) {
+  const roles = Object.entries(PL_ROLE_PREFILLS);
+
+  view.innerHTML = `
+    <h1 class="page-title">PL Goal — Role Prefills</h1>
+    <p class="page-lede">The direction doesn't change — Reading and Writing Across the Curriculum is the building focus for everyone. What changes is the rubric indicator and the artifacts. Pick your role, load the prefill into the PL Goal writer, then edit the numbers and any wording that isn't yours. Baseline still gets collected in the first two weeks; the prefill leaves it blank on purpose.</p>
+
+    <div class="card" style="background:#eef4ee;border-left:4px solid #2c6e49;">
+      <div class="card-meta">Rubric indicators are from the actual Oklahoma TLE (Tulsa Model)</div>
+      <p style="margin-bottom:0;font-size:0.9em;">Every &ldquo;Rubric indicator&rdquo; below cites the real Tulsa Model TLE domain, weight, and numbered indicator that Wewoka Public Schools uses — verified against the <a href="https://oklahoma.gov/content/dam/ok/en/oeqa/documents/school-reviews/legacy/OSPR_Wewoka_2021.pdf" target="_blank" rel="noopener">Oklahoma School Performance Review of Wewoka Public Schools (2021), Exhibit 1-24</a>. The counselor variant is verified against the <a href="https://oklahoma.gov/content/dam/ok/en/careertech/educators/counseling-and-career-development/resources/guidance-and-counseling/counselor-evaluation-rubric.docx" target="_blank" rel="noopener">OSDE Counselor Evaluation Rubric</a>. For librarian, coach, CTE, and SPED, OSDE does not publish a separate non-classroom rubric, so those prefills cite the classroom Tulsa Model indicators that apply to the role's work.</p>
+    </div>
+
+    <div class="card" style="background:#f5f7fb;border-left:4px solid #0A2540;">
+      <div class="card-meta">How this page works</div>
+      <ol style="margin:6px 0 0 20px;font-size:0.92em;line-height:1.5;">
+        <li><strong>Pick your role card below.</strong> Read the note at the top so you know how that role is connected to the building focus.</li>
+        <li><strong>Click &ldquo;Load into PL Goal writer.&rdquo;</strong> You land on the PL Goal writer with every field prefilled except your baseline and target numbers.</li>
+        <li><strong>Edit the wording and add your numbers.</strong> The prefill is a starting point, not a signature — the goal has to be yours, in your language, with your students. Especially rewrite the &ldquo;What students will be doing&rdquo; and &ldquo;evidence will show in&rdquo; lines to name your actual artifacts.</li>
+        <li><strong>Save.</strong> It saves under your name in this browser, same as any goal written from scratch.</li>
+      </ol>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;margin-top:16px;">
+      ${roles.map(([key, p]) => `
+        <div class="card">
+          <div class="card-meta">${escapeHtml(p.label)}</div>
+          <p style="font-size:0.88em;color:var(--muted);margin:6px 0 10px;">${escapeHtml(p.role_note)}</p>
+          <div style="font-size:0.85em;line-height:1.55;">
+            <div><strong>Focus area:</strong> I will focus on ${escapeHtml(p.focus)} this semester.</div>
+            <div style="margin-top:6px;"><strong>Evidence will show in:</strong> ${escapeHtml(p.evidenceArtifacts)}</div>
+            <div style="margin-top:6px;"><strong>Rubric indicator:</strong> ${escapeHtml(p.rubricIndicator)}</div>
+          </div>
+          <div class="button-row" style="margin-top:12px;">
+            <a class="btn btn-primary btn-sm" href="#/pl-tool?prefill=${encodeURIComponent(key)}">Load into PL Goal writer</a>
+            <button type="button" class="btn btn-sm" data-preview-role="${escapeHtml(key)}">See full prefill</button>
+          </div>
+          <div class="prefill-preview" data-role="${escapeHtml(key)}" hidden style="margin-top:12px;padding:12px;background:#F6F1E4;border-left:4px solid #0A2540;font-size:0.85em;line-height:1.55;">
+            <div><strong>By ${escapeHtml(p.timeline)}, I will</strong> ${escapeHtml(p.move)}.</div>
+            <div style="margin-top:6px;"><strong>Students will produce:</strong> ${escapeHtml(p.studentOutput)}</div>
+            <div style="margin-top:6px;"><strong>Measured by:</strong> ${escapeHtml(p.measureCustom)}</div>
+            <div style="margin-top:6px;"><strong>To support this, I will:</strong>
+              <ul style="margin:4px 0 0 20px;">
+                ${[p.support1, p.support2, p.support3, p.support4].filter(Boolean).map(s => `<li>${escapeHtml(s)}</li>`).join("")}
+              </ul>
+            </div>
+            <div style="margin-top:6px;"><strong>Resources:</strong> ${escapeHtml(p.resources)}</div>
+            <div style="margin-top:6px;"><strong>Check-ins:</strong> ${escapeHtml(p.checkins)}</div>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+
+    <div class="card" style="margin-top:16px;background:#f5f7fb;">
+      <div class="card-meta">Not seeing your role?</div>
+      <p style="font-size:0.9em;margin-bottom:0;">Open <a href="#/pl-tool">Write My PL Goal</a> and use the biology example on that page as your model. The pattern holds: pick one instructional practice that produces student writing, name where the evidence will show up, use a measure you already collect weekly, and cite the exact indicator on the rubric you're evaluated under.</p>
+    </div>
+  `;
+
+  // Toggle full prefill preview inline
+  view.querySelectorAll("[data-preview-role]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.getAttribute("data-preview-role");
+      const panel = view.querySelector(`.prefill-preview[data-role="${key}"]`);
+      if (!panel) return;
+      const open = !panel.hasAttribute("hidden");
+      if (open) { panel.setAttribute("hidden", ""); btn.textContent = "See full prefill"; }
+      else { panel.removeAttribute("hidden"); btn.textContent = "Hide full prefill"; }
+    });
+  });
+}
+
 // ------------------ PL Tool ------------------
 async function renderPLTool(view) {
   const teacher = TeacherStore.get();
@@ -2008,6 +2202,56 @@ async function renderPLTool(view) {
   const form = $("#pl-form");
   const preview = $("#preview-card");
   const previewText = $("#preview-text");
+
+  // ---- Role prefill loader ----
+  // If the URL is #/pl-tool?prefill=<role>, drop that prefill's values into
+  // the form fields. Leaves baseline % and target % blank on purpose — the
+  // teacher has to collect their own baseline in the first two weeks.
+  (function applyRolePrefillFromQuery() {
+    try {
+      const qs = new URLSearchParams(location.hash.split("?")[1] || "");
+      const key = qs.get("prefill");
+      if (!key) return;
+      const prefill = (typeof PL_ROLE_PREFILLS !== "undefined") ? PL_ROLE_PREFILLS[key] : null;
+      if (!prefill) return;
+      const set = (sel, val) => {
+        const el = form.querySelector(sel);
+        if (el && val !== undefined && val !== null) el.value = val;
+      };
+      set('textarea[name="focus"]', prefill.focus);
+      set('select[name="timeline"]', prefill.timeline);
+      set('input[name="move"]', prefill.move);
+      set('input[name="evidenceArtifacts"]', prefill.evidenceArtifacts);
+      set('input[name="studentOutput"]', prefill.studentOutput);
+      set('input[name="baselinePct"]', prefill.baselinePct);
+      set('input[name="targetPct"]', prefill.targetPct);
+      set('input[name="baselineMethod"]', prefill.baselineMethod);
+      set('input[name="support1"]', prefill.support1);
+      set('input[name="support2"]', prefill.support2);
+      set('input[name="support3"]', prefill.support3);
+      set('input[name="support4"]', prefill.support4);
+      set('input[name="rubricIndicator"]', prefill.rubricIndicator);
+      set('input[name="resources"]', prefill.resources);
+      set('input[name="checkins"]', prefill.checkins);
+      set('input[name="measureCustom"]', prefill.measureCustom);
+      (prefill.measures || []).forEach((mname) => {
+        const cb = form.querySelector(`input[type="checkbox"][name="${mname}"]`);
+        if (cb) cb.checked = true;
+      });
+      // Show a small "loaded from role prefill" banner above the form so
+      // the teacher knows to edit the wording and fill in baseline/target.
+      const label = prefill.label || key;
+      const banner = document.createElement("div");
+      banner.className = "card";
+      banner.style.cssText = "background:#fff4d6;border-left:4px solid #b8860b;margin-bottom:12px;";
+      banner.innerHTML =
+        '<div class="card-meta">Loaded prefill: ' + escapeHtml(label) + '</div>' +
+        '<p style="margin-bottom:0;font-size:0.9em;">This is a starting point, not a signature. Edit the wording so it sounds like you, ' +
+        'rewrite anything that doesn\'t match your actual artifacts, and collect your baseline in the first two weeks before you set the target %. ' +
+        '<a href="#/pl-role-prefills">Pick a different role</a>.</p>';
+      form.parentNode.insertBefore(banner, form);
+    } catch (e) { /* prefill failure is non-fatal */ }
+  })();
 
   // Turn a list into a natural English series: ["a","b","c"] -> "a, b, and c"
   function joinAnd(items) {
@@ -4740,6 +4984,7 @@ function _searchIndex() {
     { label: "Off the Plateau", sub: "Five months for teachers stuck at good", href: "#/off-the-plateau" },
     { label: "What Quality Educators Do", sub: "Research-based portrait · Danielson, Marzano, Hattie, Rosenshine, Whitaker, Emdin", href: "#/quality-educators" },
     { label: "Write My PL Goal", sub: "Tool", href: "#/pl-tool" },
+    { label: "PL Goal — Role Prefills", sub: "Counselor, librarian, coach, CTE, SPED prefills for the PL Goal writer", href: "#/pl-role-prefills" },
     { label: "Unit Planner", sub: "Tool", href: "#/unit-plan" },
     { label: "Why Backward Planning", sub: "Teacher guide", href: "#/why-backward-planning" },
     { label: "Weekly Plan", sub: "Tool", href: "#/weekly-plan" },
