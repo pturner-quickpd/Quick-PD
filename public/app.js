@@ -4083,7 +4083,7 @@ const OFF_THE_PLATEAU = [
     why: "Grade-and-return is a report, not feedback. Feedback only matters if the student has to do something with it before the grade is final. The plateau move is shifting one assignment per unit from end-of-cycle grading to mid-draft response the student must act on.",
     theReading: {
       cite: "Wiliam, D. (2011). Embedded Formative Assessment. Solution Tree Press.",
-      url: "https://www.solutiontree.com/embedded-formative-assessment.html",
+      url: "https://www.solutiontree.com/embedded-formative-assessment-second-ed.html",
       focus: "Read the chapter on providing feedback that moves learners forward. Wiliam is blunt: if the student doesn\u2019t do anything different because of your comment, it wasn\u2019t feedback.",
     },
     tryThis: "Pick one assignment in the next unit. Collect a draft two-thirds of the way through. Write one comment per paper \u2014 not a rubric, one specific thing the student should change. Return it. Require a revision before the final version is graded. Do not put a score on the draft.",
@@ -4345,7 +4345,7 @@ const QUALITY_MOVES = [
     title: "They give feedback that changes the next attempt — not the last grade.",
     body: "A number at the top of a paper the kid throws away is not feedback, it's a receipt. Feedback that works arrives while there's still time to fix something and tells the kid exactly what to do next.",
     sources: [
-      { cite: "Wiliam, Embedded Formative Assessment (Solution Tree, 2011)", url: "https://www.solutiontree.com/embedded-formative-assessment.html" },
+      { cite: "Wiliam, Embedded Formative Assessment (Solution Tree, 2011)", url: "https://www.solutiontree.com/embedded-formative-assessment-second-ed.html" },
       { cite: "Hattie & Timperley, The Power of Feedback (Review of Educational Research, 2007)", url: "https://journals.sagepub.com/doi/10.3102/003465430298487" }
     ]
   },
@@ -4409,6 +4409,7 @@ const QUALITY_MOVES = [
     body: "Relationships are not the goal; they are how you earn the right to push. A kid who trusts you will attempt hard work. A kid who does not will protect themselves. If your room is warm but no one is doing the hardest thinking they're capable of, you stopped halfway.",
     sources: [
       { cite: "Whitaker, What Great Teachers Do Differently, 3rd ed. (Routledge/Eye On Education, 2020) — Ch. 6 It Is More Than Relationships", url: "https://www.routledge.com/What-Great-Teachers-Do-Differently-Nineteen-Things-That-Matter-Most/Whitaker/p/book/9780367344641" },
+      { cite: "Emdin, For White Folks Who Teach in the Hood — Reality Pedagogy (Beacon Press, 2016) — cogenerative dialogues, cosmopolitanism", url: "https://www.beacon.org/For-White-Folks-Who-Teach-in-the-Hoodand-the-Rest-of-Yall-Too-P1264.aspx" },
       { cite: "Hamre & Pianta, Can Instructional and Emotional Support in the First-Grade Classroom Make a Difference for Children at Risk of School Failure? (Child Development, 2005)", url: "https://srcd.onlinelibrary.wiley.com/doi/10.1111/j.1467-8624.2005.00889.x" }
     ]
   },
@@ -4498,8 +4499,23 @@ const QUALITY_FRAMEWORKS = [
       "The ability to ignore · Intentionalness · Make it cool to care"
     ],
     strength: "Blunt, personal, and readable in a weekend. Points at what great teachers actually think, not just what they do.",
-    limit: "Light on instructional technique. Pair it with one of the four above — Whitaker on stance, Rosenshine or Marzano on moves.",
+    limit: "Light on instructional technique. Pair it with one of the four above — Whitaker for stance, Rosenshine or Marzano for moves.",
     url: "https://www.routledge.com/What-Great-Teachers-Do-Differently-Nineteen-Things-That-Matter-Most/Whitaker/p/book/9780367344641"
+  },
+  {
+    name: "Emdin — For White Folks Who Teach in the Hood (2016)",
+    author: "Christopher Emdin · Beacon Press · Reality Pedagogy",
+    what: "A pedagogy built for the students the other frameworks tend to leave out. Emdin argues that content and technique are not enough when the classroom itself is culturally hostile — the teacher has to reorganize authority so students become experts in their own learning.",
+    domains: [
+      "Cogenerative dialogues — small student-teacher meetings that redesign the lesson",
+      "Coteaching — students lead segments in their register, not the teacher's",
+      "Cosmopolitanism — every kid has a role that makes them responsible for someone else",
+      "Context and content — the neighborhood is a text, not a distraction from the text",
+      "Curation — bringing hip-hop, call-and-response, and student cultural forms into instruction on purpose"
+    ],
+    strength: "Names something the other five step around: the classroom is a cultural space before it's an instructional one, and 'high expectations' land differently depending on whether the kid feels seen. Practical, not abstract — every C has a move.",
+    limit: "Written mostly from urban secondary contexts. The stance transfers anywhere kids feel invisible; some specific moves (call-and-response, hip-hop curation) need translation for other rooms.",
+    url: "https://www.beacon.org/For-White-Folks-Who-Teach-in-the-Hoodand-the-Rest-of-Yall-Too-P1264.aspx"
   }
 ];
 
@@ -4509,7 +4525,7 @@ const QUALITY_VIDEOS = [
     title: "Austin's Butterfly — critique, feedback, and multiple drafts",
     who: "Ron Berger · EL Education · ~6 min",
     why: "A first-grade class takes another first-grader's butterfly drawing through six drafts using kind, specific, helpful critique. If you have ever wondered what feedback that actually changes the next draft looks like — this is it. Show it to your students, then show it to yourself.",
-    url: "https://modelsofexcellence.eleducation.org/resources/austins-butterfly"
+    url: "https://www.eleducation.org/resources/austins-butterfly/"
   },
   {
     title: "No Opt Out + Stretch It — real classroom clip",
@@ -4533,7 +4549,7 @@ async function renderQualityEducators(view) {
         <span style="color:var(--muted);font-size:14px;">Research-based · blunt · citation-verified</span>
       </div>
       <p style="margin:10px 0 0;color:#334;max-width:78ch;line-height:1.55;">
-        There is no gene for great teaching. There is a set of things great teachers actually do — the same things show up in Danielson, Marzano, Hattie, Rosenshine, and Whitaker, written in different words. Below is the plain-English list, then a side-by-side of the five frameworks, then a small library of real classroom footage. If a claim isn't cited to a real source, it doesn't belong here.
+        There is no gene for great teaching. There is a set of things great teachers actually do — the same things show up in Danielson, Marzano, Hattie, Rosenshine, Whitaker, and Emdin, written in different words. Below is the plain-English list, then a side-by-side of the six frameworks, then a small library of real classroom footage. If a claim isn't cited to a real source, it doesn't belong here.
       </p>
     </section>
 
@@ -4593,9 +4609,9 @@ async function renderQualityEducators(view) {
     <section class="panel" style="padding:18px 20px;background:#f5f7fb;border-left:4px solid var(--navy);">
       <div style="font-weight:700;color:var(--navy);letter-spacing:.05em;font-size:13px;margin-bottom:6px;">MY SYNTHESIS</div>
       <div style="color:#334;line-height:1.6;font-size:14.5px;">
-        If you strip the vocabulary off all five frameworks, three things remain. <strong>One:</strong> great teachers know the content well enough to teach it a second way when the first way misses. <strong>Two:</strong> they design the lesson so <em>every</em> student is thinking, not just the ones with their hands up — and they check whether the thinking landed before the bell rings. <strong>Three:</strong> they act like the variable, because they are. Everything else — cold calls, exit tickets, rubrics, workshop models, chunking, feedback — is a way to get those three things to happen in a room full of teenagers on a Tuesday afternoon.
+        If you strip the vocabulary off all six frameworks, three things remain. <strong>One:</strong> great teachers know the content well enough to teach it a second way when the first way misses. <strong>Two:</strong> they design the lesson so <em>every</em> student is thinking, not just the ones with their hands up — and they check whether the thinking landed before the bell rings. <strong>Three:</strong> they act like the variable, because they are. Everything else — cold calls, exit tickets, rubrics, workshop models, chunking, feedback — is a way to get those three things to happen in a room full of teenagers on a Tuesday afternoon.
         <br><br>
-        Read Rosenshine for the clearest ten-page summary. Read Whitaker for the stance. Use Danielson for the observation vocabulary you already have to speak. Marzano and Hattie are worth returning to when a specific move stops working and you need to know why.
+        Read Rosenshine for the clearest ten-page summary. Read Whitaker for the stance. Read Emdin for the students the other five barely mention — the ones for whom your classroom is not culturally neutral ground. Use Danielson for the observation vocabulary you already have to speak. Marzano and Hattie are worth returning to when a specific move stops working and you need to know why.
       </div>
     </section>
   `;
@@ -4695,7 +4711,7 @@ function _searchIndex() {
     { label: "First 30 Days", sub: "Onboarding path", href: "#/first-30-days" },
     { label: "First Ten Weeks", sub: "Named ten-week track · one thing per week", href: "#/first-ten-weeks" },
     { label: "Off the Plateau", sub: "Five months for teachers stuck at good", href: "#/off-the-plateau" },
-    { label: "What Quality Educators Do", sub: "Research-based portrait · Danielson, Marzano, Hattie, Rosenshine, Whitaker", href: "#/quality-educators" },
+    { label: "What Quality Educators Do", sub: "Research-based portrait · Danielson, Marzano, Hattie, Rosenshine, Whitaker, Emdin", href: "#/quality-educators" },
     { label: "Write My PL Goal", sub: "Tool", href: "#/pl-tool" },
     { label: "Unit Planner", sub: "Tool", href: "#/unit-plan" },
     { label: "Why Backward Planning", sub: "Teacher guide", href: "#/why-backward-planning" },
