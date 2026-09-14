@@ -1855,23 +1855,34 @@ async function renderPLTool(view) {
 
   view.innerHTML = `
     <h1 class="page-title">Write My PL Goal</h1>
-    <p class="page-lede">Build a professional learning goal that holds up in an evaluation conversation. Name a specific focus, the cadence you will hit, what students will produce, and the numbers you will move it from and to. The tool assembles it in the format below.</p>
+    <p class="page-lede">One instructional practice. One number in, one number out. One collection window. The measure has to be something you already collect weekly — if the goal invents a new data collection, it dies in October. The tool assembles it in the exact format below.</p>
 
     <div class="card" style="background:#F6F1E4;border-left:4px solid #0A2540;">
       <div class="card-meta">Example of the output this tool produces</div>
-      <p style="margin-bottom:0;font-size:0.92em;"><strong>Focus area:</strong> higher-level questioning that produces written, evidence-based student analysis.<br>
-      By the end of the second nine weeks, I will design and deliver at least one Level 2 or Level 3 question per week that students answer in writing with cited evidence from the text or source. I will increase the percentage of students producing a written response that cites evidence from ____% (baseline, collected the first two weeks) to ____%, measured by weekly collected student work samples and principal walkthrough data. To support this, I will plan questions in advance in my lesson plans rather than generating them in the moment, use a written-response protocol before discussion, and build wait time into each question.<br>
-      <strong>Rubric indicator:</strong> ____<br>
-      <strong>Resources:</strong> ____<br>
-      <strong>Check-ins:</strong> end of 1st nine weeks, end of 2nd nine weeks.</p>
+      <p style="margin-bottom:0;font-size:0.92em;"><strong>Focus area:</strong> I will focus on students writing evidence-based responses to Level 2 and Level 3 questions in biology this semester.<br>
+      By the end of the first nine weeks, I will have every student write at least one evidence-based response per week. The evidence will show in weekly exit tickets, lab conclusion paragraphs, and unit assessment constructed-response items.<br>
+      I will increase the percentage of students producing a written response that states a claim and cites at least one piece of data or text evidence from 40% (baseline, collected the first two weeks) to 75%, measured by weekly exit ticket scores against the shared response expectation and common formative assessment results.<br>
+      To support this, I will open two days a week with a Level 2 or Level 3 prompt, close labs with a written conclusion, and score all of it against the same claim-plus-evidence expectation posted in the room.<br>
+      <strong>Rubric indicator:</strong> Instructional Effectiveness (50%) — Indicator 7, Literacy<br>
+      <strong>Resources:</strong> instructional coaching, one peer observation in a content area already doing this well<br>
+      <strong>Check-ins:</strong> end of 1st nine weeks, end of 2nd nine weeks</p>
+    </div>
+
+    <div class="card" style="background:#f5f7fb;border-left:4px solid #0A2540;">
+      <div class="card-meta">Three rules — read before you write</div>
+      <ol style="margin:6px 0 0 20px;font-size:0.92em;line-height:1.5;">
+        <li><strong>Baseline before target.</strong> If you can't name where you are, the goal is a guess. Collect for two weeks, then write the number.</li>
+        <li><strong>The measure has to be something you already do.</strong> If the PL invents a new data collection, it dies in October.</li>
+        <li><strong>It points at the building focus — Reading and Writing Across the Curriculum.</strong> Counselors, librarian, everyone: the indicator changes, the direction doesn't.</li>
+      </ol>
     </div>
 
     <div class="card">
       <form id="pl-form" class="form-grid">
 
         <div class="form-row">
-          <label>1. Focus area <span style="color:var(--muted);font-weight:normal;">(one sentence — what will improve and what students will produce)</span></label>
-          <textarea class="textarea" name="focus" required rows="2" placeholder="e.g. higher-level questioning that produces written, evidence-based student analysis"></textarea>
+          <label>1. Focus area <span style="color:var(--muted);font-weight:normal;">(one instructional practice, in one sentence — not a list, not a unit plan. Renders as: &ldquo;I will focus on ___ this semester.&rdquo;)</span></label>
+          <textarea class="textarea" name="focus" required rows="2" placeholder="e.g. students writing evidence-based responses to Level 2 and Level 3 questions in biology"></textarea>
         </div>
 
         <div class="form-row">
@@ -1889,25 +1900,25 @@ async function renderPLTool(view) {
         </div>
 
         <div class="form-row">
-          <label>3. The move — with cadence <span style="color:var(--muted);font-weight:normal;">(what you will design and deliver, and how often)</span></label>
-          <input class="input" name="move" required placeholder="e.g. design and deliver at least one Level 2 or Level 3 question per week" />
+          <label>3. What students will be doing by the timeline <span style="color:var(--muted);font-weight:normal;">(renders as: &ldquo;By [timeline], I will ___.&rdquo; State what students do, not what you deliver.)</span></label>
+          <input class="input" name="move" required placeholder="e.g. have every student write at least one evidence-based response per week" />
         </div>
 
         <div class="form-row">
-          <label>4a. What students will produce — noun phrase <span style="color:var(--muted);font-weight:normal;">(this becomes what you measure the % of)</span></label>
-          <input class="input" name="studentOutput" required placeholder="e.g. a written response that cites evidence from the text or source" />
+          <label>4. The evidence will show in <span style="color:var(--muted);font-weight:normal;">(the specific artifacts where you'll see it — name them)</span></label>
+          <input class="input" name="evidenceArtifacts" required placeholder="e.g. weekly exit tickets, lab conclusion paragraphs, and unit assessment constructed-response items" />
         </div>
 
         <div class="form-row">
-          <label>4b. How they will answer — manner phrase <span style="color:var(--muted);font-weight:normal;">(follows &ldquo;that students answer&hellip;&rdquo;; leave blank to reuse 4a)</span></label>
-          <input class="input" name="studentAnswerManner" placeholder="e.g. in writing with cited evidence from the text or source" />
+          <label>5. What students will produce — noun phrase <span style="color:var(--muted);font-weight:normal;">(this is what you measure the % of. Renders after &ldquo;the percentage of students producing ___&rdquo;.)</span></label>
+          <input class="input" name="studentOutput" required placeholder="e.g. a written response that states a claim and cites at least one piece of data or text evidence" />
         </div>
 
         <div class="form-row">
-          <label>5. Baseline & target percentages</label>
+          <label>6. Baseline & target percentages <span style="color:var(--muted);font-weight:normal;">(one number in, one number out. Baseline before target — if you can't name where you are, the goal is a guess.)</span></label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div>
-              <input class="input" name="baselinePct" placeholder="Baseline %  (e.g. 35 or ____)" />
+              <input class="input" name="baselinePct" placeholder="Baseline %  (e.g. 40 or ____)" />
               <div style="font-size:12px;color:var(--muted);margin-top:2px;">Leave blank or use ____ if you'll collect it during the first two weeks.</div>
             </div>
             <div>
@@ -1918,43 +1929,43 @@ async function renderPLTool(view) {
         </div>
 
         <div class="form-row">
-          <label>6. How baseline will be collected <span style="color:var(--muted);font-weight:normal;">(optional — appears in parentheses after the baseline %)</span></label>
+          <label>7. How baseline will be collected <span style="color:var(--muted);font-weight:normal;">(appears in parentheses after the baseline %)</span></label>
           <input class="input" name="baselineMethod" placeholder="e.g. baseline, collected the first two weeks" value="baseline, collected the first two weeks" />
         </div>
 
         <div class="form-row">
-          <label>7. How you will measure it <span style="color:var(--muted);font-weight:normal;">(pick one or more)</span></label>
+          <label>8. Measured by <span style="color:var(--muted);font-weight:normal;">(must be something you already collect weekly. Pick one or more.)</span></label>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:0.94em;">
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_exit" value="weekly exit ticket scores against the shared response expectation"> weekly exit ticket scores against the shared response expectation</label>
+            <label style="font-weight:normal;"><input type="checkbox" name="measure_common" value="common formative assessment results"> common formative assessment results</label>
             <label style="font-weight:normal;"><input type="checkbox" name="measure_samples" value="weekly collected student work samples"> weekly collected student work samples</label>
             <label style="font-weight:normal;"><input type="checkbox" name="measure_walkthroughs" value="principal walkthrough data"> principal walkthrough data</label>
-            <label style="font-weight:normal;"><input type="checkbox" name="measure_exit" value="weekly exit ticket data"> weekly exit ticket data</label>
-            <label style="font-weight:normal;"><input type="checkbox" name="measure_common" value="common formative assessment results"> common formative assessment results</label>
             <label style="font-weight:normal;"><input type="checkbox" name="measure_peer" value="peer observation notes"> peer observation notes</label>
             <label style="font-weight:normal;"><input type="checkbox" name="measure_survey" value="student survey results (start vs. end)"> student survey results (start vs. end)</label>
           </div>
-          <input class="input" name="measureCustom" placeholder="Or add your own measure(s), comma-separated" style="margin-top:8px;" />
+          <input class="input" name="measureCustom" placeholder="Or add your own measure(s), comma-separated — must be weekly collection" style="margin-top:8px;" />
         </div>
 
         <div class="form-row">
-          <label>8. Supporting practices <span style="color:var(--muted);font-weight:normal;">(what you will do to make the move happen — 2 to 4)</span></label>
-          <input class="input" name="support1" placeholder="Supporting practice 1 (e.g. plan questions in advance in my lesson plans rather than generating them in the moment)" />
-          <input class="input" name="support2" placeholder="Supporting practice 2 (e.g. use a written-response protocol before discussion)" style="margin-top:8px;" />
-          <input class="input" name="support3" placeholder="Supporting practice 3 (e.g. build wait time into each question)" style="margin-top:8px;" />
+          <label>9. To support this, I will — the routine, with frequency <span style="color:var(--muted);font-weight:normal;">(what you control. 2 to 4 items. Include how often — &ldquo;two days a week&rdquo;, &ldquo;every lab&rdquo;.)</span></label>
+          <input class="input" name="support1" placeholder="Supporting practice 1 (e.g. open two days a week with a Level 2 or Level 3 prompt)" />
+          <input class="input" name="support2" placeholder="Supporting practice 2 (e.g. close labs with a written conclusion)" style="margin-top:8px;" />
+          <input class="input" name="support3" placeholder="Supporting practice 3 (e.g. score all of it against the same claim-plus-evidence expectation posted in the room)" style="margin-top:8px;" />
           <input class="input" name="support4" placeholder="Supporting practice 4 (optional)" style="margin-top:8px;" />
         </div>
 
         <div class="form-row">
-          <label>9. Rubric indicator <span style="color:var(--muted);font-weight:normal;">(optional — Marzano / Danielson / Marshall element this maps to)</span></label>
-          <input class="input" name="rubricIndicator" placeholder="e.g. Marzano DQ2 / Danielson 3b: Questioning & Discussion" />
+          <label>10. Rubric indicator <span style="color:var(--muted);font-weight:normal;">(the exact indicator on the rubric you are evaluated under)</span></label>
+          <input class="input" name="rubricIndicator" placeholder="e.g. Instructional Effectiveness (50%) — Indicator 7, Literacy" />
         </div>
 
         <div class="form-row">
-          <label>10. Resources <span style="color:var(--muted);font-weight:normal;">(optional — Toolkit pages, books, PD, coach)</span></label>
-          <input class="input" name="resources" placeholder="e.g. Rigor & Questioning page; Costa's Levels handout; instructional coach" />
+          <label>11. Resources <span style="color:var(--muted);font-weight:normal;">(what you're asking the principal for — coaching, release time, materials, peer observation)</span></label>
+          <input class="input" name="resources" placeholder="e.g. instructional coaching, one peer observation in a content area already doing this well" />
         </div>
 
         <div class="form-row">
-          <label>11. Check-ins</label>
+          <label>12. Check-ins</label>
           <input class="input" name="checkins" placeholder="e.g. end of 1st nine weeks, end of 2nd nine weeks" value="end of 1st nine weeks, end of 2nd nine weeks" />
         </div>
 
@@ -2019,8 +2030,8 @@ async function renderPLTool(view) {
     const focusRaw = (data.focus || "").trim().replace(/\.$/, "");
     const timeline = (data.timeline || "").trim();
     const move = (data.move || "").trim().replace(/\.$/, "");
+    const evidenceArtifacts = (data.evidenceArtifacts || "").trim().replace(/\.$/, "");
     const studentOutput = (data.studentOutput || "").trim().replace(/\.$/, "");
-    const studentAnswerManner = ((data.studentAnswerManner || "").trim().replace(/\.$/, "")) || studentOutput;
     const baselinePct = (data.baselinePct || "").trim() || "____";
     const targetPct = (data.targetPct || "").trim() || "____";
     const baselineMethod = (data.baselineMethod || "").trim();
@@ -2042,30 +2053,32 @@ async function renderPLTool(view) {
     const bMethodClause = baselineMethod ? ` (${baselineMethod})` : "";
 
     const lines = [];
-    if (focusRaw) lines.push(`Focus area: ${focusRaw}.`);
 
+    // Line 1: Focus area — "I will focus on ___ this semester."
+    if (focusRaw) lines.push(`Focus area: I will focus on ${focusRaw} this semester.`);
+
+    // Line 2: "By [timeline], I will ___. The evidence will show in ___."
     if (timeline && move) {
-      // Sentence 1: cadence sentence
-      let s1 = `By ${timeline}, I will ${move}`;
-      if (studentAnswerManner) s1 += ` that students answer ${studentAnswerManner}`;
-      s1 += ".";
-      lines.push(s1);
-
-      // Sentence 2: baseline -> target with measures
-      if (studentOutput || baselinePct !== "____" || targetPct !== "____" || measures) {
-        let s2 = `I will increase the percentage of students producing ${studentOutput || "the target behavior"} from ${bPct}${bMethodClause} to ${tPct}`;
-        if (measures) s2 += `, measured by ${measures}`;
-        s2 += ".";
-        lines.push(s2);
-      }
-
-      // Sentence 3: supporting practices
-      if (supports) lines.push(`To support this, I will ${supports}.`);
+      let s2 = `By ${timeline}, I will ${move}.`;
+      if (evidenceArtifacts) s2 += ` The evidence will show in ${evidenceArtifacts}.`;
+      lines.push(s2);
     }
 
+    // Line 3: "I will increase the percentage of students ___ from ___% to ___%, measured by ___."
+    if (studentOutput || baselinePct !== "____" || targetPct !== "____" || measures) {
+      let s3 = `I will increase the percentage of students producing ${studentOutput || "the target behavior"} from ${bPct}${bMethodClause} to ${tPct}`;
+      if (measures) s3 += `, measured by ${measures}`;
+      s3 += ".";
+      lines.push(s3);
+    }
+
+    // Line 4: "To support this, I will ___."
+    if (supports) lines.push(`To support this, I will ${supports}.`);
+
+    // Lines 5-7: rubric, resources, check-ins
     lines.push(`Rubric indicator: ${rubric}`);
     lines.push(`Resources: ${resources}`);
-    if (checkins) lines.push(`Check-ins: ${checkins}.`);
+    if (checkins) lines.push(`Check-ins: ${checkins}`);
 
     return lines.join("\n");
   }
@@ -2078,8 +2091,9 @@ async function renderPLTool(view) {
     const move = (data.move || "").trim();
     const timeline = (data.timeline || "").trim();
     const studentOutput = (data.studentOutput || "").trim();
-    // Show preview as soon as the four core fields are filled
-    if (focus && move && timeline && studentOutput) {
+    const evidenceArtifacts = (data.evidenceArtifacts || "").trim();
+    // Show preview as soon as the five core fields are filled
+    if (focus && move && timeline && studentOutput && evidenceArtifacts) {
       previewText.textContent = assemblePLGoal(data);
       preview.style.display = "block";
     } else {
@@ -2144,7 +2158,8 @@ function plGoalDocxBlocks(p) {
   blocks.push({ hr: true }, { h2: "Working detail" });
   if (d.focus) blocks.push({ label: "Focus area", value: d.focus });
   if (d.timeline) blocks.push({ label: "Timeline", value: "By " + d.timeline });
-  if (d.move) blocks.push({ label: "The move", value: d.move });
+  if (d.move) blocks.push({ label: "By timeline, I will", value: d.move });
+  if (d.evidenceArtifacts) blocks.push({ label: "Evidence will show in", value: d.evidenceArtifacts });
   if (d.studentOutput) blocks.push({ label: "What students produce", value: d.studentOutput });
   if (d.baselinePct || d.targetPct) {
     blocks.push({ label: "Baseline → target", value: (d.baselinePct || "____") + " → " + (d.targetPct || "____") + (d.baselineMethod ? "  (" + d.baselineMethod + ")" : "") });
