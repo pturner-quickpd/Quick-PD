@@ -325,7 +325,11 @@ const Routes = {
 };
 
 function currentRoute() {
-  const hash = location.hash.replace(/^#\/?/, "") || "start-here";
+  // Strip the query string (?prefill=counselor, ?course=biology, etc.)
+  // before parsing the route — individual pages read the query string
+  // themselves via location.hash.split("?")[1].
+  const rawHash = location.hash.replace(/^#\/?/, "") || "start-here";
+  const hash = rawHash.split("?")[0];
   const [route, ...rest] = hash.split("/");
   return { route, params: rest };
 }
