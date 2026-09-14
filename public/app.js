@@ -4094,12 +4094,32 @@ const OFF_THE_PLATEAU = [
     band: "4",
     title: "Teach your discipline as a discipline",
     diagnosis: "You teach the content of your subject. You do not teach students how someone in your field actually thinks. History class is a list of causes and effects. Science class is a list of steps. English class is a list of devices. The kids never see the moves an expert makes.",
-    why: "Content coverage is the plateau. What separates a subject-matter teacher from a discipline teacher is that the second one names the moves \u2014 sourcing a document, isolating a variable, tracking a metaphor \u2014 and asks students to try them on new material. The example below is history, but the frame applies to every subject.",
+    why: "Content coverage is the plateau. What separates a subject-matter teacher from a discipline teacher is that the second one names the moves \u2014 sourcing a document, sense-making a problem, arguing from evidence, tracking a metaphor \u2014 and asks students to try them on new material. Pick the source below that matches what you teach.",
     theReading: {
       cite: "Wineburg, S. (2001). Historical Thinking and Other Unnatural Acts: Charting the Future of Teaching the Past. Temple University Press.",
       url: "https://tupress.temple.edu/books/historical-thinking-and-other-unnatural-acts",
-      focus: "Read chapter 3, \u2018On the Reading of Historical Texts.\u2019 If you don\u2019t teach history: read the intro and one chapter, then translate the argument into your subject. What does an expert in your field do that a novice doesn\u2019t?",
+      focus: "Wineburg is the default read for history and social studies teachers \u2014 chapter 3, \u2018On the Reading of Historical Texts,\u2019 is the one to open. If you teach math, science, or English, skip Wineburg and use the subject-specific source below instead.",
     },
+    subjectReadings: [
+      {
+        subject: "Math",
+        cite: "Schoenfeld, A. H. (1992/2016). Learning to Think Mathematically: Problem Solving, Metacognition, and Sense Making in Mathematics. Journal of Education, 196(2), 1\u201338. (Reprint of Schoenfeld\u2019s chapter in D. Grouws, Ed., Handbook of Research on Mathematics Teaching and Learning, Macmillan.)",
+        url: "https://journals.sagepub.com/doi/pdf/10.1177/002205741619600202",
+        focus: "Free full-text PDF. Read the section on what it means to \u2018think mathematically\u2019 (resources, heuristics, monitoring, beliefs) and the ten-move teacher script (before / during / after a problem). The classroom is a culture of sense-making, not answer-getting.",
+      },
+      {
+        subject: "Science",
+        cite: "Osborne, J. (2010). An Argument for Arguments in Science Classes. Phi Delta Kappan, 91(4), 62\u201365.",
+        url: "https://journals.sagepub.com/doi/abs/10.1177/003172171009100413",
+        focus: "Short teacher-facing article by Stanford\u2019s Jonathan Osborne. The move that separates a science class from a lab-followed-by-worksheet class is argumentation \u2014 students constructing, critiquing, and revising claims from evidence, out loud. That is what scientists actually do.",
+      },
+      {
+        subject: "English / ELA",
+        cite: "Wilhelm, J. D. (2016). \u2018You Gotta BE the Book\u2019: Teaching Engaged and Reflective Reading with Adolescents (3rd ed.). Teachers College Press / NCTE.",
+        url: "https://www.tcpress.com/products/you-gotta-be-the-book_9780807757987",
+        focus: "Wilhelm\u2019s core claim: engaged readers do ten dimensions of active \u2018being the book\u2019 work (entering, showing interest, seeing/hearing, elaborating, connecting, considering, evaluating, reflecting). Most adolescents are never taught any of them. Pick two, name them, model them, ask students to try them on a text they haven\u2019t seen.",
+      },
+    ],
     tryThis: "Name three moves an expert in your discipline makes. Write them in student-facing language. Design one lesson where the students practice one of those moves on material they haven\u2019t seen. Do not lecture the move first \u2014 make them try it, then name what they did.",
     artifactForCoach: "Bring the three moves in student language, the lesson, and a piece of student work that shows a novice attempt at the move. Be ready to say what they missed.",
     reflectionKey: "otp-m4-reflection",
@@ -4189,6 +4209,20 @@ async function renderOffThePlateau(view) {
                 <a href="${escapeHtml(m.theReading.url)}" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">${escapeHtml(m.theReading.cite)}</a>
               </div>
               <div style="color:#556;margin-top:4px;font-size:14px;font-style:italic;">${escapeHtml(m.theReading.focus)}</div>
+              ${Array.isArray(m.subjectReadings) && m.subjectReadings.length ? `
+                <div style="margin-top:14px;padding-top:12px;border-top:1px dashed #cbd2dd;">
+                  <div style="font-weight:700;color:var(--navy);font-size:13px;letter-spacing:.05em;margin-bottom:8px;">IF YOU TEACH …</div>
+                  ${m.subjectReadings.map((s) => `
+                    <div style="margin-bottom:12px;">
+                      <div style="font-weight:700;color:var(--navy);font-size:14px;margin-bottom:2px;">${escapeHtml(s.subject)}</div>
+                      <div style="color:#334;line-height:1.55;font-size:14px;">
+                        <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">${escapeHtml(s.cite)}</a>
+                      </div>
+                      <div style="color:#556;margin-top:3px;font-size:13.5px;font-style:italic;">${escapeHtml(s.focus)}</div>
+                    </div>
+                  `).join("")}
+                </div>
+              ` : ""}
             </div>
 
             <div style="margin-bottom:14px;">
