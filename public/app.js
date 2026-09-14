@@ -160,6 +160,7 @@ const ROUTE_LABELS = {
   "social-studies": "Social Studies (6–12)",
   "first-30-days": "First 30 Days",
   "first-ten-weeks": "First Ten Weeks",
+  "off-the-plateau": "Off the Plateau",
   "about": "About the Toolkit",
   "strategy": "Strategy detail",
 };
@@ -315,6 +316,7 @@ const Routes = {
   "stats": renderStats,
   "first-30-days": renderFirst30Days,
   "first-ten-weeks": renderFirstTenWeeks,
+  "off-the-plateau": renderOffThePlateau,
   "about": renderAbout,
 };
 
@@ -4035,6 +4037,237 @@ async function renderFirstTenWeeks(view) {
 }
 
 // ============================================================
+// OFF THE PLATEAU — five-month track for stuck-at-good teachers
+// ============================================================
+const OFF_THE_PLATEAU = [
+  {
+    id: "otp-m1",
+    month: 1,
+    band: "1",
+    title: "The follow-up sequence",
+    diagnosis: "You accept the first answer. The kid says something partial or wrong, you rephrase, another kid saves it, class moves on. Everyone got fed. Nobody got stretched.",
+    why: "Cold-calling and check-for-understanding routines get you evidence that someone heard the question. They don\u2019t make the student who answered actually finish the thinking. The one move that separates a decent classroom from a rigorous one is what happens in the ten seconds after a wrong or thin answer.",
+    theReading: {
+      cite: "Lemov, D. (2021). Teach Like a Champion 3.0: 63 Techniques that Put Students on the Path to College. Jossey-Bass.",
+      url: "https://teachlikeachampion.org/books/teach-like-a-champion-3-0/",
+      focus: "Read the techniques No Opt Out, Right Is Right, and Stretch It. Skip everything else.",
+    },
+    tryThis: "Pick one class period. For the next four weeks, run a four-move follow-up on wrong or partial answers: (1) probe \u2014 \u2018Say more about that.\u2019 (2) redirect to a peer \u2014 \u2018Kayla, what would you add?\u2019 (3) come back to the original student with a scaffold \u2014 \u2018Given what Kayla said, try again.\u2019 (4) close with synthesis \u2014 that student states the full answer. Do not accept the peer\u2019s answer as the ending.",
+    artifactForCoach: "Bring a script of one exchange that went through all four moves. Actual words the kid said, actual words you said. Not a summary.",
+    reflectionKey: "otp-m1-reflection",
+  },
+  {
+    id: "otp-m2",
+    month: 2,
+    band: "2",
+    title: "Cognitive load in your unit",
+    diagnosis: "Your lessons are organized. Slides look clean. Kids can follow along. But at the end of the period, you\u2019re the one who did most of the thinking \u2014 you explained, you modeled, you connected, you summarized. They wrote it down.",
+    why: "A teacher stuck at good has usually optimized for smooth delivery. Smooth is not the goal. The goal is that the student\u2019s working memory is doing the heavy lifting on the thing that matters, not on figuring out what page they\u2019re on or decoding a busy slide. Cognitive load theory is the frame for auditing that ratio.",
+    theReading: {
+      cite: "Centre for Education Statistics and Evaluation. (2017). Cognitive load theory: Research that teachers really need to understand. NSW Department of Education.",
+      url: "https://education.nsw.gov.au/content/dam/main-education/about-us/educational-data/cese/2017-cognitive-load-theory.pdf",
+      focus: "Twelve pages. Read the whole thing. Pay attention to intrinsic vs. extraneous load and the worked-example effect.",
+    },
+    tryThis: "Take one unit you\u2019ve taught before. Walk through every lesson and mark each block: T = teacher is doing the cognitive work, S = student is doing it. Add up the minutes. If T outweighs S, redesign one lesson so the ratio flips \u2014 usually by replacing an explanation with a worked example followed by a partial-completion task.",
+    artifactForCoach: "Bring the annotated unit map (T/S minutes per lesson) and the one redesigned lesson. Be ready to say what you cut to make room.",
+    reflectionKey: "otp-m2-reflection",
+  },
+  {
+    id: "otp-m3",
+    month: 3,
+    band: "3",
+    title: "Feedback that changes the next draft",
+    diagnosis: "You grade. You return. Kids look at the score, maybe glance at the comments, file it. The next assignment shows the same mistakes. Your feedback is going into a wall.",
+    why: "Grade-and-return is a report, not feedback. Feedback only matters if the student has to do something with it before the grade is final. The plateau move is shifting one assignment per unit from end-of-cycle grading to mid-draft response the student must act on.",
+    theReading: {
+      cite: "Wiliam, D. (2011). Embedded Formative Assessment. Solution Tree Press.",
+      url: "https://www.solutiontree.com/embedded-formative-assessment.html",
+      focus: "Read the chapter on providing feedback that moves learners forward. Wiliam is blunt: if the student doesn\u2019t do anything different because of your comment, it wasn\u2019t feedback.",
+    },
+    tryThis: "Pick one assignment in the next unit. Collect a draft two-thirds of the way through. Write one comment per paper \u2014 not a rubric, one specific thing the student should change. Return it. Require a revision before the final version is graded. Do not put a score on the draft.",
+    artifactForCoach: "Bring three student drafts with your comment and the revised version stapled behind. Be ready to say which student ignored the comment, and why you think they did.",
+    reflectionKey: "otp-m3-reflection",
+  },
+  {
+    id: "otp-m4",
+    month: 4,
+    band: "4",
+    title: "Teach your discipline as a discipline",
+    diagnosis: "You teach the content of your subject. You do not teach students how someone in your field actually thinks. History class is a list of causes and effects. Science class is a list of steps. English class is a list of devices. The kids never see the moves an expert makes.",
+    why: "Content coverage is the plateau. What separates a subject-matter teacher from a discipline teacher is that the second one names the moves \u2014 sourcing a document, isolating a variable, tracking a metaphor \u2014 and asks students to try them on new material. The example below is history, but the frame applies to every subject.",
+    theReading: {
+      cite: "Wineburg, S. (2001). Historical Thinking and Other Unnatural Acts: Charting the Future of Teaching the Past. Temple University Press.",
+      url: "https://tupress.temple.edu/books/historical-thinking-and-other-unnatural-acts",
+      focus: "Read chapter 3, \u2018On the Reading of Historical Texts.\u2019 If you don\u2019t teach history: read the intro and one chapter, then translate the argument into your subject. What does an expert in your field do that a novice doesn\u2019t?",
+    },
+    tryThis: "Name three moves an expert in your discipline makes. Write them in student-facing language. Design one lesson where the students practice one of those moves on material they haven\u2019t seen. Do not lecture the move first \u2014 make them try it, then name what they did.",
+    artifactForCoach: "Bring the three moves in student language, the lesson, and a piece of student work that shows a novice attempt at the move. Be ready to say what they missed.",
+    reflectionKey: "otp-m4-reflection",
+  },
+  {
+    id: "otp-m5",
+    month: 5,
+    band: "5",
+    title: "One hard question, sustained",
+    diagnosis: "Your unit is a march through topics. Each day has an objective, each week has a quiz, the test comes at the end. Nothing pulls the whole thing together. Kids do the work but they can\u2019t tell you what the unit was actually about.",
+    why: "A unit organized around content is a to-do list. A unit organized around an essential question is an argument. The essential question is one open, arguable, recurring question the whole unit answers. It shows up on day one, it shows up on the last day, and students\u2019 answers get sharper as the evidence stacks up.",
+    theReading: {
+      cite: "McTighe, J., & Wiggins, G. (2013). Essential Questions: Opening Doors to Student Understanding. ASCD.",
+      url: "https://www.ascd.org/books/essential-questions",
+      focus: "Read chapter 1 \u2014 the seven criteria for what makes a question essential \u2014 and chapter 4 on how to use an EQ across a unit.",
+    },
+    tryThis: "Take the next unit. Write one essential question that passes at least five of the seven criteria. Post it. Open every class period with a two-minute reference to it. Close the unit with each student writing their current answer, with evidence from the unit, in one page.",
+    artifactForCoach: "Bring the question, the unit calendar showing where it surfaced, and three student final answers \u2014 one strong, one middle, one weak. Be ready to say what you\u2019d change about the question.",
+    reflectionKey: "otp-m5-reflection",
+  },
+];
+
+function _plateauGet() {
+  const raw = _CookieStore.get("qpd_off_the_plateau");
+  try { return raw ? JSON.parse(raw) : {}; } catch { return {}; }
+}
+function _plateauSet(state) {
+  _CookieStore.set("qpd_off_the_plateau", JSON.stringify(state));
+}
+
+async function renderOffThePlateau(view) {
+  const state = _plateauGet();
+  const doneCount = OFF_THE_PLATEAU.filter((m) => state[`${m.id}:done`]).length;
+  const pct = Math.round((doneCount / OFF_THE_PLATEAU.length) * 100);
+
+  view.innerHTML = `
+    <section class="panel" style="padding:22px 22px 18px;margin-bottom:14px;">
+      <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+        <h1 style="margin:0;font-size:26px;color:var(--navy);">Off the Plateau</h1>
+        <span style="color:var(--muted);font-size:14px;">Five months · one move at a time</span>
+      </div>
+      <p style="margin:10px 0 0;color:#334;max-width:78ch;line-height:1.55;">
+        This is not for the teacher who is drowning. This is for the teacher whose room runs, whose evals are fine, whose kids like them — and whose last five years look like the same year, five times. Nobody complains. Nobody is transformed either. Every month here is one hard thing to push you off the plateau. Read the source, try the move in a real unit, bring the artifact to your coach.
+      </p>
+      <div style="margin-top:14px;background:#eef2f8;border-radius:10px;height:10px;overflow:hidden;">
+        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--navy),var(--gold));transition:width .3s;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;">
+        <span style="font-size:14px;color:var(--navy);font-weight:700;">${doneCount} / ${OFF_THE_PLATEAU.length} months · ${pct}%</span>
+        <button id="otp-print" class="chip" style="cursor:pointer;">Print my semester</button>
+      </div>
+    </section>
+
+    <section class="panel" style="padding:14px;background:#fffdf5;border-left:4px solid var(--gold);margin-bottom:18px;">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:4px;">How the coaching loop works</div>
+      <div style="color:#334;line-height:1.55;font-size:14.5px;">
+        A five-minute walkthrough will not surface a plateau. The plateau shows up in what you produce — the unit map, the redesigned lesson, the student drafts. Once a month, meet with a coach for 20 minutes and bring the artifact listed on the card. That is the whole model. Reflections you type below are stored in your browser only.
+      </div>
+    </section>
+
+    ${OFF_THE_PLATEAU.map((m) => {
+      const done = !!state[`${m.id}:done`];
+      const reflection = state[m.reflectionKey] || "";
+      return `
+        <article class="panel" data-otp-card="${m.id}" style="padding:0;margin-bottom:16px;overflow:hidden;">
+          <div style="background:var(--navy);color:#fff;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;">
+            <div style="font-weight:700;letter-spacing:.03em;">MONTH ${m.month} · ${escapeHtml(m.title)}</div>
+            <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;">
+              <input type="checkbox" data-otp-done="${m.id}" ${done ? "checked" : ""} style="transform:scale(1.15);">
+              Done
+            </label>
+          </div>
+          <div style="padding:18px 20px;">
+            <div style="background:#fbf3ee;border-left:4px solid #c2410c;padding:10px 14px;border-radius:6px;margin-bottom:14px;">
+              <div style="font-weight:700;color:#7c2d12;font-size:13px;letter-spacing:.05em;margin-bottom:3px;">WHAT THE PLATEAU LOOKS LIKE</div>
+              <div style="color:#3f2416;line-height:1.55;">${escapeHtml(m.diagnosis)}</div>
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <div style="font-weight:700;color:var(--navy);margin-bottom:3px;">Why this move</div>
+              <div style="color:#334;line-height:1.55;">${escapeHtml(m.why)}</div>
+            </div>
+
+            <div style="background:#f5f7fb;padding:12px 14px;border-radius:6px;margin-bottom:14px;">
+              <div style="font-weight:700;color:var(--navy);margin-bottom:4px;">The read</div>
+              <div style="color:#334;line-height:1.55;font-size:14.5px;">
+                <a href="${escapeHtml(m.theReading.url)}" target="_blank" rel="noopener" style="color:var(--navy);text-decoration:underline;">${escapeHtml(m.theReading.cite)}</a>
+              </div>
+              <div style="color:#556;margin-top:4px;font-size:14px;font-style:italic;">${escapeHtml(m.theReading.focus)}</div>
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <div style="font-weight:700;color:var(--navy);margin-bottom:3px;">Try this month</div>
+              <div style="color:#334;line-height:1.55;">${escapeHtml(m.tryThis)}</div>
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <div style="font-weight:700;color:var(--navy);margin-bottom:3px;">Bring to your coach</div>
+              <div style="color:#334;line-height:1.55;">${escapeHtml(m.artifactForCoach)}</div>
+            </div>
+
+            <div>
+              <label style="font-weight:700;color:var(--navy);display:block;margin-bottom:4px;">Your reflection after the coaching conversation</label>
+              <textarea data-otp-reflection="${m.reflectionKey}" rows="4" placeholder="What actually changed in the room? What surprised you? What are you keeping?" style="width:100%;padding:10px;border:1px solid #cbd2dd;border-radius:6px;font-family:inherit;font-size:14px;line-height:1.5;box-sizing:border-box;">${escapeHtml(reflection)}</textarea>
+            </div>
+          </div>
+        </article>
+      `;
+    }).join("")}
+  `;
+
+  view.querySelectorAll("[data-otp-done]").forEach((cb) => {
+    cb.addEventListener("change", (e) => {
+      const id = e.target.getAttribute("data-otp-done");
+      const st = _plateauGet();
+      st[`${id}:done`] = e.target.checked;
+      _plateauSet(st);
+      renderOffThePlateau(view);
+    });
+  });
+
+  view.querySelectorAll("[data-otp-reflection]").forEach((ta) => {
+    let t;
+    ta.addEventListener("input", (e) => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const key = e.target.getAttribute("data-otp-reflection");
+        const st = _plateauGet();
+        st[key] = e.target.value;
+        _plateauSet(st);
+      }, 250);
+    });
+  });
+
+  const printBtn = view.querySelector("#otp-print");
+  if (printBtn) {
+    printBtn.addEventListener("click", () => {
+      const st = _plateauGet();
+      const html = `<!doctype html><html><head><meta charset="utf-8"><title>Off the Plateau — my semester</title>
+        <style>
+          body{font-family:Georgia,serif;max-width:720px;margin:40px auto;padding:0 24px;color:#222;line-height:1.55;}
+          h1{color:#1e3a5f;border-bottom:2px solid #c9a94a;padding-bottom:8px;}
+          h2{color:#1e3a5f;margin-top:32px;page-break-after:avoid;}
+          .month{page-break-inside:avoid;margin-bottom:28px;}
+          .diag{background:#fbf3ee;padding:10px 14px;border-left:3px solid #c2410c;margin:8px 0;}
+          .refl{background:#f5f7fb;padding:10px 14px;border-left:3px solid #1e3a5f;margin-top:8px;white-space:pre-wrap;}
+          .cite{font-size:13px;color:#556;font-style:italic;}
+        </style></head><body>
+        <h1>Off the Plateau — my semester</h1>
+        <p>Five months. What I actually did.</p>
+        ${OFF_THE_PLATEAU.map((m) => `
+          <div class="month">
+            <h2>Month ${m.month}: ${escapeHtml(m.title)}</h2>
+            <div class="diag"><strong>Diagnosis:</strong> ${escapeHtml(m.diagnosis)}</div>
+            <p><strong>Try this:</strong> ${escapeHtml(m.tryThis)}</p>
+            <p class="cite">Source: ${escapeHtml(m.theReading.cite)}</p>
+            <div class="refl"><strong>My reflection:</strong>\n${escapeHtml(st[m.reflectionKey] || "— not written yet —")}</div>
+          </div>
+        `).join("")}
+        </body></html>`;
+      const w = window.open("", "_blank");
+      w.document.write(html);
+      w.document.close();
+    });
+  }
+}
+
+// ============================================================
 // ABOUT
 // ============================================================
 async function renderAbout(view) {
@@ -4127,6 +4360,7 @@ function _searchIndex() {
     { label: "Start Here", sub: "Dashboard", href: "#/start-here" },
     { label: "First 30 Days", sub: "Onboarding path", href: "#/first-30-days" },
     { label: "First Ten Weeks", sub: "Named ten-week track · one thing per week", href: "#/first-ten-weeks" },
+    { label: "Off the Plateau", sub: "Five months for teachers stuck at good", href: "#/off-the-plateau" },
     { label: "Write My PL Goal", sub: "Tool", href: "#/pl-tool" },
     { label: "Unit Planner", sub: "Tool", href: "#/unit-plan" },
     { label: "Why Backward Planning", sub: "Teacher guide", href: "#/why-backward-planning" },
